@@ -1,0 +1,293 @@
+// =====================================
+//          BANNER PART STYLE
+//======================================
+.banner-overlay {
+    padding: 220px 0px 165px;
+    background: rgba($dark, .65);
+}
+
+.banner-content {
+    max-width: 580px;
+    color: $chalk;
+
+    h1 { margin-bottom: 15px; }
+    p { margin-bottom: 40px; }
+
+    ul {
+        @include flex (center, flex-start);
+        flex-wrap: wrap;
+        margin-bottom: 45px;
+        column-gap: 50px;
+        row-gap: 25px;
+
+        li {
+            @include flex (center, flex-start);
+            gap: 18px;
+
+            i {
+                @include center (50px, 50px, 50px, 50%);
+                background: rgba($dark, .8);
+                color: $primary;
+            }
+
+            span { 
+                font-size: 20px; 
+
+                small {
+                    display: block;
+                    text-transform: capitalize;
+                    color: var(--bs-gray-400);
+                    margin-top: 3px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .banner-overlay { padding: 145px 0px 100px; }
+    .banner-content {
+        h1 { font-size: 43px; }
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .banner-overlay { padding: 165px 0px 120px; }
+}
+
+@media(min-width: 992px) and (max-width: 1199px) {
+    .banner-overlay { padding: 205px 0px 150px; }
+}
+
+
+// =====================================
+//          FEATURE PART STYLE
+//======================================
+.feature-part {
+    padding: 100px 0px;
+    background: $dark;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        @include position (absolute, 100%, 100%, -1);
+        content: "";
+        top: 0px;
+        #{$start-direction}: 0px;
+        background: url(../images/shape/pattern.png);
+        opacity: 0.4;
+        @include background;
+    }
+
+    .section-text {
+        h2,
+        p {
+            color: $chalk;
+        }
+    }
+}
+
+.product-feature-slider {
+    .col {
+        margin: 0px 12px;
+    }
+
+    .dandik,
+    .bamdik {
+        top: 40%;
+    }
+}
+
+@media(max-width: 575px) {
+    .feature-part { padding: 70px 0px; }
+}
+
+@media(min-width: 576px) and (max-width: 767px) {
+    .feature-part { padding: 80px 0px; }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .feature-part { padding: 90px 0px; }
+}
+
+
+// =====================================
+//          BROWSE PART STYLE
+//======================================
+.browse-nav {
+    @include grid(25px, 5);
+
+    .nav-link {
+        margin-bottom: 25px;
+        flex-direction: column;
+
+        i {
+            @include center(45px, 45px, 45px, 50%);
+            margin-top: -38px;
+            margin-#{$end-direction}: 0px;
+            margin-bottom: 8px;
+            color: $primary;
+            background: $white;
+        }
+
+        span { margin-#{$start-direction}: 0px; }
+    }
+}
+
+@media(max-width: 767px) {
+    .browse-nav {
+        grid-row-gap: 10px;
+        grid-column-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+
+        .nav-link {
+            padding: 12px 8px;
+        }
+    }
+}
+
+
+// =====================================
+//          ABOUT PART STYLE
+//======================================
+.about-media {
+    margin-#{$end-direction}: 30px;
+    position: relative;
+
+    img {
+        width: 100%;
+        border-radius: 6px;
+    }
+}
+
+.about-overlay {
+    top: 0px;
+    @include position(absolute, 100%, 100%, auto);
+    background: rgba($dark, .1);
+    @include flex(center, center);
+
+    a {
+        @include center (80px, 80px, 80px, 50%);
+        font-size: 30px;
+        color: $white;
+        background: rgba($primary, .9);
+        text-shadow: 2px 3px 0px rgba($white, .3);
+        animation: video 2s linear infinite;
+    }
+}
+
+@keyframes video {
+    0%{ box-shadow: 0px 0px 0px 0px rgba($primary, 0.7), 0px 0px 0px 0px rgba($primary, 0.7); }
+    30%{ box-shadow: 0px 0px 0px 30px rgba($black, 0.0), 0px 0px 0px 0px rgba($primary, 0.7); }
+    60%{ box-shadow: 0px 0px 0px 30px rgba($black, 0.0), 0px 0px 0px 25px rgba($black, 0.0); }
+    100%{ box-shadow: 0px 0px 0px 0px rgba($black, 0.0), 0px 0px 0px 25px rgba($black, 0.0); }
+}
+
+.about-content {
+    h3 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        text-transform: initial;
+    }
+}
+
+@media(max-width: 991px) {
+    .about-media {
+        margin-#{$end-direction}: 0px;
+        margin-bottom: 25px;
+    }
+}
+
+@media(max-width: 575px) {
+    .about-overlay {
+        a {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+        }
+    }
+
+    .about-content {
+        h3 {
+            font-size: 24px;
+        }
+    }
+} 
+
+
+// =====================================
+//          CITY PART STYLE
+//======================================
+.city-card-group {
+    margin-top: 80px;
+
+    .col {
+        &:nth-child(even) {
+            margin-top: -80px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .city-card-group {
+        margin-top: 0px;
+    
+        .col {
+            &:nth-child(even) {
+                margin-top: 0px;
+            }
+        }
+    }
+}
+
+
+// =====================================
+//          REVIEW PART STYLE
+//======================================
+.review-part {
+    padding: 60px 0px;
+    background: $red-light;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        top: 0px;
+        #{$start-direction}: 0px;
+        background: url(../images/shape/map.png);
+        @include position(absolute, 100%, 100%, -1);
+        @include background;
+    }
+}
+
+@media(max-width: 767px) {
+    .review-part { padding: 30px 0px;  }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .review-part { padding: 40px 0px;  }
+}
+
+@media(min-width: 992px) and (max-width: 1199px) {
+    .review-part { padding: 50px 0px;  }
+}
+
+@media(max-width: 991px) {
+    .review-slider {
+        .col { margin: 0px 15px; }
+    }
+}
+
+
+// =====================================
+//          BLOG PART STYLE
+//======================================
+.blog-slider {
+    .col {
+        margin: 0px 12px;
+    }
+
+    .dandik,
+    .bamdik { top: 35%; }
+}

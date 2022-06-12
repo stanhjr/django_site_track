@@ -1,0 +1,41 @@
+.common-card {
+    padding: 22px 25px 25px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $chalk;
+}
+
+.common-card-header {
+    @include flex(center, space-between);
+    margin-bottom: 22px; 
+    gap: 10px;
+}
+
+.common-card-header-title {
+    font-weight: 600;
+    padding-#{$start-direction}: 15px;
+    border-#{$start-direction}: 3px solid $primary;
+}
+
+.common-card-header-select {
+    height: 40px;
+    flex-shrink: 0;
+    flex-basis: 200px;
+}
+
+.common-card-body {
+    padding: 22px;
+    border-radius: 6px;
+    background: $white;
+}
+
+@media (max-width: 575px) {
+    .common-card {
+        padding: 0px;
+        margin-bottom: 50px;
+        background: transparent;
+    }
+
+    .common-card-header { flex-wrap: wrap; }
+    .common-card-body { padding: 0px; }
+}

@@ -1,0 +1,122 @@
+.coming-part {
+    .align-items-center {
+        height: 100vh;
+    }
+}
+
+.coming-content {
+    text-align: center;
+}
+
+.coming-title {
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.coming-clock {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid $border;
+}
+
+.coming-subtitle {
+    font-weight: 400;
+    line-height: 32px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: $text;
+}
+
+.coming-form {
+    @include flex(center, center);
+    margin-bottom: 25px;
+    
+    input {
+        width: 400px;
+        height: 50px;
+        padding: 0px 25px;
+        border-radius: 50px;
+        background: $white;
+        box-shadow: $primary-bshadow;
+        border: 1px solid $border;
+    }
+
+    button {
+        margin-#{$start-direction}: 15px;
+
+        i {
+            display: inline-block;
+            @include center(50px, 50px, 48px, 50%);
+            color: $primary;
+            background: $white;
+            box-shadow: $primary-bshadow;
+            border: 1px solid $border;
+            @include transition;
+
+            &:hover {
+                color: $white;
+                background: $primary;
+            }
+        }
+    }
+}
+
+.coming-social {
+    a {
+        font-size: 16px;
+        margin: 0px 4px;
+        @include center(40px, 40px, 40px, 50%);
+        color: $primary;
+        background: $white;
+        text-shadow: $primary-tshadow;
+        box-shadow: $primary-bshadow;
+        @include transition;
+
+        &:hover {
+            color: $white;
+            background: $primary;
+        }
+    }
+}
+
+// RESPONSIVE STYLE
+@media (max-width: 575px) {
+    .coming-title {
+        font-size: 35px;
+        margin-bottom: 35px;
+    }
+
+    .coming-timer {
+        span {
+            font-size: 25px;
+            padding: 0px 15px;
+
+            small {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .coming-form {
+        input {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .coming-part {
+        padding: 50px 0px;
+    }
+    
+    .align-items-center {
+        height: auto;
+    }
+
+    .coming-social {
+        margin-bottom: 40px;
+    }
+}

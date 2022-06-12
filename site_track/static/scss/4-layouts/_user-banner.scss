@@ -1,0 +1,198 @@
+.user-banner {
+    padding-top: 190px;
+    background: rgba($dark, .7);
+}
+
+.user-banner-profile {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.user-banner-profile-avatar {
+    a {
+        border-radius: 50%;
+        border: 3px solid $primary;
+        box-shadow: $primary-bshadow;
+
+        img {
+            width: 120px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+        }
+    }
+}
+
+.user-banner-profile-name {
+    margin-bottom: 12px;
+
+    h3 { 
+        font-size: 26px; 
+        color: $chalk;
+
+        a {
+            color: $chalk;
+            @include transition;
+
+            &:hover { color: $primary; }
+        }
+    }
+
+    span { 
+        text-transform: capitalize; 
+        color: var(--bs-gray-400);
+    }
+}
+
+.user-banner-profile-contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    column-gap: 20px;
+
+    li {
+        display: flex;
+        column-gap: 6px;
+        color: var(--bs-gray-400);
+
+        i {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        span {
+            font-size: 16px;
+        }
+    }
+}
+
+.user-banner-data {
+    @include grid(25px, 2);
+    margin-bottom: 40px;
+
+    li {
+        position: relative;
+        text-align: center;
+        padding: 40px 15px 25px;
+        border-radius: 6px;
+        background: rgba($primary, 0.3);
+        color: $white;
+
+        i {
+            @include center(45px, 45px, 45px, 50%);
+            font-size: 24px;
+            color: $primary;
+            background: rgba($primary, 0.5);
+            position: absolute;
+            top: -22px;
+            #{$start-direction}: 50%;
+            transform: translateX(-50%);
+        }
+
+        h3 { 
+            color: $white;
+            font-size: 28px;
+            margin-bottom: 2px;
+        }
+
+        p { 
+            white-space: nowrap;
+            text-transform: capitalize; 
+            letter-spacing: 0.5px;
+            font-size: 16px;
+        }
+
+        &.ads i { color: var(--bs-cyan); }
+        &.star i { color: $yellow; }
+    }
+}
+
+.user-banner-menu-list {
+    padding: 0px 30px;
+    border-radius: 6px;
+    background: rgba($primary, 0.15);
+    @include flex(center, space-between);
+
+    li {
+        a {
+            color: $chalk;
+            padding: 20px 0px;
+            letter-spacing: 0.5px;
+            @include font(14px, 500);
+            text-transform: uppercase;
+            position: relative;
+            @include transition;
+
+            &::before {
+                @include position(absolute, 100%, 3px, 1);
+                content: "";
+                bottom: 0px;
+                background: $primary;
+                transform: scale(0);
+                @include transition;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                bottom: 0px;
+                #{$start-direction}: 50%;
+                border-radius: 3px;
+                border-top: 8px solid transparent;
+                border-#{$end-direction}: 8px solid $primary;
+                border-#{$start-direction}: 8px solid transparent;
+                border-bottom: 8px solid $primary;
+                transform: translateX(-50%) rotate(45deg);
+                visibility: hidden;
+                opacity: 0;
+                @include transition;
+            }
+
+            &:hover {
+                color: $primary;
+
+                &::before { transform: scale(1); }
+            }
+
+            &.active {
+                color: $primary;
+
+                &::before { transform: scale(1); }
+                &::after {
+                    visibility: visible;
+                    bottom: -7px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .user-banner-menu-list { display: none; }
+}
+
+@media (max-width: 575px) {
+    .user-banner { padding-top: 115px; }
+    .user-banner-profile { flex-wrap: wrap; }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .user-banner { padding-top: 140px; }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .user-banner { padding-top: 160px; }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .user-banner-menu-list {
+        padding: 0px 20px;
+
+        li {
+            a { font-size: 13px; }
+        }
+    }
+}
+
+

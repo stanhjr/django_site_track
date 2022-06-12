@@ -1,0 +1,7 @@
+.price-faq {
+    .accordion-item {
+        background: rgba($primary, 0.08);
+
+        &:last-child { margin-bottom: 0px; }
+    }
+}

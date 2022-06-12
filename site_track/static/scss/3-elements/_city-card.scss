@@ -1,0 +1,55 @@
+.city-card {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        .city-overlay {
+            a.material-icons { background: $primary; }
+        }
+
+        img { transform: scale(1.05) rotate(3deg); }
+    }
+
+    img { 
+        width: 100%; 
+        border-radius: 6px;
+        transform: scale(1) rotate(0deg);
+        @include transition;
+    }
+}
+
+.city-overlay {
+    @include position(absolute, 100%, 100%, 1);
+    @include flex(flex-start, flex-end);
+    flex-direction: column;
+    top: 0px;
+    border-radius: 6px;
+    padding: 25px 25px 20px;
+    background: linear-gradient(rgba($dark, .1) 50%, rgba($dark, .9) 90%);
+
+    h3 {
+        margin-bottom: 3px;
+
+        a {
+            color: $chalk; 
+            @include transition;
+            &:hover { color: $primary; }
+        }
+    }
+
+    p { color: var(--bs-gray-500); }
+
+    a.material-icons {
+        position: absolute;
+        top: 15px;
+        #{$end-direction}: 15px;
+        z-index: 1;
+        @include center(40px, 40px, 40px, 50%);
+        color: $white;
+        background: rgba($dark, .5);
+        @include transition;
+    }
+}

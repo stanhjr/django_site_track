@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from site_track.views import main, Login, Logout, Register
+from site_track.views import main, Login, Logout, Register, RestorePassword
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,7 @@ urlpatterns = [
     path('login/', Login.as_view(), name='login'),
     path('register/', Register.as_view(), name='register'),
     path('logout/', Logout.as_view(), name='logout'),
+    path('restore-password/',  RestorePassword.as_view(), name='restore-password'),
 
 ]
 

@@ -1,0 +1,30 @@
+.inventory-feature {
+    padding: 30px 15px;
+    background: $dark;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $dark;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        @include position (absolute, 100%, 100%, -1);
+        content: "";
+        top: 0px;
+        #{$start-direction}: 0px;
+        background: url(../../images/shape/pattern.png);
+        opacity: 0.4;
+        @include background;
+    }
+}
+
+.inventory-feature-slider {
+    .col {
+        margin: 0px 15px;
+    }
+
+    .dandik,
+    .bamdik {
+        top: 40%;
+    }
+}

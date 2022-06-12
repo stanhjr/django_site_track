@@ -1,0 +1,48 @@
+.badge-hover {
+    &:hover {
+        .badge {
+            &.arrow-right {
+                #{$start-direction}: -30%;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.badge {
+    padding: 6px 9px;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    @include font (12px, 500);
+    text-transform: uppercase;
+    background: $dark;
+
+    &.new { background: $green; }
+    &.used { background: $red; }
+    &.recom { background: $orange; }
+    &.featured { background: $primary; }
+
+    &.arrow-right {
+        position: absolute;
+        top: 50%;
+        #{$start-direction}: 0%;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-100%, -50%);
+        @include transition;
+
+        &::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            #{$end-direction}: -3px;
+            border-radius: 2px;
+            border-top: 5px solid $dark;
+            border-#{$end-direction}: 5px solid $dark;
+            border-#{$start-direction}: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            transform: translateY(-50%) rotate(45deg);
+        }
+    }
+}

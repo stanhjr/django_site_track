@@ -1,0 +1,47 @@
+.intro-card {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.intro-overlay {
+    background: linear-gradient(to $start-direction, rgba($primary, 0.6), rgba($dark, .98));
+    padding: 80px 60px;
+    @include flex(center, space-between);
+
+    .btn-inline {
+        background: $dark;
+        border-color: $dark;
+        padding: 14px 30px;
+        margin-#{$start-direction}: 100px;
+    }
+}
+
+.intro-content {
+    h3 {
+        @include font(32px, 700);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        color: $white;
+    }
+
+    p { color: $chalk; }
+}
+
+@media (max-width: 575px) {
+    .intro-overlay { padding: 50px 25px; }
+}
+
+@media (max-width: 991px) {
+    .intro-overlay {
+        flex-direction: column;
+        text-align: center;
+
+        .btn-inline {
+            margin: 35px 0px 0px;
+        }
+    }
+}
+
+@media(min-width: 576px) and (max-width: 991px) {
+    .intro-overlay { padding: 70px 50px; }
+}

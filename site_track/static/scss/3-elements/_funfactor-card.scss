@@ -1,0 +1,59 @@
+.funfactor-card {
+    @include flex(center, center);
+    margin-top: 50px;
+    padding: 45px 0px;
+    border-radius: 6px;
+    background: $chalk;
+    @include transition;
+
+    &:hover {
+        background: $primary;
+
+        i {
+            &::before { border-color: $white; }
+        }
+
+        span,
+        h4 { color: $white; }
+    }
+
+    i {
+        @include center(50px, 50px, 50px, 50%);
+        margin-#{$end-direction}: 25px;
+        font-size: 22px;
+        background: $white;
+        color: $primary;
+        text-shadow: $primary-tshadow;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            #{$start-direction}: 50%;
+            transform: translate(-50%, -50%);
+            @include center(60px, 60px, 60px, 50%);
+            border: 2px dashed $primary;
+            @include transition;
+        }
+    }
+
+    h4 {
+        @include font(34px, 600);
+        @include transition;
+
+        span { display: block; }
+    }
+}
+
+.funfactor-text {
+    color: $text;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    @include font(14px, 500);
+    @include transition;
+}
+
+@media(max-width: 1199px) {
+    .funfactor-card { margin-top: 25px; }
+}

@@ -1,0 +1,31 @@
+.faq-category {
+    padding: 50px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $chalk;
+}
+
+.faq-category-title {
+    margin-bottom: 30px;
+    padding-#{$start-direction}: 15px;
+    border-#{$start-direction}: 3px solid $primary;
+}
+
+.faq-form {
+    padding: 80px;
+    border-radius: 6px;
+    background: rgba($primary, 0.1);
+}
+
+@media (max-width: 575px) {
+    .faq-category {
+        padding: 0px;
+        margin-bottom: 50px;
+        background: transparent;
+    }
+
+    .faq-form {
+        padding: 0px;
+        background: transparent;
+    }
+}

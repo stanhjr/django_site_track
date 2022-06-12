@@ -1,0 +1,9 @@
+.privacy-group {
+    margin-bottom: 50px;
+    &:last-child { margin-bottom: 0px; }
+}
+
+.privacy-title {
+    margin-bottom: 15px;
+    text-transform: inherit;
+}

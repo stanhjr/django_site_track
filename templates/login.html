@@ -1,11 +1,20 @@
-{% extends 'base.html' %}
-
+{% extends 'base_register.html' %}
+{% load static %}
 {% block content %}
-<span>Wanna register? <a href="{% url 'register' %}">Sign Up</a></span>
+        <form class="auth-form">
+            <div class="auth-form-content">
+                <h3 class="auth-form-title">Login</h3>
+                {% csrf_token %}
+                <div class="form-group">{{ form.email }}</div>
+                <div class="form-group">{{ form.password }}</div>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Login">
-</form>
+{#                <div class="form-check">#}
+{#                    <input class="form-check-input" type="checkbox" id="checkAgree">#}
+{#                    <label class="form-check-label" for="checkAgree">I agree to the <a href="#">Terms </a> and <a href="#">Privacy Policy</a>.</label>#}
+{#                </div>#}
+                <button type="submit" class="form-btn">login</button>
+                <div class="auth-form-or"><span>or</span></div>
+                <p class="auth-form-text">Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </form>
 {% endblock %}

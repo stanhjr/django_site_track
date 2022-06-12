@@ -1,0 +1,111 @@
+//=====================================
+//      TRANSITION BROWSER PREFIX
+//======================================
+@mixin transition {
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+}
+
+// =====================================
+//      BACKGROUND IMAGE PROPERTY
+//======================================
+@mixin background {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+// =====================================
+//         FLEX STYLE PROPERTY
+//======================================
+@mixin flex ($alignItems, $justifyContent) {
+    display: flex;
+    align-items: $alignItems;
+    justify-content: $justifyContent;
+}
+
+// =====================================
+//      CENTER STYLE PROPERTY
+//======================================
+@mixin center ($width, $height, $lineHeight, $radius) {
+    width: $width;
+    height: $height;
+    line-height: $lineHeight;
+    border-radius: $radius;
+    text-align: center;
+}
+
+// =====================================
+//      ROUND STYLE PROPERTY
+//======================================
+@mixin round ($width, $height, $radius) {
+    width: $width;
+    height: $height;
+    border-radius: $radius;
+}
+
+// =====================================
+//     POSITION STYLE PROPERTY
+//======================================
+@mixin position ($position, $width, $height, $zindex) {
+    position: $position;
+    width: $width;
+    height: $height;
+    z-index: $zindex;
+}
+
+// =====================================
+//        FONT STYLE PROPERTY
+//======================================
+@mixin font ($fontSize, $fontWeight) {
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+}
+
+// =====================================
+//        GRID STYLE PROPERTY
+//======================================
+@mixin grid($gridGap, $gridColumn) {
+    display: grid;
+    grid-gap: $gridGap;
+    grid-template-columns: repeat($gridColumn, 1fr);
+    grid-template-rows: auto;
+}
+
+// =====================================
+//        GRID STYLE PROPERTY
+//======================================
+@mixin grid-width($gridGap, $gridWidth) {
+    display: grid;
+    grid-gap: $gridGap;
+    grid-template-columns: repeat(auto-fit, minmax($gridWidth, 1fr));
+    grid-template-rows: auto;
+}
+
+// =====================================
+//        MARGIN STYLE PROPERTY
+//======================================
+@mixin margin($top, $right, $bottom, $left) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+    margin-#{$end-direction}: $right;
+    margin-#{$start-direction}: $left;
+}
+
+// =====================================
+//        PADDING STYLE PROPERTY
+//======================================
+@mixin padding($top, $right, $bottom, $left) {
+    padding-top: $top;
+    padding-bottom: $bottom;
+    padding-#{$end-direction}: $right;
+    padding-#{$start-direction}: $left;
+}
+
+
+
+
+

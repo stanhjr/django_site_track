@@ -1,0 +1,208 @@
+.comment-item {
+    padding: 25px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $white;
+
+    &:last-child { margin-bottom: 0px; }
+
+    ul {
+        li {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid $border;
+            margin-#{$start-direction}: 60px;
+        }
+    }
+}
+
+.comment-head {
+    margin-bottom: 15px;
+    @include flex(flex-start, space-between);
+    flex-wrap: wrap;
+}
+
+.comment-user {
+    @include flex(center, flex-start);
+}
+
+.comment-media {
+    border-radius: 50%;
+    border: 2px solid $primary;
+    margin-#{$end-direction}: 15px;
+
+    img {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+    }
+}
+
+.comment-meta {
+    position: relative;
+
+    h5 { 
+        white-space: nowrap; 
+        margin-bottom: 5px;
+    }
+
+    span {
+        display: block;
+        @include font(15px, 400);
+        white-space: nowrap;
+        text-transform: capitalize;
+        color: $heading;
+
+        b { 
+            @include font(10px, 400);
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            padding: 3px 7px;
+            text-transform: uppercase;
+            background: $heading;
+            color: $white;
+        }
+    }
+}
+
+.comment-widget {
+    @include flex(center, center);
+    margin-top: 10px;
+}
+
+.comment-reply {
+    @include flex(center, center);
+    @include font(14px, 500);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding: 7px 11px;
+    border-radius: 6px;
+    background: $primary;
+    color: $white;
+
+    i {
+        font-size: 18px;
+        margin-top: -3px;
+        margin-#{$end-direction}: 3px;
+    }
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.comment-action {
+    position: relative;
+    margin-#{$start-direction}: 15px;
+}
+
+.comment-action-btn {
+    i {
+        @include center(35px, 35px, 35px, 50%);
+        font-size: 20px;
+        background: $chalk;
+        color: $text;
+        @include transition;
+
+        &:hover {
+            color: $white;
+            background: $primary;
+        }
+    }
+
+    &.active {
+        i {
+            color: $white;
+            background: $primary;
+        }
+    }
+}
+
+.comment-action-list {
+    position: absolute;
+    #{$end-direction}: 0px;
+    background: $white;
+    border-radius: 6px;
+    border: 1px solid $border;
+    box-shadow: $primary-bshadow;
+    visibility: hidden;
+    opacity: 0;
+    @include transition;
+
+    &.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    a {
+        @include flex(center, flex-start);
+        @include padding(3px, 25px, 3px, 15px);
+        text-transform: capitalize;
+        color: $text;
+        @include transition;
+
+        &:hover { color: $primary; }
+
+        &:first-child { padding-top: 12px; }
+        &:last-child { padding-bottom: 12px; }
+
+        i {
+            font-size: 18px;
+            margin-#{$end-direction}: 8px;
+        }
+
+        span { font-size: 15px; }
+    }
+}
+
+.comment-body {
+    h6 {
+        text-transform: capitalize;
+        margin-bottom: 15px;
+
+        a {
+            &:hover { text-decoration: underline; }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .comment-item {
+        ul li { margin-#{$start-direction}: 30px; }
+    }
+
+    .comment-user {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .comment-media { margin: 0px 0px 8px; }
+
+    .comment-meta {
+        span { margin-top: 3px; }
+    }
+
+    .comment-widget { margin-top: 13px; }
+}
+
+@media (max-width: 575px) {
+    .comment-item {
+        padding: 0px;
+        margin-top: 25px;
+        padding-top: 25px;
+        border-top: 1px solid $border;
+
+        &:first-child {
+            margin-top: 0px;
+            padding-top: 0px;
+            border-top: none;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .comment-item {
+        ul li { margin-#{$start-direction}: 50px; }
+    }
+}

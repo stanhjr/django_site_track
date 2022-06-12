@@ -1,0 +1,42 @@
+body {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $heading;
+    margin-bottom: 0px;
+}
+
+h1 {
+    font-size: 52px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+h4 {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+h5 {
+    font-size: 18px;
+    text-transform: capitalize;
+}

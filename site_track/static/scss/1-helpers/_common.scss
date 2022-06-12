@@ -1,0 +1,65 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    outline: 0px;
+    box-sizing: border-box;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+ul,
+ol {
+    padding: 0px;
+    list-style: none;
+}
+
+p,
+ol,
+ul,
+li,
+span,
+label {
+    margin-bottom: 0px;
+}
+
+html,
+body {
+    color: $text;
+    background: $white;
+    direction: $direction;
+    scroll-behavior: smooth;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+@media (min-width: 1300px) {
+    .container { max-width: 1230px; }
+}
+
+@media (max-width: 991px) {
+    .content-reverse { flex-direction: column-reverse; }
+}
+
+
+
+

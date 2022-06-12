@@ -1,0 +1,248 @@
+.header-part {
+    top: 0px;
+    #{$start-direction}: 0px;
+    padding: 20px 25px;
+    @include position (fixed, 100%, auto, 3);
+    @include flex (center, space-between);
+    @include transition;
+}
+
+.header-part.sticky {
+    padding: 10px 25px;
+    background: $white;
+    box-shadow: 0px 15px 35px 0px rgba($black, 0.1);
+
+    .header-widget,
+    .header-user {
+        span { color: $heading; }
+    }
+}
+
+.header-logo {
+    margin-#{$end-direction}: 50px;
+    
+    img {
+        height: 45px;
+    }
+}
+
+.header-content {
+    width: 100%;
+    @include flex (center, center);
+}
+
+.header-widget,
+.header-user {
+    position: relative;
+    white-space: nowrap;
+    @include flex(center, center);
+    column-gap: 8px;
+
+    &:hover {
+        i {
+            color: $white;
+            background: $primary;
+        }
+
+        span {
+            color: $primary;
+        }
+    }
+
+    img {
+        @include center (40px, 40px, 0px, 50%);
+        vertical-align: middle;
+    }
+
+    i {
+        color: $text;
+        background: $chalk;
+        vertical-align: middle;
+        @include center (40px, 40px, 38px, 50%);
+        @include transition;
+    }
+
+    span {
+        letter-spacing: 0.8px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        vertical-align: middle;
+        color: $white;
+        @include font (14px, 500);
+        @include transition;
+    }
+}
+
+.header-responsive {
+    @include flex (center, space-between);
+}
+
+.responsive-logo,
+.responsive-srch { display: none; }
+
+.header-form {
+    width: 100%;
+    margin: 0px 50px;
+    position: relative;
+}
+
+.header-form {
+    &.active {
+        .header-search {
+            border-radius: 6px 6px 0px 0px;
+        }
+
+        .header-option {
+            opacity: 1;
+            visibility: visible;
+            transform: scaleY(1);
+        }
+    }
+}
+
+.header-search {
+    border-radius: 6px;
+    background: $chalk;
+    @include flex (center, center);
+    @include transition;
+
+    button {
+        padding: 0px 15px;
+        @include transition;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    input {
+        width: 100%;
+        height: 48px;
+    }
+
+    select {
+        border: none;
+        width: 150px;
+        height: 30px;
+        font-size: 15px;
+        border-radius: 0px;
+        background: transparent;
+        border-#{$start-direction}: 1px solid $border;
+        &:focus { border-color: $border; }
+    }
+}
+
+.header-option {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    padding: 15px 15px;
+    border-radius: 0px 0px 6px 6px;
+    background: $chalk;
+    border-top: 1px solid $border;
+    @include position (absolute, 100%, auto, auto);
+    #{$start-direction}: 0px;
+    top: 48px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    @include transition;
+
+    input {
+        width: 100%;
+        height: 45px;
+        padding: 0px 15px;
+        border-radius: 6px;
+        background: $white;
+    }
+
+    select {
+        border: none;
+        height: 45px;
+        color: $text;
+    }
+
+    button {
+        grid-area: 3 / 1 / 4 / 3;
+        color: $white;
+        background: $primary;
+        letter-spacing: 0.8px;
+        border-radius: 6px;
+        height: 45px;
+        text-transform: uppercase;
+        @include font (15px, 500);
+    }
+}
+
+.header-btn {
+    margin-#{$start-direction}: 50px;
+    color: $white;
+    background: $primary;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+
+// RESPONSIVE HEADER STYLE
+@media (max-width: 991px) {
+    .header-part { padding: 15px 15px; }
+    .header-part.sticky { padding: 8px 15px; }
+    .header-content { flex-direction: column; }
+
+    .header-logo,
+    .header-form,
+    .header-user,
+    .header-btn { display: none; }
+    .header-responsive { width: 100%; }
+
+    .responsive-logo,
+    .responsive-srch {
+        display: block;
+
+        img { width: 180px; }
+    }
+
+    .header-form { margin: 10px 0px 5px; }
+    .header-search {
+        button,
+        select { padding: 0px 10px; }
+        input { height: 45px; }
+    }
+    .header-option { top: 45px; }
+}
+
+@media (max-width: 575px) {
+    .responsive-logo img { width: 150px; }
+
+    .header-widget {
+        i {
+            width: 36px;
+            height: 36px;
+            font-size: 22px;
+            line-height: 34px;
+        }
+        span { display: none; }
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .header-logo { margin-#{$end-direction}: 30px; }
+    .header-widget,
+    .header-user {
+        span { display: none; }
+    }
+    .header-form { margin: 0px 30px; }
+    .header-btn { margin-#{$start-direction}: 30px; }
+}
+
+@media (max-width: 575px) {
+    .header-option {
+        .form-select {
+            background: $white;
+        }
+    }
+}

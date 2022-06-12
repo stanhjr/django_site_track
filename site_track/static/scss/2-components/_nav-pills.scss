@@ -1,0 +1,26 @@
+.nav-pills {
+    .nav-link {
+        @include font(14px, 500);
+        @include flex(center, center);
+        gap: 8px;
+        letter-spacing: 0.3px;
+        padding: 15px 12px;
+        border-radius: 6px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        color: $heading;
+        background: var(--bs-gray-300);
+
+        &:hover {
+            color: $white;
+            background: $primary;
+        }
+
+        i { font-size: 22px; }
+        &.active { background: $primary; }
+    }
+}
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+

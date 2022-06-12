@@ -1,0 +1,37 @@
+.slider-count {
+    .slick-dots {
+        position: absolute;
+        top: 50%;
+        #{$end-direction}: 50px;
+        transform: translateY(-50%);
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 12px;
+    
+        li {
+            button {
+                display: inline-block;
+                @include font(14px, 500);
+                @include center(32px, 32px, 32px, 50%);
+                color: $white;
+                background-color: rgba($primary, 0.3);
+                @include transition;
+            }
+        }
+
+        .slick-active {
+            button {
+                background-color: $primary;
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .slider-count {
+        .slick-dots {
+            #{$end-direction}: 25px;
+        }
+    }
+}

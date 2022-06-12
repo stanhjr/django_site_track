@@ -1,0 +1,35 @@
+.product-grid-card {
+    &:hover {
+        .posted-widget {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.posted-widget {
+    position: absolute;
+    top: 48px;
+    #{$end-direction}: 12px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    visibility: hidden;
+    opacity: 0;
+    @include transition;
+
+    a {
+        width: fit-content;
+        padding: 7px;
+        font-size: 20px;
+        border-radius: 6px;
+        background: rgba($dark, .8);
+        color: $white;
+        text-shadow: $primary-tshadow;
+        box-shadow: $primary-bshadow;
+
+        &.edit { background: rgba($green, .9) }
+        &.delete { background: rgba($red, .9); }
+    }
+}

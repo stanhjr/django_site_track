@@ -1,0 +1,45 @@
+.brand-card {
+    width: 100%;
+    padding: 30px 0px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    text-align: center;
+    background: $chalk;
+    @include transition;
+
+    &:hover {
+        background: $white;
+        box-shadow: 0px 12px 30px 0px rgba($dark, .15);
+
+        p {
+            color: $primary;
+        }
+    }
+
+    img {
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    h6 {
+        font-weight: 600;
+        margin-bottom: 3px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: $text;
+        font-size: 16px;
+        text-transform: capitalize;
+        @include transition;
+    }
+}
+
+@media(max-width: 1199px) {
+    .brand-card {
+        img { height: 45px; }
+        h6 { font-size: 14px; }
+        p { font-size: 15px; }
+    }
+}

@@ -1,0 +1,192 @@
+.sidebar-part {
+    @include position (fixed, 320px, 100%, 5);
+    #{$start-direction}: -350px;
+    top: 0px;
+    background: $white;
+    @include transition;
+}
+
+.sidebar-part {
+    &.open {
+        #{$start-direction}: 0px;
+    }
+}
+
+.sidebar-header {
+    @include flex (center, space-between);
+    border-bottom: 1px solid $border;
+    padding: 15px 15px 12px;
+
+    a {
+        img {
+            width: 150px;
+        }
+    }
+}
+
+.sidebar-content {
+    overflow-y: scroll;
+    height: calc(100vh - 65px);
+}
+
+.sidebar-btn {
+    text-align: center;
+    padding: 50px 0px;
+    margin: 0px 15px;
+    border-radius: 6px;
+    background: $chalk;
+}
+
+.sidebar-select {
+    margin: 0px 15px;
+    padding: 15px 0px;
+    @include flex(center, center);
+    border-bottom: 1px solid $border;
+
+    .form-select {
+        width: 100%;
+        height: 35px;
+        border: none;
+        color: $heading;
+        border-radius: 0px;
+
+        &:first-child {
+            border-#{$end-direction}: 1px solid $border;
+        }
+    }
+}
+
+.sidebar-nav {
+    padding: 25px 15px 0px;
+}
+
+.sidebar-group {
+    margin-bottom: 20px;
+}
+
+.sidebar-title {
+    color: $text;
+    opacity: 0.6;
+    margin-bottom: 15px;
+}
+
+.select-data,
+.nav-list .nav-link {
+    @include flex (center, flex-start);
+    padding: 13px 14px 13px 10px;
+    border-radius: 6px;
+    color: $text;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        color: $primary;
+        background: $chalk;
+
+        .select-arrow,
+        .nav-arrow {
+            border-color: $primary;
+        }
+    }
+
+    &:focus { color: inherit; }
+    
+    i { 
+        margin-#{$end-direction}: 18px;
+        @include transition; 
+    }
+}
+
+.select-image {
+    @include center(28px, 28px, 0px, 50%);
+    margin-#{$end-direction}: 15px;
+    border: 3px solid $white;
+}
+
+.select-text,
+.nav-text {
+    width: 100%;
+    text-transform: capitalize;
+    @include transition;
+}
+
+.select-arrow,
+.nav-arrow {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-top: 2px solid $text;
+    border-#{$end-direction}: 2px solid $text;
+    transform: rotate(45deg);
+    @include transition;
+}
+
+.nav-count {
+    @include center(28px, 28px, 22px, 30px);
+    font-size: 14px;
+    flex-shrink: 0;
+    color: $white;
+    background: $primary;
+    border: 3px solid $white;
+}
+
+.option-list,
+.drop-list {
+    margin: 0px 20px;
+    border-#{$start-direction}: 1px solid $border;
+    height: 0px;
+    overflow: hidden;
+    @include transition;
+}
+
+.option-link,
+.drop-link {
+    @include flex (center, flex-start);
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: $text;
+    @include transition;
+
+    &:hover {
+        color: $primary;
+        background: $chalk;
+    }
+
+    img {
+        @include center(28px, 28px, 0px, 50%);
+        margin-#{$end-direction}: 15px;
+        border: 3px solid $white;
+    }
+
+    i {
+        font-size: 20px;
+        margin-#{$end-direction}: 8px;
+    }
+
+    span {
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+}
+
+.selected,
+.dropdown {
+    .select-data,
+    .nav-link {
+        color: $primary;
+        background: $chalk;
+    }
+
+    i { color: $primary; }
+    .nav-text { color: $primary; }
+
+    .select-arrow,
+    .nav-arrow {
+        transform: rotate(135deg);
+        border-color: $primary;
+    }
+}
+
+@media(max-width: 575px) {
+    .sidebar-part { width: 285px; }
+}

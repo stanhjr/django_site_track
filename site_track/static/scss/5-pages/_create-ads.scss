@@ -1,0 +1,230 @@
+.create-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    li {
+        @include flex(center, flex-start);
+        @include font(14px, 500);
+        gap: 15px;
+        padding: 18px 20px;
+        border-radius: 6px;
+        background: $white;
+        text-transform: uppercase;
+        position: relative;
+        cursor: pointer;
+
+        &::after {
+            font-family: "Material Icons";
+            position: absolute;
+            content: "\e15c";
+            font-size: 22px;
+            top: 50%;
+            #{$end-direction}: 20px;
+            transform: translateY(-50%);
+            color: $gray;
+        }
+
+        &.complete {
+            &::after {
+                content: "\e86c";
+                color: $green;
+            }
+        }
+
+        &.active {
+            background: $primary;
+            color: $white;
+        }
+    }
+}
+
+.create-ads-form {
+    .common-card {
+        display: none;
+
+        &.active { display: block; }
+    }
+}
+
+.create-extra-input {
+    margin-top: 25px;
+    margin-bottom: 45px;
+
+    h5 {
+        margin-bottom: 25px;
+    }
+}
+
+.create-feature-check,
+.create-feature-switch {
+    margin-bottom: 20px;
+}
+
+.create-feature-check,
+.create-feature-switch,
+.create-feature-radio {
+    h5 { margin-bottom: 20px; }
+}
+
+.create-media {
+    margin-bottom: 50px;
+}
+
+.video-input {
+    height: 64px;
+    border: 2px dashed $border;
+}
+
+.create-social {
+    input {
+        background: $chalk;
+
+        &:focus { background: $chalk; }
+    }
+}
+
+.create-edit-faqs {
+    margin-bottom: 50px;
+    
+    input,
+    textarea { 
+        background: $chalk; 
+
+        &:focus { background: $chalk; }
+    }
+
+    .accordion-item {
+        &.active {
+            h5 { margin-bottom: 25px; }
+        }
+    }
+}
+
+.create-price-card {
+    padding: 25px 25px 22px;
+    border: 2px solid $white;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $white;
+    position: relative;
+    cursor: pointer;
+    @include transition;
+
+    i {
+        position: absolute;
+        top: 8px;
+        #{$end-direction}: 8px;
+        font-size: 24px;
+        color: $primary;
+        visibility: hidden;
+        opacity: 0;
+        @include transition;
+    }
+
+    h5 {
+        text-transform: uppercase;
+        @include font(16px, 700);
+        letter-spacing: 0.3px;
+        margin-bottom: 8px;
+        color: $text;
+    }
+
+    h6 {
+        @include font(34px, 700);
+        font-family: sans-serif;
+        margin-bottom: 3px;
+    }
+
+    a {
+        text-transform: capitalize;
+        letter-spacing: 0.3px;
+        font-size: 16px;
+
+        &:hover { text-decoration: underline; }
+    }
+
+    &.active {
+        border-color: $primary;
+
+        i {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.create-billing {
+    margin-top: 25px;
+
+    h5 { margin-bottom: 15px; }
+    .form-check-label { text-transform: inherit; }
+}
+
+.create-pay-card {
+    text-align: center;
+    padding: 35px 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $white;
+    border: 2px solid $white;
+    cursor: pointer;
+    position: relative;
+    @include transition;
+
+    i {
+        position: absolute;
+        top: 8px;
+        #{$end-direction}: 8px;
+        font-size: 22px;
+        color: $primary;
+        visibility: hidden;
+        opacity: 0;
+        @include transition;
+    }
+
+    img {
+        height: 25px;
+        margin-bottom: 10px;
+    }
+
+    small {
+        display: block;
+    }
+
+    &.active {
+        border-color: $primary;
+
+        i {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .create-nav-list {
+        li {
+            background: $chalk;
+        }
+    }
+
+    .create-edit-faqs {
+        input,
+        textarea { background: $white; }
+
+        .btn {
+            padding: 10px 15px;
+            font-size: 13px;
+        }
+    }
+
+    .create-pay-card {
+        background: $chalk;
+        border-color: $chalk;
+    }
+
+    .create-price-card {
+        background: $chalk;
+    }
+}

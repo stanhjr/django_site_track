@@ -1,0 +1,32 @@
+.modal-dialog {
+    max-width: max-content;
+}
+
+.modal-content {
+    border: none;
+    padding: 25px;
+    border-radius: 6px;
+}
+
+.modal-header {
+    padding: 0px;
+    margin-bottom: 25px;
+    border: none;
+
+    button {
+        @include transition;
+        
+        &:hover { color: $primary; }
+    }
+}
+
+.modal-title {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.modal-message {
+    .form-control {
+        background: $chalk;
+    }
+}

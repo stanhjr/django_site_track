@@ -1,0 +1,176 @@
+.vendor-list-card {
+    height: 250px;
+    @include flex(center, flex-start);
+    padding: 18px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    background: $chalk;
+    border: 1px solid $chalk;
+    @include transition;
+
+    &:hover {
+        background: $white;
+        border-color: $primary;
+        box-shadow: 0px 15px 28px 0px rgba($dark, .15);
+
+        .vendor-list-action {
+            a,
+            button { 
+                background: $chalk; 
+
+                &:hover {
+                    color: $white;
+                    background: $primary;
+                }
+            }
+        }
+    }
+}
+
+.vendor-list-cover {
+    height: 100%;
+
+    img {
+        height: 100%;
+        border-radius: 6px;
+    }
+}
+
+.vendor-list-avatar {
+    margin-#{$start-direction}: -30px;
+    margin-#{$end-direction}: 30px;
+
+    img {
+        width: 80px;
+        border-radius: 50%;
+        border: 5px solid $chalk;
+        @include transition;
+    }
+}
+
+.vendor-list-group {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.vendor-list-meta {
+    li {
+        @include flex(center, flex-start);
+        margin-bottom: 8px;
+
+        &:last-child { margin-bottom: 0px; }
+
+        i {
+            font-size: 24px;
+            margin-#{$end-direction}: 12px;
+        }
+
+        a {
+            @include font(18px, 500);
+            white-space: nowrap;
+            text-transform: capitalize;
+            color: $heading;
+            @include transition;
+
+            &:hover { color: $primary; }
+        }
+
+        span {
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            text-transform: capitalize;
+
+            b {
+                font-weight: 500;
+                color: $heading;
+            }
+        }
+
+        .pro { color: $primary; }
+        .map { color: $green; }
+        .star { color: $yellow; }
+        .store { color: $blue; }
+    }
+}
+
+.vendor-list-action {
+    @include grid(15px, 2);
+
+    a,
+    button {
+        @include flex(center, center);
+        text-transform: uppercase;
+        @include font(14px, 500);
+        letter-spacing: 0.3px;
+        padding: 10px 0px;
+        border-radius: 6px;
+        color: $text;
+        background: $white;
+        @include transition;
+    }
+}
+
+@media (max-width: 767px) {
+    .vendor-list-card {
+        align-items: flex-start;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .vendor-list-cover {
+        width: 100%;
+        height: auto;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .vendor-list-avatar {
+        margin: -30px 0px 10px 20px;
+    }
+
+    .vendor-list-meta {
+        margin-bottom: 18px;
+    }
+
+    .vendor-list-action {
+        a, button {
+            font-size: 12px;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .vendor-list-card {
+        height: 180px;
+        padding: 12px;
+    }
+
+    .vendor-list-avatar {
+        margin-#{$end-direction}: 15px;
+        img { width: 65px; }
+    }
+
+    .vendor-list-meta {
+        li {
+            margin-bottom: 4px;
+
+            i { font-size: 22px; }
+            a { font-size: 17px; }
+            span { font-size: 15px; }
+        }
+    }
+
+    .vendor-list-action {
+        a, button {
+            padding: 8px 0px;
+            font-size: 12px;
+        }
+    }
+}

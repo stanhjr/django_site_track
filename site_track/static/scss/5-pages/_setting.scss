@@ -1,0 +1,41 @@
+.setting-nav {
+    @include grid(25px, 1);
+
+    .nav-link {
+        justify-content: flex-start;
+        gap: 15px;
+        padding: 15px 20px;
+        color: $text;
+        background: $white;
+
+        &:hover {
+            color: $text;
+            background: $white; 
+        }
+
+        &.active {
+            color: $white;
+            background: $primary;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .setting-nav {
+        grid-gap: 15px;
+
+        .nav-link {
+            background: $chalk;
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .setting-nav {
+        @include grid(25px, 2);
+
+        .nav-link {
+            gap: 10px;
+        }
+    }
+}

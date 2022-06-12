@@ -1,0 +1,198 @@
+.price-card {
+    text-align: center;
+    border-radius: 6px;
+    margin: 56px 13px 0px;
+    padding: 0px 50px 50px;
+    background: rgba($primary, 0.18);
+
+    &.active {
+        background: linear-gradient($primary, $dark);
+
+        .price-title,
+        .price-subtitle,
+        .price-item,
+        .price-amount { color: $chalk; }
+
+        .price-list {
+            border-top: 1px solid rgba($primary, .9);
+            border-bottom: 1px solid rgba($primary, .4);
+        }
+
+        .price-item {
+            span {
+                &::before {
+                    color: $primary-light;
+                }
+            }
+        }
+
+        .price-action {
+            color: $primary;
+            background: $white;
+        }
+
+        .price-mode { color: $gray; }
+    }
+}
+
+.price-icon {
+    @include center(130px, 130px, 110px, 50%);
+    font-size: 50px;
+    margin-top: -65px;
+    margin-bottom: 25px;
+    display: inline-block;
+    color: $white;
+    background: $primary;
+    border: 10px solid $white;
+}
+
+.price-title {
+    margin-bottom: 5px;
+    @include font(26px, 700);
+    text-transform: uppercase;
+}
+
+.price-subtitle {
+    margin-bottom: 18px;
+    text-transform: capitalize;
+}
+
+.price-list {
+    text-align: $start-direction;
+    width: max-content;
+    padding: 10px 20px;
+    margin: 0 auto 20px;
+    border-top: 1px solid rgba($primary, .25);
+    border-bottom: 1px solid rgba($primary, .25);
+}
+
+.price-item {
+    font-size: 17px;
+    margin: 10px 0px;
+    text-transform: capitalize;
+
+    span, del {
+        padding-#{$start-direction}: 25px;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            top: 47%;
+            #{$start-direction}: 0px;
+            line-height: 15px;
+            color: $primary;
+            font-family: "Material Icons";
+            transform: translateY(-50%);
+        }
+    }
+
+    span {
+        &::before { 
+            content: "\e86c"; 
+        }
+    }
+
+    del {
+        color: $gray;
+
+        &::before {
+            content: "\e15c";
+            color: $gray;
+        }
+    }
+}
+
+.price-amount {
+    @include font(50px, 900);
+    font-family: sans-serif;
+    margin-bottom: 3px;
+}
+
+.price-mode {
+    color: $text;
+    margin-bottom: 27px;
+    letter-spacing: 0.3px;
+    @include font(12px, 400);
+    text-transform: uppercase;
+}
+
+.price-action {
+    width: 100%;
+    font-weight: 700;
+    padding: 12px 0px;
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $white;
+    background: $primary;
+    @include transition;
+
+    &:hover {
+        color: $white;
+        background: $primary;
+    }
+}
+
+.price-demand {
+    margin-top: 15px;
+    letter-spacing: 5px;
+    display: block;
+    text-align: center;
+    @include font(16px, 700);
+    text-transform: uppercase;
+    color: var(--bs-yellow);
+}
+
+.price-card {
+
+    ul {
+
+        li {
+
+            a {
+                padding: 0px;
+                font-size: 16px;
+                padding-#{$start-direction}: 25px;
+                color: $primary;
+                text-align: $start-direction;
+                background: transparent;
+                @include transition;
+
+                &:hover {
+                    color: $primary;
+                    text-decoration: underline;
+                }
+
+                &::before {
+                    content: "\f059";
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 575px) {
+    .price-card {
+        margin: 50px 12px 0px;
+        padding: 0px 15px 25px;
+    }
+
+    .price-icon {
+        width: 120px;
+        height: 120px;
+        line-height: 100px;
+        margin-top: -60px;
+        font-size: 45px;
+    }
+
+    .price-list {
+        padding: 10px 0px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .price-card {
+        padding: 0px 15px 25px;
+    }
+}

@@ -1,0 +1,21 @@
+.single-banner {
+    padding: 165px 0px 100px;
+    background: rgba($dark, .7);
+
+    h2 {
+        color: $white;
+        margin-bottom: 12px;
+    }
+}
+
+@media(max-width: 575px) {
+    .single-banner { padding: 110px 0px 60px; }
+}
+
+@media(min-width: 576px) and (max-width: 767px) {
+    .single-banner { padding: 120px 0px 70px; }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .single-banner { padding: 130px 0px 80px; }
+}

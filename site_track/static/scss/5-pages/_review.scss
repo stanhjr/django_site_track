@@ -1,0 +1,72 @@
+// AVERAGE RATING
+.rating-average-score {
+    @include font(80px, 700);
+    line-height: 60px;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.rating-average-total {
+    color: $text;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rating-average-list {
+    margin-bottom: 25px;
+}
+
+.rating-average-item {
+    @include flex(center, center);
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.rating-average-graphline {
+    width: 100%;
+    border-radius: 6px;
+    background: var(--bs-gray-300);
+
+    span {
+        height: 6px;
+        border-radius: 6px;
+        background: $yellow;
+        display: block;
+    }
+}
+
+.rating-average-count,
+.rating-average-user {
+    white-space: nowrap;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    font-size: 15px;
+}
+
+.rating-average-star {
+    @include flex(center, center);
+    gap: 5px;
+    margin-bottom: 5px;
+
+    i {
+        font-size: 24px;
+        color: $gray;
+
+        &.active { color: $yellow; }
+    }
+}
+
+.rating-average-text {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+// REVIEW
+.review {
+    background: inherit;
+    padding: 0px;
+}

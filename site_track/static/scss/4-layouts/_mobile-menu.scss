@@ -1,0 +1,74 @@
+.mobile-menu {
+    @include position(fixed, 100%, auto, 3);
+    @include flex(center, space-between);
+    bottom: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background: $primary;
+    box-shadow: 0px -15px 35px 0px rgba($black, 0.1);
+
+    a {
+        @include flex(center, center);
+        flex-direction: column;
+        position: relative;
+        margin-top: -15px;
+        padding-bottom: 6px;
+        width: 100%;
+
+        i {
+            font-size: 18px;
+            margin-bottom: 2px;
+            @include center(35px, 35px, 33px, 50%);
+            background-color: $white;
+            color: $primary;
+            @include transition;
+
+            &:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
+
+        span {
+            @include font(10px, 500);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: $white;
+        }
+
+        sup {
+            position: absolute;
+            top: -10px;
+            #{$end-direction}: 35%;
+            transform: translateX(50%);
+            font-size: 10px;
+            @include center (22px, 22px, 17px, 50%);
+            border: 2px solid $white;
+            background: $red;
+            color: $white;
+        }
+
+        &:nth-child(3) {
+            i {
+                @include center(55px, 55px, 48px, 50%);
+                font-size: 24px;
+                border: 3px solid $white;
+                background: $primary;
+                color: $white;
+                position: absolute;
+                top: -32px;
+            }
+        }
+    }
+}
+
+@media(min-width: 991px) {
+    .mobile-menu { display: none; }
+}
+
+@media(min-width: 576px) and (max-width: 991px) {
+    .mobile-menu { 
+        a {
+            sup { #{$end-direction}: 40%; }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+.slider-arrow {
+    &:hover {
+        .dandik,
+        .bamdik {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.dandik,
+.bamdik {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    @include center(45px, 45px, 45px, 50%);
+    color: $primary;
+    background: $white;
+    text-shadow: $primary-tshadow;
+    box-shadow: $primary-bshadow;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    @include transition;
+
+     &:hover{
+        color: $white;
+        background: $primary;
+    }
+}
+
+.dandik {
+    #{$end-direction}: 0px;
+}
+
+.bamdik{
+    #{$start-direction}: 0px;
+}

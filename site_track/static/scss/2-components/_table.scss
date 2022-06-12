@@ -1,0 +1,36 @@
+.table>:not(:first-child) { border-top: none; }
+
+.table {
+    thead {
+        tr {
+            th { 
+                padding: 15px 20px;
+                letter-spacing: 0.3px;
+                @include font(14px, 600);
+                text-transform: uppercase;
+                vertical-align: middle;
+                color: $heading;
+                background: $chalk;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            th,
+            td {
+                color: $text;
+                padding: 12px 20px;
+                vertical-align: middle;
+            }
+
+            th {
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+
+

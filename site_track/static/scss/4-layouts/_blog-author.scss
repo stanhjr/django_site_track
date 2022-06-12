@@ -1,0 +1,103 @@
+.blog-author {
+    padding: 45px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    background: $chalk;
+}
+
+.blog-author-group {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.blog-author-info {
+    margin-#{$end-direction}: 30px;
+    padding-#{$end-direction}: 30px;
+    border-#{$end-direction}: 1px solid $border;
+
+    img {
+        width: 100px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        a { color: $heading; }
+    }
+}
+
+.blog-author-content {
+    ul {
+        margin-bottom: 18px;
+        display: flex;
+        gap: 12px;
+    
+        li {
+            a {
+                @include center(40px, 40px, 40px, 50%);
+                font-size: 16px;
+                background: $primary;
+                color: $white;
+            }
+    
+            .facebook { background: $facebook; }
+            .twitter { background: $twitter; }
+            .linkedin { background: $linkedin; }
+            .instagram { background: $instagram; }
+            .pinterest { background: $pinterest; }
+        }
+    }
+}
+
+.blog-author-meta-list {
+    @include grid-width(20px, 180px);
+    grid-row-gap: 15px;
+
+    li {
+        padding: 12px 0px;
+        border-radius: 6px;
+        text-align: center;
+        background: $white;
+        text-transform: uppercase;
+        @include font(13px, 500);
+        @include flex(center, center);
+        @include transition;
+
+        &:hover {
+            background: $primary;
+            color: $chalk;
+
+            i { color: $chalk; }
+        }
+
+        i {
+            color: $primary;
+            margin-#{$end-direction}: 6px;
+            font-size: 20px;
+            @include transition;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .blog-author {
+        padding: 25px;
+    }
+
+    .blog-author-group {
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .blog-author-info {
+        border: none;
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+@media (max-width: 575px) {
+    .blog-author {
+        padding: 15px;
+    }
+}

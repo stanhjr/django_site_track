@@ -1,0 +1,79 @@
+.compare-table {
+    text-align: center;
+
+    tbody {
+        tr {
+            td {
+                padding: 15px;
+            }
+        }
+    }
+}
+
+.compare-table-img {
+    width: 100%;
+    min-width: 150px;
+    max-width: 300px;
+    border-radius: 6px;
+}
+
+.compare-table-text {
+    text-transform: capitalize;
+}
+
+.compare-table-price {
+    @include font(25px, 700);
+    font-family: sans-serif;
+    color: $primary;
+}
+
+.compare-table-review {
+    ul {
+        line-height: 20px;
+
+        li { 
+            font-size: 18px; 
+            color: $gray;
+
+            &.active { color: $yellow; }
+        }
+    }
+
+    a { 
+        color: $text;
+        font-size: 16px;
+        font-family: sans-serif;
+        text-transform: capitalize;
+        @include transition;
+
+        &:hover { text-decoration: underline; }
+        b { font-weight: 700; }
+    }
+}
+
+.compare-table-vendor {
+    color: $text;
+    text-transform: capitalize;
+    @include transition;
+
+    &:hover { text-decoration: underline; }
+}
+
+.compare-table-remove {
+    color: $white;
+    background: $red;
+    padding: 8px 25px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    @include font(14px, 500);
+
+    &:hover { color: $white; }
+}
+
+@media (max-width: 767px) {
+    .compare-table {
+        width: 700px;
+        overflow-x: scroll;
+    }
+}

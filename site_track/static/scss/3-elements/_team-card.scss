@@ -1,0 +1,89 @@
+.team-card {
+    margin-bottom: 25px;
+}
+
+.team-media {
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+
+    &:hover {
+        img {
+            transform: scale(1.05);
+        }
+
+        .team-overlay {
+            top: 0px;
+            opacity: 1;
+
+            a {
+                padding-top: 0px;
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        border-radius: 6px;
+        @include transition;
+    }
+}
+
+.team-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.3);
+    @include flex(center, center);
+    @include transition;
+
+    a {
+        @include center(40px, 40px, 40px, 50%);
+        font-size: 18px;
+        margin: 0px 5px;
+        padding-top: 30px;
+        color: $text;
+        background: $white;
+        @include transition;
+
+        &:hover {
+            color: $white;
+            background: $primary;
+        }
+    }
+}
+
+.team-meta {
+    text-align: center;
+
+    h4 {
+        margin-bottom: 3px;
+        text-transform: capitalize;
+
+        a {
+            color: $heading;
+            @include transition;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+
+    p {
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+}
+
+// FOR RESPONSIVE
+@media (max-width: 575px) {
+    .team-card {
+        width: 290px;
+        margin: 0px auto 25px;
+    }
+}

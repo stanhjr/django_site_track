@@ -1,0 +1,14 @@
+.backdrop {
+    @include position (fixed, 100%, 100vh, 4);
+    top: 0px;
+    #{$start-direction}: 0px;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    @include transition;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}

@@ -1,0 +1,60 @@
+.countdown {
+    @include flex(center, center);
+}
+
+.countdown-time {
+    padding: 0px 30px;
+    position: relative;
+    color: $heading;
+    @include flex(center, center);
+    flex-direction: column;
+
+    &::before {
+        position: absolute;
+        content: ":";
+        top: 28%;
+        #{$end-direction}: -3px;
+        font-size: 25px;
+        transform: translateY(-50%);
+        color: $heading;
+    }
+
+    &:last-child {
+        &::before {
+            display: none;
+        }
+    }
+
+    span {
+        display: block;
+        @include font(40px, 700);
+        color: $primary;
+    }
+    
+    small {
+        @include font(18px, 500);
+        text-transform: capitalize;
+    }
+}
+
+@media (max-width: 575px) {
+    .countdown-time {
+        padding: 0px 12px;
+
+        &:first-child {
+            padding-#{$start-direction}: 0px;
+        }
+
+        &:last-child {
+            padding-#{$end-direction}: 0px;
+        }
+
+        span {
+            font-size: 35px;
+        }
+
+        small {
+            font-size: 16px;
+        }
+    }
+}

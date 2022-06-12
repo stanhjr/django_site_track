@@ -1,0 +1,256 @@
+.product-grid-card {
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: $chalk;
+    @include transition;
+
+    &:hover {
+        background: $white;
+        box-shadow: 0px 15px 28px 0px rgba($dark, .15);
+
+        .product-grid-image {
+            img { transform: scale(1.05); }
+            
+            .product-grid-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        }
+    }
+}
+
+.product-grid-image {
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px 6px 0px 0px;
+
+    img {
+        width: 100%;
+        border-radius: 6px 6px 0px 0px;
+        transform: scale(1);
+        @include transition;
+    }
+}
+
+.product-grid-badge {
+    position: absolute;
+    top: 10px;
+    #{$start-direction}: 12px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .badge { width: fit-content; }
+}
+
+.product-grid-hints {
+    @include flex (center, center);
+    position: absolute;
+    top: 12px;
+    #{$end-direction}: 12px;
+    z-index: 1;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    color: $chalk;
+    background: rgba($dark, .7);
+
+    i {
+        font-size: 18px;
+        margin-#{$end-direction}: 3px;
+    }
+}
+
+.product-grid-overlay {
+    @include position (absolute, 100%, 100%, auto);
+    top: 0px;
+    #{$start-direction}: 0px;
+    padding: 13px;
+    border-radius: 6px 6px 0px 0px;
+    background: linear-gradient(rgba($dark, 0) 65%, rgba($dark, .8) 90%);
+    @include flex(flex-end, space-between);
+    opacity: 0;
+    visibility: hidden;
+    @include transition;
+}
+
+.product-grid-vendor,
+.product-grid-rating {
+    @include flex(center, center);
+
+    i {
+        font-size: 18px;
+        color: $primary;
+        margin-#{$end-direction}: 3px; 
+        margin-top: -1px;
+
+    }
+
+    a { 
+        font-size: 15px;
+        white-space: nowrap;
+        text-transform: capitalize;
+        letter-spacing: 0.3px;
+        color: $chalk;
+        @include transition;
+
+        &:hover {
+            color: $gray;
+            text-decoration: underline;
+        }
+    }
+}
+
+.product-grid-vendor i { color: var(--bs-teal); }
+.product-grid-rating i { color: $yellow; }
+
+.product-grid-content {
+    padding: 15px 15px;
+}
+
+.product-grid-group {
+    @include flex (center, space-between);
+    border-bottom: 1px solid $border;
+    padding-bottom: 10px;
+}
+
+.product-grid-price {
+    @include flex (center, flex-start);
+
+    span {
+        @include font (18px, 700);
+        font-family: sans-serif;
+        color: $primary;
+    }
+
+    small {
+        margin-#{$start-direction}: 3px;
+        text-transform: capitalize;
+        font-size: 13px;
+    }
+}
+
+.product-grid-action {
+    @include flex (center, flex-end);
+
+    a,
+    button {
+        color: $gray;
+        font-size: 18px;
+        cursor: pointer;
+        margin-#{$start-direction}: 8px;
+        padding-#{$start-direction}: 8px;
+        border-#{$start-direction}: 1px solid $border;
+        @include transition;
+
+        &:first-child {
+            margin-#{$start-direction}: none;
+            padding-#{$start-direction}: none;
+            border-#{$start-direction}: none;
+        }
+
+        &.compare { &:hover { color: $purple; } }
+        &.favorite { &:hover { color: $red; } }
+    }
+
+    .compare.active { color: $purple; }
+    .favorite.active { color: $red; }
+}
+
+.product-grid-meta {
+    padding: 10px 0px;
+    border-bottom: 1px solid $border;
+
+    h4 {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 5px;
+
+        a { 
+            color: $heading; 
+            @include transition;
+            &:hover { color: $primary; }
+        } 
+    }
+
+    ul {
+        @include flex (center, flex-start);
+
+        li {
+            font-size: 13px;
+            position: relative;
+            white-space: nowrap;
+            text-transform: capitalize;
+            margin-#{$start-direction}: 15px;
+            padding-#{$start-direction}: 10px;
+
+            &::before {
+                @include position (absolute, 5px, 5px, auto);
+                content: "";
+                top: 50%;
+                #{$start-direction}: 0px;
+                transform: translateY(-50%);
+                border-radius: 50%;
+                background: $gray;
+            }
+
+            &:first-child { margin-#{$start-direction}: 0px; }
+            &:last-child { text-transform: capitalize; }
+            a { text-transform: capitalize; }
+        }
+    }
+}
+
+.product-grid-extra {
+    padding: 10px 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $border;
+    @include flex (center, space-between);
+
+    li {
+        @include flex (center, center);
+
+        i {
+            font-size: 17px;
+            margin-#{$end-direction}: 5px;
+        }
+
+        span {
+            font-size: 13px;
+            white-space: nowrap;
+            text-transform: capitalize;
+        }
+    }
+}
+
+.product-grid-btn {
+    display: grid;
+    grid-row-gap: 0px;
+    grid-column-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+
+    a {
+        width: 100%;
+        padding: 8px 0px;
+        border-radius: 6px;
+        color: $text;
+        background: var(--bs-gray-300);
+        @include font (13px, 500);
+        text-transform: uppercase;
+        @include flex (center, center);
+        @include transition;
+
+        &:hover {
+            color: $white;
+            background: $primary;
+        }
+
+        i {
+            font-size: 17px;
+            margin-#{$end-direction}: 5px;
+        }
+    }
+}

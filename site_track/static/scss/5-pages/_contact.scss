@@ -1,0 +1,36 @@
+.contact-map {
+    iframe {
+        width: 100%;
+        height: 620px;
+        border-radius: 6px;
+    }
+}
+
+.contact-form {
+    padding: 60px;
+    border-radius: 6px;
+    background: $dark;
+}
+
+.contact-form-title {
+    color: $chalk;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 1199px) {
+    .contact-map { margin-#{$end-direction}: 15px; }
+    .contact-form { margin-#{$start-direction}: 15px; }
+}
+
+@media (max-width: 991px) {
+    .contact-form {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 575px) {
+    .contact-form {
+        padding: 25px;
+    }
+}
