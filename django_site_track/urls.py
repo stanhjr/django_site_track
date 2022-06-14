@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-from site_track.views import main
+from django.conf.urls.static import static
+from django.conf import settings
+from site_track.views import main, AccountSettings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main),
+    path('settings/', AccountSettings.as_view(), name='account-settings'),
     path('account/', include('site_track_auth.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
