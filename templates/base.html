@@ -1,13 +1,72 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!--=====================================
+                META TAG PART START
+    =======================================-->
+    <!-- REQUIRED -->
     <meta charset="UTF-8">
-    <title>Base</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- TEMPLATE -->
+    <meta name="template" content="Ghurnek">
+    <meta name="title" content="Ghurnek - Automotive Car Dealer HTML Template">
+    <meta name="keywords"
+        content="automotive, car, dealer, dealership, car dealership, html, template, auto, directory, inventory, listing, vehicle, inventory managment, bootstrap, classified ads">
+    <!--=====================================
+                META-TAG PART END
+    =======================================-->
+
+    <!-- WEBPAGE TITLE -->
+    <title>Register | Ghurnek</title>
+
+    <!--=====================================
+                CSS LINK PART START
+    =======================================-->
+    <!-- FAVICON -->
+
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="{% static 'fonts/typography/jost.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/material/icon.css' %}">
+{#    <link rel="stylesheet" href="fonts/material/icon.css">#}
+    <link rel="stylesheet" href="{% static 'fonts/icofont/icofont.css' %}">
+
+    <!-- VENDOR -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+{#    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">#}
+    <!-- CUSTOM -->
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+{#    <link rel="stylesheet" href="css/main.min.css">#}
+    <!--=====================================
+                CSS LINK PART END
+    =======================================-->
 </head>
 <body>
-<div>
     {% block content %}
-    {% endblock %}
-</div>
+        {% endblock %}
+
+    <!--=====================================
+                JS LINK PART START
+    =======================================-->
+    <!-- JQUERY -->
+    <script src="{% static 'vendor/jquery-3.5.0.min.js' %}"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+
+    <!-- CUSTOM -->
+    <script src="{% static 'js/dropdown-menu.js' %}"></script>
+    <script src="{% static 'js/select-option.js' %}"></script>
+    <script src="{% static 'js/float-menu.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!--=====================================
+                JS LINK PART END
+    =======================================-->
 </body>
 </html>
