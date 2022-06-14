@@ -20,7 +20,7 @@ def send_registration_link_to_email(code: str, email_to):
     Hi,
     How are you?
     This is your registration link:
-    http://127.0.0.1:8000/account-activate/?code={code}"""
+    http://127.0.0.1:8000/account/account-activate/?code={code}"""
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
@@ -60,7 +60,7 @@ def send_reset_password_link_to_email(code: str, email_to):
     Hi,
     How are you?
     This is your restore password link:
-    http://127.0.0.1:8000/restore-password/?code={code}"""
+    http://127.0.0.1:8000/account/restore-password/?code={code}"""
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
