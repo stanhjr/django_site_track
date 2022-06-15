@@ -26,6 +26,7 @@ class MyUser(AbstractUser):
     zip = models.CharField(max_length=60, null=True)
     about_vendor = models.TextField(null=True)
     profile_image = models.ImageField(null=True, upload_to="images/")
+
     facebook = models.CharField(max_length=60, null=True)
     instagram = models.CharField(max_length=60, null=True)
     twitter = models.CharField(max_length=60, null=True)

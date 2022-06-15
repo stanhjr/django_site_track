@@ -38,7 +38,7 @@ class Login(LoginView):
 
 
 class Logout(LoginRequiredMixin, LogoutView):
-    next_page = '/'
+    next_page = reverse_lazy('login')
     login_url = 'login/'
 
 

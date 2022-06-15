@@ -49,10 +49,10 @@
                                 <i class="material-icons">https</i>
                                 <span>change password</span>
                             </button>
-                            <button type="button" data-bs-toggle="pill" data-bs-target="#notify" class="nav-link">
-                                <i class="material-icons">notifications_active</i>
-                                <span>notifications</span>
-                            </button>
+{#                            <button type="button" data-bs-toggle="pill" data-bs-target="#notify" class="nav-link">#}
+{#                                <i class="material-icons">notifications_active</i>#}
+{#                                <span>notifications</span>#}
+{#                            </button>#}
                         </div>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
                     <div class="tab-pane fade show active" id="account">
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
+                            <input type='hidden' name='action' value='detail_form'>
                             <div class="common-card">
                                 <div class="common-card-header">
                                     <h4 class="common-card-header-title">account media</h4>
@@ -250,7 +251,9 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="social">
-                        <form>
+                        <form method="post">
+                             <input type='hidden' name='action' value='social_form'>
+                            {% csrf_token %}
                             <div class="common-card">
                                 <div class="common-card-header">
                                     <h4 class="common-card-header-title">social networks</h4>
@@ -259,37 +262,43 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">facebook</label>
-                                            <input type="url" class="form-control">
+                                            {{ form_social.facebook }}
+{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">twitter</label>
-                                            <input type="url" class="form-control">
+                                            {{ form_social.twitter }}
+{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">instagram</label>
-                                            <input type="url" class="form-control">
+                                            {{ form_social.instagram }}
+{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">whatsapp</label>
-                                            <input type="url" class="form-control">
+                                            {{ form_social.whatsapp }}
+{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">youtube</label>
-                                            <input type="url" class="form-control">
+                                            {{ form_social.youtube }}
+{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">pinterest</label>
-                                            <input type="url" class="form-control">
+                                            {{ form_social.pinterest}}
+{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -300,7 +309,9 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="password">
-                        <form>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type='hidden' name='action' value='change_password_form'>
                             <div class="common-card">
                                 <div class="common-card-header">
                                     <h4 class="common-card-header-title">change password</h4>
@@ -309,19 +320,22 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">current password</label>
-                                            <input type="password" class="form-control">
+                                            {{ form_change_password.password }}
+{#                                            <input type="password" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">change password</label>
-                                            <input type="password" class="form-control">
+                                            {{ form_change_password.password1 }}
+{#                                            <input type="password" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">confirm password</label>
-                                            <input type="password" class="form-control">
+                                            {{ form_change_password.password2 }}
+{#                                            <input type="password" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
@@ -332,112 +346,112 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="notify">
-                        <form>
-                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">
-                                <div class="col">
-                                    <div class="common-card">
-                                        <div class="common-card-header">
-                                            <h5 class="common-card-header-title">favorites alert</h5>
-                                        </div>
-                                        <div class="common-card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check1">
-                                                <label class="form-check-label" for="check1">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check2">
-                                                <label class="form-check-label" for="check2">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="common-card">
-                                        <div class="common-card-header">
-                                            <h5 class="common-card-header-title">compares alert</h5>
-                                        </div>
-                                        <div class="common-card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check3">
-                                                <label class="form-check-label" for="check3">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check4">
-                                                <label class="form-check-label" for="check4">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="common-card">
-                                        <div class="common-card-header">
-                                            <h5 class="common-card-header-title">reviews alert</h5>
-                                        </div>
-                                        <div class="common-card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check5">
-                                                <label class="form-check-label" for="check5">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check6">
-                                                <label class="form-check-label" for="check6">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="common-card">
-                                        <div class="common-card-header">
-                                            <h5 class="common-card-header-title">comment alert</h5>
-                                        </div>
-                                        <div class="common-card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check7">
-                                                <label class="form-check-label" for="check7">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check8">
-                                                <label class="form-check-label" for="check8">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="common-card">
-                                        <div class="common-card-header">
-                                            <h5 class="common-card-header-title">announcement alert</h5>
-                                        </div>
-                                        <div class="common-card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check9">
-                                                <label class="form-check-label" for="check9">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check10">
-                                                <label class="form-check-label" for="check10">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="common-card">
-                                        <div class="common-card-header">
-                                            <h5 class="common-card-header-title">email alert</h5>
-                                        </div>
-                                        <div class="common-card-body">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check11">
-                                                <label class="form-check-label" for="check11">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="check12">
-                                                <label class="form-check-label" for="check12">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+{#                        <form>#}
+{#                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">#}
+{#                                <div class="col">#}
+{#                                    <div class="common-card">#}
+{#                                        <div class="common-card-header">#}
+{#                                            <h5 class="common-card-header-title">favorites alert</h5>#}
+{#                                        </div>#}
+{#                                        <div class="common-card-body">#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check1">#}
+{#                                                <label class="form-check-label" for="check1">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check2">#}
+{#                                                <label class="form-check-label" for="check2">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col">#}
+{#                                    <div class="common-card">#}
+{#                                        <div class="common-card-header">#}
+{#                                            <h5 class="common-card-header-title">compares alert</h5>#}
+{#                                        </div>#}
+{#                                        <div class="common-card-body">#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check3">#}
+{#                                                <label class="form-check-label" for="check3">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check4">#}
+{#                                                <label class="form-check-label" for="check4">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col">#}
+{#                                    <div class="common-card">#}
+{#                                        <div class="common-card-header">#}
+{#                                            <h5 class="common-card-header-title">reviews alert</h5>#}
+{#                                        </div>#}
+{#                                        <div class="common-card-body">#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check5">#}
+{#                                                <label class="form-check-label" for="check5">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check6">#}
+{#                                                <label class="form-check-label" for="check6">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col">#}
+{#                                    <div class="common-card">#}
+{#                                        <div class="common-card-header">#}
+{#                                            <h5 class="common-card-header-title">comment alert</h5>#}
+{#                                        </div>#}
+{#                                        <div class="common-card-body">#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check7">#}
+{#                                                <label class="form-check-label" for="check7">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check8">#}
+{#                                                <label class="form-check-label" for="check8">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col">#}
+{#                                    <div class="common-card">#}
+{#                                        <div class="common-card-header">#}
+{#                                            <h5 class="common-card-header-title">announcement alert</h5>#}
+{#                                        </div>#}
+{#                                        <div class="common-card-body">#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check9">#}
+{#                                                <label class="form-check-label" for="check9">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check10">#}
+{#                                                <label class="form-check-label" for="check10">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col">#}
+{#                                    <div class="common-card">#}
+{#                                        <div class="common-card-header">#}
+{#                                            <h5 class="common-card-header-title">email alert</h5>#}
+{#                                        </div>#}
+{#                                        <div class="common-card-body">#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check11">#}
+{#                                                <label class="form-check-label" for="check11">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                            <div class="form-check">#}
+{#                                                <input class="form-check-input" type="checkbox" id="check12">#}
+{#                                                <label class="form-check-label" for="check12">Lorem ipsum dolor consectetur adipisicing delectus nemo!</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </form>#}
                     </div>
                 </div>
             </div>
