@@ -7,7 +7,8 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-media
+media/images/*.jpg
+media/images/*.png
 .Python
 build/
 develop-eggs/

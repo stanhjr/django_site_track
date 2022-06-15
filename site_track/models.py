@@ -40,6 +40,19 @@ class MyUser(AbstractUser):
         else:
             return "/static/images/user.jpg"
 
+    def set_value_from_form(self, request, form):
+        image_link = self.profile_image
+        for key, value in form.data.items():
+            if key != "csrfmiddlewaretoken":
+                setattr(self, key, value)
+        if request.FILES.get('profile_image'):
+            self.profile_image = request.FILES['profile_image']
+        else:
+            self.profile_image = image_link
+        self.save()
+        return self
+
+
 
 
 

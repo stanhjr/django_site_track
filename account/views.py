@@ -28,11 +28,7 @@ class AccountSettings(LoginRequiredMixin, FormView, FormMixin):
         return redirect('login')
 
     def form_valid(self, form):
-        user = MyUser.objects.filter(email=self.request.user.email).first()
-        for key in form.data:
-            if key != "csrfmiddlewaretoken":
-                setattr(user, key, form.data.get(key))
-        user.profile_image = self.request.FILES['profile_image']
+        self.request.user.set_value_from_form(self.request, form)
         return super().form_valid(form=form)
 
 
