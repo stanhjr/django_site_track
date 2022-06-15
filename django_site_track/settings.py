@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'site_track_auth',
     'account',
     'site_track',
+    'vehicle_ads',
 ]
 
 MIDDLEWARE = [

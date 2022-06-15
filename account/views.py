@@ -1,13 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import model_to_dict
-from django.shortcuts import render, redirect
 
-# Create your views here.
-from django.views.generic import FormView, TemplateView
-from django.views.generic.edit import FormMixin
+from django.shortcuts import redirect
+
+from django.views.generic import FormView
 
 from account.forms import AccountDetailsForm, AccountSocialNetworkForm, AccountChangePasswordForm
-from site_track.models import MyUser
 
 
 class AccountSettings(LoginRequiredMixin, FormView):
@@ -39,7 +36,6 @@ class AccountSettings(LoginRequiredMixin, FormView):
 
     def post(self, request, *args, **kwargs):
         action = self.request.POST['action']
-        print("ACTION", action)
         if action == 'social_form':
             account_social_form = AccountSocialNetworkForm(request.POST, request=self.request)
             if account_social_form.is_valid():

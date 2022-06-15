@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -41,6 +42,9 @@ class MyUser(AbstractUser):
         else:
             return "/static/images/user.jpg"
 
+    def get_sale_created(self):
+        return self.sale_ads.filter(sale_created=True).first()
+
     def set_value_from_form(self, request, form):
         image_link = self.profile_image
         for key, value in form.data.items():
@@ -55,12 +59,15 @@ class MyUser(AbstractUser):
 
 
 class SaleAds(models.Model):
+    sale_created = models.BooleanField(default=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='sale_ads')
-    title = models.CharField(max_length=120, null=False)
+    title = models.CharField(max_length=120)
     vehicle_registration_number = models.CharField(max_length=120)
     vehicle_registration_plate = models.CharField(max_length=120)
     date_of_issue = models.DateField()
     date_of_expire = models.DateField()
+    vehicle_year = models.DateField(null=True)
+
     vehicle_type = models.CharField(max_length=60)
 
     vehicle_make = models.CharField(max_length=60)
@@ -82,6 +89,19 @@ class SaleAds(models.Model):
         if self.vehicle_photo_video:
             return True
         return False
+
+    @property
+    def get_vendor_address(self):
+        if self.vendor_address:
+            return True
+        return False
+
+    def set_value_from_form(self, request, form):
+        for key, value in form.data.items():
+            if key != "csrfmiddlewaretoken":
+                setattr(self, key, value)
+        self.save()
+        return self
 
 
 class VehicleFeatures(models.Model):
@@ -113,6 +133,26 @@ class VehiclePhotoVideo(models.Model):
     youtube = models.CharField(max_length=60, null=True)
     whatsapp = models.CharField(max_length=60, null=True)
     pinterest = models.CharField(max_length=60, null=True)
+
+
+class ImageInGallery(models.Model):
+    gallery = models.ForeignKey(VehiclePhotoVideo, on_delete=models.CASCADE, related_name='image_in_gallery')
+    image = models.ImageField(upload_to="images/")
+
+
+class VendorAddress(models.Model):
+    sale_ads = models.OneToOneField(SaleAds, on_delete=models.CASCADE, related_name='vendor_address')
+    country = models.CharField(max_length=120)
+    city = models.CharField(max_length=120)
+    state = models.CharField(max_length=120)
+    post_code = models.CharField(max_length=120)
+    ward_no = models.CharField(max_length=120)
+    road_no = models.CharField(max_length=120)
+    shop_no = models.CharField(max_length=120)
+    others = models.TextField(max_length=500)
+
+
+
 
 
 
