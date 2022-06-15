@@ -102,7 +102,7 @@
             </form>
         </div>
         <a href="{% url 'sign-up' %}" class="header-user">
-            <img src="{% static 'images/user.png' %}" alt="user">
+            <img src="{{ user.get_photo_url }}" alt="user">
             <span>join</span>
         </a>
         <a href="create-ads.html" class="btn header-btn">
@@ -418,7 +418,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="setting.html" class="nav-link">
+                            <a href="account_settings.html" class="nav-link">
                                 <i class="material-icons">settings</i>
                                 <span class="nav-text">settings</span>
                             </a>
@@ -520,7 +520,7 @@
                         <div class="col-lg-7 col-xl-8">
                             <div class="user-banner-profile">
                                 <div class="user-banner-profile-avatar">
-                                    <a href="profile.html"><img src="{{ user.profile_image.url }}" alt="avatar"></a>
+                                    <a href="profile.html"><img src="{{ user.get_photo_url }}" alt="avatar"></a>
                                 </div>
                                 <div class="user-banner-profile-meta">
                                     <div class="user-banner-profile-name">
@@ -562,7 +562,7 @@
                                 <li><a href="compare.html">compares</a></li>
                                 <li><a href="review.html">reviews</a></li>
                                 <li><a href="notify.html">notify</a></li>
-                                <li><a href="setting.html" class="active">settings</a></li>
+                                <li><a href="account_settings.html" class="active">settings</a></li>
                                 <li><a href="login.html">logout</a></li>
                             </ul>
                         </div>

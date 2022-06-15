@@ -89,37 +89,3 @@ class AccountDetailsForm(forms.Form):
         attrs={
             'class': 'form-control'
         }))
-
-    def clean(self):
-        cleaned_data = super().clean()
-        print(cleaned_data)
-        print(cleaned_data["email"])
-        print(cleaned_data["account_name"])
-        print(cleaned_data["account_type"])
-        print(cleaned_data["city"])
-        print(cleaned_data["zip"])
-        print(cleaned_data["state"])
-        print(cleaned_data["phone_number"])
-        print(cleaned_data["about_vendor"])
-        print(cleaned_data["web_site"])
-        return cleaned_data
-
-    # def save(self, commit=True):
-    #
-    #     user = MyUser.objects.filter(email=self.request.user.email)
-    #     print('=====================================')
-    #     print(434343434)
-    #     print('=====================================')
-    #     user.email = self.cleaned_data["email"]
-    #     user.account_name = self.cleaned_data["account_name"]
-    #     user.account_type = self.cleaned_data["account_type"]
-    #     user.city = self.cleaned_data["city"]
-    #     user.zip = self.cleaned_data["zip"]
-    #     user.state = self.cleaned_data["state"]
-    #     user.profile_image = self.cleaned_data["image"]
-    #     user.phone_number = self.cleaned_data["phone_number"]
-    #     user.about_vendor = self.cleaned_data["about_vendor"]
-    #     user.save()
-    #     if commit:
-    #         user.save()
-    #     return user

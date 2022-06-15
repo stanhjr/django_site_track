@@ -17,7 +17,7 @@ def main(request):
 
 
 class AccountSettings(LoginRequiredMixin, FormView):
-    template_name = 'setting.html'
+    template_name = 'account_settings.html'
     form_class = AccountDetailsForm
     success_url = '/settings'
 

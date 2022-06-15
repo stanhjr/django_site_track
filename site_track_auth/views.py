@@ -24,7 +24,7 @@ class SignUp(CreateView):
 
 
 class Login(LoginView):
-    success_url = '/'
+    success_url = 'account/settings'
     form_class = LoginForm
     template_name = 'auth/login.html'
 
@@ -32,10 +32,9 @@ class Login(LoginView):
         auth.login(self.request, form.get_user())
         if self.request.user.is_superuser:
             self.request.session.set_expiry(SESSION_COOKIE_AGE_ADMIN)
-            return super().form_valid(form)
         else:
             self.request.session.set_expiry(SESSION_COOKIE_AGE)
-            return super().form_valid(form)
+        return redirect('account-settings')
 
 
 class Logout(LoginRequiredMixin, LogoutView):
