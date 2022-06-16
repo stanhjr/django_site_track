@@ -3,6 +3,10 @@ from django.forms.models import model_to_dict
 from site_track.models import SaleAds
 
 
+class DatePickerInput(forms.DateInput):
+    input_type = 'date'
+
+
 VEHICLE_TYPE_CHOICES = (
             ("Wagon", "Wagon"),
             ("Hatchback", "Hatchback"),
@@ -17,8 +21,8 @@ VEHICLE_FUEL_CHOICES = (
         )
 
 VEHICLE_PRICE_TYPE_CHOICES = (
-            ("Fixed", "Diesel"),
-            ("Negotiable", "Petrol"),
+            ("Fixed", "Fixed"),
+            ("Negotiable", "Negotiable"),
         )
 
 VEHICLE_CONDITION_CHOICES = (
@@ -36,10 +40,9 @@ class VehicleInformationForm(forms.ModelForm):
 
         self.request = kwargs.pop('request', None)
         super(VehicleInformationForm, self).__init__(*args, **kwargs)
-        sale_created = self.request.user.get_sale_created()
+        sale_created = self.request.user.get_sale_created
         self.sale_dict = {}
         if sale_created:
-            print(222222222222222222)
             self.sale_dict = model_to_dict(sale_created)
         for field in self.fields:
             self.fields[field].initial = self.sale_dict.get(field)
@@ -56,9 +59,9 @@ class VehicleInformationForm(forms.ModelForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
             elif field in ["date_of_issue", "date_of_expire", "vehicle_year"]:
-                self.fields[field].widget = forms.SelectDateWidget(attrs={'class': 'form-control'})
+                self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
             elif field == "description":
-                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+                self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
 
             else:
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})

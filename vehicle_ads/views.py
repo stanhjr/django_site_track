@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 from django.views.generic import FormView
 
+from site_track.models import VehicleFeatures, SaleAds
 from vehicle_ads.forms import VehicleInformationForm
 
 
@@ -14,8 +15,10 @@ class VehicleInformationView(LoginRequiredMixin, FormView):
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
-    #     context['form_social'] = AccountSocialNetworkForm(request=self.request)
-    #     context['form_change_password'] = AccountChangePasswordForm(request=self.request)
+    #     # context['form_social'] = AccountSocialNetworkForm(request=self.request)
+    #     # context['form_change_password'] = AccountChangePasswordForm(request=self.request)
+    #     # sale_ads = SaleAds.objects.filter()
+    #     # context['vehicle'] = VehicleFeatures.objects.filter()
     #     return context
 
     def handle_no_permission(self):

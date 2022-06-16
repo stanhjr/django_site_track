@@ -42,6 +42,7 @@ class MyUser(AbstractUser):
         else:
             return "/static/images/user.jpg"
 
+    @property
     def get_sale_created(self):
         return self.sale_ads.filter(sale_created=True).first()
 
