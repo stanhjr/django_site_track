@@ -139,7 +139,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_AGE = 60
+SESSION_COOKIE_AGE = 60 * 60 * 7
 SESSION_COOKIE_AGE_ADMIN = 60 * 60 * 48
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

@@ -27,7 +27,6 @@ class AccountSettings(LoginRequiredMixin, FormView):
         return kw
 
     def form_invalid(self, form):
-        form.is_valid()
         return redirect('account-settings')
 
     def form_valid(self, form):

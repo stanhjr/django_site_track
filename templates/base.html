@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
 
     <!-- CUSTOM -->
-    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!--=====================================
                 CSS LINK PART END
     =======================================-->
@@ -388,7 +388,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="posted-ads.html" class="nav-link">
+                            <a href="{% url 'user-posted-sale-ads' %}" class="nav-link">
                                 <i class="material-icons">apps</i>
                                 <span class="nav-text">posted ads</span>
                             </a>
@@ -557,7 +557,7 @@
                                 <li><a href="dashboard.html">dashboard</a></li>
                                 <li><a href="profile.html">profile</a></li>
                                 <li><a href="{% url 'create-sale-ads' %}">create ads</a></li>
-                                <li><a href="posted-ads.html">posted ads</a></li>
+                                <li><a href="{% url 'user-posted-sale-ads' %}">posted ads</a></li>
                                 <li><a href="favorite.html">favorites</a></li>
                                 <li><a href="compare.html">compares</a></li>
                                 <li><a href="review.html">reviews</a></li>

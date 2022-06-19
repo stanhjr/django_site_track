@@ -16,9 +16,11 @@ Including another URLconf
 
 from django.urls import path
 
-from vehicle_ads.views import VehicleInformationView
+from vehicle_ads.views import VehicleInformationView, UserPostedAds, UserPostedAdsDeleteView, UserPostedAdsUpdateView
 
 urlpatterns = [
     path('sale-ads/', VehicleInformationView.as_view(), name='create-sale-ads'),
-
+    path('posted-ads/', UserPostedAds.as_view(), name='user-posted-sale-ads'),
+    path('posted-delete/<pk>', UserPostedAdsDeleteView.as_view(), name='user-posted-delete'),
+    path('posted-pdate/<pk>', UserPostedAdsUpdateView.as_view(), name='user-posted-update'),
 ]

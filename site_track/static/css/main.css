@@ -1382,8 +1382,17 @@ textarea::placeholder {
   position: relative;
   border-radius: 6px 6px 0px 0px;
 }
-
+.product-grid-image:after{
+  content: "";
+  display: block;
+  padding-top: 67%;
+}
 .product-grid-image img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  height: 100%;
   width: 100%;
   border-radius: 6px 6px 0px 0px;
   -webkit-transform: scale(1);
@@ -9289,8 +9298,7 @@ textarea::placeholder {
   -ms-transition: all linear .3s;
   -o-transition: all linear .3s;
 }
-
-.posted-widget a {
+.posted-widget input {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -9304,11 +9312,11 @@ textarea::placeholder {
           box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.1);
 }
 
-.posted-widget a.edit {
+.posted-widget .edit {
   background: rgba(17, 183, 107, 0.9);
 }
 
-.posted-widget a.delete {
+.posted-widget .delete {
   background: rgba(255, 56, 56, 0.9);
 }
 
