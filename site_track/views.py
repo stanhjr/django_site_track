@@ -5,10 +5,10 @@ from django.http import HttpResponse
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView, UpdateView
+from django.views.generic import FormView, UpdateView, ListView
 from site_track.forms import ContactForm
 
-from site_track.models import MyUser
+from site_track.models import MyUser, SaleAds
 from site_track_auth.tools.send_email import send_main_contact_us
 
 
@@ -34,4 +34,12 @@ class ContactView(LoginRequiredMixin, FormView):
                              subject=form.data.get("subject"),
                              text=form.data.get("text"))
         return super().form_valid(form=form)
+
+
+class IndexView(ListView):
+    model = SaleAds
+    template_name = 'index.html'
+    paginate_by = 16
+
+
 

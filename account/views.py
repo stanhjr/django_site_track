@@ -31,7 +31,6 @@ class AccountSettings(LoginRequiredMixin, FormView):
         return redirect('account-settings')
 
     def form_valid(self, form):
-        # self.request.user.set_value_from_form(self.request, form)
         return super().form_valid(form=form)
 
     def post(self, request, *args, **kwargs):

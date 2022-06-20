@@ -1,7 +1,908 @@
-{% extends 'base.html' %}
-
+{% extends 'base_home.html' %}
+{% load static %}
 {% block content %}
-<div>
-    <a href="{% url 'logout' %}">Logout</a>
-</div>
+    <!--=====================================
+                CATEGORY PART START
+    =======================================-->
+    <section class="section-gap-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>find top categories</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                        </div>
+                        <a href="inventory-list.html" class="btn btn-inline">
+                            <i class="material-icons">travel_explore</i>
+                            <span>browse all</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/minivan.png" alt="category">
+                        <span>minivan (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/convertible.png" alt="category">
+                        <span>convertible (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/coupe.png" alt="category">
+                        <span>coupe (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/pickup.png" alt="category">
+                        <span>pickup (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/sedan.png" alt="category">
+                        <span>sedan (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/sports.png" alt="category">
+                        <span>sports (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/suv.png" alt="category">
+                        <span>suv/muv (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/wagon.png" alt="category">
+                        <span>wagon (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/jeep.png" alt="category">
+                        <span>jeep (24)</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="inventory-list.html" class="category-card">
+                        <img src="images/category/Hatchback.png" alt="category">
+                        <span>Hatchback (24)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                CATEGORY PART END
+    =======================================-->
+
+
+
+
+
+    <!--=====================================
+                FEATURE PART START
+    =======================================-->
+    <section class="section-gap-120 feature-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>our featured listing</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                        </div>
+                        <a href="inventory-list.html" class="btn btn-inline">
+                            <i class="material-icons">travel_explore</i>
+                            <span>browse all</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row product-feature-slider slider-arrow">
+                <div class="col">
+                    <div class="product-feature-card">
+                        <div class="product-feature-image">
+                            <img src="images/product/19.jpg" alt="product">
+                            <a href="inventory-single.html" class="product-feature-btn badge-hover">
+                                <i class="material-icons">add</i>
+                                <span class="badge arrow-right">more details</span>
+                            </a>
+                            <div class="product-feature-badge">
+                                <span class="badge new">new</span>
+                                <span class="badge featured">featured</span>
+                            </div>
+                        </div>
+                        <div class="product-feature-meta">
+                            <h3><a href="inventory-single.html">Mercedez benz super mclaren</a></h3>
+                            <h4>$45,658/- <span>negotiable</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-feature-card">
+                        <div class="product-feature-image">
+                            <img src="images/product/18.jpg" alt="product">
+                            <a href="inventory-single.html" class="product-feature-btn badge-hover">
+                                <i class="material-icons">add</i>
+                                <span class="badge arrow-right">more details</span>
+                            </a>
+                            <div class="product-feature-badge">
+                                <span class="badge new">new</span>
+                                <span class="badge featured">featured</span>
+                            </div>
+                        </div>
+                        <div class="product-feature-meta">
+                            <h3><a href="inventory-single.html">Mercedez benz super mclaren</a></h3>
+                            <h4>$45,658/- <span>negotiable</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-feature-card">
+                        <div class="product-feature-image">
+                            <img src="images/product/17.jpg" alt="product">
+                            <a href="inventory-single.html" class="product-feature-btn badge-hover">
+                                <i class="material-icons">add</i>
+                                <span class="badge arrow-right">more details</span>
+                            </a>
+                            <div class="product-feature-badge">
+                                <span class="badge new">new</span>
+                                <span class="badge featured">featured</span>
+                            </div>
+                        </div>
+                        <div class="product-feature-meta">
+                            <h3><a href="inventory-single.html">Mercedez benz super mclaren</a></h3>
+                            <h4>$45,658/- <span>negotiable</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-feature-card">
+                        <div class="product-feature-image">
+                            <img src="images/product/16.jpg" alt="product">
+                            <a href="inventory-single.html" class="product-feature-btn badge-hover">
+                                <i class="material-icons">add</i>
+                                <span class="badge arrow-right">more details</span>
+                            </a>
+                            <div class="product-feature-badge">
+                                <span class="badge new">new</span>
+                                <span class="badge featured">featured</span>
+                            </div>
+                        </div>
+                        <div class="product-feature-meta">
+                            <h3><a href="inventory-single.html">Mercedez benz super mclaren</a></h3>
+                            <h4>$45,658/- <span>negotiable</span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                FEATURE PART END
+    =======================================-->
+
+
+
+
+
+    <!--=====================================
+                BRAND PART START
+    =======================================-->
+    <section class="section-gap-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>browse by top brands</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                        </div>
+                        <!-- <a href="inventory-list.html" class="btn btn-inline">
+                            <i class="material-icons">travel_explore</i>
+                            <span>browse all</span>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+                <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <!-- <img src="images/brand/01.png" alt="brand"> -->
+                        <h6>tesla</h6>
+                        <!-- <p>(24) vehicles</p> -->
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <!--  <img src="images/brand/02.png" alt="brand"> -->
+                        <h6>nissan</h6>
+                        <!-- <p>(24) vehicles</p> -->
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <!-- <img src="images/brand/03.png" alt="brand"> -->
+                        <h6>mercedes</h6>
+                        <!-- <p>(24) vehicles</p> -->
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <!-- <img src="images/brand/04.png" alt="brand"> -->
+                        <h6>toyota</h6>
+                        <!-- <p>(24) vehicles</p> -->
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <!-- <img src="images/brand/05.png" alt="brand"> -->
+                        <h6>audi</h6>
+                        <!-- <p>(24) vehicles</p> -->
+                    </a>
+                </div>
+                <!-- <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <img src="images/brand/06.png" alt="brand">
+                        <h6>lamborghini</h6>
+                        <p>(24) vehicles</p>
+                    </a>
+                </div> -->
+                <!-- <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <img src="images/brand/07.png" alt="brand">
+                        <h6>bugatti</h6>
+                        <p>(24) vehicles</p>
+                    </a>
+                </div> -->
+                <!-- <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <img src="images/brand/08.png" alt="brand">
+                        <h6>ferrari</h6>
+                        <p>(24) vehicles</p>
+                    </a>
+                </div> -->
+                <!-- <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <img src="images/brand/09.png" alt="brand">
+                        <h6>bmw</h6>
+                        <p>(24) vehicles</p>
+                    </a>
+                </div> -->
+                <!-- <div class="col">
+                    <a class="brand-card" href="inventory-list.html">
+                        <img src="images/brand/10.png" alt="brand">
+                        <h6>porsche</h6>
+                        <p>(24) vehicles</p>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                BRAND PART END
+    =======================================-->
+
+
+    <!--=====================================
+                  PRICE PART START
+    =======================================-->
+    <section class="section-gap-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>our ads pricing plans</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                        </div>
+                        <!-- <a href="pricing-plan.html" class="btn btn-inline">
+                            <i class="material-icons">details</i>
+                            <span>more details</span>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row price-slider slider-arrow">
+                <div class="col">
+                    <div class="price-card">
+                        <i class="price-icon material-icons">task_alt</i>
+                        <h3 class="price-title">starter plan</h3>
+                        <p class="price-subtitle">Perfect for getting start</p>
+                        <ul class="price-list">
+                            <li class="price-item"><span>first pricing feature type</span></li>
+                            <li class="price-item"><del>second pricing feature type</del></li>
+                            <li class="price-item"><del>third pricing feature type</del></li>
+                            <li class="price-item"><span>four pricing feature type</span></li>
+                            <li class="price-item"><span>five pricing feature type</span></li>
+                        </ul>
+                        <h4 class="price-amount">$750/-</h4>
+                        <h5 class="price-mode">per advertise post</h5>
+                        <a class="price-action" href="register.html">get register</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="price-card active">
+                        <i class="price-icon material-icons">task_alt</i>
+                        <h3 class="price-title">business plan</h3>
+                        <p class="price-subtitle">Perfect for growing ads</p>
+                        <ul class="price-list">
+                            <li class="price-item"><span>first pricing feature type</span></li>
+                            <li class="price-item"><del>second pricing feature type</del></li>
+                            <li class="price-item"><span>third pricing feature type</span></li>
+                            <li class="price-item"><span>four pricing feature type</span></li>
+                            <li class="price-item"><span>five pricing feature type</span></li>
+                        </ul>
+                        <h4 class="price-amount">$150/-</h4>
+                        <h5 class="price-mode">per advertise post</h5>
+                        <a class="price-action" href="register.html">get register</a>
+                        <small class="price-demand">most popular</small>
+                    </div>
+                </div>
+                <!-- <div class="col">
+                    <div class="price-card">
+                        <i class="price-icon material-icons">task_alt</i>
+                        <h3 class="price-title">premium plan</h3>
+                        <p class="price-subtitle">Perfect for quick sales</p>
+                        <ul class="price-list">
+                            <li class="price-item"><span>first pricing feature type</span></li>
+                            <li class="price-item"><span>second pricing feature type</span></li>
+                            <li class="price-item"><span>third pricing feature type</span></li>
+                            <li class="price-item"><span>four pricing feature type</span></li>
+                            <li class="price-item"><span>five pricing feature type</span></li>
+                        </ul>
+                        <h4 class="price-amount">$68/-</h4>
+                        <h5 class="price-mode">per advertise post</h5>
+                        <a class="price-action" href="register.html">get register</a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                  PRICE PART END
+    =======================================-->
+
+
+    <!--=====================================
+                REVIEW PART START
+    =======================================-->
+    <section class="section-gap-120 review-part">
+        <div class="container">
+            <div class="row review-slider slider-arrow">
+                <div class="col">
+                    <div class="review-wrap">
+                        <div class="review-wrap-image">
+                            <img src="{% static 'images/review/01.jpg' %}" alt="review">
+                        </div>
+                        <div class="review-wrap-content">
+                            <div class="review-wrap-meta">
+                                <div class="review-wrap-video">
+                                    <a href="#" class="material-icons">play_arrow</a>
+                                    <i class="material-icons">format_quote</i>
+                                </div>
+                                <div class="review-wrap-item">
+                                    <h4>mercedes-benz wagon</h4>
+                                    <h5>see the full review</h5>
+                                </div>
+                            </div>
+                            <p class="review-wrap-quote">" Lorem ipsum dolor sit amet consectetur adipisicing elit Expedita ut porro beatae itaque accusantium nisi Asperiores reprehenderit "</p>
+                            <h3 class="review-wrap-user">miron mahmud</h3>
+                            <h5 class="review-wrap-type">buyer review</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="review-wrap">
+                        <div class="review-wrap-image">
+                            <img src="{% static 'images/review/02.jpg' %}" alt="review">
+                        </div>
+                        <div class="review-wrap-content">
+                            <div class="review-wrap-meta">
+                                <div class="review-wrap-video">
+                                    <a href="#" class="material-icons">play_arrow</a>
+                                    <i class="material-icons">format_quote</i>
+                                </div>
+                                <div class="review-wrap-item">
+                                    <h4>lamborghini huracan</h4>
+                                    <h5>see the full review</h5>
+                                </div>
+                            </div>
+                            <p class="review-wrap-quote">" Lorem ipsum dolor sit amet consectetur adipisicing elit Expedita ut porro beatae itaque accusantium nisi Asperiores reprehenderit "</p>
+                            <h3 class="review-wrap-user">tahmina bonny</h3>
+                            <h5 class="review-wrap-type">seller review</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                REVIEW PART END
+    =======================================-->
+
+            <!--=====================================
+                RECENT PART START
+    =======================================-->
+    <section class="section-gap-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>recent add vehicles</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                        </div>
+                        <a href="inventory-list.html" class="btn btn-inline">
+                            <i class="material-icons">travel_explore</i>
+                            <span>browse all</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/01.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge new">new</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>fixed</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/02.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge new">new</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/03.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge used">used</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/04.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge new">new</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/05.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge used">used</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/06.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge new">new</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/07.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge new">new</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product-grid-card">
+                        <div class="product-grid-image">
+                            <img src="images/product/08.jpg" alt="feature">
+                            <div class="product-grid-badge">
+                                <span class="badge used">used</span>
+                            </div>
+                            <div class="product-grid-hints">
+                                <i class="material-icons">collections</i>
+                                <span>4</span>
+                            </div>
+                            <div class="product-grid-overlay">
+                                <div class="product-grid-vendor">
+                                    <i class="material-icons">person</i>
+                                    <a href="profile.html">by autoland</a>
+                                </div>
+                                <div class="product-grid-rating">
+                                    <i class="material-icons">star</i>
+                                    <a href="review.html">28 review</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-grid-content">
+                            <div class="product-grid-group">
+                                <div class="product-grid-price">
+                                    <span>$18,759/-</span>
+                                    <small>negotiable</small>
+                                </div>
+                                <div class="product-grid-action">
+                                    <button type="button" title="Compare" class="compare material-icons">compare</button>
+                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                                </div>
+                            </div>
+                            <div class="product-grid-meta">
+                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
+                                <ul>
+                                    <li>delpara, narayanganj</li>
+                                    <li>23h ago!</li>
+                                </ul>
+                            </div>
+                            <ul class="product-grid-extra">
+                                <li><i class="material-icons">construction</i><span>manual</span></li>
+                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
+                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
+                            </ul>
+                            <div class="product-grid-btn">
+                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">
+                                    <i class="material-icons">videocam</i>
+                                    <span>video</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                RECENT PART END
+    =======================================-->
+
+
+
 {% endblock %}
+
+

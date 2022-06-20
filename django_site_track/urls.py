@@ -21,7 +21,6 @@ from site_track.views import main, ContactView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main),
     path('auth/', include('site_track_auth.urls')),
     path('account/', include('account.urls')),
     path('vehicle/', include('vehicle_ads.urls')),
