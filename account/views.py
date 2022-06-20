@@ -2,9 +2,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.shortcuts import redirect
 
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView, DetailView
 
 from account.forms import AccountDetailsForm, AccountSocialNetworkForm, AccountChangePasswordForm
+from site_track.models import MyUser
 
 
 class AccountSettings(LoginRequiredMixin, FormView):
@@ -56,23 +57,19 @@ class AccountSettings(LoginRequiredMixin, FormView):
         return super().post(request)
 
 
+class UserProfile(LoginRequiredMixin, DetailView):
+    model = MyUser
+    template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfile, self).get_context_data(**kwargs)
+        if self.object == self.request.user:
+            context['is_my_account'] = True
+        else:
+            context['is_my_account'] = False
+        return context
 
 
-# class AccountSocial(LoginRequiredMixin, FormView, FormMixin):
-#     # template_name = 'account_settings.html'
-#     form_class = AccountSocialNetwork
-#     success_url = '/account/settings/'
-#
-#     def handle_no_permission(self):
-#         return redirect('login')
-#
-#     def form_invalid(self, form):
-#         form.is_valid()
-#         return redirect('login')
-#
-#     def form_valid(self, form):
-#         self.request.user.set_value_from_form(self.request, form)
-#         return super().form_valid(form=form)
 
 
 

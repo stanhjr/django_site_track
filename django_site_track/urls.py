@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from site_track.views import main
+from site_track.views import main, ContactView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('auth/', include('site_track_auth.urls')),
     path('account/', include('account.urls')),
     path('vehicle/', include('vehicle_ads.urls')),
+    path('', include('site_track.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

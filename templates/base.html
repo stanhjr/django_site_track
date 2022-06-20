@@ -383,7 +383,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="profile.html" class="nav-link">
+                            <a href="{% url 'account-profile' user.id %}" class="nav-link">
                                 <i class="material-icons">account_circle</i>
                                 <span class="nav-text">profile</span>
                             </a>
@@ -562,7 +562,7 @@
                         <div class="col-xl-12">
                             <ul class="user-banner-menu-list">
                                 <li><a href="dashboard.html">dashboard</a></li>
-                                <li><a href="profile.html">profile</a></li>
+                                <li><a href="{% url 'account-profile' user.id %}">profile</a></li>
                                 <li><a href="{% url 'create-sale-ads' %}">create ads</a></li>
                                 <li><a href="{% url 'user-posted-sale-ads' %}">posted ads</a></li>
                                 <li><a href="favorite.html">favorites</a></li>

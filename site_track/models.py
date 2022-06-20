@@ -16,6 +16,8 @@ class MyUser(AbstractUser):
     money_spent = models.PositiveIntegerField(default=0)
     full_name = models.CharField(max_length=120, null=True)
     subscription = models.BooleanField(default=False)
+    subscribe_until_date = models.DateField(null=True)
+    created_at = models.DateField(auto_now=True)
     is_confirm = models.BooleanField(default=False)
     reset_password_code = models.CharField(max_length=120, null=True)
     code = models.CharField(max_length=120, null=True)
@@ -23,6 +25,7 @@ class MyUser(AbstractUser):
     account_type = models.CharField(max_length=120, null=True, choices=ACCOUNT_TYPE_CHOICES, default="individual")
     phone_number = models.CharField(max_length=30, null=True)
     web_site = models.CharField(max_length=120, null=True)
+    country = models.CharField(max_length=120, null=True)
     city = models.CharField(max_length=60, null=True)
     state = models.CharField(max_length=60, null=True)
     zip = models.CharField(max_length=60, null=True)
@@ -35,6 +38,20 @@ class MyUser(AbstractUser):
     youtube = models.CharField(max_length=60, null=True)
     whatsapp = models.CharField(max_length=60, null=True)
     pinterest = models.CharField(max_length=60, null=True)
+
+    def add_subscription(self, days_number: int):
+        if not self.subscribe_until_date:
+            self.subscription = timezone.now() + timezone.timedelta(days=days_number)
+        elif self.subscribe_until_date <= timezone.now():
+            self.subscription = timezone.now() + timezone.timedelta(days=days_number)
+        else:
+            self.subscription += timezone.timedelta(days=days_number)
+
+    @property
+    def get_subscription(self):
+        if self.subscribe_until_date <= timezone.now():
+            return True
+        return False
 
     @property
     def get_photo_url(self):
@@ -64,7 +81,6 @@ class MyUser(AbstractUser):
         if self.sale_ads:
             return self.sale_ads.count()
         return 0
-
 
 
 class SaleAds(models.Model):
@@ -162,7 +178,6 @@ class SaleAds(models.Model):
                 if self.created_at.year == time.year:
                     return str(time.month - self.created_at.month) + " months ago"
         return self.created_at
-
 
 
 class ImageInGallery(models.Model):

@@ -1,11 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db import transaction
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
 
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, TemplateView
 
 from site_track.models import SaleAds, ImageInGallery
 from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm
@@ -43,7 +40,7 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
 class UserPostedAds(LoginRequiredMixin, ListView):
     model = SaleAds
     template_name = 'posted-ads.html'
-    paginate_by = 1
+    paginate_by = 16
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -95,7 +92,6 @@ class InventorySingleDetailView(LoginRequiredMixin, DetailView):
         context = super(InventorySingleDetailView, self).get_context_data(**kwargs)
         context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
         return context
-
 
 
 

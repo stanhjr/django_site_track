@@ -16,10 +16,11 @@ Including another URLconf
 
 from django.urls import path
 
-from account.views import AccountSettings
-
+from account.views import AccountSettings, UserProfile
 
 urlpatterns = [
     path('settings/', AccountSettings.as_view(), name='account-settings'),
+    path('profile/<pk>', UserProfile.as_view(), name='account-profile'),
+
 
 ]
