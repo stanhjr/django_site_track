@@ -101,10 +101,17 @@
                 </div>
             </form>
         </div>
-        <a href="{% url 'sign-up' %}" class="header-user">
+         {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="header-user">
             <img src="{{ user.get_photo_url }}" alt="user">
+            <span>logout</span>
+        </a>
+        {% else %}
+            <a href="{% url 'sign-up' %}" class="header-user">
+            <img src="{% static 'images/user.png' %}" alt="user">
             <span>join</span>
         </a>
+        {% endif %}
         <a href="{% url 'create-sale-ads' %}" class="btn header-btn">
             <i class="material-icons">storefront</i>
             <span>sell vehicles</span>
@@ -418,7 +425,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="account_settings.html" class="nav-link">
+                            <a href="{% url 'account-settings' %}" class="nav-link">
                                 <i class="material-icons">settings</i>
                                 <span class="nav-text">settings</span>
                             </a>
@@ -562,7 +569,7 @@
                                 <li><a href="compare.html">compares</a></li>
                                 <li><a href="review.html">reviews</a></li>
                                 <li><a href="notify.html">notify</a></li>
-                                <li><a href="account_settings.html" class="active">settings</a></li>
+                                <li><a href="{% url 'account-settings' %}" class="active">settings</a></li>
                                 <li><a href="{% url 'logout' %}">logout</a></li>
                             </ul>
                         </div>
@@ -594,7 +601,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="footer-top">
-                        <a href="#"><img src="images/logo.png" alt="logo"></a>
+                        <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
                         <ul>
                             <li>
                                 <i class="material-icons">description</i>
@@ -618,8 +625,8 @@
                         <h3>about company</h3>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt ullam repellat sit. Ipsa saepe maiores placeat eligendi totam quisquam necessitatibus dignissimos</p>
                         <div class="footer-badge">
-                            <img src="images/badge/01.png" alt="badge">
-                            <img src="images/badge/02.png" alt="badge">
+                            <img src="{% static 'images/badge/01.png' %}" alt="badge">
+                            <img src="{% static 'images/badge/02.png' %}" alt="badge">
                         </div>
                     </div>
                 </div>

@@ -160,7 +160,22 @@ button:focus {
   background: #477CDB;
   border-color: #477CDB;
 }
-
+.product-single-action button{
+      padding: 12px 30px;
+}
+.product-single-action button.product-single-btn{
+  color: #fff;
+}
+.product-single-action button.product-single-btn span{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.product-single-action button.product-single-buy{
+  background-color: #00C970;
+}
+.product-single-action button.product-single-offer{
+    background-color: #130030;
+}
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   font-size: 15px;

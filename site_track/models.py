@@ -59,6 +59,13 @@ class MyUser(AbstractUser):
         self.save()
         return self
 
+    @property
+    def get_sale_ads_count(self):
+        if self.sale_ads:
+            return self.sale_ads.count()
+        return 0
+
+
 
 class SaleAds(models.Model):
     sale_created = models.BooleanField(default=True)
@@ -157,9 +164,17 @@ class SaleAds(models.Model):
         return self.created_at
 
 
+
 class ImageInGallery(models.Model):
     gallery = models.ForeignKey(SaleAds, on_delete=models.CASCADE, related_name='image_in_gallery')
     image = models.ImageField(upload_to="images/")
+
+    @property
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return "/static/images/user.jpg"
 
 
 

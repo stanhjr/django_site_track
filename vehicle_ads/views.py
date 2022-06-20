@@ -29,9 +29,9 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
-        with transaction.atomic():
-            obj.user.save()
-            obj.save()
+
+        # obj.user.save()
+        obj.save()
         images = self.request.FILES.getlist("gallery-image")
         for image in images:
             image_obj = ImageInGallery.objects.create(image=image, gallery=obj)
@@ -43,7 +43,7 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
 class UserPostedAds(LoginRequiredMixin, ListView):
     model = SaleAds
     template_name = 'posted-ads.html'
-    paginate_by = 16
+    paginate_by = 1
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -87,8 +87,15 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
         return habit_object.__dict__
 
 
-class InventorySingleView(LoginRequiredMixin, DetailView):
-    ...
+class InventorySingleDetailView(LoginRequiredMixin, DetailView):
+    model = SaleAds
+    template_name = 'inventory-single.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(InventorySingleDetailView, self).get_context_data(**kwargs)
+        context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
+        return context
+
 
 
 

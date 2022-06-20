@@ -16,11 +16,13 @@ Including another URLconf
 
 from django.urls import path
 
-from vehicle_ads.views import VehicleInformationView, UserPostedAds, UserPostedAdsDeleteView, UserPostedAdsUpdateView
+from vehicle_ads.views import VehicleInformationView, UserPostedAds, UserPostedAdsDeleteView, UserPostedAdsUpdateView, \
+    InventorySingleDetailView
 
 urlpatterns = [
     path('sale-ads/', VehicleInformationView.as_view(), name='create-sale-ads'),
     path('posted-ads/', UserPostedAds.as_view(), name='user-posted-sale-ads'),
     path('posted-delete/<pk>', UserPostedAdsDeleteView.as_view(), name='user-posted-delete'),
-    path('posted-pdate/<pk>', UserPostedAdsUpdateView.as_view(), name='user-posted-update'),
+    path('posted-update/<pk>', UserPostedAdsUpdateView.as_view(), name='user-posted-update'),
+    path('posted-detail/<pk>', InventorySingleDetailView.as_view(), name='posted-detail'),
 ]

@@ -22,7 +22,6 @@
                             </div>
                             <div class="posted-widget">
                                 <form action="{% url 'user-posted-update' obj.id %}">
-                                    {% csrf_token %}
                                     <input class="material-icons edit" title="edit" type="submit" value="edit">
                                 </form>
 {#                                <a href="#" title="Edit" class="material-icons edit">edit</a>#}
@@ -36,12 +35,12 @@
                             <div class="product-grid-overlay">
                                 <div class="product-grid-vendor">
                                     <i class="material-icons">person</i>
-                                    <a href="profile.html">by autoland</a>
+                                    <a href="profile.html">by {{ user.full_name }}</a>
                                 </div>
-                                <div class="product-grid-rating">
-                                    <i class="material-icons">star</i>
-                                    <a href="review.html">28 review</a>
-                                </div>
+{#                                <div class="product-grid-rating">#}
+{#                                    <i class="material-icons">star</i>#}
+{#                                    <a href="review.html">28 review</a>#}
+{#                                </div>#}
                             </div>
                         </div>
                         <div class="product-grid-content">
@@ -68,7 +67,7 @@
                                 <li><i class="material-icons">local_gas_station</i><span>{{ obj.vehicle_fuel }}</span></li>
                             </ul>
                             <div class="product-grid-btn">
-                                <a href="inventory-single.html"><i class="material-icons">visibility</i><span>details</span></a>
+                                <a href="{% url 'posted-detail' obj.id %}"><i class="material-icons">visibility</i><span>details</span></a>
                                 <a href="{{ obj.video_url }}" class="venobox" data-autoplay="true" data-vbtype="video">
                                     <i class="material-icons">videocam</i>
                                     <span>video</span>
@@ -971,15 +970,28 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bottom-paginate mb-50">
-                        <p class="page-info">Showing 12 of 60 Results</p>
+                        <p class="page-info">Showing {{ page_obj.end_index }} of {{ page_obj.paginator.count }} Results</p>
                         <ul class="pagination">
-                            <li class="page-item"><a href="#" class="page-link material-icons">chevron_left</a></li>
-                            <li class="page-item"><a href="#" class="page-link active">01</a></li>
-                            <li class="page-item"><a href="#" class="page-link">02</a></li>
-                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+
+                            {% if page_obj.has_previous %}
+                            <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link material-icons">chevron_left</a></li>
+                            {% endif %}
+
+                            {% for i in paginator.page_range %}
+                                 {% if page_obj.number == i %}
+                                    <li class="page-item"><a href="?page={{ i }}" class="page-link active">{{ i }}</a></li>
+
+                                {% elif i > page_obj.number|add:'-2' and i < page_obj.number|add:'2' %}
+                                     <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                                 {% endif %}
+                            {% endfor %}
+
                             <li class="page-item">...</li>
-                            <li class="page-item"><a href="#" class="page-link">45</a></li>
-                            <li class="page-item"><a href="#" class="page-link material-icons">chevron_right</a></li>
+                            <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">{{ page_obj.paginator.num_pages }}</a></li>
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link material-icons">chevron_right</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
