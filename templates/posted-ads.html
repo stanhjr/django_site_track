@@ -21,7 +21,7 @@
                                 <span>{{ obj.get_photo_in_gallery_count }}</span>
                             </div>
                             <div class="posted-widget">
-                                <form action="{% url 'user-posted-update' obj.id %}" method="post">
+                                <form action="{% url 'user-posted-update' obj.id %}">
                                     {% csrf_token %}
                                     <input class="material-icons edit" title="edit" type="submit" value="edit">
                                 </form>

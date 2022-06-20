@@ -2,8 +2,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
 
 from site_track.models import SaleAds, ImageInGallery
 from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm
@@ -63,17 +65,31 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'update-ads.html'
     form_class = VehicleInformationUpdateForm
 
+    def dispatch(self, *args, **kwargs):
+        obj = self.get_object()
+        if self.request.user.id != obj.user.id:
+            redirect('user-posted-sale-ads')
+        return super(UserPostedAdsUpdateView, self).dispatch(*args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if self.request.user.id != obj.user.id:
+            redirect('user-posted-sale-ads')
+        return super(UserPostedAdsUpdateView, self).get(request, *args, **kwargs)
+
     def get_form_kwargs(self):
         kw = super(UserPostedAdsUpdateView, self).get_form_kwargs()
         kw['request'] = self.request
         return kw
 
     def get_initial(self):
-        initial = super(UserPostedAdsUpdateView, self).get_initial()
         habit_object = self.get_object()
-        # print(habit_object.__dict__)
-        # print('initial data', initial)
         return habit_object.__dict__
+
+
+class InventorySingleView(LoginRequiredMixin, DetailView):
+    ...
+
 
 
 
