@@ -1,3 +1,5 @@
+import random
+
 from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
@@ -40,6 +42,16 @@ class IndexView(ListView):
     model = SaleAds
     template_name = 'index.html'
     paginate_by = 16
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return super().get_queryset().order_by('-vehicle_price_amount')[:4]
+        return super().get_queryset()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
+        return context
 
 
 
