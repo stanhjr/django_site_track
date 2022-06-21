@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, UpdateView, ListView
 from site_track.forms import ContactForm
 
-from site_track.models import MyUser, SaleAds
+from site_track.models import MyUser, SaleAds, SettingsFooter
 from site_track_auth.tools.send_email import send_main_contact_us
 
 
@@ -51,6 +51,7 @@ class IndexView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
+        context['footer'] = SettingsFooter.objects.last()
         return context
 
 

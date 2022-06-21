@@ -5,6 +5,8 @@ from django.db import models
 from django.db.models import Sum
 from django.utils import timezone
 
+from site_track.defoul_text_in_site import ABOUT_COMPANY_TEXT, ABOUT_COMPANY_TITLE
+
 
 class MyUser(AbstractUser):
 
@@ -192,7 +194,34 @@ class ImageInGallery(models.Model):
             return "/static/images/user.jpg"
 
 
+class SettingsFooter(models.Model):
+    about_company_title = models.TextField(null=True, default=ABOUT_COMPANY_TITLE)
+    about_company_text = models.TextField(null=True, default=ABOUT_COMPANY_TEXT)
+    facebook_url = models.URLField(null=True, default="https://www.facebook.com/")
+    twitter_url = models.URLField(null=True, default="https://twitter.com/")
+    linkedin_url = models.URLField(null=True, default="https://www.linkedin.com/")
+    whatsapp_phone = models.CharField(null=True, max_length=60, default="")
+    youtube_url = models.URLField(null=True, default="https://www.youtube.com/")
+    email_1 = models.EmailField(null=True, default="info@example.com")
+    email_2 = models.EmailField(null=True, default="carrer@example.com")
+    phone_number_1 = models.CharField(null=True, max_length=120, default="+91 987-654-3210")
+    phone_number_2 = models.CharField(null=True, max_length=120, default="+91 987-654-5466")
+    address_top = models.CharField(null=True, max_length=120, default="1Hd- 50, 010 Avenue")
+    address_bottom = models.CharField(null=True, max_length=120, default="NY 90001 United States")
+    news_letter_title = models.CharField(null=True, max_length=120, default="Our Newsletter")
+    news_letter_text = models.CharField(null=True, max_length=300, default="Be the first to know about our offers and discounts by subscribing to the newsletter")
 
+
+class SettingsHeaderHome(models.Model):
+    header_title = models.CharField(null=True, max_length=120, default="Used Equipment or Sale")
+    header_text = models.CharField(null=True, max_length=500, default="Browse through thousands of affordable alternatives to new equipment. View our detailed inspection reports and buy with confidence")
+    contact_email = models.EmailField(null=True, default="info@example.com")
+    contact_number = models.CharField(null=True, max_length=120, default="+91 987-654-3210")
+
+
+if not SettingsFooter.objects.last():
+    print('CREATE')
+    SettingsFooter.objects.create()
 
 
 

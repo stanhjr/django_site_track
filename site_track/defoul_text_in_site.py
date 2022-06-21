@@ -1,0 +1,2 @@
+ABOUT_COMPANY_TEXT = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt ullam repellat sit. Ipsa saepe maiores placeat eligendi totam quisquam necessitatibus dignissimos"
+ABOUT_COMPANY_TITLE = "About Company"
