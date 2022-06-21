@@ -21,66 +21,15 @@
                 </div>
             </div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+                {% for category in category_track %}
                 <div class="col">
                     <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/minivan.png' %}" alt="category">
-                        <span>minivan (24)</span>
+                        <img src="{{ category.get_image_url }}" alt="category">
+                        <span>{{ category.name }} (24)</span>
                     </a>
                 </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/convertible.png' %}" alt="category">
-                        <span>convertible (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/coupe.png' %}" alt="category">
-                        <span>coupe (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/pickup.png' %}" alt="category">
-                        <span>pickup (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/sedan.png' %}" alt="category">
-                        <span>sedan (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/sports.png' %}" alt="category">
-                        <span>sports (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/suv.png' %}" alt="category">
-                        <span>suv/muv (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/wagon.png' %}" alt="category">
-                        <span>wagon (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/jeep.png' %}" alt="category">
-                        <span>jeep (24)</span>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="inventory-list.html" class="category-card">
-                        <img src="{% static 'images/category/hatchback.png' %}" alt="category">
-                        <span>Hatchback (24)</span>
-                    </a>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
     </section>

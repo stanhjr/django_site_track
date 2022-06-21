@@ -85,6 +85,25 @@ class MyUser(AbstractUser):
         return 0
 
 
+class CategoriesTrack(models.Model):
+    image = models.ImageField(upload_to="category_images/", null=True)
+    name = models.CharField(max_length=120)
+
+    @classmethod
+    def get_choices(cls):
+        return [(tq.pk, tq.name) for tq in cls.objects.all()]
+
+    @property
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return "/static/images/user.jpg"
+
+    def __str__(self):
+        return self.name
+
+
 class SaleAds(models.Model):
     sale_created = models.BooleanField(default=True)
 
@@ -142,6 +161,10 @@ class SaleAds(models.Model):
     others = models.TextField(max_length=500, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='sale_ads')
+    # category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads')
+
+    def __str__(self):
+        return f"{self.title} by {self.user}"
 
     def set_value_from_form(self, request, form):
         image_link = self.preview_image
@@ -186,6 +209,9 @@ class ImageInGallery(models.Model):
     gallery = models.ForeignKey(SaleAds, on_delete=models.CASCADE, related_name='image_in_gallery')
     image = models.ImageField(upload_to="images/")
 
+    def __str__(self):
+        return f"image in gallery for {self.gallery.title}"
+
     @property
     def get_image_url(self):
         if self.image:
@@ -219,10 +245,36 @@ class SettingsHeaderHome(models.Model):
     contact_number = models.CharField(null=True, max_length=120, default="+91 987-654-3210")
 
 
+class SettingsIndexHome(models.Model):
+    find_top_categories_title = models.TextField(default="find top categories")
+    find_top_categories_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
+    our_features_listing_title = models.TextField(default="our featured listing")
+    our_features_listing_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    brand_part_title = models.TextField(default="browse by top brands")
+    brand_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    price_part_title = models.TextField(default="our ads pricing plans")
+    price_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    # review_part_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    # review_part_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    recent_part_title = models.TextField(default="recent add vehiclesn")
+    reent_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+
+
 if not SettingsFooter.objects.last():
-    print('CREATE')
     SettingsFooter.objects.create()
 
+
+if not CategoriesTrack.objects.last():
+    CategoriesTrack.objects.create(name="Minivan", image="category_images/minivan.png")
+    CategoriesTrack.objects.create(name="Convertible", image="category_images/convertible.png")
+    CategoriesTrack.objects.create(name="Coupe", image="/category_images/coupe.png")
+    CategoriesTrack.objects.create(name="Hatchback", image="/category_images/hatchback.png")
+    CategoriesTrack.objects.create(name="Jeep", image="/category_images/jeep.png")
+    CategoriesTrack.objects.create(name="Pickup", image="/category_images/pickup.png")
+    CategoriesTrack.objects.create(name="Suv", image="/category_images/suv.png")
+    CategoriesTrack.objects.create(name="Sedan", image="/category_images/sedan.png")
+    CategoriesTrack.objects.create(name="Wagon", image="/category_images/wagon.png")
+    CategoriesTrack.objects.create(name="Sports", image="/category_images/sports.png")
 
 
 

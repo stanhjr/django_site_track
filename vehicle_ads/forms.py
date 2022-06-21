@@ -1,5 +1,5 @@
 from django import forms
-from site_track.models import SaleAds
+from site_track.models import SaleAds, CategoriesTrack
 
 
 class DatePickerInput(forms.DateInput):
@@ -7,46 +7,38 @@ class DatePickerInput(forms.DateInput):
 
 
 VEHICLE_WHEEL_DRIVE_CHOICES = (
-            ("Front-Wheel-Drive", "Front-Wheel-Drive"),
-            ("Four-Wheel-Drive", "Four-Wheel-Drive"),
-            ("Rear-Drive", "Rear-Drive")
-        )
-
+    ("Front-Wheel-Drive", "Front-Wheel-Drive"),
+    ("Four-Wheel-Drive", "Four-Wheel-Drive"),
+    ("Rear-Drive", "Rear-Drive")
+)
 
 VEHICLE_TRANSMISSION_CHOICES = (
-            ("Auto", "Auto"),
-            ("Manual", "Manual"),
-            ("Semi Auto", "Semi Auto")
-        )
+    ("Auto", "Auto"),
+    ("Manual", "Manual"),
+    ("Semi Auto", "Semi Auto")
+)
 
 VEHICLE_WHEEL_CHOICES = (
-            ("Left", "Left"),
-            ("Right", "Right"),
-        )
-
-
-VEHICLE_TYPE_CHOICES = (
-            ("Wagon", "Wagon"),
-            ("Hatchback", "Hatchback"),
-            ("Convertible", "Convertible")
-        )
+    ("Left", "Left"),
+    ("Right", "Right"),
+)
 
 VEHICLE_FUEL_CHOICES = (
-            ("Diesel", "Diesel"),
-            ("Petrol", "Petrol"),
-            ("Electric", "Electric"),
-            ("Hybrid", "Hybrid"),
-        )
+    ("Diesel", "Diesel"),
+    ("Petrol", "Petrol"),
+    ("Electric", "Electric"),
+    ("Hybrid", "Hybrid"),
+)
 
 VEHICLE_PRICE_TYPE_CHOICES = (
-            ("Fixed", "Fixed"),
-            ("Negotiable", "Negotiable"),
-        )
+    ("Fixed", "Fixed"),
+    ("Negotiable", "Negotiable"),
+)
 
 VEHICLE_CONDITION_CHOICES = (
-            ("New", "New"),
-            ("Used", "Used"),
-        )
+    ("New", "New"),
+    ("Used", "Used"),
+)
 
 
 class VehicleInformationForm(forms.ModelForm):
@@ -84,7 +76,8 @@ class VehicleInformationForm(forms.ModelForm):
 
             elif field == "vehicle_type":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
-                                                         choices=VEHICLE_TYPE_CHOICES)
+                                                         choices=CategoriesTrack.get_choices())
+
             elif field == "vehicle_fuel":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_FUEL_CHOICES)
@@ -149,7 +142,7 @@ class VehicleInformationUpdateForm(forms.ModelForm):
 
             elif field == "vehicle_type":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
-                                                         choices=VEHICLE_TYPE_CHOICES)
+                                                         choices=CategoriesTrack.get_choices())
             elif field == "vehicle_fuel":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_FUEL_CHOICES)
