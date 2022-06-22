@@ -10,8 +10,8 @@
                 <div class="col-xl-12">
                     <div class="section-head">
                         <div class="section-text">
-                            <h2>find top categories</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                            <h2>{{ body.part_start_title }}</h2>
+                            <p>{{ body.part_start_text }}</p>
                         </div>
                         <a href="inventory-list.html" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
@@ -50,8 +50,8 @@
                 <div class="col-xl-12">
                     <div class="section-head">
                         <div class="section-text">
-                            <h2>our featured listing</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                            <h2>{{ body.part_features_title }}</h2>
+                            <p>{{ body.part_features_text }}</p>
                         </div>
                         <a href="inventory-list.html" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
@@ -71,7 +71,11 @@
                                 <span class="badge arrow-right">more details</span>
                             </a>
                             <div class="product-feature-badge">
-                                <span class="badge new">new</span>
+                                {% if obj.is_used %}
+                                <span class="badge used">used</span>
+                                 {% else %}
+                                 <span class="badge new">new</span>
+                                {% endif %}
                                 <span class="badge featured">featured</span>
                             </div>
                         </div>
@@ -102,8 +106,8 @@
                 <div class="col-xl-12">
                     <div class="section-head">
                         <div class="section-text">
-                            <h2>browse by top brands</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                            <h2>{{ body.brand_part_title }}</h2>
+                            <p>{{ body.brand_part_text }}</p>
                         </div>
                         <!-- <a href="inventory-list.html" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
@@ -138,8 +142,8 @@
                 <div class="col-xl-12">
                     <div class="section-head">
                         <div class="section-text">
-                            <h2>our ads pricing plans</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                            <h2>{{ body.price_part_title }}</h2>
+                            <p>{{ body.price_part_text }}</p>
                         </div>
 
                     </div>
@@ -239,8 +243,8 @@
                 <div class="col-xl-12">
                     <div class="section-head">
                         <div class="section-text">
-                            <h2>recent add vehicles</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                            <h2>{{ body.recent_part_title }}</h2>
+                            <p>{{ body.recent_part_text }}</p>
                         </div>
                         <a href="inventory-list.html" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
@@ -256,7 +260,11 @@
                         <div class="product-grid-image">
                             <img src="{{ obj.get_photo_url }}" alt="feature">
                             <div class="product-grid-badge">
-                                <span class="badge new">new</span>
+                                {% if obj.is_used %}
+                                <span class="badge used">used</span>
+                                 {% else %}
+                                 <span class="badge new">new</span>
+                                {% endif %}
                             </div>
                             <div class="product-grid-hints">
                                 <i class="material-icons">collections</i>

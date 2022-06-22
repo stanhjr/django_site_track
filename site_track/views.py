@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, UpdateView, ListView
 from site_track.forms import ContactForm
 
-from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack
+from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome
 from site_track_auth.tools.send_email import send_main_contact_us
 
 
@@ -53,6 +53,7 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
         context['footer'] = SettingsFooter.objects.last()
+        context['body'] = SettingsIndexHome.objects.last()
         context['category_track'] = CategoriesTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:12]
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         return context

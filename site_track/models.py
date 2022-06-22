@@ -193,6 +193,12 @@ class SaleAds(models.Model):
         return self
 
     @property
+    def is_used(self):
+        if self.vehicle_condition == "Used":
+            return True
+        return False
+
+    @property
     def get_photo_url(self):
         if self.preview_image:
             return self.preview_image.url
@@ -260,10 +266,10 @@ class SettingsHeaderHome(models.Model):
 
 
 class SettingsIndexHome(models.Model):
-    find_top_categories_title = models.TextField(default="find top categories")
-    find_top_categories_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
-    our_features_listing_title = models.TextField(default="our featured listing")
-    our_features_listing_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    part_start_title = models.TextField(default="find top categories")
+    part_start_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
+    part_features_title = models.TextField(default="our featured listing")
+    part_features_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     brand_part_title = models.TextField(default="browse by top brands")
     brand_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     price_part_title = models.TextField(default="our ads pricing plans")
@@ -271,11 +277,14 @@ class SettingsIndexHome(models.Model):
     # review_part_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     # review_part_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     recent_part_title = models.TextField(default="recent add vehiclesn")
-    reent_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    recent_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
 
 
 if not SettingsFooter.objects.last():
     SettingsFooter.objects.create()
+
+# if not SettingsIndexHome.objects.last():
+#     SettingsIndexHome.objects.create()
 
 
 if not CategoriesTrack.objects.last():

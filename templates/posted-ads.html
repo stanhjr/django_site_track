@@ -12,10 +12,19 @@
                     <div class="product-grid-card">
                         <div class="product-grid-image">
                             <img src="{{ obj.get_photo_url }}" alt="product">
-{#                            <div class="product-grid-badge">#}
-{#                                <span class="badge used">used</span>#}
+
+
+                            <div class="product-grid-badge">
+                                {% if obj.is_used %}
+                                <span class="badge used">used</span>
+                                 {% else %}
+                                 <span class="badge new">new</span>
+                                {% endif %}
 {#                                <span class="badge featured">featured</span>#}
-{#                            </div>#}
+                            </div>
+
+
+
                             <div class="product-grid-hints">
                                 <i class="material-icons">collections</i>
                                 <span>{{ obj.get_photo_in_gallery_count }}</span>
