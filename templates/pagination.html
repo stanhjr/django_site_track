@@ -1,0 +1,31 @@
+{% block content %}
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bottom-paginate mb-50">
+                        <p class="page-info">Showing {{ page_obj.end_index }} of {{ page_obj.paginator.count }} Results</p>
+                        <ul class="pagination">
+
+                            {% if page_obj.has_previous %}
+                            <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link material-icons">chevron_left</a></li>
+                            {% endif %}
+
+                            {% for i in paginator.page_range %}
+                                 {% if page_obj.number == i %}
+                                    <li class="page-item"><a href="?page={{ i }}" class="page-link active">{{ i }}</a></li>
+
+                                {% elif i > page_obj.number|add:'-2' and i < page_obj.number|add:'2' %}
+                                     <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                                 {% endif %}
+                            {% endfor %}
+
+                            <li class="page-item">...</li>
+                            <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">{{ page_obj.paginator.num_pages }}</a></li>
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link material-icons">chevron_right</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

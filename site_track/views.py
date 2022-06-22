@@ -4,7 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Count
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -49,7 +49,7 @@ class IndexView(ListView):
             return super().get_queryset().order_by('-vehicle_price_amount')[:4]
         return super().get_queryset()
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *args, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
         context['footer'] = SettingsFooter.objects.last()
@@ -58,5 +58,23 @@ class IndexView(ListView):
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         return context
 
+
+class InventoryGrid(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = CategoriesTrack
+    template_name = 'inventory-grid.html'
+    paginate_by = 16
+
+    def get_queryset(self):
+        category = self.model.objects.filter(name__iexact=self.kwargs.get("category")).first()
+        if category:
+            return category.sale_ads.all()
+
+        raise Http404
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super(InventoryGrid, self).get_context_data(**kwargs)
+        context['footer'] = SettingsFooter.objects.last()
+        return context
 
 

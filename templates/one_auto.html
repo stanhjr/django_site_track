@@ -1,0 +1,80 @@
+{% block content %}
+    {% for obj in object_list %}
+        <div class="col">
+            <div class="product-grid-card">
+                <div class="product-grid-image">
+                    <img src="{{ obj.get_photo_url }}" alt="product">
+
+
+                    <div class="product-grid-badge">
+                        {% if obj.is_used %}
+                            <span class="badge used">used</span>
+                        {% else %}
+                            <span class="badge new">new</span>
+                        {% endif %}
+                        {#                                <span class="badge featured">featured</span>#}
+                    </div>
+
+                    <div class="product-grid-hints">
+                        <i class="material-icons">collections</i>
+                        <span>{{ obj.get_photo_in_gallery_count }}</span>
+                    </div>
+                    <div class="posted-widget">
+                        <form action="{% url 'user-posted-update' obj.id %}">
+                            <input class="material-icons edit" title="edit" type="submit" value="edit">
+                        </form>
+                        {#                                <a href="#" title="Edit" class="material-icons edit">edit</a>#}
+                        <form action="{% url 'user-posted-delete' obj.id %}" method="post">
+                            {% csrf_token %}
+                            <input class="material-icons delete" title="Delete" type="submit" value="delete">
+                        </form>
+                        {#                                <a href="#" title="Delete" class="material-icons delete">delete</a>#}
+
+                    </div>
+                    <div class="product-grid-overlay">
+                        <div class="product-grid-vendor">
+                            <i class="material-icons">person</i>
+                            <a href="profile.html">by {{ user.full_name }}</a>
+                        </div>
+                        {#                                <div class="product-grid-rating">#}
+                        {#                                    <i class="material-icons">star</i>#}
+                        {#                                    <a href="review.html">28 review</a>#}
+                        {#                                </div>#}
+                    </div>
+                </div>
+                <div class="product-grid-content">
+                    <div class="product-grid-group">
+                        <div class="product-grid-price">
+                            <span>${{ obj.vehicle_price_amount }}/-</span>
+                            <small>{{ obj.vehicle_price_type }}</small>
+                        </div>
+                        <div class="product-grid-action">
+                            <button type="button" title="Compare" class="compare material-icons">compare</button>
+                            <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
+                        </div>
+                    </div>
+                    <div class="product-grid-meta">
+                        <h4><a href="inventory-single.html">{{ obj.vehicle_make }}</a></h4>
+                        <ul>
+                            <li>{{ obj.country }}, {{ obj.city }}</li>
+                            <li>{{ obj.get_date_ago }}</li>
+                        </ul>
+                    </div>
+                    <ul class="product-grid-extra">
+                        <li><i class="material-icons">construction</i><span>{{ obj.vehicle_transmission }}</span></li>
+                        <li><i class="material-icons">settings</i><span>{{ obj.vehicle_mileage }} km</span></li>
+                        <li><i class="material-icons">local_gas_station</i><span>{{ obj.vehicle_fuel }}</span></li>
+                    </ul>
+                    <div class="product-grid-btn">
+                        <a href="{% url 'posted-detail' obj.id %}"><i
+                                class="material-icons">visibility</i><span>details</span></a>
+{#                        <a href="{{ obj.video_url }}" class="venobox" data-autoplay="true" data-vbtype="video">#}
+{#                            <i class="material-icons">videocam</i>#}
+{#                            <span>video</span>#}
+{#                        </a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

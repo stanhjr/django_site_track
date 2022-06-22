@@ -93,7 +93,7 @@ class ChoicesMixin:
 
 class CategoriesTrack(models.Model, ChoicesMixin):
     image = models.ImageField(upload_to="category_images/", null=True)
-    name = models.CharField(max_length=120)
+    name = models.SlugField(unique=True, db_index=True)
 
     @property
     def get_image_url(self):
