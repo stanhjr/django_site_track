@@ -53,7 +53,7 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
         context['footer'] = SettingsFooter.objects.last()
-        context['category_track'] = CategoriesTrack.objects.all()[:12]
+        context['category_track'] = CategoriesTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:12]
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         return context
 
