@@ -85,13 +85,15 @@ class MyUser(AbstractUser):
         return 0
 
 
-class CategoriesTrack(models.Model):
-    image = models.ImageField(upload_to="category_images/", null=True)
-    name = models.CharField(max_length=120)
-
+class ChoicesMixin:
     @classmethod
     def get_choices(cls):
-        return [(tq.pk, tq.name) for tq in cls.objects.all()]
+        return [(tq.pk, tq.name) for tq in cls.objects.order_by('name').all()]
+
+
+class CategoriesTrack(models.Model, ChoicesMixin):
+    image = models.ImageField(upload_to="category_images/", null=True)
+    name = models.CharField(max_length=120)
 
     @property
     def get_image_url(self):
@@ -99,6 +101,17 @@ class CategoriesTrack(models.Model):
             return self.image.url
         else:
             return "/static/images/user.jpg"
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+    def __str__(self):
+        return self.name
+
+
+class MakeTrack(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
 
     def __str__(self):
         return self.name
@@ -128,26 +141,26 @@ class SaleAds(models.Model):
     date_of_issue = models.DateField(null=True)
     date_of_expire = models.DateField(null=True)
     vehicle_year = models.DateField(null=True)
-    vehicle_type = models.CharField(max_length=60, null=True)
-    vehicle_make = models.CharField(max_length=60, null=True)
+    vehicle_price_type = models.CharField(max_length=60, null=True)
+
     vehicle_fuel = models.CharField(max_length=60, null=True)
     vehicle_colour = models.CharField(max_length=60, null=True)
     vehicle_mileage = models.BigIntegerField(default=10000, null=True)
     vehicle_transmission = models.CharField(max_length=60, default="Manual")
     vehicle_price_amount = models.BigIntegerField(default=1000, null=True)
-    vehicle_price_type = models.CharField(max_length=60, null=True)
+
     vehicle_wheel = models.CharField(max_length=60, default="Left")
     vehicle_wheel_drive = models.CharField(max_length=60, default="Rear-Drive")
     vehicle_condition = models.CharField(max_length=60, null=True)
-    description = models.TextField(max_length=1500, null=True)
+    description = models.TextField(max_length=3000, null=True)
     preview_image = models.ImageField(upload_to="images/", null=True)
-    video_url = models.CharField(max_length=1024, null=True)
-    facebook = models.CharField(max_length=120, null=True)
-    instagram = models.CharField(max_length=120, null=True)
-    twitter = models.CharField(max_length=120, null=True)
-    youtube = models.CharField(max_length=120, null=True)
-    pinterest = models.CharField(max_length=120, null=True)
-    linkedin = models.CharField(max_length=120, null=True)
+    # video_url = models.CharField(max_length=1024, null=True)
+    # facebook = models.CharField(max_length=120, null=True)
+    # instagram = models.CharField(max_length=120, null=True)
+    # twitter = models.CharField(max_length=120, null=True)
+    # youtube = models.CharField(max_length=120, null=True)
+    # pinterest = models.CharField(max_length=120, null=True)
+    # linkedin = models.CharField(max_length=120, null=True)
     country = models.CharField(max_length=120, null=True)
     city = models.CharField(max_length=120, null=True)
     state = models.CharField(max_length=120, null=True)
@@ -158,10 +171,11 @@ class SaleAds(models.Model):
     phone_number = models.CharField(max_length=30, null=True)
     web_site = models.CharField(max_length=120, null=True)
     email = models.EmailField(max_length=120, null=True)
-    others = models.TextField(max_length=500, null=True)
+    others = models.TextField(max_length=3000, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='sale_ads')
-    # category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads')
+    vehicle_make = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    vehicle_type = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
 
     def __str__(self):
         return f"{self.title} by {self.user}"
@@ -275,6 +289,17 @@ if not CategoriesTrack.objects.last():
     CategoriesTrack.objects.create(name="Sedan", image="/category_images/sedan.png")
     CategoriesTrack.objects.create(name="Wagon", image="/category_images/wagon.png")
     CategoriesTrack.objects.create(name="Sports", image="/category_images/sports.png")
+
+
+if not MakeTrack.objects.last():
+    MakeTrack.objects.create(name="tesla")
+    MakeTrack.objects.create(name="nissan")
+    MakeTrack.objects.create(name="audi")
+    MakeTrack.objects.create(name="toyota")
+    MakeTrack.objects.create(name="mercedes")
+    MakeTrack.objects.create(name="jeep")
+    MakeTrack.objects.create(name="bmw")
+    MakeTrack.objects.create(name="ford")
 
 
 

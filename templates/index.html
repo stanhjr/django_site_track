@@ -25,7 +25,7 @@
                 <div class="col">
                     <a href="inventory-list.html" class="category-card">
                         <img src="{{ category.get_image_url }}" alt="category">
-                        <span>{{ category.name }} (24)</span>
+                        <span>{{ category.name }} ({{ category.get_count }})</span>
                     </a>
                 </div>
                 {% endfor %}
@@ -113,76 +113,14 @@
                 </div>
             </div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+                {% for make in make_track %}
                 <div class="col">
                     <a class="brand-card" href="inventory-list.html">
-                        <!-- <img src="images/brand/01.png" alt="brand"> -->
-                        <h6>tesla</h6>
-                        <!-- <p>(24) vehicles</p> -->
+                        <h6>{{ make.name }}</h6>
                     </a>
                 </div>
-                <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <!--  <img src="images/brand/02.png" alt="brand"> -->
-                        <h6>nissan</h6>
-                        <!-- <p>(24) vehicles</p> -->
-                    </a>
-                </div>
-                <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <!-- <img src="images/brand/03.png" alt="brand"> -->
-                        <h6>mercedes</h6>
-                        <!-- <p>(24) vehicles</p> -->
-                    </a>
-                </div>
-                <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <!-- <img src="images/brand/04.png" alt="brand"> -->
-                        <h6>toyota</h6>
-                        <!-- <p>(24) vehicles</p> -->
-                    </a>
-                </div>
-                <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <!-- <img src="images/brand/05.png" alt="brand"> -->
-                        <h6>audi</h6>
-                        <!-- <p>(24) vehicles</p> -->
-                    </a>
-                </div>
-                <!-- <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <img src="images/brand/06.png" alt="brand">
-                        <h6>lamborghini</h6>
-                        <p>(24) vehicles</p>
-                    </a>
-                </div> -->
-                <!-- <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <img src="images/brand/07.png" alt="brand">
-                        <h6>bugatti</h6>
-                        <p>(24) vehicles</p>
-                    </a>
-                </div> -->
-                <!-- <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <img src="images/brand/08.png" alt="brand">
-                        <h6>ferrari</h6>
-                        <p>(24) vehicles</p>
-                    </a>
-                </div> -->
-                <!-- <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <img src="images/brand/09.png" alt="brand">
-                        <h6>bmw</h6>
-                        <p>(24) vehicles</p>
-                    </a>
-                </div> -->
-                <!-- <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
-                        <img src="images/brand/10.png" alt="brand">
-                        <h6>porsche</h6>
-                        <p>(24) vehicles</p>
-                    </a>
-                </div> -->
+                {% endfor %}
+
             </div>
         </div>
     </section>
@@ -203,10 +141,7 @@
                             <h2>our ads pricing plans</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
                         </div>
-                        <!-- <a href="pricing-plan.html" class="btn btn-inline">
-                            <i class="material-icons">details</i>
-                            <span>more details</span>
-                        </a> -->
+
                     </div>
                 </div>
             </div>
@@ -252,8 +187,8 @@
                         <div class="review-wrap-content">
                             <div class="review-wrap-meta">
                                 <div class="review-wrap-video">
-                                    <a href="#" class="material-icons">play_arrow</a>
-                                    <i class="material-icons">format_quote</i>
+{#                                    <a href="#" class="material-icons">play_arrow</a>#}
+{#                                    <i class="material-icons">format_quote</i>#}
                                 </div>
                                 <div class="review-wrap-item">
                                     <h4>mercedes-benz wagon</h4>
@@ -274,8 +209,8 @@
                         <div class="review-wrap-content">
                             <div class="review-wrap-meta">
                                 <div class="review-wrap-video">
-                                    <a href="#" class="material-icons">play_arrow</a>
-                                    <i class="material-icons">format_quote</i>
+{#                                    <a href="#" class="material-icons">play_arrow</a>#}
+{#                                    <i class="material-icons">format_quote</i>#}
                                 </div>
                                 <div class="review-wrap-item">
                                     <h4>lamborghini huracan</h4>

@@ -3,6 +3,7 @@ import random
 from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Count
 from django.http import HttpResponse
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
@@ -10,7 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, UpdateView, ListView
 from site_track.forms import ContactForm
 
-from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack
+from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack
 from site_track_auth.tools.send_email import send_main_contact_us
 
 
@@ -53,6 +54,7 @@ class IndexView(ListView):
         context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
         context['footer'] = SettingsFooter.objects.last()
         context['category_track'] = CategoriesTrack.objects.all()[:12]
+        context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         return context
 
 

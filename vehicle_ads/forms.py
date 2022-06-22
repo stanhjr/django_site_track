@@ -1,9 +1,11 @@
 from django import forms
-from site_track.models import SaleAds, CategoriesTrack
+from site_track.models import SaleAds, CategoriesTrack, MakeTrack
 
 
 class DatePickerInput(forms.DateInput):
     input_type = 'date'
+    input_formats = ["%Y",]
+
 
 
 VEHICLE_WHEEL_DRIVE_CHOICES = (
@@ -51,7 +53,6 @@ class VehicleInformationForm(forms.ModelForm):
         self.request = kwargs.pop('request', None)
         super(VehicleInformationForm, self).__init__(*args, **kwargs)
         for count, field in enumerate(self.fields, 1):
-            print(count, field)
             if 1 <= count <= 15:
                 self.fields[field].widget = forms.CheckboxInput(
                     attrs={'class': 'form-check-input', 'id': f'check{count}'})
@@ -67,16 +68,19 @@ class VehicleInformationForm(forms.ModelForm):
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
             elif field == 'others':
                 self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
-            elif field == "video_url":
-                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control video-input'})
-            elif field in ["facebook", "instagram", "twitter", "youtube", "whatsapp", "pinterest", "linkedin"]:
-                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'url'})
+            # elif field == "video_url":
+            #     self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control video-input'})
+            # elif field in ["facebook", "instagram", "twitter", "youtube", "whatsapp", "pinterest", "linkedin"]:
+            #     self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'url'})
             elif field == 'preview_image':
                 self.fields[field].widget = forms.FileInput(attrs={'class': 'file-input', 'id': 'preview'})
 
             elif field == "vehicle_type":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
+            elif field == "vehicle_make":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=MakeTrack.get_choices())
 
             elif field == "vehicle_fuel":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
@@ -98,6 +102,7 @@ class VehicleInformationForm(forms.ModelForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
             elif field in ["date_of_issue", "date_of_expire", "vehicle_year"]:
+                # self.fields[field] = forms.DateField(input_formats=["%Y"])
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
             elif field == "description":
                 self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
@@ -133,12 +138,16 @@ class VehicleInformationUpdateForm(forms.ModelForm):
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
             elif field == 'others':
                 self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
-            elif field == "video_url":
-                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control video-input'})
-            elif field in ["facebook", "instagram", "twitter", "youtube", "whatsapp", "pinterest", "linkedin"]:
-                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'url'})
+            # elif field == "video_url":
+            #     self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control video-input'})
+            # elif field in ["facebook", "instagram", "twitter", "youtube", "whatsapp", "pinterest", "linkedin"]:
+            #     self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'url'})
             elif field == 'preview_image':
                 self.fields[field].widget = forms.FileInput(attrs={'class': 'file-input', 'id': 'preview'})
+
+            elif field == "vehicle_make":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=MakeTrack.get_choices())
 
             elif field == "vehicle_type":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},

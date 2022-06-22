@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.views.generic import FormView, TemplateView, DetailView
 
 from account.forms import AccountDetailsForm, AccountSocialNetworkForm, AccountChangePasswordForm
-from site_track.models import MyUser
+from site_track.models import MyUser, SettingsFooter
 
 
 class AccountSettings(LoginRequiredMixin, FormView):
@@ -17,6 +17,7 @@ class AccountSettings(LoginRequiredMixin, FormView):
         context = super().get_context_data(**kwargs)
         context['form_social'] = AccountSocialNetworkForm(request=self.request)
         context['form_change_password'] = AccountChangePasswordForm(request=self.request)
+        context['footer'] = SettingsFooter.objects.last()
         return context
 
     def handle_no_permission(self):
@@ -62,6 +63,7 @@ class UserProfile(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(UserProfile, self).get_context_data(**kwargs)
+        context['footer'] = SettingsFooter.objects.last()
         if self.object == self.request.user:
             context['is_my_account'] = True
         else:
