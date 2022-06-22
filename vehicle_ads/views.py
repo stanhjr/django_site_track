@@ -4,7 +4,8 @@ from django.urls import reverse_lazy
 
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, TemplateView
 
-from site_track.models import SaleAds, ImageInGallery, MakeTrack, SettingsFooter
+from site_track.models import SaleAds, ImageInGallery, MakeTrack, SettingsFooter, SettingsHeaderInventoryGrid, \
+    SettingsHeaderInventorySingle
 from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm
 
 
@@ -106,6 +107,7 @@ class InventorySingleDetailView(LoginRequiredMixin, DetailView):
         context = super(InventorySingleDetailView, self).get_context_data(**kwargs)
         context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
         context['footer'] = SettingsFooter.objects.last()
+        context['header'] = SettingsHeaderInventorySingle.objects.last()
         return context
 
 

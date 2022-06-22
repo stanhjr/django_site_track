@@ -13,7 +13,7 @@
                             <h2>{{ body.part_start_title }}</h2>
                             <p>{{ body.part_start_text }}</p>
                         </div>
-                        <a href="inventory-list.html" class="btn btn-inline">
+                        <a href="{% url 'catalog' %}" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
                             <span>browse all</span>
                         </a>
@@ -23,7 +23,7 @@
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
                 {% for category in category_track %}
                 <div class="col">
-                    <a href="inventory-list.html" class="category-card">
+                    <a href="{% url 'inventory-grid' category=category.name %}" class="category-card">
                         <img src="{{ category.get_image_url }}" alt="category">
                         <span>{{ category.name }} ({{ category.get_count }})</span>
                     </a>
@@ -53,7 +53,7 @@
                             <h2>{{ body.part_features_title }}</h2>
                             <p>{{ body.part_features_text }}</p>
                         </div>
-                        <a href="inventory-list.html" class="btn btn-inline">
+                        <a href="{% url 'catalog' %}" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
                             <span>browse all</span>
                         </a>
@@ -119,7 +119,7 @@
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
                 {% for make in make_track %}
                 <div class="col">
-                    <a class="brand-card" href="inventory-list.html">
+                    <a class="brand-card" href="{% url 'catalog' %}?brand={{ make.name }}">
                         <h6>{{ make.name }}</h6>
                     </a>
                 </div>
@@ -246,7 +246,7 @@
                             <h2>{{ body.recent_part_title }}</h2>
                             <p>{{ body.recent_part_text }}</p>
                         </div>
-                        <a href="inventory-list.html" class="btn btn-inline">
+                        <a href="{% url 'catalog' %}" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
                             <span>browse all</span>
                         </a>
@@ -254,67 +254,8 @@
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-                {% for obj in object_list %}
-                <div class="col">
-                    <div class="product-grid-card">
-                        <div class="product-grid-image">
-                            <img src="{{ obj.get_photo_url }}" alt="feature">
-                            <div class="product-grid-badge">
-                                {% if obj.is_used %}
-                                <span class="badge used">used</span>
-                                 {% else %}
-                                 <span class="badge new">new</span>
-                                {% endif %}
-                            </div>
-                            <div class="product-grid-hints">
-                                <i class="material-icons">collections</i>
-                                <span>{{ obj.get_photo_in_gallery_count }}</span>
-                            </div>
-                            <div class="product-grid-overlay">
-                                <div class="product-grid-vendor">
-                                    <i class="material-icons">person</i>
-                                    <a href="{% url 'account-profile' obj.user.id %}">by {{ obj.user.full_name }}</a>
-                                </div>
-{#                                <div class="product-grid-rating">#}
-{#                                    <i class="material-icons">star</i>#}
-{#                                    <a href="review.html">28 review</a>#}
-{#                                </div>#}
-                            </div>
-                        </div>
-                        <div class="product-grid-content">
-                            <div class="product-grid-group">
-                                <div class="product-grid-price">
-                                    <span>${{ obj.vehicle_price_amount }}/-</span>
-                                    <small>{{ obj.vehicle_price_type }}</small>
-                                </div>
-{#                                <div class="product-grid-action">#}
-{#                                    <button type="button" title="Compare" class="compare material-icons">compare</button>#}
-{#                                    <button type="button" title="Favorite" class="favorite material-icons">favorite</button>#}
-{#                                </div>#}
-                            </div>
-                            <div class="product-grid-meta">
-                                <h4><a href="inventory-single.html">{{ obj.vehicle_make }}</a></h4>
-                                <ul>
-                                    <li>{{ obj.country }}, {{ obj.city }}</li>
-                                    <li>{{ obj.get_date_ago }}!</li>
-                                </ul>
-                            </div>
-                            <ul class="product-grid-extra">
-                                <li><i class="material-icons">construction</i><span>{{ obj.vehicle_transmission }}</span></li>
-                                <li><i class="material-icons">settings</i><span>{{ obj.vehicle_mileage }} km</span></li>
-                                <li><i class="material-icons">local_gas_station</i><span>{{ obj.vehicle_fuel }}</span></li>
-                            </ul>
-                            <div class="product-grid-btn">
-                                <a href="{% url 'posted-detail' obj.id %}"><i class="material-icons">visibility</i><span>details</span></a>
-{#                                <a href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true" data-vbtype="video">#}
-{#                                    <i class="material-icons">videocam</i>#}
-{#                                    <span>video</span>#}
-{#                                </a>#}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+            {% include 'one_auto.html' %}
+
             </div>
         </div>
     </section>

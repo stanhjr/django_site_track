@@ -524,11 +524,16 @@
         <div style="background: url({% static 'images/banner/single/01.jpg' %}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
-                    <h2>Inventory Single Page</h2>
+                    <h2>{{ header.inventory_title }}</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{% url 'user-posted-sale-ads' %}">inventory list</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">inventory single</li>
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        {% if header.is_not_single_header %}
+                        <li class="breadcrumb-item active" aria-current="page">{{ header.inventory_link_name }}</li>
+                        {% else %}
+                        <li class="breadcrumb-item"><a href="{% url 'inventory-grid' category=saleads.vehicle_type.name %}">{{ header.inventory_link_name }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ header.inventory_single_page}}</li>
+                        {% endif %}
+
                     </ol>
                 </div>
             </div>

@@ -118,6 +118,10 @@ class MakeTrack(models.Model, ChoicesMixin):
 
 
 class SaleAds(models.Model):
+
+    class Meta:
+        ordering = ('-created_at',)
+
     sale_created = models.BooleanField(default=True)
 
     power_steering = models.BooleanField(default=False)
@@ -265,6 +269,28 @@ class SettingsHeaderHome(models.Model):
     contact_number = models.CharField(null=True, max_length=120, default="+91 987-654-3210")
 
 
+class IsNotSingleHeaderMixin:
+    @property
+    def is_not_single_header(self):
+        return True
+
+
+class SettingsHeaderInventoryGrid(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="Inventory Grid View")
+    inventory_link_name = models.TextField(default="Inventory Grid")
+
+
+class SettingsHeaderInventoryCatalog(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="Inventory Catalog View")
+    inventory_link_name = models.TextField(default="Inventory Catalog")
+
+
+class SettingsHeaderInventorySingle(models.Model):
+    inventory_title = models.TextField(default="Inventory Single Page")
+    inventory_link_name = models.TextField(default="Inventory List")
+    inventory_single_page = models.TextField(default="Inventory Single")
+
+
 class SettingsIndexHome(models.Model):
     part_start_title = models.TextField(default="find top categories")
     part_start_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
@@ -280,11 +306,20 @@ class SettingsIndexHome(models.Model):
     recent_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
 
 
+if not SettingsHeaderInventoryGrid.objects.last():
+    SettingsHeaderInventoryGrid.objects.create()
+
+if not SettingsHeaderInventoryCatalog.objects.last():
+    SettingsHeaderInventoryCatalog.objects.create()
+
+if not SettingsHeaderInventorySingle.objects.last():
+    SettingsHeaderInventorySingle.objects.create()
+
 if not SettingsFooter.objects.last():
     SettingsFooter.objects.create()
 
-# if not SettingsIndexHome.objects.last():
-#     SettingsIndexHome.objects.create()
+if not SettingsIndexHome.objects.last():
+    SettingsIndexHome.objects.create()
 
 
 if not CategoriesTrack.objects.last():

@@ -1,5 +1,6 @@
 import random
 
+import requests
 from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
@@ -11,7 +12,8 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, UpdateView, ListView
 from site_track.forms import ContactForm
 
-from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome
+from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
+    SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog
 from site_track_auth.tools.send_email import send_main_contact_us
 
 
@@ -54,12 +56,13 @@ class IndexView(ListView):
         context['recent_objects'] = SaleAds.objects.order_by('-created_at')[:4]
         context['footer'] = SettingsFooter.objects.last()
         context['body'] = SettingsIndexHome.objects.last()
-        context['category_track'] = CategoriesTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:12]
+        context['category_track'] = CategoriesTrack.objects.annotate(num_children=Count('sale_ads')).order_by(
+            '-num_children')[:12]
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         return context
 
 
-class InventoryGrid(LoginRequiredMixin, ListView):
+class InventoryGridView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = CategoriesTrack
     template_name = 'inventory-grid.html'
@@ -69,12 +72,30 @@ class InventoryGrid(LoginRequiredMixin, ListView):
         category = self.model.objects.filter(name__iexact=self.kwargs.get("category")).first()
         if category:
             return category.sale_ads.all()
-
         raise Http404
 
     def get_context_data(self, *args, object_list=None, **kwargs):
-        context = super(InventoryGrid, self).get_context_data(**kwargs)
+        context = super(InventoryGridView, self).get_context_data(**kwargs)
+        context['header'] = SettingsHeaderInventoryGrid.objects.last()
         context['footer'] = SettingsFooter.objects.last()
         return context
 
 
+class InventoryCatalogView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = SaleAds
+    template_name = 'inventory-grid.html'
+    paginate_by = 16
+
+    def get_queryset(self):
+        brand = tuple(set(self.request.GET.getlist('brand')))
+        if brand:
+            brand_qs = self.model.objects.filter(vehicle_make__name__in=brand)
+            return brand_qs
+        return self.model.objects.all()
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super(InventoryCatalogView, self).get_context_data(**kwargs)
+        context['header'] = SettingsHeaderInventoryCatalog.objects.last()
+        context['footer'] = SettingsFooter.objects.last()
+        return context
