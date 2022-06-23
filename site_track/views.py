@@ -1,19 +1,13 @@
-import random
-
-import requests
-from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.files.storage import FileSystemStorage
 from django.db.models import Count
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView, UpdateView, ListView
-from site_track.forms import ContactForm
+from django.views.generic import FormView,ListView
 
-from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
-    SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog
+from site_track.forms import ContactForm
+from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
+    SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact
 from email_sender.tasks import send_mail_contact_us
 
 
@@ -29,16 +23,17 @@ class ContactView(LoginRequiredMixin, FormView):
     def handle_no_permission(self):
         return redirect('login')
 
-    # def get_form_kwargs(self):
-    #     kw = super(ContactView, self).get_form_kwargs()
-    #     kw['request'] = self.request
-    #     return kw
-
     def form_valid(self, form):
         send_mail_contact_us.delay(email_from=form.data.get("email"),
                                    subject=form.data.get("subject"),
                                    text=form.data.get("text"))
         return super().form_valid(form=form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactView, self).get_context_data(**kwargs)
+        context['footer'] = SettingsFooter.objects.last()
+        context['header'] = SettingsHeaderContact.objects.last()
+        return context
 
 
 class IndexView(ListView):

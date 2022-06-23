@@ -10,8 +10,10 @@ from celery import Celery
 
 app = Celery(
     "email_sender",
-    broker="redis://localhost:6379/5"
+    broker="redis://localhost:6379/5",
 )
+
+app.conf.task_routes = {'app.email_sender.send_mail_contact_us': {'queue': 'contact_us'}}
 
 
 def generate_key():
@@ -93,7 +95,8 @@ def send_reset_password_link_to_email(code: str, email_to):
         print("Something went wrong….", ex)
 
 
-@app.task
+@app.task(queue='contact_us')
+# @app.task
 def send_mail_contact_us(email_from, subject, text):
     password = "xsxvxmubsrrzwyaa"
     sender_email = "stahjrpower@yahoo.com"
@@ -123,4 +126,5 @@ def send_mail_contact_us(email_from, subject, text):
 
 
 
-# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks worker --loglevel=INFO
+# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks worker --loglevel=INFO -Q contact_us,celery
+# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks flower --address=127.0.0.6 --port=5566 --basic_auth=stan:1

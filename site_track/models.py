@@ -280,6 +280,11 @@ class SettingsHeaderInventoryGrid(models.Model, IsNotSingleHeaderMixin):
     inventory_link_name = models.TextField(default="Inventory Grid")
 
 
+class SettingsHeaderContact(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="contact us")
+    inventory_link_name = models.TextField(default="Contact")
+
+
 class SettingsHeaderInventoryCatalog(models.Model, IsNotSingleHeaderMixin):
     inventory_title = models.TextField(default="Inventory Catalog View")
     inventory_link_name = models.TextField(default="Inventory Catalog")
@@ -320,6 +325,9 @@ if not SettingsFooter.objects.last():
 
 if not SettingsIndexHome.objects.last():
     SettingsIndexHome.objects.create()
+
+if not SettingsHeaderContact.objects.last():
+    SettingsHeaderContact.objects.create()
 
 
 if not CategoriesTrack.objects.last():
