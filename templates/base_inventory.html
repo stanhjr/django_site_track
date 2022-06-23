@@ -530,7 +530,7 @@
                         {% if header.is_not_single_header %}
                         <li class="breadcrumb-item active" aria-current="page">{{ header.inventory_link_name }}</li>
                         {% else %}
-                        <li class="breadcrumb-item"><a href="{% url 'inventory-grid' category=saleads.vehicle_type.name %}">{{ header.inventory_link_name }}</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'inventory-grid' category=saleads.vehicle_category.name %}">{{ header.inventory_link_name }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ header.inventory_single_page}}</li>
                         {% endif %}
 

@@ -48,7 +48,6 @@
                 <div class="col-lg-7 col-xl-8">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-{#                        <input type='hidden' name='action' value='vehicle-information'>#}
                         <div class="create-ads-form">
                             <!-- Vehicle Information -->
                             <div class="common-card active">
@@ -60,48 +59,42 @@
                                         <div class="form-group">
                                             <label class="form-label">Title <span>*</span></label>
                                              {{ form.title }}
-
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
                                         <div class="form-group">
-                                            <label class="form-label">Vehicle Registration Number <span>*</span></label>
-                                             {{ form.vehicle_registration_number }}
-
+                                            <label class="form-label">Check Engine warning lights <span>*</span></label>
+                                             {{ form.check_engine_warning_lights }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
                                         <div class="form-group">
-                                            <label class="form-label">Registerarion Plate Number <span>*</span></label>
-                                             {{ form.vehicle_registration_plate }}
-
+                                            <label class="form-label">Wheelbase <span>*</span></label>
+                                             {{ form.wheel_base }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
                                         <div class="form-group">
-                                            <label class="form-label">date of issue <span>*</span></label>
-                                            {{ form.date_of_issue }}
-
+                                            <label class="form-label">Type of 5 wheel <span>*</span></label>
+                                            {{ form.type_of_5_wheel }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
                                         <div class="form-group">
-                                            <label class="form-label">date of expire <span>*</span></label>
-                                            {{ form.date_of_expire }}
-
+                                            <label class="form-label">Jake brake <span>*</span></label>
+                                            {{ form.jake_brake }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">type <span>*</span></label>
-                                            {{ form.vehicle_type }}
+                                            <label class="form-label">Category <span>*</span></label>
+                                            {{ form.vehicle_category }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">make <span>*</span></label>
-                                            {{ form.vehicle_make }}
-
+                                            <label class="form-label">Model <span>*</span></label>
+                                            {{ form.vehicle_model }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
@@ -117,13 +110,7 @@
                                             {{ form.vehicle_year }}
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">colour <span>*</span></label>
-                                            {{ form.vehicle_colour }}
 
-                                        </div>
-                                    </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
                                             <label class="form-label">mileage <span>*</span></label>
@@ -138,382 +125,76 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">price type <span>*</span></label>
-                                            {{ form.vehicle_price_type }}
+                                            <label class="form-label">Number of Aluminum wheels <span>*</span></label>
+                                            {{ form.number_of_aluminum_wheels }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Tire size <span>*</span></label>
+                                            {{ form.tire_size }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Sleeper size<span>*</span></label>
+                                            {{ form.sleeper_size }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label">Any know Problems with vehicle<span>*</span></label>
+                                            {{ form.any_know_problems_with_vehicle }}
+                                        </div>
+                                    </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">condition <span>*</span></label>
-                                            {{ form.vehicle_condition }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">transmission<span>*</span></label>
-                                            {{ form.vehicle_transmission }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">wheel<span>*</span></label>
-                                            {{ form.vehicle_wheel }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">wheel<span>*</span></label>
-                                            {{ form.vehicle_wheel_drive }}
-                                        </div>
-                                    </div>
-{#                                    <div class="col-12">#}
-{#                                        <div class="create-extra-input">#}
-{#                                            <h5>Do you have extra information to add? create form below</h5>#}
-{#                                            <div class="row mb-4">#}
-{#                                                <label for="infoLabel" class="col-sm-4 col-md-3 col-form-label">input label</label>#}
-{#                                                <div class="col-sm-8 col-md-9"><input type="text" class="form-control" id="infoLabel"></div>#}
-{#                                            </div>#}
-{#                                            <div class="row mb-4">#}
-{#                                                <label for="infoValue" class="col-sm-4 col-md-3 col-form-label">input value</label>#}
-{#                                                <div class="col-sm-8 col-md-9"><input type="text" class="form-control" id="infoValue"></div>#}
-{#                                            </div>#}
-{#                                            <div class="row mb-4">#}
-{#                                                <label for="infoValue" class="col-sm-4 col-md-3 col-form-label">input column</label>#}
-{#                                                <div class="col-sm-8 col-md-9">#}
-{#                                                    <select class="form-select">#}
-{#                                                        <option selected>---</option>#}
-{#                                                        <option value="col-4">4 column</option>#}
-{#                                                        <option value="col-6">6 column</option>#}
-{#                                                        <option value="col-12">12 column</option>#}
-{#                                                    </select>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="row">#}
-{#                                                <div class="col-sm-8 col-md-9 ms-auto">#}
-{#                                                    <button type="submit" class="form-btn">add extra</button>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
                                     <div class="col-12">
                                         <div class="form-group mb-0">
                                             <label class="form-label">description <span>*</span></label>
                                             {{ form.description }}
-{#                                            <textarea class="form-control"></textarea>#}
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+
+
                             <!-- Vehicle Features -->
+
                             <div class="common-card">
                                 <div class="common-card-header">
-                                    <h4 class="common-card-header-title">vehicle features</h4>
+                                    <h4 class="common-card-header-title">Tire percentage</h4>
                                 </div>
-                                <div class="common-card-body">
-                                    <div class="create-feature-check">
-                                        <h5>check input</h5>
-                                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-2 row-cols-xl-3">
-                                            <div class="col">
-                                                <div class="form-check">
-                                                    {{ form.power_steering }}
-{#                                                    <input class="form-check-input" type="checkbox" id="check1">#}
-                                                    <label class="form-check-label" for="check1">Power Steering</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check2">#}
-                                                    {{ form.trunk_light }}
-                                                    <label class="form-check-label" for="check2">Trunk Light</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check3">#}
-                                                    {{ form.sensing_lock }}
-                                                    <label class="form-check-label" for="check3">Sensing Lock =</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check4">#}
-                                                    {{ form.rain_sensing }}
-                                                    <label class="form-check-label" for="check4">Rain Sensing</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check5">#}
-                                                    {{ form.vanity_mirror }}
-                                                    <label class="form-check-label" for="check5">Vanity Mirror</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check6">#}
-                                                    {{ form.bluetooth }}
-                                                    <label class="form-check-label" for="check6">Bluetooth</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check7">#}
-                                                    {{ form.cruise_control }}
-                                                    <label class="form-check-label" for="check7">Cruise Control</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-                                                    {{ form.alarm_system }}
-{#                                                    <input class="form-check-input" type="checkbox" id="check8">#}
-                                                    <label class="form-check-label" for="check8">Alarm System</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-                                                    {{ form.cylinders }}
-{#                                                    <input class="form-check-input" type="checkbox" id="check9">#}
-                                                    <label class="form-check-label" for="check9">Cylinders</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check10">#}
-                                                    {{ form.cd_player }}
-                                                    <label class="form-check-label" for="check10">Cd Player</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check11">#}
-                                                    {{ form.am_fm_radio }}
-                                                    <label class="form-check-label" for="check11">Am Fm Radio</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check12">#}
-                                                    {{ form.driver_air_bag }}
-                                                    <label class="form-check-label" for="check12">Driver Air Bag </label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check13">#}
-                                                    {{ form.air_conditioning }}
-                                                    <label class="form-check-label" for="check13">Air Conditioning</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-{#                                                    <input class="form-check-input" type="checkbox" id="check14">#}
-                                                     {{ form.panoramic_roof }}
-                                                    <label class="form-check-label" for="check14">Panoramic Roof</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-check">
-                                                    {{ form.integrated_phone }}
-{#                                                    <input class="form-check-input" type="checkbox" id="check15">#}
-                                                    <label class="form-check-label" for="check15">integrated_phone</label>
-                                                </div>
-                                            </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Front right <span>*</span></label>
+                                             {{ form.tire_percent_front_right }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Front left <span>*</span></label>
+                                             {{ form.tire_percent_front_left }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Rear right <span>*</span></label>
+                                             {{ form.tire_percent_rear_right }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Rear left <span>*</span></label>
+                                             {{ form.tire_percent_rear_left }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Rear drive tires <span>*</span></label>
+                                             {{ form.tire_percent_rear_drive_tires }}
                                         </div>
                                     </div>
-{#                                    <div class="create-feature-switch">#}
-{#                                        <h5>switch input</h5>#}
-{#                                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-2 row-cols-xl-3">#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch1">#}
-{#                                                    <label class="form-check-label" for="switch1">Air Conditioning</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch2">#}
-{#                                                    <label class="form-check-label" for="switch2">Cruise Control</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch3">#}
-{#                                                    <label class="form-check-label" for="switch3">Integrated Phone</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch4">#}
-{#                                                    <label class="form-check-label" for="switch4">AM/FM Radio</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch5">#}
-{#                                                    <label class="form-check-label" for="switch5">Central Locking</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch6">#}
-{#                                                    <label class="form-check-label" for="switch6">Panoramic Roof</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch7">#}
-{#                                                    <label class="form-check-label" for="switch7">Driver Air Bag</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch8">#}
-{#                                                    <label class="form-check-label" for="switch8">Bucket Seating</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch9">#}
-{#                                                    <label class="form-check-label" for="switch9">Alarm System</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch10">#}
-{#                                                    <label class="form-check-label" for="switch10">Auxiliary Heating</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch11">#}
-{#                                                    <label class="form-check-label" for="switch11">Bluetooth</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch12">#}
-{#                                                    <label class="form-check-label" for="switch12">Particulate Filter</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch13">#}
-{#                                                    <label class="form-check-label" for="switch13">CD Player</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch14">#}
-{#                                                    <label class="form-check-label" for="switch14">Side Mirror</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-check form-switch">#}
-{#                                                    <input class="form-check-input" type="checkbox" id="switch15">#}
-{#                                                    <label class="form-check-label" for="switch14">Cruise Control</label>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="create-feature-radio">#}
-{#                                        <h5>double radio input</h5>#}
-{#                                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-2 row-cols-xl-3">#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-group-radio">#}
-{#                                                    <label class="form-group-radio-label">Antilock Brakes?</label>#}
-{#                                                    <div class="form-group-radio-check">#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup1" id="radio1">#}
-{#                                                            <label class="form-check-label" for="radio1">yes</label>#}
-{#                                                        </div>#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup1" id="radio2">#}
-{#                                                            <label class="form-check-label" for="radio2">no</label>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-group-radio">#}
-{#                                                    <label class="form-group-radio-label">Power Steering?</label>#}
-{#                                                    <div class="form-group-radio-check">#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup2" id="radio3">#}
-{#                                                            <label class="form-check-label" for="radio3">yes</label>#}
-{#                                                        </div>#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup2" id="radio4">#}
-{#                                                            <label class="form-check-label" for="radio4">no</label>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-group-radio">#}
-{#                                                    <label class="form-group-radio-label">Cruise Control?</label>#}
-{#                                                    <div class="form-group-radio-check">#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup3" id="radio5">#}
-{#                                                            <label class="form-check-label" for="radio5">yes</label>#}
-{#                                                        </div>#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup3" id="radio6">#}
-{#                                                            <label class="form-check-label" for="radio6">no</label>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-group-radio">#}
-{#                                                    <label class="form-group-radio-label">Driver Air Bag?</label>#}
-{#                                                    <div class="form-group-radio-check">#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup4" id="radio7">#}
-{#                                                            <label class="form-check-label" for="radio7">yes</label>#}
-{#                                                        </div>#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup4" id="radio8">#}
-{#                                                            <label class="form-check-label" for="radio8">no</label>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-group-radio">#}
-{#                                                    <label class="form-group-radio-label">Bucket Seating?</label>#}
-{#                                                    <div class="form-group-radio-check">#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup5" id="radio9">#}
-{#                                                            <label class="form-check-label" for="radio9">yes</label>#}
-{#                                                        </div>#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup5" id="radio10">#}
-{#                                                            <label class="form-check-label" for="radio10">no</label>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="col">#}
-{#                                                <div class="form-group-radio">#}
-{#                                                    <label class="form-group-radio-label">Panoramic Roof?</label>#}
-{#                                                    <div class="form-group-radio-check">#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup6" id="radio11">#}
-{#                                                            <label class="form-check-label" for="radio11">yes</label>#}
-{#                                                        </div>#}
-{#                                                        <div class="form-check">#}
-{#                                                            <input class="form-check-input" type="radio" name="radioGroup6" id="radio12">#}
-{#                                                            <label class="form-check-label" for="radio12">no</label>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-                                </div>
+
                             </div>
+
+
 
                             <!-- Vehicle Media -->
                             <div class="common-card">
@@ -525,11 +206,9 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-
                                                     <label class="form-label">Preview Image <span>*</span></label>
                                                     <div class="file-form">
                                                         {{ form.preview_image }}
-{#                                                        <input class="file-input" type="file" id="preview">#}
                                                         <label for="preview" class="file-icon material-icons">file_present</label>
                                                         <button type="button" class="file-cancel material-icons">cancel</button>
                                                     </div>
@@ -545,62 +224,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">hosted video URL <span>*</span></label>
-                                                    {{ form.video_url }}
-{#                                                    <input type="text" class="form-control video-input">#}
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12">
-                                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint culpa, voluptates saepe impedit sequi harum rem qui. Aut illum commodi officia quo, ipsam nulla exercitationem.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="create-social">
-                                        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="form-label">facebook URL</label>
-                                                    {{ form.facebook }}
-{#                                                    <input type="url" class="form-control">#}
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="form-label">twitter URL</label>
-                                                     {{ form.twitter }}
-{#                                                    <input type="url" class="form-control">#}
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="form-label">linkedin URL</label>
-                                                    {{ form.linkedin }}
-{#                                                    <input type="url" class="form-control">#}
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="form-label">instagram URL</label>
-                                                      {{ form.instagram }}
-{#                                                    <input type="url" class="form-control">#}
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="form-label">youtube URL</label>
-                                                     {{ form.youtube }}
-{#                                                    <input type="url" class="form-control">#}
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="form-label">pinterest URL</label>
-                                                      {{ form.pinterest }}
-{#                                                    <input type="url" class="form-control">#}
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

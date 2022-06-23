@@ -85,7 +85,7 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         brand = tuple(set(self.request.GET.getlist('brand')))
         if brand:
-            brand_qs = self.model.objects.filter(vehicle_make__name__in=brand)
+            brand_qs = self.model.objects.filter(vehicle_model__name__in=brand)
             return brand_qs
         return self.model.objects.all()
 
