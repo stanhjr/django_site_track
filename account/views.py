@@ -17,6 +17,7 @@ class AccountSettings(LoginRequiredMixin, FormView):
         context = super().get_context_data(**kwargs)
         context['form_social'] = AccountSocialNetworkForm(request=self.request)
         context['form_change_password'] = AccountChangePasswordForm(request=self.request)
+        context['active_settings'] = True
         context['footer'] = SettingsFooter.objects.last()
         return context
 
@@ -64,6 +65,7 @@ class UserProfile(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserProfile, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
+        context['active_profile'] = True
         if self.object == self.request.user:
             context['is_my_account'] = True
         else:

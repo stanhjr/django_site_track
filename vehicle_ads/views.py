@@ -2,9 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, TemplateView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
 
-from site_track.models import SaleAds, ImageInGallery, MakeTrack, SettingsFooter, SettingsHeaderInventoryGrid, \
+from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventoryGrid, \
     SettingsHeaderInventorySingle
 from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm
 
@@ -19,6 +19,7 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(VehicleInformationView, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
+        context['active_create_ads'] = True
         return context
 
     def get_form_kwargs(self):
@@ -50,6 +51,7 @@ class UserPostedAds(LoginRequiredMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(UserPostedAds, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
+        context['active_posted_ads'] = True
         return context
 
     def get_queryset(self):

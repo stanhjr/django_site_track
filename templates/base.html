@@ -44,13 +44,14 @@
     =======================================-->
 </head>
 <body>
+
     <div class="backdrop"></div>
 
     <!--=====================================
                 HEADER PART STAR
     =======================================-->
     <header class="header-part">
-        <a href="index.html" class="header-logo">
+        <a href="{% url 'home' %}" class="header-logo">
             <img src="{% static 'images/logo.png' %}" alt="logo">
         </a>
         <div class="header-content">
@@ -285,30 +286,30 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="material-icons">feed</i>
-                                <span class="nav-text">blogs</span>
-                                <span class="nav-arrow"></span>
-                            </a>
-                            <ul class="drop-list">
-                                <li class="drop-item">
-                                    <a href="blog-grid.html" class="drop-link">
-                                        <i class="material-icons">remove</i>
-                                        <span>blog grid</span>
-                                    </a>
-                                </li>
-                                <li class="drop-item">
-                                    <a href="blog-list.html" class="drop-link">
-                                        <i class="material-icons">remove</i>
-                                        <span>blog list</span>
-                                    </a>
-                                </li>
-                                <li class="drop-item">
-                                    <a href="blog-author.html" class="drop-link">
-                                        <i class="material-icons">remove</i>
-                                        <span>blog author</span>
-                                    </a>
-                                </li>
+{#                            <a href="#" class="nav-link">#}
+{#                                <i class="material-icons">feed</i>#}
+{#                                <span class="nav-text">blogs</span>#}
+{#                                <span class="nav-arrow"></span>#}
+{#                            </a>#}
+{#                            <ul class="drop-list">#}
+{#                                <li class="drop-item">#}
+{#                                    <a href="blog-grid.html" class="drop-link">#}
+{#                                        <i class="material-icons">remove</i>#}
+{#                                        <span>blog grid</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li class="drop-item">#}
+{#                                    <a href="blog-list.html" class="drop-link">#}
+{#                                        <i class="material-icons">remove</i>#}
+{#                                        <span>blog list</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li class="drop-item">#}
+{#                                    <a href="blog-author.html" class="drop-link">#}
+{#                                        <i class="material-icons">remove</i>#}
+{#                                        <span>blog author</span>#}
+{#                                    </a>#}
+{#                                </li>#}
                                 <li class="drop-item">
                                     <a href="blog-single.html" class="drop-link">
                                         <i class="material-icons">remove</i>
@@ -331,7 +332,7 @@
                                     </a>
                                 </li>
                                 <li class="drop-item">
-                                    <a href="contact.html" class="drop-link">
+                                    <a href="{% url 'contact' %}" class="drop-link">
                                         <i class="material-icons">remove</i>
                                         <span>contact us</span>
                                     </a>
@@ -352,19 +353,19 @@
                             </a>
                             <ul class="drop-list">
                                 <li class="drop-item">
-                                    <a href="login.html" class="drop-link">
+                                    <a href="{% url 'login' %}" class="drop-link">
                                         <i class="material-icons">remove</i>
                                         <span>login</span>
                                     </a>
                                 </li>
                                 <li class="drop-item">
-                                    <a href="register.html" class="drop-link">
+                                    <a href="{% url 'sign-up' %}" class="drop-link">
                                         <i class="material-icons">remove</i>
                                         <span>register</span>
                                     </a>
                                 </li>
                                 <li class="drop-item">
-                                    <a href="forgot-password.html" class="drop-link">
+                                    <a href="{% url 'restore-password' %}" class="drop-link">
                                         <i class="material-icons">remove</i>
                                         <span>forgot password</span>
                                     </a>
@@ -377,7 +378,7 @@
                     <h5 class="sidebar-title">user menu</h5>
                     <ul class="nav-list">
                         <li class="nav-item">
-                            <a href="dashboard.html" class="nav-link">
+                            <a href="{% url 'home' %}" class="nav-link">
                                 <i class="material-icons">dashboard</i>
                                 <span class="nav-text">dashboard</span>
                             </a>
@@ -400,30 +401,30 @@
                                 <span class="nav-text">posted ads</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="favorite.html" class="nav-link">
-                                <i class="material-icons">favorite</i>
-                                <span class="nav-text">favorites</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="compare.html" class="nav-link">
-                                <i class="material-icons">compare</i>
-                                <span class="nav-text">compares</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="review.html" class="nav-link">
-                                <i class="material-icons">star</i>
-                                <span class="nav-text">reviews</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="notify.html" class="nav-link">
-                                <i class="material-icons">notifications</i>
-                                <span class="nav-text">notifications</span>
-                            </a>
-                        </li>
+{#                        <li class="nav-item">#}
+{#                            <a href="favorite.html" class="nav-link">#}
+{#                                <i class="material-icons">favorite</i>#}
+{#                                <span class="nav-text">favorites</span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a href="compare.html" class="nav-link">#}
+{#                                <i class="material-icons">compare</i>#}
+{#                                <span class="nav-text">compares</span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a href="review.html" class="nav-link">#}
+{#                                <i class="material-icons">star</i>#}
+{#                                <span class="nav-text">reviews</span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a href="notify.html" class="nav-link">#}
+{#                                <i class="material-icons">notifications</i>#}
+{#                                <span class="nav-text">notifications</span>#}
+{#                            </a>#}
+{#                        </li>#}
                         <li class="nav-item">
                             <a href="{% url 'account-settings' %}" class="nav-link">
                                 <i class="material-icons">settings</i>
@@ -456,27 +457,27 @@
             <sup>9</sup>
         </button>
         <ul class="float-list">
-            <li class="float-item">
-                <a href="compare.html" class="badge-hover">
-                    <i class="purple material-icons">compare</i>
-                    <span class="badge arrow-right">compare</span>
-                    <sup>2</sup>
-                </a>
-            </li>
-            <li class="float-item">
-                <a href="favorite.html" class="badge-hover">
-                    <i class="red material-icons">favorite</i>
-                    <span class="badge arrow-right">favorite</span>
-                    <sup>4</sup>
-                </a>
-            </li>
-            <li class="float-item">
-                <a href="notify.html" class="badge-hover">
-                    <i class="orange material-icons">notifications</i>
-                    <span class="badge arrow-right">notify</span>
-                    <sup>3</sup>
-                </a>
-            </li>
+{#            <li class="float-item">#}
+{#                <a href="compare.html" class="badge-hover">#}
+{#                    <i class="purple material-icons">compare</i>#}
+{#                    <span class="badge arrow-right">compare</span>#}
+{#                    <sup>2</sup>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li class="float-item">#}
+{#                <a href="favorite.html" class="badge-hover">#}
+{#                    <i class="red material-icons">favorite</i>#}
+{#                    <span class="badge arrow-right">favorite</span>#}
+{#                    <sup>4</sup>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li class="float-item">#}
+{#                <a href="notify.html" class="badge-hover">#}
+{#                    <i class="orange material-icons">notifications</i>#}
+{#                    <span class="badge arrow-right">notify</span>#}
+{#                    <sup>3</sup>#}
+{#                </a>#}
+{#            </li>#}
         </ul>
     </div>
     <!--=====================================
@@ -488,28 +489,28 @@
               MOBILE MENU PART START
     =======================================-->
     <div class="mobile-menu">
-        <a href="register.html">
+        <a href="{% url 'sign-up' %}">
             <i class="material-icons">person</i>
             <span>account</span>
         </a>
-        <a href="notify.html">
-            <i class="material-icons">notifications</i>
-            <span>notify</span>
-            <sup>9</sup>
-        </a>
+{#        <a href="notify.html">#}
+{#            <i class="material-icons">notifications</i>#}
+{#            <span>notify</span>#}
+{#            <sup>9</sup>#}
+{#        </a>#}
         <a href="{% url 'create-sale-ads' %}" title="sell vehicless">
             <i class="material-icons">storefront</i>
         </a>
-        <a href="compare.html">
-            <i class="material-icons">compare</i>
-            <span>compare</span>
-            <sup>3+</sup>
+{#        <a href="compare.html">#}
+{#            <i class="material-icons">compare</i>#}
+{#            <span>compare</span>#}
+{#            <sup>3+</sup>#}
         </a>
-        <a href="favorite.html">
-            <i class="material-icons">favorite</i>
-            <span>favorite</span>
-            <sup>8</sup>
-        </a>
+{#        <a href="favorite.html">#}
+{#            <i class="material-icons">favorite</i>#}
+{#            <span>favorite</span>#}
+{#            <sup>8</sup>#}
+{#        </a>#}
     </div>
     <!--=====================================
               MOBILE MENU PART END
@@ -544,32 +545,32 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-xl-4">
-                            <ul class="user-banner-data">
-                                <li class="ads">
-                                    <i class="material-icons">store</i>
-                                    <h3>4334</h3>
-                                    <p>total advertise</p>
-                                </li>
-                                <li class="star">
-                                    <i class="material-icons">star</i>
-                                    <h3>2112</h3>
-                                    <p>total ratings</p>
-                                </li>
-                            </ul>
+{#                            <ul class="user-banner-data">#}
+{#                                <li class="ads">#}
+{#                                    <i class="material-icons">store</i>#}
+{#                                    <h3>4334</h3>#}
+{#                                    <p>total advertise</p>#}
+{#                                </li>#}
+{#                                <li class="star">#}
+{#                                    <i class="material-icons">star</i>#}
+{#                                    <h3>2112</h3>#}
+{#                                    <p>total ratings</p>#}
+{#                                </li>#}
+{#                            </ul>#}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-12">
                             <ul class="user-banner-menu-list">
-                                <li><a href="dashboard.html">dashboard</a></li>
-                                <li><a href="{% url 'account-profile' user.id %}">profile</a></li>
-                                <li><a href="{% url 'create-sale-ads' %}">create ads</a></li>
-                                <li><a href="{% url 'user-posted-sale-ads' %}">posted ads</a></li>
-                                <li><a href="favorite.html">favorites</a></li>
-                                <li><a href="compare.html">compares</a></li>
-                                <li><a href="review.html">reviews</a></li>
-                                <li><a href="notify.html">notify</a></li>
-                                <li><a href="{% url 'account-settings' %}" class="active">settings</a></li>
+                                <li><a href="{% url 'home' %}" id="dashboard">dashboard</a></li>
+                                <li><a href="{% url 'account-profile' user.id %}" id="profile">profile</a></li>
+                                <li><a href="{% url 'create-sale-ads' %}" id="create-ads">create ads</a></li>
+                                <li><a href="{% url 'user-posted-sale-ads' %}" id="posted-ads">posted ads</a></li>
+{#                                <li><a href="favorite.html">favorites</a></li>#}
+{#                                <li><a href="compare.html">compares</a></li>#}
+{#                                <li><a href="review.html">reviews</a></li>#}
+{#                                <li><a href="notify.html">notify</a></li>#}
+                                <li><a href="{% url 'account-settings' %}" id="settings">settings</a></li>
                                 <li><a href="{% url 'logout' %}">logout</a></li>
                             </ul>
                         </div>
@@ -619,5 +620,18 @@
     <!--=====================================
                 JS LINK PART END
     =======================================-->
+<script>
+ {% if active_posted_ads %}
+     document.getElementById("posted-ads").classList.add("active")
+{% elif active_create_ads %}
+     document.getElementById("create-ads").classList.add("active")
+{% elif active_settings %}
+     document.getElementById("settings").classList.add("active")
+{% elif active_profile %}
+     document.getElementById("profile").classList.add("active")
+{% else %}
+    document.getElementById("dashboard").classList.add("active")
+{% endif %}
+ </script>
 </body>
 </html>
