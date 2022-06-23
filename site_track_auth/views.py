@@ -9,7 +9,7 @@ from django_site_track.settings import SESSION_COOKIE_AGE_ADMIN, SESSION_COOKIE_
 
 from site_track_auth.forms import UserSignUpForm, LoginForm, ResetPasswordForm, RestorePasswordForm
 from site_track.models import MyUser
-from site_track_auth.tools.send_email import generate_key, send_reset_password_link_to_email
+from email_sender.tasks import generate_key, send_reset_password_link_to_email
 
 
 def main(request):
@@ -74,7 +74,7 @@ class ResetPassword(FormView):
         if user:
             user.is_reset_password = True
             user.reset_password_code = generate_key()
-            send_reset_password_link_to_email(user.reset_password_code, user.email)
+            send_reset_password_link_to_email.delay(user.reset_password_code, user.email)
             user.save()
             return redirect('reset-password-confirm')
 

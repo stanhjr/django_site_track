@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 from site_track.models import MyUser
-from site_track_auth.tools.send_email import generate_key, send_registration_link_to_email
+from email_sender.tasks import generate_key, send_registration_link_to_email
 
 
 class LoginForm(AuthenticationForm):
@@ -107,7 +107,7 @@ class UserSignUpForm(forms.ModelForm):
         user.code = code
         if commit:
             user.save()
-            send_registration_link_to_email(code=code, email_to=user.username)
+            send_registration_link_to_email.delay(code=code, email_to=user.username)
         return user
 
 

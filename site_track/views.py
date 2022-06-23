@@ -14,7 +14,7 @@ from site_track.forms import ContactForm
 
 from site_track.models import MyUser, SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog
-from site_track_auth.tools.send_email import send_main_contact_us
+from email_sender.tasks import send_mail_contact_us
 
 
 def main(request):
@@ -35,9 +35,9 @@ class ContactView(LoginRequiredMixin, FormView):
     #     return kw
 
     def form_valid(self, form):
-        send_main_contact_us(email_from=form.data.get("email"),
-                             subject=form.data.get("subject"),
-                             text=form.data.get("text"))
+        send_mail_contact_us.delay(email_from=form.data.get("email"),
+                                   subject=form.data.get("subject"),
+                                   text=form.data.get("text"))
         return super().form_valid(form=form)
 
 

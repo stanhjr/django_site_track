@@ -539,10 +539,10 @@
                                     <li class="profile"><i class="material-icons">account_circle</i><a href="profile.html">{{ saleads.user.full_name }}</a></li>
                                     <li class="location"><i class="material-icons">map</i><span>{{ saleads.user.state }}, {{ saleads.user.city }}</span></li>
                                     <li class="rating"><i class="material-icons">star</i><span><b>4.9</b>/28 Ratings</span></li>
-                                    <li class="store"><i class="material-icons">store</i><span>individual</span></li>
+                                    <li class="store"><i class="material-icons">store</i><span>{{ saleads.user.account_type }}</span></li>
                                 </ul>
                                 <div class="vendor-grid-action">
-                                    <a href="profile.html">visit profile</a>
+                                    <a href="{% url 'account-profile' user.id %}">visit profile</a>
 {#                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessage">send message</button>#}
                                 </div>
                             </div>

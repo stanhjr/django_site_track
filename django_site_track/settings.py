@@ -151,6 +151,4 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
 
-JS = 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js'
-CSS = 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css'
 
