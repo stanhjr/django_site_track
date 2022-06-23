@@ -39,9 +39,9 @@
                             <li class="active"><i class="material-icons">drive_eta</i><span>vehicle information</span></li>
                             <li><i class="material-icons">fact_check</i><span>features selection</span></li>
                             <li><i class="material-icons">perm_media</i><span>add photos & video</span></li>
-                            <li><i class="material-icons">perm_phone_msg</i><span>contact address</span></li>
-                            <li><i class="material-icons">quiz</i><span>faq answers</span></li>
-                            <li><i class="material-icons">cloud_upload</i><span>publish your ad</span></li>
+{#                            <li><i class="material-icons">perm_phone_msg</i><span>contact address</span></li>#}
+{#                            <li><i class="material-icons">quiz</i><span>faq answers</span></li>#}
+{#                            <li><i class="material-icons">cloud_upload</i><span>publish your ad</span></li>#}
                         </ul>
                     </div>
                 </div>
@@ -217,11 +217,23 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label class="form-label">gallery images file <span>*</span></label>
-                                                    <div class="file-form">
-                                                        <input class="file-input" type="file" id="gallery" name="gallery-image" multiple>
+                                                    <div class="file-form" id="file-form-gallery">
+                                                        <input class="file-input" type="file" name="gallery-image" multiple>
                                                         <label for="gallery" class="file-icon material-icons">file_present</label>
                                                         <button type="button" class="file-cancel material-icons">cancel</button>
                                                     </div>
+
+                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="checkAgree">
+                                                <label class="form-check-label" for="checkAgree">I agree to the <a href="#">terms of use</a> and <a href="#">privacy policy</a>.</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                                            <button type="submit" class="form-btn mb-2">publish</button>
+{#                                            <small>You will receive an invoice and a confirmation will be sent to your email</small>#}
+                                        </div>
+
                                                 </div>
                                             </div>
 

@@ -7136,6 +7136,10 @@ textarea::placeholder {
   color: #ffb100;
 }
 
+#file-form-gallery {
+  margin-bottom: 100px;
+}
+
 .user-banner-menu-list {
   padding: 0px 30px;
   border-radius: 6px;
