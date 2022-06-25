@@ -19,6 +19,7 @@ class AccountSettings(LoginRequiredMixin, FormView):
         context['form_change_password'] = AccountChangePasswordForm(request=self.request)
         context['active_settings'] = True
         context['footer'] = SettingsFooter.objects.last()
+        context['title'] = 'settings'
         return context
 
     def handle_no_permission(self):
@@ -66,6 +67,7 @@ class UserProfile(LoginRequiredMixin, DetailView):
         context = super(UserProfile, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
         context['active_profile'] = True
+        context['title'] = 'profile'
         if self.object == self.request.user:
             context['is_my_account'] = True
         else:

@@ -34,6 +34,7 @@ class ContactView(LoginRequiredMixin, FormView):
         context = super(ContactView, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderContact.objects.last()
+        context['title'] = 'contacts'
         return context
 
 
@@ -56,6 +57,7 @@ class IndexView(ListView):
             '-num_children')[:12]
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         context['fake_review'] = FakeReviewIndexHome.objects.all()
+        context['title'] = 'home'
         return context
 
 
@@ -77,6 +79,7 @@ class InventoryGridView(LoginRequiredMixin, ListView):
         context['footer'] = SettingsFooter.objects.last()
         context['categories'] = CategoriesTrack.objects.all()
         context['models'] = MakeTrack.objects.all()
+        context['title'] = 'inventory-grid'
         return context
 
 
@@ -97,6 +100,7 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
         context = super(InventoryCatalogView, self).get_context_data(**kwargs)
         context['header'] = SettingsHeaderInventoryCatalog.objects.last()
         context['footer'] = SettingsFooter.objects.last()
+        context['title'] = 'catalog'
         return context
 
 
@@ -108,6 +112,7 @@ class AboutUs(TemplateView):
         context['header'] = SettingsHeaderAboutUs.objects.last()
         context['footer'] = SettingsFooter.objects.last()
         context['fake_review'] = FakeReviewIndexHome.objects.all()
+        context['title'] = 'about us'
         return context
 
 
@@ -118,4 +123,5 @@ class Privacy(TemplateView):
         context = super(Privacy, self).get_context_data(**kwargs)
         context['header'] = SettingsHeaderPrivacy.objects.last()
         context['footer'] = SettingsFooter.objects.last()
+        context['title'] = 'privacy'
         return context

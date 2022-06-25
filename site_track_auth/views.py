@@ -26,6 +26,7 @@ class SignUp(CreateView):
         context = super(SignUp, self).get_context_data(**kwargs)
         context['social_link'] = SettingsFooter.objects.last()
         context['auth_base'] = SettingsAuthBase.objects.last()
+        context['title'] = 'sign up'
         return context
 
 
@@ -46,6 +47,7 @@ class Login(LoginView):
         context = super(Login, self).get_context_data(**kwargs)
         context['social_link'] = SettingsFooter.objects.last()
         context['auth_base'] = SettingsAuthBase.objects.last()
+        context['title'] = 'login'
         return context
 
 
@@ -96,6 +98,7 @@ class ResetPassword(FormView):
         context = super(ResetPassword, self).get_context_data(**kwargs)
         context['social_link'] = SettingsFooter.objects.last()
         context['auth_base'] = SettingsAuthBase.objects.last()
+        context['title'] = 'reset password'
         return context
 
 

@@ -22,6 +22,7 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
         context = super(VehicleInformationView, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
         context['active_create_ads'] = True
+        context['title'] = 'create ads'
         return context
 
     def get_form_kwargs(self):
@@ -54,6 +55,7 @@ class UserPostedAds(LoginRequiredMixin, ListView):
         context = super(UserPostedAds, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
         context['active_posted_ads'] = True
+        context['title'] = 'posted ads'
         return context
 
     def get_queryset(self):
@@ -85,6 +87,7 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(UserPostedAdsUpdateView, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
+        context['title'] = 'update sale ads'
         return context
 
     def get(self, request, *args, **kwargs):
@@ -118,6 +121,7 @@ class InventorySingleDetailView(LoginRequiredMixin, FormMixin, DetailView):
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderInventorySingle.objects.last()
         context['send_vendor_mail_form'] = self.get_form()
+        context['title'] = 'inventory single'
         return context
 
     def get_form_kwargs(self):
