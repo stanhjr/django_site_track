@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack, SettingsHeaderHome,\
     SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle,\
-    SettingsIndexHome, FakeReviewIndexHome
+    SettingsIndexHome, FakeReviewIndexHome, MakeTrack
 
 admin.site.register(MyUser)
 admin.site.register(SaleAds)
@@ -15,4 +15,5 @@ admin.site.register(SettingsHeaderInventoryCatalog)
 admin.site.register(SettingsHeaderInventorySingle)
 admin.site.register(SettingsIndexHome)
 admin.site.register(FakeReviewIndexHome)
+admin.site.register(MakeTrack)
 # Register your models here.

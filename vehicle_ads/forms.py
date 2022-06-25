@@ -66,6 +66,9 @@ class VehicleInformationForm(forms.ModelForm):
             elif field == "vehicle_category":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
+            elif field == "vehicle_condition":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=VEHICLE_CONDITION_CHOICES)
             elif field == "vehicle_model":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=MakeTrack.get_choices())

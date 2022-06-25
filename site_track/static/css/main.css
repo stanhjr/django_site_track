@@ -100,6 +100,9 @@ button:focus {
   .container {
     max-width: 1230px;
   }
+  .product-single-slider .slick-list img {
+    height: 394px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -109,6 +112,9 @@ button:focus {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
   }
+    .product-single-slider .slick-list img {
+        height: 294px;
+    }
 }
 
 .btn {
@@ -408,6 +414,9 @@ textarea::placeholder {
   .form-control:focus,
   .form-select:focus {
     background: #f1f2f3;
+  }
+  .product-single-slider .slick-list img {
+    height: 324px;
   }
 }
 
@@ -7019,6 +7028,8 @@ textarea::placeholder {
 
 .user-banner-profile-avatar a img {
   width: 120px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 50%;
   border: 3px solid transparent;
 }
@@ -7135,7 +7146,16 @@ textarea::placeholder {
 .user-banner-data li.star i {
   color: #ffb100;
 }
-
+.contacts-content{
+    width: 400px;
+}
+.contacts-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #e3e3e3;
+}
 #file-form-gallery {
   margin-bottom: 100px;
 }
@@ -7399,7 +7419,7 @@ textarea::placeholder {
 
 @media (max-width: 575px) {
   .feature-part {
-    padding: 70px 0px;
+    padding: 70px 0;
   }
 }
 
@@ -7844,13 +7864,7 @@ textarea::placeholder {
 }
 
 .product-single-action {
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 15px;
-  -ms-grid-columns: (minmax(180px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  -ms-grid-rows: auto;
-      grid-template-rows: auto;
+  display: flex;
   border-top: 1px solid #e3e3e3;
   padding-top: 25px;
   margin-bottom: 25px;
@@ -7858,7 +7872,8 @@ textarea::placeholder {
 
 .product-single-action a,
 .product-single-action button {
-  padding: 12px 0px;
+  min-width: 185px;
+  padding: 12px 25px;
   border-radius: 6px;
   background: #f1f2f3;
   color: #5e5d72;
@@ -7883,7 +7898,9 @@ textarea::placeholder {
   color: #ffffff;
   background: #477CDB;
 }
-
+.product-single-btn.product-single-buy{
+  margin-right: 15px;
+}
 .product-single-action a i,
 .product-single-action button i {
   font-size: 20px;
@@ -7932,6 +7949,8 @@ textarea::placeholder {
 
 .product-single-slider img {
   width: 100%;
+  height: 454px;
+  object-fit: cover;
   border-radius: 6px;
 }
 
@@ -10432,9 +10451,20 @@ textarea::placeholder {
     margin-bottom: 50px;
   }
 }
-
 @media (max-width: 575px) {
   .contact-form {
     padding: 25px;
   }
+  .product-single-action a, .product-single-action button {
+    min-width: 149px;
+  }
+  .product-single-btn.product-single-buy {
+    margin-right: 10px;
+  }
+  #modalContacts .modal-content{
+    width: calc(100vw - 15px);
+  }
+  .contacts-content {
+    width: 100%;
+}
 }
