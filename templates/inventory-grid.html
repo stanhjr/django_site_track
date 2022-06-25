@@ -23,45 +23,20 @@
                     </div>
 
                     <div class="product-widget">
-                        <h6 class="product-widget-title">Filter by Brand</h6>
+                        <h6 class="product-widget-title">Filter by Model</h6>
                         <form>
                             <input class="product-widget-search" type="text" placeholder="Search...">
                             <ul class="product-widget-list product-widget-scroll">
+                                {% for model in models %}
                                 <li>
                                     <div class="product-widget-content">
                                         <input type="checkbox" id="brand1">
-                                        <label for="brand1">Kenworth</label>
+                                        <label for="brand1">{{ model.name }}</label>
                                     </div>
-                                    <span class="product-widget-number">(13)</span>
+                                    <span class="product-widget-number">({{ model.get_count }})</span>
                                 </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="brand2">
-                                        <label for="brand2">Peterbilt</label>
-                                    </div>
-                                    <span class="product-widget-number">(28)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="brand3">
-                                        <label for="brand3">Mack</label>
-                                    </div>
-                                    <span class="product-widget-number">(35)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="brand4">
-                                        <label for="brand4">Vollvo</label>
-                                    </div>
-                                    <span class="product-widget-number">(35)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="brand5">
-                                        <label for="brand5">Freightliner</label>
-                                    </div>
-                                    <span class="product-widget-number">(47)</span>
-                                </li>
+                                {% endfor %}
+
                             </ul>
                             <button class="product-widget-btn">
                                 <i class="material-icons">delete</i>
@@ -74,62 +49,16 @@
                         <form>
                             <input class="product-widget-search" type="text" placeholder="Search...">
                             <ul class="product-widget-list product-widget-scroll">
+                                {% for category in categories %}
                                 <li>
                                     <div class="product-widget-content">
                                         <input type="checkbox" id="cate1">
-                                        <label for="cate1">Construction</label>
+                                        <label for="cate1">{{ category.name }}</label>
                                     </div>
-                                    <span class="product-widget-number">(13)</span>
+                                    <span class="product-widget-number">({{ category.get_count }})</span>
                                 </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate2">
-                                        <label for="cate2">Trucks</label>
-                                    </div>
-                                    <span class="product-widget-number">(28)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate3">
-                                        <label for="cate3">Motors</label>
-                                    </div>
-                                    <span class="product-widget-number">(35)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate4">
-                                        <label for="cate4">Government Surplus</label>
-                                    </div>
-                                    <span class="product-widget-number">(47)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate5">
-                                        <label for="cate5">Agriculture</label>
-                                    </div>
-                                    <span class="product-widget-number">(59)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate6">
-                                        <label for="cate6">Forklifts</label>
-                                    </div>
-                                    <span class="product-widget-number">(64)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate7">
-                                        <label for="cate7">Lift Equipment</label>
-                                    </div>
-                                    <span class="product-widget-number">(77)</span>
-                                </li>
-                                <li>
-                                    <div class="product-widget-content">
-                                        <input type="checkbox" id="cate8">
-                                        <label for="cate8">Forestry</label>
-                                    </div>
-                                    <span class="product-widget-number">(77)</span>
-                                </li>
+                                {% endfor %}
+
                             </ul>
                             <button class="product-widget-btn">
                                 <i class="material-icons">delete</i>

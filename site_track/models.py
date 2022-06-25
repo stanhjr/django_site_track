@@ -95,6 +95,9 @@ class CategoriesTrack(models.Model, ChoicesMixin):
     image = models.ImageField(upload_to="category_images/", null=True)
     name = models.SlugField(unique=True, db_index=True)
 
+    def __str__(self):
+        return self.name
+
     @property
     def get_image_url(self):
         if self.image:
@@ -106,15 +109,16 @@ class CategoriesTrack(models.Model, ChoicesMixin):
     def get_count(self):
         return self.sale_ads.count()
 
-    def __str__(self):
-        return self.name
-
 
 class MakeTrack(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
 
     def __str__(self):
         return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
 
 
 class SaleAds(models.Model):

@@ -75,6 +75,8 @@ class InventoryGridView(LoginRequiredMixin, ListView):
         context = super(InventoryGridView, self).get_context_data(**kwargs)
         context['header'] = SettingsHeaderInventoryGrid.objects.last()
         context['footer'] = SettingsFooter.objects.last()
+        context['categories'] = CategoriesTrack.objects.all()
+        context['models'] = MakeTrack.objects.all()
         return context
 
 
