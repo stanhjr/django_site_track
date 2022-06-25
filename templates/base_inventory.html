@@ -52,7 +52,7 @@
             HEADER PART STAR
 =======================================-->
 <header class="header-part">
-    <a href="index.html" class="header-logo">
+    <a href="{% url 'home' %}" class="header-logo">
         <img src="{% static 'images/logo.png' %}" alt="logo">
     </a>
     <div class="header-content">
@@ -61,7 +61,7 @@
                 <i class="material-icons">notes</i>
                 <span>menu</span>
             </button>
-            <a href="index.html" class="responsive-logo">
+            <a href="{% url 'home' %}" class="responsive-logo">
                 <img src="{% static 'images/logo.png' %}" alt="logo">
             </a>
             <button type="button" class="header-widget responsive-srch">
@@ -129,72 +129,23 @@
 =======================================-->
 <aside class="sidebar-part">
     <div class="sidebar-header">
-        <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+        <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
         <button class="sidebar-close material-icons">close</button>
     </div>
     <div class="sidebar-content">
         <div class="sidebar-btn">
-            <a href="create-ads.html" class="btn btn-inline">
+            <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
                 <i class="material-icons">storefront</i>
                 <span>sell vehicles</span>
             </a>
         </div>
         <nav class="sidebar-nav">
-            <div class="sidebar-group">
-                <h5 class="sidebar-title">languages</h5>
-                <div class="select-option">
-                    <div class="select-data">
-                        <img class="select-image" src="{% static 'images/flag/us.png' %}" alt="flag">
-                        <span class="select-text">english - LTR</span>
-                        <span class="select-arrow"></span>
-                    </div>
-                    <ul class="option-list">
-                        <li class="option-item">
-                            <a href="#" class="option-link">
-                                <img class="option-image" src="{% static 'images/flag/us.png' %}" alt="flag">
-                                <span class="option-text">english - LTR</span>
-                            </a>
-                        </li>
-                        <li class="option-item">
-                            <a href="#" class="option-link">
-                                <img class="option-image" src="{% static 'images/flag/sa.png' %}" alt="flag">
-                                <span class="option-text">arabic - RTL</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sidebar-group">
-                <h5 class="sidebar-title">user action</h5>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="favorite.html" class="nav-link">
-                            <i class="material-icons">favorite</i>
-                            <span class="nav-text">favorite</span>
-                            <span class="nav-count">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="compare.html" class="nav-link">
-                            <i class="material-icons">compare</i>
-                            <span class="nav-text">compare</span>
-                            <span class="nav-count">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="notify.html" class="nav-link">
-                            <i class="material-icons">notifications</i>
-                            <span class="nav-text">notification</span>
-                            <span class="nav-count">9+</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
             <div class="sidebar-group">
                 <h5 class="sidebar-title">main menu</h5>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">
+                        <a href="{% url 'home' %}" class="nav-link">
                             <i class="material-icons">home</i>
                             <span class="nav-text">home</span>
                         </a>
@@ -207,118 +158,27 @@
                         </a>
                         <ul class="drop-list">
                             <li class="drop-item">
-                                <a href="inventory-grid.html" class="drop-link">
+                                <a href="{% url 'catalog'%}" class="drop-link">
                                     <i class="material-icons">remove</i>
-                                    <span>inventory grid</span>
+                                    <span>catalog</span>
                                 </a>
                             </li>
                             <li class="drop-item">
-                                <a href="{% url 'user-posted-sale-ads' %}" class="drop-link">
+                                <a href="{% url 'inventory-grid' 'track'%}" class="drop-link">
                                     <i class="material-icons">remove</i>
-                                    <span>inventory list</span>
+                                    <span>inventory grid track</span>
                                 </a>
                             </li>
                             <li class="drop-item">
-                                <a href="inventory-single.html" class="drop-link">
+                                <a href="{% url 'inventory-grid' 'trailer'%}" class="drop-link">
                                     <i class="material-icons">remove</i>
-                                    <span>inventory single</span>
+                                    <span>inventory grid trailer</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="material-icons">store</i>
-                            <span class="nav-text">vendor</span>
-                            <span class="nav-arrow"></span>
-                        </a>
-                        <ul class="drop-list">
-                            <li class="drop-item">
-                                <a href="vendor-grid.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>vendor grid</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="vendor-list.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>vendor list</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="posted-ads.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>vendor single</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="material-icons">menu_book</i>
-                            <span class="nav-text">pages</span>
-                            <span class="nav-arrow"></span>
-                        </a>
-                        <ul class="drop-list">
-                            <li class="drop-item">
-                                <a href="about-us.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>about us</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="pricing-plan.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>pricing plan</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="coming-soon.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>coming soon</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="404.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>404 error</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="material-icons">feed</i>
-                            <span class="nav-text">blogs</span>
-                            <span class="nav-arrow"></span>
-                        </a>
-                        <ul class="drop-list">
-                            <li class="drop-item">
-                                <a href="blog-grid.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>blog grid</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="blog-list.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>blog list</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="blog-author.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>blog author</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="blog-single.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>blog single</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
+
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="material-icons">contact_support</i>
@@ -327,19 +187,13 @@
                         </a>
                         <ul class="drop-list">
                             <li class="drop-item">
-                                <a href="faq.html" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>faqs</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="contact.html" class="drop-link">
+                                <a href="{% url 'contact' %}" class="drop-link">
                                     <i class="material-icons">remove</i>
                                     <span>contact us</span>
                                 </a>
                             </li>
                             <li class="drop-item">
-                                <a href="privacy.html" class="drop-link">
+                                <a href="{% url 'privacy' %}" class="drop-link">
                                     <i class="material-icons">remove</i>
                                     <span>privacy policy</span>
                                 </a>
@@ -354,21 +208,21 @@
                         </a>
                         <ul class="drop-list">
                             <li class="drop-item">
-                                <a href="login.html" class="drop-link">
+                                <a href="{% url 'login' %}" class="drop-link">
                                     <i class="material-icons">remove</i>
                                     <span>login</span>
                                 </a>
                             </li>
                             <li class="drop-item">
-                                <a href="register.html" class="drop-link">
+                                <a href="{% url 'sign-up' %}" class="drop-link">
                                     <i class="material-icons">remove</i>
                                     <span>register</span>
                                 </a>
                             </li>
                             <li class="drop-item">
-                                <a href="forgot-password.html" class="drop-link">
+                                <a href="{% url 'reset-password' %}" class="drop-link">
                                     <i class="material-icons">remove</i>
-                                    <span>forgot password</span>
+                                    <span>reset password</span>
                                 </a>
                             </li>
                         </ul>
@@ -379,61 +233,38 @@
                 <h5 class="sidebar-title">user menu</h5>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="dashboard.html" class="nav-link">
+                        <a href="{% url 'home' %}" class="nav-link">
                             <i class="material-icons">dashboard</i>
                             <span class="nav-text">dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="profile.html" class="nav-link">
+                        <a href="{% url 'account-profile' user.id %}" class="nav-link">
                             <i class="material-icons">account_circle</i>
                             <span class="nav-text">profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="create-ads.html" class="nav-link">
+                        <a href="{% url 'create-sale-ads' %}" class="nav-link">
                             <i class="material-icons">note_add</i>
                             <span class="nav-text">create ads</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="posted-ads.html" class="nav-link">
+                        <a href="{% url 'user-posted-sale-ads' %}" class="nav-link">
                             <i class="material-icons">apps</i>
                             <span class="nav-text">posted ads</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="favorite.html" class="nav-link">
-                            <i class="material-icons">favorite</i>
-                            <span class="nav-text">favorites</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="compare.html" class="nav-link">
-                            <i class="material-icons">compare</i>
-                            <span class="nav-text">compares</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="review.html" class="nav-link">
-                            <i class="material-icons">star</i>
-                            <span class="nav-text">reviews</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="notify.html" class="nav-link">
-                            <i class="material-icons">notifications</i>
-                            <span class="nav-text">notifications</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="setting.html" class="nav-link">
+                        <a href="{% url 'account-settings' %}" class="nav-link">
                             <i class="material-icons">settings</i>
                             <span class="nav-text">settings</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.html" class="nav-link">
+                        <a href="{% url 'logout' %}" class="nav-link">
                             <i class="material-icons">lock</i>
                             <span class="nav-text">logout</span>
                         </a>
@@ -451,36 +282,36 @@
 <!--=====================================
           FLOAT MENU PART START
 =======================================-->
-<div class="float-menu">
-    <button type="button" class="float-widget badge-hover">
-        <i class="material-icons">widgets</i>
-        <span class="badge arrow-right">widgets</span>
-        <sup>9</sup>
-    </button>
-    <ul class="float-list">
-        <li class="float-item">
-            <a href="compare.html" class="badge-hover">
-                <i class="purple material-icons">compare</i>
-                <span class="badge arrow-right">compare</span>
-                <sup>2</sup>
-            </a>
-        </li>
-        <li class="float-item">
-            <a href="favorite.html" class="badge-hover">
-                <i class="red material-icons">favorite</i>
-                <span class="badge arrow-right">favorite</span>
-                <sup>4</sup>
-            </a>
-        </li>
-        <li class="float-item">
-            <a href="notify.html" class="badge-hover">
-                <i class="orange material-icons">notifications</i>
-                <span class="badge arrow-right">notify</span>
-                <sup>3</sup>
-            </a>
-        </li>
-    </ul>
-</div>
+{#<div class="float-menu">#}
+{#    <button type="button" class="float-widget badge-hover">#}
+{#        <i class="material-icons">widgets</i>#}
+{#        <span class="badge arrow-right">widgets</span>#}
+{#        <sup>9</sup>#}
+{#    </button>#}
+{#    <ul class="float-list">#}
+{#        <li class="float-item">#}
+{#            <a href="compare.html" class="badge-hover">#}
+{#                <i class="purple material-icons">compare</i>#}
+{#                <span class="badge arrow-right">compare</span>#}
+{#                <sup>2</sup>#}
+{#            </a>#}
+{#        </li>#}
+{#        <li class="float-item">#}
+{#            <a href="favorite.html" class="badge-hover">#}
+{#                <i class="red material-icons">favorite</i>#}
+{#                <span class="badge arrow-right">favorite</span>#}
+{#                <sup>4</sup>#}
+{#            </a>#}
+{#        </li>#}
+{#        <li class="float-item">#}
+{#            <a href="notify.html" class="badge-hover">#}
+{#                <i class="orange material-icons">notifications</i>#}
+{#                <span class="badge arrow-right">notify</span>#}
+{#                <sup>3</sup>#}
+{#            </a>#}
+{#        </li>#}
+{#    </ul>#}
+{#</div>#}
 <!--=====================================
           FLOAT MENU PART END
 =======================================-->
