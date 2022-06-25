@@ -1,9 +1,18 @@
 from django.contrib import admin
-from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack
+from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack, SettingsHeaderHome,\
+    SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle,\
+    SettingsIndexHome, FakeReviewIndexHome
 
 admin.site.register(MyUser)
 admin.site.register(SaleAds)
 admin.site.register(ImageInGallery)
 admin.site.register(SettingsFooter)
 admin.site.register(CategoriesTrack)
+admin.site.register(SettingsHeaderHome)
+admin.site.register(SettingsHeaderInventoryGrid)
+admin.site.register(SettingsHeaderContact)
+admin.site.register(SettingsHeaderInventoryCatalog)
+admin.site.register(SettingsHeaderInventorySingle)
+admin.site.register(SettingsIndexHome)
+admin.site.register(FakeReviewIndexHome)
 # Register your models here.

@@ -256,6 +256,13 @@ class IsNotSingleHeaderMixin:
         return True
 
 
+class SingleModelMixin:
+    def save(self, *args, **kwargs):
+        if self.__class__.objects.count():
+            self.pk = self.__class__.objects.first().pk
+        super().save(*args, **kwargs)
+        
+
 class SettingsHeaderInventoryGrid(models.Model, IsNotSingleHeaderMixin):
     inventory_title = models.TextField(default="Inventory Grid View")
     inventory_link_name = models.TextField(default="Inventory Grid")
@@ -277,6 +284,16 @@ class SettingsHeaderInventorySingle(models.Model):
     inventory_single_page = models.TextField(default="Inventory Single")
 
 
+class SettingsHeaderAboutUs(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="About our company")
+    inventory_link_name = models.TextField(default="About-Us")
+
+
+class SettingsHeaderPrivacy(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="Privacy Policy")
+    inventory_link_name = models.TextField(default="Privacy")
+
+
 class SettingsIndexHome(models.Model):
     part_start_title = models.TextField(default="find top categories")
     part_start_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
@@ -286,10 +303,43 @@ class SettingsIndexHome(models.Model):
     brand_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     price_part_title = models.TextField(default="our ads pricing plans")
     price_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
-    # review_part_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
-    # review_part_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     recent_part_title = models.TextField(default="recent add vehiclesn")
     recent_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+
+
+class FakeReviewIndexHome(models.Model):
+    name_sale = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    review_title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    review_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    review_author = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    review_author_red_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    image = models.ImageField(null=True, upload_to="settings_images/")
+
+    def __str__(self):
+        return f'fake_review {self.name_sale}'
+
+    @property
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return "/media/settings_images/02.jpg"
+
+
+if not FakeReviewIndexHome.objects.last():
+    FakeReviewIndexHome.objects.create(name_sale="mercedes-benz wagon",
+                                       review_title="see the full review",
+                                       review_text="Lorem ipsum dolor sit amet consectetur adipisicing elit Expedita ut porro beatae itaque accusantium nisi Asperiores reprehenderit",
+                                       review_author="miron mahmud",
+                                       review_author_red_text="buyer review",
+                                       image="settings_images/01.jpg")
+
+    FakeReviewIndexHome.objects.create(name_sale="lamborghini huracan",
+                                       review_title="see the full review",
+                                       review_text="Lorem ipsum dolor sit amet consectetur adipisicing elit Expedita ut porro beatae itaque accusantium nisi Asperiores reprehenderit",
+                                       review_author="tahmina bonny",
+                                       review_author_red_text="seller review<",
+                                       image="settings_images/02.jpg")
 
 
 if not SettingsHeaderInventoryGrid.objects.last():
@@ -306,6 +356,12 @@ if not SettingsFooter.objects.last():
 
 if not SettingsIndexHome.objects.last():
     SettingsIndexHome.objects.create()
+
+if not SettingsHeaderAboutUs.objects.last():
+    SettingsHeaderAboutUs.objects.create()
+
+if not SettingsHeaderPrivacy.objects.last():
+    SettingsHeaderPrivacy.objects.create()
 
 if not SettingsHeaderContact.objects.last():
     SettingsHeaderContact.objects.create()

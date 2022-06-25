@@ -3,11 +3,12 @@ from django.db.models import Count
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView,ListView
+from django.views.generic import FormView, ListView, TemplateView
 
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
-    SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact
+    SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy
 from email_sender.tasks import send_mail_contact_us
 
 
@@ -54,6 +55,7 @@ class IndexView(ListView):
         context['category_track'] = CategoriesTrack.objects.annotate(num_children=Count('sale_ads')).order_by(
             '-num_children')[:12]
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
+        context['fake_review'] = FakeReviewIndexHome.objects.all()
         return context
 
 
@@ -92,5 +94,26 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, object_list=None, **kwargs):
         context = super(InventoryCatalogView, self).get_context_data(**kwargs)
         context['header'] = SettingsHeaderInventoryCatalog.objects.last()
+        context['footer'] = SettingsFooter.objects.last()
+        return context
+
+
+class AboutUs(TemplateView):
+    template_name = 'about-us.html'
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super(AboutUs, self).get_context_data(**kwargs)
+        context['header'] = SettingsHeaderAboutUs.objects.last()
+        context['footer'] = SettingsFooter.objects.last()
+        context['fake_review'] = FakeReviewIndexHome.objects.all()
+        return context
+
+
+class Privacy(TemplateView):
+    template_name = 'privacy.html'
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super(Privacy, self).get_context_data(**kwargs)
+        context['header'] = SettingsHeaderPrivacy.objects.last()
         context['footer'] = SettingsFooter.objects.last()
         return context

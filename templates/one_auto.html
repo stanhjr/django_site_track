@@ -48,20 +48,20 @@
                             <span>${{ obj.vehicle_price_amount }}/-</span>
                             <small>{{ obj.vehicle_price_type }}</small>
                         </div>
-                        <div class="product-grid-action">
-                            <button type="button" title="Compare" class="compare material-icons">compare</button>
-                            <button type="button" title="Favorite" class="favorite material-icons">favorite</button>
-                        </div>
+{#                        <div class="product-grid-action">#}
+{#                            <button type="button" title="Compare" class="compare material-icons">compare</button>#}
+{#                            <button type="button" title="Favorite" class="favorite material-icons">favorite</button>#}
+{#                        </div>#}
                     </div>
                     <div class="product-grid-meta">
-                        <h4><a href="inventory-single.html">{{ obj.vehicle_model }}</a></h4>
+                        <h4><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
                         <ul>
-                            <li>{{ obj.country }}, {{ obj.city }}</li>
+                            <li>{{ obj.user.country }}, {{ obj.user.city }}</li>
                             <li>{{ obj.get_date_ago }}</li>
                         </ul>
                     </div>
                     <ul class="product-grid-extra">
-                        <li><i class="material-icons">construction</i><span>{{ obj.vehicle_transmission }}</span></li>
+                        <li><i class="material-icons">construction</i><span>{{ obj.vehicle_category.name }}</span></li>
                         <li><i class="material-icons">settings</i><span>{{ obj.vehicle_mileage }} km</span></li>
                         <li><i class="material-icons">local_gas_station</i><span>{{ obj.vehicle_fuel }}</span></li>
                     </ul>

@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="product-feature-meta">
-                            <h3><a href="inventory-single.html">{{ obj.vehicle_model }}</a></h3>
+                            <h3><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h3>
                             <h4>${{ obj.vehicle_price_amount }}- <span>{{ obj.vehicle_price_type }}</span></h4>
                         </div>
                     </div>
@@ -183,10 +183,11 @@
     <section class="section-gap-120 review-part">
         <div class="container">
             <div class="row review-slider slider-arrow">
+                {% for review in fake_review %}
                 <div class="col">
                     <div class="review-wrap">
                         <div class="review-wrap-image">
-                            <img src="{% static 'images/review/01.jpg' %}" alt="review">
+                            <img src="{{ review.get_image_url}}" alt="review">
                         </div>
                         <div class="review-wrap-content">
                             <div class="review-wrap-meta">
@@ -195,38 +196,18 @@
 {#                                    <i class="material-icons">format_quote</i>#}
                                 </div>
                                 <div class="review-wrap-item">
-                                    <h4>mercedes-benz wagon</h4>
-                                    <h5>see the full review</h5>
+                                    <h4>{{ review.name_sale }}</h4>
+                                    <h5>{{ review.review_title }}</h5>
                                 </div>
                             </div>
-                            <p class="review-wrap-quote">" Lorem ipsum dolor sit amet consectetur adipisicing elit Expedita ut porro beatae itaque accusantium nisi Asperiores reprehenderit "</p>
-                            <h3 class="review-wrap-user">miron mahmud</h3>
-                            <h5 class="review-wrap-type">buyer review</h5>
+                            <p class="review-wrap-quote">" {{ review.review_text }} "</p>
+                            <h3 class="review-wrap-user">{{ review.review_author }}</h3>
+                            <h5 class="review-wrap-type">{{ review.review_author_red_text }}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="review-wrap">
-                        <div class="review-wrap-image">
-                            <img src="{% static 'images/review/02.jpg' %}" alt="review">
-                        </div>
-                        <div class="review-wrap-content">
-                            <div class="review-wrap-meta">
-                                <div class="review-wrap-video">
-{#                                    <a href="#" class="material-icons">play_arrow</a>#}
-{#                                    <i class="material-icons">format_quote</i>#}
-                                </div>
-                                <div class="review-wrap-item">
-                                    <h4>lamborghini huracan</h4>
-                                    <h5>see the full review</h5>
-                                </div>
-                            </div>
-                            <p class="review-wrap-quote">" Lorem ipsum dolor sit amet consectetur adipisicing elit Expedita ut porro beatae itaque accusantium nisi Asperiores reprehenderit "</p>
-                            <h3 class="review-wrap-user">tahmina bonny</h3>
-                            <h5 class="review-wrap-type">seller review</h5>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
     </section>

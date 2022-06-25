@@ -41,21 +41,18 @@
                         <div class="footer-widget">
                             <h3>importants</h3>
                             <ul class="footer-list">
-                                <li><a href="#">sell vehicless</a></li>
-                                <li><a href="#">privacy policy</a></li>
-                                <li><a href="#">about company</a></li>
-                                <li><a href="#">contact us</a></li>
-                                <li><a href="#">career</a></li>
+                                <li><a href="{% url 'user-posted-sale-ads' %}">sell vehicles</a></li>
+                                <li><a href="{% url 'privacy' %}">privacy policy</a></li>
+                                <li><a href="{% url 'about-us' %}">about company</a></li>
+                                <li><a href="{% url 'contact' %}">contact us</a></li>
+                                <li><a href="{% url 'catalog' %}">browse all</a></li>
                             </ul>
                         </div>
                         <div class="footer-widget">
                             <h3>categories</h3>
                             <ul class="footer-list">
-                                <li><a href="#">new vehicles</a></li>
-                                <li><a href="#">used vehicles</a></li>
-                                <li><a href="#">top searching</a></li>
-                                <li><a href="#">top makes</a></li>
-                                <li><a href="#">top types</a></li>
+                                <li><a href="{% url 'inventory-grid' 'trailer' %}">Trailer</a></li>
+                                <li><a href="{% url 'inventory-grid' 'track' %}">Track</a></li>
                             </ul>
                         </div>
                     </div>
