@@ -1,11 +1,9 @@
 from django import forms
-from site_track.models import SaleAds, CategoriesTrack, MakeTrack
+from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser
 
 
 class DatePickerInput(forms.DateInput):
     input_type = 'date'
-    input_formats = ["%Y",]
-
 
 
 VEHICLE_WHEEL_DRIVE_CHOICES = (
@@ -116,6 +114,9 @@ class VehicleInformationUpdateForm(forms.ModelForm):
             elif field == "vehicle_category":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
+            elif field == "vehicle_condition":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=VEHICLE_CONDITION_CHOICES)
             elif field == "vehicle_model":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=MakeTrack.get_choices())
@@ -136,3 +137,39 @@ class VehicleInformationUpdateForm(forms.ModelForm):
 
             else:
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+
+
+class SendEmailVendorForm(forms.ModelForm):
+    class Meta:
+        model = MyUser
+        fields = ['email', 'first_name', 'phone_number']
+
+    enter_your_offer_price = forms.CharField()
+    describe_your_message = forms.CharField()
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(SendEmailVendorForm, self).__init__(*args, **kwargs)
+        initial_data = self.initial
+        for field in self.fields:
+            self.fields[field].initial = initial_data.get(field)
+            if field == 'email':
+                self.fields[field].initial = self.request.user.email
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'email'})
+            elif field == 'first_name':
+                self.fields[field].initial = self.request.user.first_name
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+            elif field == 'phone_number':
+                self.fields[field].initial = self.request.user.phone_number
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+
+            elif field == 'enter_your_offer_price':
+                self.fields[field].widget = forms.NumberInput(attrs={'class': 'form-control',
+                                                                     'type': 'number', 'min': '1'})
+
+            else:
+                self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
+
+
+
+

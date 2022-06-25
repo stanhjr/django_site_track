@@ -1,12 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
+from django.views.generic.edit import FormMixin
 
+from email_sender.tasks import send__make_offer_mail
 from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventoryGrid, \
     SettingsHeaderInventorySingle
-from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm
+from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm, SendEmailVendorForm
 
 
 class VehicleInformationView(LoginRequiredMixin, CreateView):
@@ -101,23 +103,37 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
         return habit_object.__dict__
 
 
-class InventorySingleDetailView(LoginRequiredMixin, DetailView):
+class InventorySingleDetailView(LoginRequiredMixin, FormMixin, DetailView):
+    login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'inventory-single.html'
+    form_class = SendEmailVendorForm
+
+    def get_success_url(self):
+        return reverse_lazy('catalog')
 
     def get_context_data(self, **kwargs):
         context = super(InventorySingleDetailView, self).get_context_data(**kwargs)
         context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderInventorySingle.objects.last()
+        context['send_vendor_mail_form'] = self.get_form()
         return context
 
+    def get_form_kwargs(self):
+        kw = super(InventorySingleDetailView, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
 
-
-
-
-
-
-
-
-
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            send__make_offer_mail.delay(first_name=self.request.POST.get("first_name"),
+                                        email_to=self.request.POST['vendor_email'],
+                                        email_from=self.request.POST.get("email"),
+                                        text=self.request.POST.get("describe_your_message"),
+                                        phone_number=self.request.POST.get("phone_number"),
+                                        price=self.request.POST.get("enter_your_offer_price"))
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)

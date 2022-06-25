@@ -14,38 +14,48 @@
                     <button type="button" class="material-icons" data-bs-dismiss="modal">close</button>
                 </div>
                 <div class="modal-product-single-form">
-                    <form class="container">
+                    <form class="container" method="post">
+
+                        {% csrf_token %}
+                        <input type='hidden' name='vendor_email' value='{{ saleads.user.email }}'>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your name</label>
-                                    <input type="text" class="form-control">
+                                    {{ send_vendor_mail_form.first_name }}
+{#                                    <input type="text" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your email </label>
-                                    <input type="email" class="form-control">
+                                    {{ send_vendor_mail_form.email }}
+{#                                    <input type="email" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your number</label>
-                                    <input type="tel" class="form-control">
+                                    {{ send_vendor_mail_form.phone_number }}
+{#                                    <input type="tel" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your offer price</label>
-                                    <input type="number" class="form-control">
+                                    {{ send_vendor_mail_form.enter_your_offer_price }}
+{#                                    <input type="number" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-12">
                                 <div class="form-group">
                                     <label class="form-label">Describe your message</label>
-                                    <textarea class="form-control"></textarea>
+                                    {{ send_vendor_mail_form.describe_your_message }}
+{#                                    <textarea class="form-control"></textarea>#}
+
                                 </div>
                             </div>
+
                             <div class="col-xl-12">
                                 <button class="form-btn" type="submit">send to vendor</button>
                             </div>

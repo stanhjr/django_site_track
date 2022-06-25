@@ -96,7 +96,6 @@ def send_reset_password_link_to_email(code: str, email_to):
 
 
 @app.task(queue='contact_us')
-# @app.task
 def send_mail_contact_us(email_from, subject, text):
     password = "xsxvxmubsrrzwyaa"
     sender_email = "stahjrpower@yahoo.com"
@@ -108,6 +107,40 @@ def send_mail_contact_us(email_from, subject, text):
 
     message = MIMEMultipart("alternative")
     message["Subject"] = subject
+    part1 = MIMEText(text, "plain")
+    message.attach(part1)
+
+    try:
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.mail.yahoo.com", 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(
+                sender_email, receiver_email, message.as_string()
+            )
+
+        print("Email sent successfully!")
+    except Exception as ex:
+        print("Something went wrong….", ex)
+
+
+@app.task
+def send__make_offer_mail(email_from, email_to, price, phone_number, first_name, text):
+    password = "xsxvxmubsrrzwyaa"
+    sender_email = "stahjrpower@yahoo.com"
+    receiver_email = email_to
+    text = f"""\
+        Congratulations,
+        You received an offer to buy!
+        Contacts:
+        Name: {first_name}
+        email: {email_from}
+        Phone number: {phone_number}
+        Offer price: {price}
+        Message: {text}"""
+
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "You received an offer to buy"
     part1 = MIMEText(text, "plain")
     message.attach(part1)
 
