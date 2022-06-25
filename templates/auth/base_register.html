@@ -57,18 +57,16 @@
             <div class="auth-banner-overlay">
                 <div class="auth-content">
                     <a class="auth-logo" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
-                    <h1 class="auth-headline">Lorem ipsum dolor sit amet consectetur adipisicing</h1>
-                    <p class="auth-details">Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum
-                        facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officia
-                        placeat amet consectetur dicta dolorem quo.</p>
+                    <h1 class="auth-headline">{{ auth_base.title }}</h1>
+                    <p class="auth-details">{{ auth_base.text }}</p>
                     <div class="auth-social">
                         <h5>follow on</h5>
                         <ul>
-                            <li><a href="#" class="facebook icofont-facebook"></a></li>
-                            <li><a href="#" class="twitter icofont-twitter"></a></li>
-                            <li><a href="#" class="linkedin icofont-linkedin"></a></li>
-                            <li><a href="#" class="instagram icofont-instagram"></a></li>
-                            <li><a href="#" class="youtube icofont-youtube-play"></a></li>
+                            <li><a href="{{ social_link.facebook_url }}" class="facebook icofont-facebook"></a></li>
+                            <li><a href="{{ social_link.twitter_url }}" class="twitter icofont-twitter"></a></li>
+                            <li><a href="{{ social_link.linkedin_url }}" class="linkedin icofont-linkedin"></a></li>
+{#                            <li><a href="{{ social_link.whatsapp_phone }}" class="instagram icofont-instagram"></a></li>#}
+                            <li><a href="{{ social_link.youtube_url }}" class="youtube icofont-youtube-play"></a></li>
                         </ul>
                     </div>
                 </div>

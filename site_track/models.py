@@ -261,7 +261,12 @@ class SingleModelMixin:
         if self.__class__.objects.count():
             self.pk = self.__class__.objects.first().pk
         super().save(*args, **kwargs)
-        
+
+
+class SettingsAuthBase(models.Model):
+    title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
+    text = models.TextField(default="Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officiaplaceat amet consectetur dicta dolorem quo")
+
 
 class SettingsHeaderInventoryGrid(models.Model, IsNotSingleHeaderMixin):
     inventory_title = models.TextField(default="Inventory Grid View")
@@ -344,6 +349,9 @@ if not FakeReviewIndexHome.objects.last():
 
 if not SettingsHeaderInventoryGrid.objects.last():
     SettingsHeaderInventoryGrid.objects.create()
+
+if not SettingsAuthBase.objects.last():
+    SettingsAuthBase.objects.create()
 
 if not SettingsHeaderInventoryCatalog.objects.last():
     SettingsHeaderInventoryCatalog.objects.create()

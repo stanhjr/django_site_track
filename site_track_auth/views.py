@@ -8,7 +8,7 @@ from django.views.generic import CreateView, TemplateView, RedirectView, FormVie
 from django_site_track.settings import SESSION_COOKIE_AGE_ADMIN, SESSION_COOKIE_AGE
 
 from site_track_auth.forms import UserSignUpForm, LoginForm, ResetPasswordForm, RestorePasswordForm
-from site_track.models import MyUser
+from site_track.models import MyUser, SettingsFooter, SettingsAuthBase
 from email_sender.tasks import generate_key, send_reset_password_link_to_email
 
 
@@ -21,6 +21,12 @@ class SignUp(CreateView):
     template_name = 'auth/sign_up.html'
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('follow-email')
+
+    def get_context_data(self, **kwargs):
+        context = super(SignUp, self).get_context_data(**kwargs)
+        context['social_link'] = SettingsFooter.objects.last()
+        context['auth_base'] = SettingsAuthBase.objects.last()
+        return context
 
 
 class Login(LoginView):
@@ -35,6 +41,12 @@ class Login(LoginView):
         else:
             self.request.session.set_expiry(SESSION_COOKIE_AGE)
         return redirect('account-settings')
+
+    def get_context_data(self, **kwargs):
+        context = super(Login, self).get_context_data(**kwargs)
+        context['social_link'] = SettingsFooter.objects.last()
+        context['auth_base'] = SettingsAuthBase.objects.last()
+        return context
 
 
 class Logout(LoginRequiredMixin, LogoutView):
@@ -79,6 +91,12 @@ class ResetPassword(FormView):
             return redirect('reset-password-confirm')
 
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ResetPassword, self).get_context_data(**kwargs)
+        context['social_link'] = SettingsFooter.objects.last()
+        context['auth_base'] = SettingsAuthBase.objects.last()
+        return context
 
 
 class RestorePassword(FormView):
