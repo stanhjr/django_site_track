@@ -70,8 +70,25 @@ class InventoryGridView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         category = self.model.objects.filter(name__iexact=self.kwargs.get("category")).first()
         if category:
-            return category.sale_ads.all()
-        raise Http404
+            sale_ads = category.sale_ads
+        else:
+            raise Http404
+        model_list = self.request.GET.getlist("model")
+        try:
+            price_min = int(self.request.GET.get("price_min"))
+        except (ValueError, TypeError):
+            price_min = None
+        try:
+            price_max = int(self.request.GET.get("price_max"))
+        except (ValueError, TypeError):
+            price_max = None
+        if model_list:
+            sale_ads = sale_ads.filter(vehicle_model__id__in=model_list)
+        if price_max:
+            sale_ads = sale_ads.filter(vehicle_price_amount__lte=price_max)
+        if price_min:
+            sale_ads = sale_ads.filter(vehicle_price_amount__gte=price_min)
+        return sale_ads.all()
 
     def get_context_data(self, *args, object_list=None, **kwargs):
         context = super(InventoryGridView, self).get_context_data(**kwargs)
@@ -90,17 +107,36 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
     paginate_by = 16
 
     def get_queryset(self):
-        brand = tuple(set(self.request.GET.getlist('brand')))
-        if brand:
-            brand_qs = self.model.objects.filter(vehicle_model__name__in=brand)
-            return brand_qs
-        return self.model.objects.all()
+        qs = super().get_queryset()
+        category_list = self.request.GET.getlist("category")
+        model_list = self.request.GET.getlist("model")
+        try:
+            price_min = int(self.request.GET.get("price_min"))
+        except (ValueError, TypeError):
+            price_min = None
+        try:
+            price_max = int(self.request.GET.get("price_max"))
+        except (ValueError, TypeError):
+            price_max = None
+        if model_list:
+            qs = qs.filter(vehicle_model__id__in=model_list)
+        if category_list:
+            qs = qs.filter(vehicle_category__id__in=category_list)
+        if price_max:
+            qs = qs.filter(vehicle_price_amount__lte=price_max)
+        if price_min:
+            qs = qs.filter(vehicle_price_amount__gte=price_min)
+
+        return qs
 
     def get_context_data(self, *args, object_list=None, **kwargs):
         context = super(InventoryCatalogView, self).get_context_data(**kwargs)
         context['header'] = SettingsHeaderInventoryCatalog.objects.last()
         context['footer'] = SettingsFooter.objects.last()
+        context['categories'] = CategoriesTrack.objects.all()
+        context['models'] = MakeTrack.objects.all()
         context['title'] = 'catalog'
+        context['is_catalog'] = True
         return context
 
 

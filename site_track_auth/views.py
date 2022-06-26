@@ -12,10 +12,6 @@ from site_track.models import MyUser, SettingsFooter, SettingsAuthBase
 from email_sender.tasks import generate_key, send_reset_password_link_to_email
 
 
-def main(request):
-    return HttpResponse("Hey! It's your main view!!")
-
-
 class SignUp(CreateView):
     form_class = UserSignUpForm
     template_name = 'auth/sign_up.html'
