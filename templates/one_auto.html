@@ -19,6 +19,7 @@
                         <i class="material-icons">collections</i>
                         <span>{{ obj.get_photo_in_gallery_count }}</span>
                     </div>
+                {% if obj.user == user %}
                     <div class="posted-widget">
                         <form action="{% url 'user-posted-update' obj.id %}">
                             <input class="material-icons edit" title="edit" type="submit" value="edit">
@@ -31,10 +32,11 @@
                         {#                                <a href="#" title="Delete" class="material-icons delete">delete</a>#}
 
                     </div>
+                {% endif %}
                     <div class="product-grid-overlay">
                         <div class="product-grid-vendor">
                             <i class="material-icons">person</i>
-                            <a href="{% url 'account-profile' obj.user.id %}">by {{ user.full_name }}</a>
+                            <a href="{% url 'account-profile' obj.user.id %}">by {{ obj.user.full_name }}</a>
                         </div>
                         {#                                <div class="product-grid-rating">#}
                         {#                                    <i class="material-icons">star</i>#}

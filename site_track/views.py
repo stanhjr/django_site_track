@@ -41,7 +41,7 @@ class ContactView(LoginRequiredMixin, FormView):
 class IndexView(ListView):
     model = SaleAds
     template_name = 'index.html'
-    paginate_by = 16
+    paginate_by = 24
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -65,7 +65,7 @@ class InventoryGridView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = CategoriesTrack
     template_name = 'inventory-grid.html'
-    paginate_by = 16
+    paginate_by = 24
 
     def get_queryset(self):
         category = self.model.objects.filter(name__iexact=self.kwargs.get("category")).first()
@@ -104,7 +104,7 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'inventory-grid.html'
-    paginate_by = 16
+    paginate_by = 24
 
     def get_queryset(self):
         qs = super().get_queryset()
