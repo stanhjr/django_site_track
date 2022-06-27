@@ -59,7 +59,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = (os.path.join('static'), )
-STATIC_ROOT = '/root/django_site_track/static/'
+STATIC_ROOT = '/root/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
