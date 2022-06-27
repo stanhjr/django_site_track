@@ -1,3 +1,5 @@
+import urllib.parse
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import HttpResponse, Http404
@@ -10,10 +12,6 @@ from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrac
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
     SettingsHeaderAboutUs, SettingsHeaderPrivacy
 from email_sender.tasks import send_mail_contact_us
-
-
-def main(request):
-    return HttpResponse("Hey! It's your main view!!")
 
 
 class ContactView(LoginRequiredMixin, FormView):
@@ -43,12 +41,14 @@ class IndexView(ListView):
     template_name = 'index.html'
     paginate_by = 24
 
-    def get_queryset(self):
-        # if self.request.GET.get('header-search'):
-        #     return redirect('catalog', {{'header-search': self.request.GET.get('header-search')})
-        #     return redirect('/catalog/?header-search=%s' % self.request.GET.get('header-search'))
-            # return redirect(reverse('catalog', kwargs={'header-search': self.request.GET.get('header-search')}))
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.GET.get('header-search'):
+            safe_string = urllib.parse.quote_plus(self.request.GET.get('header-search'))
+            safe_string = reverse('catalog') + "?header-search=" + safe_string
+            return redirect(safe_string)
+        return self.get(request, *args, **kwargs)
 
+    def get_queryset(self):
         if self.request.user.is_authenticated:
             return super().get_queryset().order_by('-vehicle_price_amount')[:4]
         return super().get_queryset()
@@ -73,6 +73,8 @@ class InventoryGridView(LoginRequiredMixin, ListView):
     paginate_by = 24
 
     def get_queryset(self):
+        order_by = self.request.GET.get("order_by")
+        print(order_by)
         search_title = self.request.GET.get("header-search")
         category = self.model.objects.filter(name__icontains=self.kwargs.get("category")).first()
         if category:
@@ -96,6 +98,12 @@ class InventoryGridView(LoginRequiredMixin, ListView):
             sale_ads = sale_ads.filter(vehicle_price_amount__lte=price_max)
         if price_min:
             sale_ads = sale_ads.filter(vehicle_price_amount__gte=price_min)
+        if order_by == "price_up":
+            sale_ads = sale_ads.order_by("vehicle_price_amount")
+        elif order_by == "price_down":
+            sale_ads = sale_ads.order_by("-vehicle_price_amount")
+        elif order_by == "date_at":
+            sale_ads = sale_ads.order_by("created_at")
         return sale_ads.all()
 
     def get_context_data(self, *args, object_list=None, **kwargs):
@@ -115,6 +123,8 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
     paginate_by = 24
 
     def get_queryset(self):
+        order_by = self.request.GET.get("order_by")
+
         qs = super().get_queryset()
         search_title = self.request.GET.get("header-search")
         if search_title:
@@ -137,6 +147,12 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
             qs = qs.filter(vehicle_price_amount__lte=price_max)
         if price_min:
             qs = qs.filter(vehicle_price_amount__gte=price_min)
+        if order_by == "price_up":
+            qs = qs.order_by("vehicle_price_amount")
+        elif order_by == "price_down":
+            qs = qs.order_by("-vehicle_price_amount")
+        elif order_by == "date_at":
+            qs = qs.order_by("created_at")
 
         return qs
 

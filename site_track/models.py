@@ -52,8 +52,6 @@ class MyUser(AbstractUser):
         if not self.subscribe_until_date:
             return False
         if self.subscribe_until_date < datetime.date.today():
-            print(self.subscribe_until_date)
-            print(datetime.date.today())
             return False
         return True
 

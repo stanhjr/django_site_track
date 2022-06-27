@@ -36,7 +36,9 @@
                     <div class="product-grid-overlay">
                         <div class="product-grid-vendor">
                             <i class="material-icons">person</i>
-                            <a href="{% url 'account-profile' obj.user.id %}">by {{ obj.user.full_name }}</a>
+{#                            <a href="{% url 'account-profile' obj.user.id %}">by {{ obj.user.full_name }}</a>#}
+                            <a href="#">by {{ obj.user.full_name }}</a>
+
                         </div>
                         {#                                <div class="product-grid-rating">#}
                         {#                                    <i class="material-icons">star</i>#}

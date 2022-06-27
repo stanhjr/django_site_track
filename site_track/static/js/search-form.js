@@ -49,7 +49,7 @@
     }
 
     function SetParamForm(key, value){
-
+        console.log(key, value)
         if(key.startsWith("model") && document.getElementById("model" + value)){
             document.getElementById("model" + value).checked = true
         }else if(key.startsWith("category") && document.getElementById("category" + value)) {
@@ -59,6 +59,11 @@
             document.getElementById("priceMax").value = value
         }else if (key === "price_min" && document.getElementById("priceMin")){
             document.getElementById("priceMin").value = value
+        }else if (key === "order_by" && document.getElementById("form-select")){
+            if(value === 'price_up' || value === "price_down" || value === "date_at"){
+                document.getElementById("form-select").value = value
+            }
+
         }
     }
 
