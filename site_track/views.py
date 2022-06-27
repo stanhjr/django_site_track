@@ -68,7 +68,8 @@ class InventoryGridView(LoginRequiredMixin, ListView):
     paginate_by = 24
 
     def get_queryset(self):
-        category = self.model.objects.filter(name__iexact=self.kwargs.get("category")).first()
+        search_title = self.request.GET.get("header-search")
+        category = self.model.objects.filter(name__icontains=self.kwargs.get("category")).first()
         if category:
             sale_ads = category.sale_ads
         else:
@@ -82,6 +83,8 @@ class InventoryGridView(LoginRequiredMixin, ListView):
             price_max = int(self.request.GET.get("price_max"))
         except (ValueError, TypeError):
             price_max = None
+        if search_title:
+            sale_ads = sale_ads.filter(title__exact=search_title)
         if model_list:
             sale_ads = sale_ads.filter(vehicle_model__id__in=model_list)
         if price_max:
@@ -108,6 +111,9 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        search_title = self.request.GET.get("header-search")
+        if search_title:
+            qs = qs.filter(title__icontains=search_title)
         category_list = self.request.GET.getlist("category")
         model_list = self.request.GET.getlist("model")
         try:

@@ -22,7 +22,7 @@
         }
     }
 
-
+    if (document.getElementById('check-category-filter')){
     let CheckCategoryFilter = document.getElementById('check-category-filter')
     CheckCategoryFilter.onkeyup = function (){
         let queryString = this.value.toLowerCase()
@@ -37,15 +37,15 @@
                 CategoryInputs[i].closest('li').style.display = 'none';
             }
         }
-    }
-
+    }}
+    if(document.getElementById("clear-category-filter")){
     let clearCategoryBtn = document.getElementById("clear-category-filter")
     clearCategoryBtn.onclick = function () {
         let ModelInputs = document.querySelectorAll('[id^="category"]')
         for (let i=0; i < ModelInputs.length; i++){
             ModelInputs[i].checked = false
+            }
         }
-
     }
 
     function SetParamForm(key, value){
