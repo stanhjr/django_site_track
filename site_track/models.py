@@ -51,9 +51,11 @@ class MyUser(AbstractUser):
     def get_subscription(self):
         if not self.subscribe_until_date:
             return False
-        if self.subscribe_until_date <= timezone.now():
-            return True
-        return False
+        if self.subscribe_until_date < datetime.date.today():
+            print(self.subscribe_until_date)
+            print(datetime.date.today())
+            return False
+        return True
 
     @property
     def get_photo_url(self):

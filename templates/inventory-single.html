@@ -13,9 +13,10 @@
                     <h5 class="modal-title">Make an offer & price</h5>
                     <button type="button" class="material-icons" data-bs-dismiss="modal">close</button>
                 </div>
-                <div class="modal-product-single-form">
-                    <form class="container" method="post">
 
+                <div class="modal-product-single-form">
+                    {% if user.get_subscrible or user.is_superuser %}
+                    <form class="container" method="post">
                         {% csrf_token %}
                         <input type='hidden' name='vendor_email' value='{{ saleads.user.email }}'>
                         <div class="row">
@@ -61,6 +62,9 @@
                             </div>
                         </div>
                     </form>
+                    {% else %}
+                    {% include 'buy_subscrible.html' %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -80,7 +84,7 @@
                     <h5 class="modal-title">Vendor contacts</h5>
                     <button type="button" class="material-icons" data-bs-dismiss="modal">close</button>
                 </div>
-                {% if user.get_subscription %}
+                {% if user.get_subscription or user.is_superuser %}
                     <div class="contacts-content">
                         <div class="contacts-row">
                             <p>Country:</p>
@@ -190,7 +194,7 @@
                     </div>
                 </div>
 
-
+            {% if  image_gallery%}
                 <div class="col-xl-12">
                     <div class="product-single-slider slider-arrow slider-dots">
                         {% for image in image_gallery %}
@@ -198,6 +202,7 @@
                         {% endfor %}
                     </div>
                 </div>
+            {% endif %}
 
 
                 <div class="col-xl-12">
@@ -673,7 +678,7 @@
                                     <li class="store"><i class="material-icons">store</i><span>{{ saleads.user.account_type }}</span></li>
                                 </ul>
                                 <div class="vendor-grid-action">
-                                    <a href="{% url 'account-profile' saleads.user.id %}">visit profile</a>
+{#                                    <a href="{% url 'account-profile' saleads.user.id %}">visit profile</a>#}
 {#                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessage">send message</button>#}
                                 </div>
                             </div>

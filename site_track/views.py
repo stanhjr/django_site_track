@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, ListView, TemplateView
 
 from site_track.forms import ContactForm
@@ -44,6 +44,11 @@ class IndexView(ListView):
     paginate_by = 24
 
     def get_queryset(self):
+        # if self.request.GET.get('header-search'):
+        #     return redirect('catalog', {{'header-search': self.request.GET.get('header-search')})
+        #     return redirect('/catalog/?header-search=%s' % self.request.GET.get('header-search'))
+            # return redirect(reverse('catalog', kwargs={'header-search': self.request.GET.get('header-search')}))
+
         if self.request.user.is_authenticated:
             return super().get_queryset().order_by('-vehicle_price_amount')[:4]
         return super().get_queryset()

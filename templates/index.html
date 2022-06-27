@@ -80,8 +80,11 @@
                             </div>
                         </div>
                         <div class="product-feature-meta">
-                            <h3><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h3>
-                            <h4>${{ obj.vehicle_price_amount }}- <span>{{ obj.vehicle_price_type }}</span></h4>
+                            <a href="#" class="product-feature-meta-title">{{ obj.title }}</a>
+                            <div class="product-feature-meta-footer">
+                                <h4>${{ obj.vehicle_price_amount }} <span>{{ obj.vehicle_price_type }}</span></h4>
+                                <h3><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h3>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -113,16 +113,16 @@ dotsAction('.review-action-btn');
 
 
 // For advance search option
-document.querySelector('.header-search').lastElementChild.addEventListener('click', (event) => {
-    if (event.target.textContent !== 'tune') {
-        event.target.offsetParent.classList.remove('active')
-        event.target.textContent = 'tune'
-    }
-    else {
-        event.target.offsetParent.classList.add('active')
-        event.target.textContent = 'close'
-    }
-})
+// document.querySelector('.header-search').lastElementChild.addEventListener('click', (event) => {
+//     if (event.target.textContent !== 'tune') {
+//         event.target.offsetParent.classList.remove('active')
+//         event.target.textContent = 'tune'
+//     }
+//     else {
+//         event.target.offsetParent.classList.add('active')
+//         event.target.textContent = 'close'
+//     }
+// })
 
 
 // For responsive search bar
