@@ -71,6 +71,12 @@ class UserPostedAdsDeleteView(LoginRequiredMixin, DeleteView):
     model = SaleAds
     success_url = reverse_lazy('user-posted-sale-ads')
 
+    def post(self, request, *args, **kwargs):
+        model = self.model.objects.filter(id=kwargs.get("pk")).first()
+        if model.user == self.request.user or request.user.is_superuser:
+            return super().post(self, request, *args, **kwargs)
+        return redirect('home')
+
 
 class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
     model = SaleAds
@@ -80,7 +86,7 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, *args, **kwargs):
         obj = self.get_object()
-        if self.request.user.id != obj.user.id:
+        if self.request.user.id != obj.user.id or not self.request.user.is_superuser:
             redirect('user-posted-sale-ads')
         return super(UserPostedAdsUpdateView, self).dispatch(*args, **kwargs)
 

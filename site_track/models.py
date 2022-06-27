@@ -58,7 +58,7 @@ class MyUser(AbstractUser):
         if self.profile_image:
             return self.profile_image.url
         else:
-            return "/static/images/user.jpg"
+            return "/static/images/user.png"
 
     @property
     def get_sale_created(self):
@@ -101,7 +101,7 @@ class CategoriesTrack(models.Model, ChoicesMixin):
         if self.image:
             return self.image.url
         else:
-            return "/static/images/user.jpg"
+            return "/static/images/user.png"
 
     @property
     def get_count(self):
@@ -188,7 +188,7 @@ class SaleAds(models.Model):
         if self.preview_image:
             return self.preview_image.url
         else:
-            return "/static/images/user.jpg"
+            return "/static/images/user.png"
 
     @property
     def get_photo_in_gallery_count(self):

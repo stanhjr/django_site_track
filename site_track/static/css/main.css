@@ -3688,6 +3688,8 @@ textarea::placeholder {
 
 .vendor-grid-avatar img {
   width: 65px;
+  height: 65px;
+  object-fit: cover;
   border-radius: 50%;
   border: 5px solid #f1f2f3;
   transition: all linear .3s;
