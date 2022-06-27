@@ -9,8 +9,8 @@ from django.core.management.base import BaseCommand
 
 from site_track.models import MyUser, CategoriesTrack, MakeTrack
 
-ava_random = ("fake_avatar/01.jpg", "fake_avatar/02.jpeg", "fake_avatar/03.jpeg", "fake_avatar/04.jpeg",
-              "fake_avatar/05.jpeg", "fake_avatar/06.jpeg", "fake_avatar/07.jpg")
+ava_random = ("fake_avatar/01.jpg", "fake_avatar/02.jpg", "fake_avatar/03.jpg", "fake_avatar/04.jpg",
+              "fake_avatar/05.jpg", "fake_avatar/06.jpg", "fake_avatar/07.jpg")
 
 users_random = MyUser.objects.exclude(username="stan").all()
 

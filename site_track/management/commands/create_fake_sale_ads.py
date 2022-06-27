@@ -10,10 +10,10 @@ from django.core.management.base import BaseCommand
 from site_track.models import SaleAds, MyUser, ImageInGallery, CategoriesTrack, MakeTrack
 
 
-preview_random = ("fake_preview/01.jpeg", "fake_preview/02.jpg", "fake_preview/04.jpeg",
-                  "fake_preview/05.jpeg", "fake_preview/06.jpg", "fake_preview/07.jpeg", "fake_preview/08.jpg",
-                  "fake_preview/07.jpeg", "fake_preview/14.jpeg", "fake_preview/15.jpeg", "fake_preview/16.jpeg"
-                  "fake_preview/11.jpeg", "fake_preview/12.jpeg", "fake_preview/13.jpeg", "fake_preview/10.jpeg")
+preview_random = ("fake_preview/01.jpg", "fake_preview/02.jpg", "fake_preview/03.jpg", "fake_preview/04.jpg",
+                  "fake_preview/05.jpg", "fake_preview/06.jpg", "fake_preview/07.jpg", "fake_preview/08.jpg",
+                  "fake_preview/09.jpg", "fake_preview/14.jpg", "fake_preview/15.jpg",
+                  "fake_preview/11.jpg", "fake_preview/12.jpg", "fake_preview/13.jpg", "fake_preview/10.jpg")
 
 users_random = MyUser.objects.all()
 
