@@ -3,8 +3,19 @@ from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesT
     SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle,\
     SettingsIndexHome, FakeReviewIndexHome, MakeTrack
 
-admin.site.register(MyUser)
-admin.site.register(SaleAds)
+
+class UserSearch(admin.ModelAdmin):
+    ordering = ['created_at']
+    search_fields = ('email', 'username', 'full_name')
+
+
+class SaleAdsSearch(admin.ModelAdmin):
+    ordering = ['created_at']
+    search_fields = ('title', 'user__email')
+
+
+admin.site.register(MyUser, UserSearch)
+admin.site.register(SaleAds, SaleAdsSearch)
 admin.site.register(ImageInGallery)
 admin.site.register(SettingsFooter)
 admin.site.register(CategoriesTrack)
@@ -16,4 +27,4 @@ admin.site.register(SettingsHeaderInventorySingle)
 admin.site.register(SettingsIndexHome)
 admin.site.register(FakeReviewIndexHome)
 admin.site.register(MakeTrack)
-# Register your models here.
+
