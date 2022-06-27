@@ -49,6 +49,8 @@ class MyUser(AbstractUser):
 
     @property
     def get_subscription(self):
+        if not self.subscribe_until_date:
+            return False
         if self.subscribe_until_date <= timezone.now():
             return True
         return False

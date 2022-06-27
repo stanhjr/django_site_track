@@ -62,6 +62,7 @@ class AccountSettings(LoginRequiredMixin, FormView):
 class UserProfile(LoginRequiredMixin, DetailView):
     model = MyUser
     template_name = 'profile.html'
+    context_object_name = 'account'
 
     def get_context_data(self, **kwargs):
         context = super(UserProfile, self).get_context_data(**kwargs)

@@ -80,32 +80,36 @@
                     <h5 class="modal-title">Vendor contacts</h5>
                     <button type="button" class="material-icons" data-bs-dismiss="modal">close</button>
                 </div>
-                <div class="contacts-content">
-                    <div class="contacts-row">
-                        <p>Country:</p>
-                        <p>{{ saleads.user.country }}</p>
+                {% if user.get_subscription %}
+                    <div class="contacts-content">
+                        <div class="contacts-row">
+                            <p>Country:</p>
+                            <p>{{ saleads.user.country }}</p>
+                        </div>
+                        <div class="contacts-row">
+                            <p>State:</p>
+                            <p>{{ saleads.user.state }}</p>
+                        </div>
+                        <div class="contacts-row">
+                            <p>Email:</p>
+                            <a href="mailto:{{ saleads.user.email }}">{{ saleads.user.email }}</a>
+                        </div>
+                        <div class="contacts-row">
+                            <p>Phone:</p>
+                            <a href="tel:{{ saleads.user.phone_number }}">{{ saleads.user.phone_number }}</a>
+                        </div>
+                        <div class="contacts-row">
+                            <p>First name:</p>
+                            <p>{{ saleads.user.first_name }}</p>
+                        </div>
+                        <div class="contacts-row">
+                            <p>Last name:</p>
+                            <p>{{ saleads.user.last_name }}</p>
+                        </div>
                     </div>
-                    <div class="contacts-row">
-                        <p>State:</p>
-                        <p>{{ saleads.user.state }}</p>
-                    </div>
-                    <div class="contacts-row">
-                        <p>Email:</p>
-                        <a href="mailto:{{ saleads.user.email }}">{{ saleads.user.email }}</a>
-                    </div>
-                    <div class="contacts-row">
-                        <p>Phone:</p>
-                        <a href="tel:{{ saleads.user.phone_number }}">{{ saleads.user.phone_number }}</a>
-                    </div>
-                    <div class="contacts-row">
-                        <p>First name:</p>
-                        <p>{{ saleads.user.first_name }}</p>
-                    </div>
-                    <div class="contacts-row">
-                        <p>Last name:</p>
-                        <p>{{ saleads.user.last_name }}</p>
-                    </div>
-                </div>
+                {% else %}
+                    {% include 'buy_subscrible.html' %}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -128,7 +132,7 @@
                             <li><i class="material-icons">account_circle</i><a href="{% url 'account-profile' saleads.user.id %}">by {{ saleads.user.full_name }}</a></li>
                             <li><i class="material-icons">watch_later</i><span>{{ saleads.get_date_ago }}</span></li>
 {#                            <li><i class="material-icons">stars</i><button type="button" data-bs-toggle="modal" data-bs-target="#modalReview">(24) reviews</button></li>#}
-                            <li><i class="material-icons">fmd_good</i><span>{{ saleads.country }}, {{ saleads.city }}</span></li>
+                            <li><i class="material-icons">fmd_good</i><span>{{ saleads.user.country }}, {{ saleads.user.state }}, {{ saleads.user.city }}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -669,7 +673,7 @@
                                     <li class="store"><i class="material-icons">store</i><span>{{ saleads.user.account_type }}</span></li>
                                 </ul>
                                 <div class="vendor-grid-action">
-                                    <a href="{% url 'account-profile' user.id %}">visit profile</a>
+                                    <a href="{% url 'account-profile' saleads.user.id %}">visit profile</a>
 {#                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessage">send message</button>#}
                                 </div>
                             </div>

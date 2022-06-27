@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'embed_video',
-    'django_cleanup',
+    # 'django_cleanup',
     'site_track_auth',
     'account',
     'site_track',
