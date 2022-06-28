@@ -1,15 +1,16 @@
 [Unit]
-Description=Gunicorn Service for Django
+Description=gunicorn service
 After=network.target
 
 [Service]
 User=root
 Group=www-data
 WorkingDirectory=/root/django_site_track
-ExecStart=/root/django_site_track/venv/bin/python -m uvicorn django_site_track.asgi:application --uds /tmp/uvicorn.sock
+ExecStart=/root/django_site_track/venv/bin/gunicorn --workers 5 --bind unix:/run/gunicorn.sock django_site_track.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
 
 
 
+#/home/stan/freelance/django_site_track/venv/bin/gunicorn --workers 5 --bind unix:/run/gunicorn.sock django_site_track.wsgi:application

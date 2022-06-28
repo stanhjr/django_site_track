@@ -1,0 +1,13 @@
+[Unit]
+Description=Flower Service for Django
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/django_site_track
+ExecStart=/root/django_site_track/venv/venv/bin/celery --app=email_sender.tasks flower --address=92.38.241.95 --port=5566 --basic_auth=stan:1
+
+[Install]
+WantedBy=multi-user.target
+

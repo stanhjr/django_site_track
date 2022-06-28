@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b3col@q^@xo!&l8foy=&60y9ly50l%s)6s$t^$6bff*4(fep)a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['92.38.241.95', ]
+ALLOWED_HOSTS = ['92.38.241.95', '127.0.0.1']
 
 # Application definition
 AUTH_USER_MODEL = 'site_track.MyUser'
@@ -59,7 +59,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = (os.path.join('static'), )
-STATIC_ROOT = '/root/static/'
+STATIC_ROOT = '/home/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -97,7 +97,6 @@ DATABASES = {
         'PASSWORD': 'stan',
         'HOST': 'localhost',
         'PORT': '5432',
-        # 'TEST': {'NAME': 'mytestdatabase'},
     },
 }
 

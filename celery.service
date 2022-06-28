@@ -1,0 +1,17 @@
+[Unit]
+Description=Celery Service for Django
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/django_site_track
+ExecStart=/root/django_site_track/venv/venv/bin/celery --app=email_sender.tasks worker --loglevel=INFO -Q contact_us,celery
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
