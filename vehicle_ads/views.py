@@ -31,7 +31,6 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
         return kw
 
     def form_invalid(self, form):
-        print(form.errors)
         return redirect('create-sale-ads')
 
     def form_valid(self, form):

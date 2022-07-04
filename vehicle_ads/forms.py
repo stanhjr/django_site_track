@@ -51,6 +51,8 @@ class VehicleInformationForm(forms.ModelForm):
         self.request = kwargs.pop('request', None)
         super(VehicleInformationForm, self).__init__(*args, **kwargs)
         for field in self.fields:
+            if field == 'vehicle_mileage':
+                self.fields[field].initial = ''
             if field == 'email':
                 self.fields[field].initial = self.request.user.email
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'email'})
@@ -101,6 +103,8 @@ class VehicleInformationUpdateForm(forms.ModelForm):
         initial_data = self.initial
         for field in self.fields:
             self.fields[field].initial = initial_data.get(field)
+            if field == 'vehicle_mileage':
+                self.fields[field].initial = ''
             if field == 'email':
                 self.fields[field].initial = self.request.user.email
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'email'})
