@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from site_track.models import FakeReviewIndexHome, SettingsHeaderInventoryGrid, SettingsAuthBase, \
     SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle, SettingsFooter, SettingsIndexHome, \
-    SettingsHeaderAboutUs, SettingsHeaderPrivacy, SettingsHeaderContact, CategoriesTrack, MakeTrack
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy, SettingsHeaderContact, CategoriesTrack, MakeTrack, ModelTrack
 
 
 class Command(BaseCommand):
@@ -54,6 +54,33 @@ class Command(BaseCommand):
             CategoriesTrack.objects.create(name="Trailer", image="category_images/hatchback.png")
 
         if not MakeTrack.objects.last():
-            MakeTrack.objects.create(name="classic")
-            MakeTrack.objects.create(name="cascade")
-            MakeTrack.objects.create(name="coronado")
+            MakeTrack.objects.create(name="Ford")
+            MakeTrack.objects.create(name="Freightliner")
+            MakeTrack.objects.create(name="International")
+            MakeTrack.objects.create(name="Kenworth")
+            MakeTrack.objects.create(name="Peterbilt")
+            MakeTrack.objects.create(name="Volvo")
+            MakeTrack.objects.create(name="Western Star")
+
+        if not ModelTrack.objects.last():
+            ModelTrack.objects.create(name="357")
+            ModelTrack.objects.create(name="379")
+            ModelTrack.objects.create(name="389")
+            ModelTrack.objects.create(name="4300")
+            ModelTrack.objects.create(name="4900FA")
+            ModelTrack.objects.create(name="579")
+            ModelTrack.objects.create(name="Cascadia")
+            ModelTrack.objects.create(name="Cascadia 113")
+            ModelTrack.objects.create(name="Cascadia 125")
+            ModelTrack.objects.create(name="Cascadia Evolution")
+            ModelTrack.objects.create(name="Columbia")
+            ModelTrack.objects.create(name="Coronado")
+            ModelTrack.objects.create(name="F250")
+            ModelTrack.objects.create(name="M2")
+            ModelTrack.objects.create(name="M2 108SD Crew Cab")
+            ModelTrack.objects.create(name="T270")
+            ModelTrack.objects.create(name="T370")
+            ModelTrack.objects.create(name="T680")
+            ModelTrack.objects.create(name="Transit 250")
+            ModelTrack.objects.create(name="VNL64T300")
+            ModelTrack.objects.create(name="VNL670")

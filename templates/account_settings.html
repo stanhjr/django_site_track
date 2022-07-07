@@ -98,20 +98,27 @@
                                 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">account name <span>*</span></label>
+                                            <label class="form-label">last name <span>*</span></label>
+                                            {{ form.last_name}}
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">first name <span>*</span></label>
                                             {{ form.account_name }}
-{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">company <span>*</span></label>
+                                            {{ form.company }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">account type <span>*</span></label>
                                             {{ form.account_type }}
-{#                                            <select class="form-select">#}
-{#                                                <option selected>---</option>#}
-{#                                                <option value="1">individual</option>#}
-{#                                                <option value="2">dealership</option>#}
-{#                                            </select>#}
                                         </div>
                                     </div>
                                     <div class="col">
@@ -132,7 +139,6 @@
                                         <div class="form-group">
                                             <label class="form-label">website <span>*</span></label>
                                             {{ form.web_site }}
-{#                                            <input type="url" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">

@@ -9,7 +9,7 @@ class AccountDetailsForm(forms.ModelForm):
 
         fields = ('profile_image', 'account_name', 'account_type',
                   'phone_number', 'email', 'city',
-                  'zip', 'about_vendor', 'state', 'web_site')
+                  'zip', 'about_vendor', 'state', 'web_site', 'company', 'last_name')
 
     def __init__(self, *args, **kwargs):
         self.ACCOUNT_TYPE_CHOICES = (

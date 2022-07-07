@@ -15,6 +15,7 @@ class MyUser(AbstractUser):
 
     money_spent = models.PositiveIntegerField(default=0)
     full_name = models.CharField(max_length=120, null=True)
+    company = models.CharField(max_length=120, null=True)
     subscription = models.BooleanField(default=False)
     subscribe_until_date = models.DateField(null=True)
     created_at = models.DateField(auto_now=True)
@@ -30,7 +31,7 @@ class MyUser(AbstractUser):
     state = models.CharField(max_length=60, null=True)
     zip = models.CharField(max_length=60, null=True)
     about_vendor = models.TextField(null=True)
-    profile_image = models.ImageField(null=True, upload_to="images/")
+    profile_image = models.ImageField(null=True, upload_to="images/", blank=True)
 
     facebook = models.CharField(max_length=60, null=True)
     instagram = models.CharField(max_length=60, null=True)
@@ -89,6 +90,17 @@ class ChoicesMixin:
     @classmethod
     def get_choices(cls):
         return [(tq.pk, tq.name) for tq in cls.objects.order_by('name').all()]
+
+
+class ModelTrack(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
 
 
 class CategoriesTrack(models.Model, ChoicesMixin):
@@ -161,7 +173,8 @@ class SaleAds(models.Model):
     email = models.EmailField(max_length=120, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='sale_ads')
-    vehicle_model = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    vehicle_make = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
     vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
 
     def __str__(self):

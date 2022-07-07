@@ -24,14 +24,15 @@ def generate_key():
 def send_registration_link_to_email(code: str, email_to):
 
     password = "xsxvxmubsrrzwyaa"
-    sender_email = "stahjrpower@yahoo.com"
+    sender_email = "stahjrpower2@yahoo.com"
 
     receiver_email = email_to
     text = f"""\
     Hi,
     How are you?
     This is your registration link:
-    http://127.0.0.1:8000/auth/account-activate/?code={code}"""
+    http://92.38.241.95/auth/account-activate/?code={code}"""
+    # auth/account-activate/?code=f178844eacee2968b90fbb29f246cc57d0efbdd5
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
@@ -65,7 +66,7 @@ def send_reset_password_link_to_email(code: str, email_to):
     Hi,
     How are you?
     This is your restore password link:
-    http://127.0.0.1:8000/auth/restore-password/?code={code}"""
+    http://92.38.241.95auth/restore-password/?code={code}"""
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"

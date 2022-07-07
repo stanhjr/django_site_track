@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b3col@q^@xo!&l8foy=&60y9ly50l%s)6s$t^$6bff*4(fep)a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['92.38.241.95', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 AUTH_USER_MODEL = 'site_track.MyUser'
@@ -93,8 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'site_track',
-        'USER': 'stan',
-        'PASSWORD': 'stan',
+        'USER': 'postgres',
+        'PASSWORD': 'example',
         'HOST': 'localhost',
         'PORT': '5432',
     },

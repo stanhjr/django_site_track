@@ -74,7 +74,6 @@ class InventoryGridView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         order_by = self.request.GET.get("order_by")
-        print(order_by)
         search_title = self.request.GET.get("header-search")
         category = self.model.objects.filter(name__icontains=self.kwargs.get("category")).first()
         if category:

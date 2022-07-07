@@ -45,9 +45,13 @@ class AccountSettings(LoginRequiredMixin, FormView):
                 self.request.user.save()
         elif action == 'detail_form':
             account_details_form = AccountDetailsForm(request.POST, request=self.request)
+
             if account_details_form.is_valid():
                 self.request.user.set_value_from_form(self.request, account_details_form)
                 self.request.user.save()
+            else:
+                print('INVALID')
+                print(account_details_form.errors)
         elif action == 'change_password_form':
             change_password_form = AccountChangePasswordForm(request.POST, request=self.request)
             if change_password_form.is_valid():
