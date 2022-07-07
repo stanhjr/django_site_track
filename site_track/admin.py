@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack, SettingsHeaderHome,\
     SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle,\
-    SettingsIndexHome, FakeReviewIndexHome, MakeTrack
+    SettingsIndexHome, FakeReviewIndexHome, MakeTrack, ModelTrack
 
 
 class UserSearch(admin.ModelAdmin):
@@ -27,4 +27,5 @@ admin.site.register(SettingsHeaderInventorySingle)
 admin.site.register(SettingsIndexHome)
 admin.site.register(FakeReviewIndexHome)
 admin.site.register(MakeTrack)
+admin.site.register(ModelTrack)
 

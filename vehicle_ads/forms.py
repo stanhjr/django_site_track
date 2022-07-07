@@ -1,5 +1,5 @@
 from django import forms
-from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser
+from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser, ModelTrack
 
 
 class DatePickerInput(forms.DateInput):
@@ -71,6 +71,9 @@ class VehicleInformationForm(forms.ModelForm):
                                                          choices=VEHICLE_CONDITION_CHOICES)
             elif field == "vehicle_model":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=ModelTrack.get_choices())
+            elif field == "vehicle_make":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=MakeTrack.get_choices())
 
             elif field == "vehicle_fuel":
@@ -118,10 +121,14 @@ class VehicleInformationUpdateForm(forms.ModelForm):
             elif field == "vehicle_category":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
+
             elif field == "vehicle_condition":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
             elif field == "vehicle_model":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=ModelTrack.get_choices())
+            elif field == "vehicle_make":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=MakeTrack.get_choices())
 
