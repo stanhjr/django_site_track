@@ -18,6 +18,7 @@ preview_random = ("fake_preview/01.jpg", "fake_preview/02.jpg", "fake_preview/03
 users_random = MyUser.objects.all()
 
 random_category = CategoriesTrack.objects.all()
+random_model = MakeTrack.objects.all()
 random_make = MakeTrack.objects.all()
 
 VEHICLE_FUEL_CHOICES = ("Diesel", "Petrol", "Electric", "Electric", "Hybrid")
@@ -50,7 +51,8 @@ class Command(BaseCommand):
 
         for _ in range(5000):
             SaleAdsFactory(vehicle_category=random.choice(random_category),
-                           vehicle_model=random.choice(random_make),
+                           vehicle_model=random.choice(random_model),
+                           vehicle_make=random.choice(random_make),
                            user=random.choice(users_random),
                            title=faker.text()[1:50],
                            preview_image=random.choice(preview_random),

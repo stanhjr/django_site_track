@@ -37,6 +37,8 @@ class Command(BaseCommand):
                         username=faker.email(),
                         profile_image=random.choice(ava_random),
                         account_name=faker.name(),
+                        last_name=faker.name(),
+                        company=faker.name(),
                         phone_number=faker.phone_number(),
                         full_name=faker.name(),
                         country="USA",
