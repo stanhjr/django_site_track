@@ -52,13 +52,17 @@
                             <span>${{ obj.vehicle_price_amount }}</span>
                             <small>{{ obj.vehicle_price_type }}</small>
                         </div>
+
 {#                        <div class="product-grid-action">#}
 {#                            <button type="button" title="Compare" class="compare material-icons">compare</button>#}
 {#                            <button type="button" title="Favorite" class="favorite material-icons">favorite</button>#}
 {#                        </div>#}
                     </div>
                     <div class="product-grid-meta">
-                        <h4><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                        <div class="product-vehicle-make">
+                            <h4><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                            {{ obj.vehicle_make }}
+                        </div>
                         <ul>
                             <li>{{ obj.user.country }}, {{ obj.user.city }}</li>
                             <li>{{ obj.get_date_ago }}</li>

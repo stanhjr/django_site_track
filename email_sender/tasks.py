@@ -32,7 +32,7 @@ def send_registration_link_to_email(code: str, email_to):
     How are you?
     This is your registration link:
     http://92.38.241.95/auth/account-activate/?code={code}"""
-    # auth/account-activate/?code=f178844eacee2968b90fbb29f246cc57d0efbdd5
+    # http://92.38.241.95/auth/account-activate/?code=365b2f4a3ec0117c4cf7f54fd826a84b0d84d872
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"

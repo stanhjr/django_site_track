@@ -1652,11 +1652,15 @@ textarea::placeholder {
   padding: 10px 0px;
   border-bottom: 1px solid #e3e3e3;
 }
-
+.product-vehicle-make{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}
 .product-grid-meta h4 {
   font-size: 17px;
   font-weight: 600;
-  margin-bottom: 5px;
 }
 
 .product-grid-meta h4 a {
