@@ -7,8 +7,7 @@ from factory.django import DjangoModelFactory
 
 from django.core.management.base import BaseCommand
 
-from site_track.models import SaleAds, MyUser, ImageInGallery, CategoriesTrack, MakeTrack
-
+from site_track.models import SaleAds, MyUser, ImageInGallery, CategoriesTrack, MakeTrack, ModelTrack
 
 preview_random = ("fake_preview/01.jpg", "fake_preview/02.jpg", "fake_preview/03.jpg", "fake_preview/04.jpg",
                   "fake_preview/05.jpg", "fake_preview/06.jpg", "fake_preview/07.jpg", "fake_preview/08.jpg",
@@ -18,7 +17,7 @@ preview_random = ("fake_preview/01.jpg", "fake_preview/02.jpg", "fake_preview/03
 users_random = MyUser.objects.all()
 
 random_category = CategoriesTrack.objects.all()
-random_model = MakeTrack.objects.all()
+random_model = ModelTrack.objects.all()
 random_make = MakeTrack.objects.all()
 
 VEHICLE_FUEL_CHOICES = ("Diesel", "Petrol", "Electric", "Electric", "Hybrid")
