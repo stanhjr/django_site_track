@@ -38,6 +38,7 @@ CheckCategoryFilter.onkeyup = function (){
         }
     }
 }}
+
 if(document.getElementById("clear-category-filter")){
 let clearCategoryBtn = document.getElementById("clear-category-filter")
 clearCategoryBtn.onclick = function () {
@@ -67,6 +68,36 @@ function SetParamForm(key, value){
     }
 }
 
+
+
+
+
+
+let CheckMakeFilter = document.getElementById('check-make-filter')
+CheckMakeFilter.onkeyup = function (){
+    let queryString = this.value.toLowerCase()
+    let ModelInputs = document.querySelectorAll('[id^="make"]')
+    for (let i=0; i < ModelInputs.length; i++){
+        let labelText = ModelInputs[i].nextElementSibling.innerHTML
+        if(labelText.toLowerCase().startsWith(queryString)){
+            ModelInputs[i].closest('li').style.display = 'flex';
+        }else {
+            ModelInputs[i].closest('li').style.display = 'none';
+        }
+    }
+}
+
+
+let CheckMakeBtn = document.getElementById("clear-make-filter")
+CheckMakeBtn.onclick = function () {
+
+    let ModelInputs = document.querySelectorAll('[id^="make"]')
+    for (let i=0; i < ModelInputs.length; i++){
+        ModelInputs[i].checked = false
+    }
+}
+
+
 let CurrentlyUrl = window.location.href
 CurrentlyUrl = CurrentlyUrl.split("?")
 if (CurrentlyUrl.length === 2){
@@ -76,7 +107,5 @@ if (CurrentlyUrl.length === 2){
         if (Args.length === 2){
             SetParamForm(Args[0], Args[1])
         }
-
     }
-
 }

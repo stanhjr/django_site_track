@@ -35,14 +35,34 @@
                                     <span class="product-widget-number">({{ model.get_count }})</span>
                                 </li>
                                 {% endfor %}
-
                             </ul>
                             <button class="product-widget-btn" id="clear-model-filter" type="button">
                                 <i class="material-icons">delete</i>
                                 <span>clear filter</span>
                             </button>
-
                     </div>
+
+
+                    <div class="product-widget">
+                        <h6 class="product-widget-title">Filter by Make</h6>
+                            <input class="product-widget-search" type="text" placeholder="Search..." id="check-make-filter">
+                            <ul class="product-widget-list product-widget-scroll">
+                                {% for make in makes %}
+                                <li id="make{{ make.id }}">
+                                    <div class="product-widget-content">
+                                        <input type="checkbox" id="make{{ make.id }}" name="make" value="{{ make.id }}">
+                                        <label for="make{{ make.id }}">{{ make.name }}</label>
+                                    </div>
+                                    <span class="product-widget-number">({{ make.get_count }})</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <button class="product-widget-btn" id="clear-make-filter" type="button">
+                                <i class="material-icons">delete</i>
+                                <span>clear filter</span>
+                            </button>
+                    </div>
+
                 {% if is_catalog %}
                     <div class="product-widget">
                         <h6 class="product-widget-title">Filter by Category</h6>

@@ -72,11 +72,13 @@
                         </div>
                         <div class="common-card-body">
                             <ul class="profile-specify-list">
+                                <li><span>first name:</span><span>{{ account.account_name }}</span></li>
+                                <li><span>last name:</span><span>{{ account.last_name }}</span></li>
+                                <li><span>company:</span><span>{{ account.company }}</span></li>
                                 <li><span>country:</span><span>{{ account.country }}</span></li>
                                 <li><span>state:</span><span>{{ account.state }}</span></li>
                                 {% if is_my_account or user.get_subscription or user.is_superuser %}
                                 <li><span>city:</span><span>{{ account.city }}</span></li>
-                                <li><span>post code:</span><span>{{ account.zip }}</span></li>
                                 <li><span>phone number:</span><span>{{ account.phone_number }}</span></li>
                                 <li><span>email:</span><span>{{ account.email }}</span></li>
                                 {% endif %}

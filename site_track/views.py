@@ -10,7 +10,7 @@ from django.views.generic import FormView, ListView, TemplateView
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
-    SettingsHeaderAboutUs, SettingsHeaderPrivacy
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack
 from email_sender.tasks import send_mail_contact_us
 
 
@@ -81,6 +81,7 @@ class InventoryGridView(LoginRequiredMixin, ListView):
         else:
             raise Http404
         model_list = self.request.GET.getlist("model")
+        make_list = self.request.GET.getlist("make")
         try:
             price_min = int(self.request.GET.get("price_min"))
         except (ValueError, TypeError):
@@ -93,6 +94,8 @@ class InventoryGridView(LoginRequiredMixin, ListView):
             sale_ads = sale_ads.filter(title__exact=search_title)
         if model_list:
             sale_ads = sale_ads.filter(vehicle_model__id__in=model_list)
+        if make_list:
+            sale_ads = sale_ads.filter(vehicle_make__id__in=make_list)
         if price_max:
             sale_ads = sale_ads.filter(vehicle_price_amount__lte=price_max)
         if price_min:
@@ -111,6 +114,7 @@ class InventoryGridView(LoginRequiredMixin, ListView):
         context['footer'] = SettingsFooter.objects.last()
         context['categories'] = CategoriesTrack.objects.all()
         context['models'] = MakeTrack.objects.all()
+        context['makes'] = MakeTrack.objects.all()
         context['title'] = 'inventory-grid'
         return context
 
@@ -130,6 +134,7 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
             qs = qs.filter(title__icontains=search_title)
         category_list = self.request.GET.getlist("category")
         model_list = self.request.GET.getlist("model")
+        make_list = self.request.GET.getlist("make")
         try:
             price_min = int(self.request.GET.get("price_min"))
         except (ValueError, TypeError):
@@ -140,6 +145,8 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
             price_max = None
         if model_list:
             qs = qs.filter(vehicle_model__id__in=model_list)
+        if make_list:
+            qs = qs.filter(vehicle_make__id__in=make_list)
         if category_list:
             qs = qs.filter(vehicle_category__id__in=category_list)
         if price_max:
@@ -160,7 +167,8 @@ class InventoryCatalogView(LoginRequiredMixin, ListView):
         context['header'] = SettingsHeaderInventoryCatalog.objects.last()
         context['footer'] = SettingsFooter.objects.last()
         context['categories'] = CategoriesTrack.objects.all()
-        context['models'] = MakeTrack.objects.all()
+        context['models'] = ModelTrack.objects.all()
+        context['makes'] = MakeTrack.objects.all()
         context['title'] = 'catalog'
         context['is_catalog'] = True
         return context
