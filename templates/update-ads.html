@@ -48,31 +48,38 @@
                 <div class="col-lg-7 col-xl-8">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <div class="create-ads-form">
+                         <div class="create-ads-form">
                             <!-- Vehicle Information -->
                             <div class="common-card active">
                                 <div class="common-card-header">
                                     <h4 class="common-card-header-title">vehicle information</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Heading<span>*</span></label>
-                                             {{ form.title }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
                                             <label class="form-label">Model <span>*</span></label>
                                             {{ form.vehicle_model }}
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Make <span>*</span></label>
+                                            {{ form.vehicle_make }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                          <div class="form-group">
                                             <label class="form-label">Category <span>*</span></label>
                                             {{ form.vehicle_category }}
                                         </div>
 
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Heading<span>*</span></label>
+                                             {{ form.title }}
+                                        </div>
                                     </div>
 
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
@@ -95,18 +102,17 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Wheelbase <span>*</span></label>
-                                             {{ form.wheel_base }}
+                                            <label class="form-label">Tire size <span>*</span></label>
+                                            {{ form.tire_size }}
                                         </div>
-
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-
                                         <div class="form-group">
-                                            <label class="form-label">Check Engine warning lights <span>*</span></label>
-                                             {{ form.check_engine_warning_lights }}
+                                            <label class="form-label">Sleeper size<span>*</span></label>
+                                            {{ form.sleeper_size }}
                                         </div>
                                     </div>
+
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
                                             <label class="form-label">fuel <span>*</span></label>
@@ -141,14 +147,16 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Tire size <span>*</span></label>
-                                            {{ form.tire_size }}
+                                            <label class="form-label">Wheelbase <span>*</span></label>
+                                             {{ form.wheel_base }}
                                         </div>
+
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+
                                         <div class="form-group">
-                                            <label class="form-label">Sleeper size<span>*</span></label>
-                                            {{ form.sleeper_size }}
+                                            <label class="form-label">Check Engine warning lights <span>*</span></label>
+                                             {{ form.check_engine_warning_lights }}
                                         </div>
                                     </div>
                                     <div class="col-12">
