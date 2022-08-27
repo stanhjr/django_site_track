@@ -12,8 +12,8 @@
             <div class="mc-breadcrumb-group">
                 <h2 class="mc-breadcrumb-title">create your ads</h2>
                 <ul class="mc-breadcrumb-list">
-                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="index.html">home</a></li>
-                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="dashboard.html">dashboard</a></li>
+                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">home</a></li>
+                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">dashboard</a></li>
                     <li class="mc-breadcrumb-item">create-ads</li>
                 </ul>
             </div>
@@ -38,6 +38,7 @@
                         <ul class="create-nav-list">
                             <li class="active"><i class="material-icons">drive_eta</i><span>vehicle information</span></li>
                             <li><i class="material-icons">fact_check</i><span>tire percentage</span></li>
+                            <li><i class="material-icons">fact_check</i><span>auction settings</span></li>
                             <li><i class="material-icons">perm_media</i><span>add photos & video</span></li>
 
                         </ul>
@@ -174,8 +175,7 @@
                             </div>
 
 
-
-                            <!-- Vehicle Features -->
+                            <!-- Tire percentage -->
 
                             <div class="common-card">
                                 <div class="common-card-header">
@@ -210,7 +210,21 @@
 
                             </div>
 
+                              <!-- Auction settings -->
 
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">Auction settings</h4>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Auction end date <span>*</span></label>
+                                             {{ form.sale_end_time }}
+                                        </div>
+
+                                    </div>
+
+                            </div>
 
                             <!-- Vehicle Media -->
                             <div class="common-card">

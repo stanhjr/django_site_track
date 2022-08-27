@@ -101,7 +101,7 @@ button:focus {
     max-width: 1230px;
   }
   .product-single-slider .slick-list img {
-    height: 394px;
+    height: 520px;
   }
 }
 
@@ -166,8 +166,51 @@ button:focus {
   background: #477CDB;
   border-color: #477CDB;
 }
+.auction .auction-group {
+    position: relative;
+    width: 45%;
+}
+.auction .auction-form{
+}
+.auction .auction-group label{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+}
+.auction .auction-group input{
+  padding-left: 25px;
+}
+.auction .auction-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.auction .auction-button{
+  width: 52%;
+}
+.auction .fix-price-text{
+  font-weight: 700;
+  font-size: 23px;
+}
+.auction .common-card {
+  margin-bottom: 15px;
+}
+.auction .buy-now-button.form-btn {
+    background: #df4150;
+}
+.messages-auction-bet{
+  margin-top: 10px;
+}
+.auction-sales{
+  font-size: 30px;
+  font-weight: bold;
+}
+.mb15{
+  margin-bottom: 15px;
+}
 .product-single-action button{
-      padding: 12px 30px;
+   padding: 12px 30px;
 }
 .product-single-action button.product-single-btn{
   color: #fff;
@@ -7984,11 +8027,11 @@ textarea::placeholder {
 }
 
 .product-single-slider .bamdik {
-  left: 90px;
+  left: 16px;
 }
 
 .product-single-slider .dandik {
-  right: 90px;
+  right: 16px;
 }
 
 .product-single-scrollspy-btns {

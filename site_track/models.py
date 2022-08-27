@@ -1,4 +1,6 @@
 import datetime
+
+import django
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -177,8 +179,20 @@ class SaleAds(models.Model):
     vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
     vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
 
+    # Auction part
+    sales = models.BooleanField(default=False)
+    last_price = models.PositiveIntegerField(default=0, null=True)
+    sale_end_time = models.DateTimeField(default=django.utils.timezone.now)
+    user_bet = models.ForeignKey(MyUser, on_delete=models.SET_NULL, related_name='auction_bet', null=True)
+    user_watch = models.ManyToManyField(MyUser,  related_name='auction_watch', null=True)
+
     def __str__(self):
         return f"{self.title} by {self.user}"
+
+    def is_user_watch(self, user_obj):
+        if self.user_watch.filter(id=user_obj.pk).exists():
+            return True
+        return False
 
     def set_value_from_form(self, request, form):
         image_link = self.preview_image
@@ -191,6 +205,13 @@ class SaleAds(models.Model):
             self.profile_image = image_link
         self.save()
         return self
+
+    @property
+    def get_last_hours(self):
+        time = datetime.datetime.now()
+        if self.sale_end_time > timezone.now():
+            hours = (time.day - self.sale_end_time.day) * 24 + time.hour - self.sale_end_time.hour
+            return str(hours) + " hours left"
 
     @property
     def is_used(self):

@@ -23,6 +23,7 @@ urlpatterns = [
     path('auth/', include('site_track_auth.urls')),
     path('account/', include('account.urls')),
     path('vehicle/', include('vehicle_ads.urls')),
+    path('auction/', include('auction.urls')),
     path('', include('site_track.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

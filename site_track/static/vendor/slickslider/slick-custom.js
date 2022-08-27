@@ -240,7 +240,7 @@ $('.product-single-slider').slick({
     fade: false,
     speed: 1000,
     centerMode: true,
-    centerPadding: '250px',
+    centerPadding: '90px',
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: '<i class="material-icons dandik">chevron_right</i>',

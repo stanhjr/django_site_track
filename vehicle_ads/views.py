@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
 from django.views.generic.edit import FormMixin
 
+from auction.forms import AuctionBetForm
 from email_sender.tasks import send__make_offer_mail
 from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventoryGrid, \
     SettingsHeaderInventorySingle
@@ -122,6 +123,8 @@ class InventorySingleDetailView(LoginRequiredMixin, FormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(InventorySingleDetailView, self).get_context_data(**kwargs)
+        context['is_user_watch'] = self.object.is_user_watch(self.request.user)
+        context['auction_bet_form'] = AuctionBetForm()
         context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderInventorySingle.objects.last()

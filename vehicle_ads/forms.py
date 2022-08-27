@@ -45,7 +45,7 @@ class VehicleInformationForm(forms.ModelForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
-        exclude = ('sale_created', 'user')
+        exclude = ('sale_created', 'user', 'user_bet', 'user_watch', 'sales', 'last_price')
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -80,7 +80,7 @@ class VehicleInformationForm(forms.ModelForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_FUEL_CHOICES)
 
-            elif field == "vehicle_year":
+            elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
             elif field in ["description", "any_know_problems_with_vehicle"]:
                 self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
@@ -98,7 +98,7 @@ class VehicleInformationUpdateForm(forms.ModelForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
-        exclude = ('sale_created', 'user')
+        exclude = ('sale_created', 'user', 'user_bet', 'user_watch', 'sales', 'last_price')
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -136,7 +136,7 @@ class VehicleInformationUpdateForm(forms.ModelForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_FUEL_CHOICES)
 
-            elif field == "vehicle_year":
+            elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
             elif field in ["description", "any_know_problems_with_vehicle"]:
                 self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
@@ -180,7 +180,3 @@ class SendEmailVendorForm(forms.ModelForm):
 
             else:
                 self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
-
-
-
-
