@@ -189,6 +189,12 @@ class SaleAds(models.Model):
     def __str__(self):
         return f"{self.title} by {self.user}"
 
+    @property
+    def time_auction_left(self):
+        if timezone.now() >= self.sale_end_time:
+            return True
+        return False
+
     def is_user_watch(self, user_obj):
         if self.user_watch.filter(id=user_obj.pk).exists():
             return True

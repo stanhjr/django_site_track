@@ -6,14 +6,27 @@ import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from celery import Celery
+from django.utils import timezone
+from django.conf import settings
 
-
+from email_sender.config import config
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_site_track.settings")
 app = Celery(
     "email_sender",
     broker="redis://localhost:6379/5",
 )
 
-app.conf.task_routes = {'app.email_sender.send_mail_contact_us': {'queue': 'contact_us'}}
+
+app.config_from_object(config)
+
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+
+@app.on_after_configure.connect
+def setup_periodic_tasks(sender, **kwargs):
+    # Calls test('hello') every 10 seconds.
+    sender.add_periodic_task(5.0, send_auction_win.s(), name='add every 1200')
+    # sender.add_periodic_task(10.00, send_mail_contact_us.s("dfdf@dfdf.cc", "subject", "text"))
 
 
 def generate_key():
@@ -32,6 +45,7 @@ def send_registration_link_to_email(code: str, email_to):
     How are you?
     This is your registration link:
     http://92.38.241.95/auth/account-activate/?code={code}"""
+
     # http://92.38.241.95/auth/account-activate/?code=365b2f4a3ec0117c4cf7f54fd826a84b0d84d872
 
     message = MIMEMultipart("alternative")
@@ -98,8 +112,8 @@ def send_reset_password_link_to_email(code: str, email_to):
 
 @app.task(queue='contact_us')
 def send_mail_contact_us(email_from, subject, text):
-    password = "xsxvxmubsrrzwyaa"
-    sender_email = "stahjrpower@yahoo.com"
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
     receiver_email = "stanhjrpower@gmail.com"
     text = f"""\
     email_from: {email_from}\n
@@ -114,7 +128,7 @@ def send_mail_contact_us(email_from, subject, text):
     try:
 
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.mail.yahoo.com", 465, context=context) as server:
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(
                 sender_email, receiver_email, message.as_string()
@@ -127,8 +141,8 @@ def send_mail_contact_us(email_from, subject, text):
 
 @app.task
 def send__make_offer_mail(email_from, email_to, price, phone_number, first_name, text):
-    password = "xsxvxmubsrrzwyaa"
-    sender_email = "stahjrpower@yahoo.com"
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
     receiver_email = email_to
     text = f"""\
         Congratulations,
@@ -148,7 +162,7 @@ def send__make_offer_mail(email_from, email_to, price, phone_number, first_name,
     try:
 
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.mail.yahoo.com", 465, context=context) as server:
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(
                 sender_email, receiver_email, message.as_string()
@@ -160,5 +174,14 @@ def send__make_offer_mail(email_from, email_to, price, phone_number, first_name,
 
 
 
-# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks worker --loglevel=INFO -Q contact_us,celery
+@app.task
+def send_auction_win():
+    from site_track.models import SaleAds
+    obj = SaleAds.objects.filter(sale_end_time__gte=timezone.now()).all()
+    print(obj)
+
+
+
+
+# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks beat --loglevel=INFO -Q contact_us,celery
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks flower --address=127.0.0.6 --port=5566 --basic_auth=stan:1

@@ -134,7 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -144,11 +143,9 @@ SESSION_COOKIE_AGE = 60 * 60 * 7
 SESSION_COOKIE_AGE_ADMIN = 60 * 60 * 48
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.mail.yahoo.com"
-EMAIL_HOST_USER = "stahjrpower@yahoo.com"
-EMAIL_HOST_PASSWORD = "xsxvxmubsrrzwyaa"
+EMAIL_HOST = "smtp.zoho.com"
+EMAIL_HOST_USER = "site_track@zohomail.com"
+EMAIL_HOST_PASSWORD = "Andrew-1994"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
-
-
