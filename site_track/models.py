@@ -23,7 +23,6 @@ class MyUser(AbstractUser):
     number_of_trucks_in_fleet = models.IntegerField(null=True)
     telephone_number_direct = models.CharField(max_length=30, null=True)
 
-
     subscription = models.BooleanField(default=False)
     subscribe_until_date = models.DateField(null=True)
     created_at = models.DateField(auto_now=True)
@@ -97,6 +96,16 @@ class MyUser(AbstractUser):
         return 0
 
 
+class CounterStrMixin:
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
 class ChoicesMixin:
     @classmethod
     def get_choices(cls):
@@ -144,6 +153,18 @@ class MakeTrack(models.Model, ChoicesMixin):
         return self.sale_ads.count()
 
 
+class ShouldInclude(models.Model, CounterStrMixin, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+
+class TypeOfTrailer(models.Model, CounterStrMixin, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+
+class SpringRide(models.Model, CounterStrMixin, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+
 class SaleAds(models.Model):
     class Meta:
         ordering = ('-created_at',)
@@ -188,12 +209,22 @@ class SaleAds(models.Model):
     vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
     vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
 
+    # Truck part
+    should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    length = models.PositiveIntegerField(default=1000, null=True)
+    width = models.PositiveIntegerField(default=1000, null=True)
+    air_ride = models.CharField(max_length=120, null=True)
+    capacity_of_trailer = models.CharField(max_length=120, null=True)
+    virgin_tires_or_recapped = models.CharField(max_length=120, null=True)
+
     # Auction part
     sales = models.BooleanField(default=False)
     last_price = models.PositiveIntegerField(default=0, null=True)
     sale_end_time = models.DateTimeField(default=django.utils.timezone.now)
     user_bet = models.ForeignKey(MyUser, on_delete=models.SET_NULL, related_name='auction_bet', null=True)
-    user_watch = models.ManyToManyField(MyUser,  related_name='auction_watch', null=True)
+    user_watch = models.ManyToManyField(MyUser, related_name='auction_watch', null=True)
     send_email_to_winner = models.BooleanField(default=False)
 
     def __str__(self):
@@ -319,7 +350,8 @@ class SingleModelMixin:
 
 class SettingsAuthBase(models.Model):
     title = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
-    text = models.TextField(default="Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officiaplaceat amet consectetur dicta dolorem quo")
+    text = models.TextField(
+        default="Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officiaplaceat amet consectetur dicta dolorem quo")
 
 
 class SettingsHeaderInventoryGrid(models.Model, IsNotSingleHeaderMixin):
@@ -388,6 +420,3 @@ class FakeReviewIndexHome(models.Model):
             return self.image.url
         else:
             return "/media/settings_images/02.jpg"
-
-
-
