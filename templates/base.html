@@ -157,7 +157,7 @@
                                 </a>
                             </li>
                             <li class="drop-item">
-                                <a href="{% url 'inventory-grid' 'track'%}" class="drop-link">
+                                <a href="{% url 'inventory-grid' 'truck'%}" class="drop-link">
                                     <i class="material-icons">remove</i>
                                     <span>inventory grid track</span>
                                 </a>
@@ -189,6 +189,12 @@
                                 <a href="{% url 'privacy' %}" class="drop-link">
                                     <i class="material-icons">remove</i>
                                     <span>privacy policy</span>
+                                </a>
+                            </li>
+                            <li class="drop-item">
+                                <a href="{% url 'faq' %}" class="drop-link">
+                                    <i class="material-icons">remove</i>
+                                    <span>faq</span>
                                 </a>
                             </li>
                         </ul>
@@ -256,11 +262,16 @@
                             <span class="nav-text">settings</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a href="{% url 'watch-list' %}" class="nav-link">
                             <i class="material-icons">apps</i>
                             <span class="nav-text">watch list</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'faq' %}" class="nav-link">
+                            <i class="material-icons">apps</i>
+                            <span class="nav-text">faq</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -399,6 +410,7 @@
                                 <li><a href="{% url 'create-sale-ads' %}" id="create-ads">create ads</a></li>
                                 <li><a href="{% url 'user-posted-sale-ads' %}" id="posted-ads">posted ads</a></li>
                                 <li><a href="{% url 'watch-list' %}" id="watch-list">watch list</a></li>
+                                <li><a href="{% url 'faq' %}" id="watch-list">faq</a></li>
 {#                                <li><a href="compare.html">compares</a></li>#}
 {#                                <li><a href="review.html">reviews</a></li>#}
 {#                                <li><a href="notify.html">notify</a></li>#}

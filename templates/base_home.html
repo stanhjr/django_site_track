@@ -190,6 +190,12 @@
                                     <span>privacy policy</span>
                                 </a>
                             </li>
+                            <li class="drop-item">
+                                <a href="{% url 'faq' %}" class="drop-link">
+                                    <i class="material-icons">remove</i>
+                                    <span>faq</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -253,6 +259,12 @@
                         <a href="{% url 'account-settings' %}" class="nav-link">
                             <i class="material-icons">settings</i>
                             <span class="nav-text">settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'watch-list' %}" class="nav-link">
+                            <i class="material-icons">settings</i>
+                            <span class="nav-text">watch-list</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -361,13 +373,22 @@
                                 <span><small>contact number</small>  934 7273 2392</span>
                             </li> -->
                         </ul>
-                        <a href="{% url 'catalog' %}" class="btn btn-inline">
+                        <a href="{% url 'inventory-grid' 'truck' %}" class="btn btn-inline">
+
                             <!-- <i class="material-icons">visibility</i> -->
-                            <span>TRUCKS FOR SALE</span>
+                            <span>Buy trucks</span>
                         </a>
                         <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
                             <!-- <i class="material-icons">visibility</i> -->
-                            <span>sell my truck</span>
+                            <span>Sell Trucks</span>
+                        </a>
+                        <a href="{% url 'inventory-grid' 'trailer' %}" class="btn btn-inline">
+                            <!-- <i class="material-icons">visibility</i> -->
+                            <span>Buy trailers</span>
+                        </a>
+                        <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
+                            <!-- <i class="material-icons">visibility</i> -->
+                            <span>Sell Trailers</span>
                         </a>
                     </div>
                 </div>
@@ -378,7 +399,7 @@
                 <div class="container">
                     <div class="banner-content">
                         <h1>Welcome to Buy My Fleet</h1>
-                        <p>>An Online Auction for your used Trucks and Trailers es</p>
+                        <p>An Online Auction for your used Trucks and Trailers</p>
                         <ul>
                             <li>
                                 <i class="material-icons">email</i>
@@ -391,11 +412,19 @@
                         </ul>
                         <a href="{% url 'catalog' %}" class="btn btn-inline">
                             <!-- <i class="material-icons">visibility</i> -->
-                            <span>TRUCKS FOR SALE</span>
+                            <span>Buy trucks</span>
                         </a>
                         <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
                             <!-- <i class="material-icons">visibility</i> -->
-                            <span>sell my truck</span>
+                            <span>Sell Trucks</span>
+                        </a>
+                        <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
+                            <!-- <i class="material-icons">visibility</i> -->
+                            <span>Buy trailers</span>
+                        </a>
+                        <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
+                            <!-- <i class="material-icons">visibility</i> -->
+                            <span>Sell Trailers</span>
                         </a>
                     </div>
                 </div>
@@ -406,7 +435,7 @@
                 <div class="container">
                     <div class="banner-content">
                         <h1>Welcome to Buy My Fleet</h1>
-                        <p>>An Online Auction for your used Trucks and Trailers </p>
+                        <p>An Online Auction for your used Trucks and Trailers</p>
                         <ul>
                             <li>
                                 <i class="material-icons">email</i>
@@ -419,11 +448,19 @@
                         </ul>
                         <a href="{% url 'catalog' %}" class="btn btn-inline">
                             <!-- <i class="material-icons">visibility</i> -->
-                            <span>TRUCKS FOR SALE</span>
+                            <span>Buy trucks</span>
                         </a>
                         <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
                             <!-- <i class="material-icons">visibility</i> -->
-                            <span>sell my truck</span>
+                            <span>Sell Trucks</span>
+                        </a>
+                        <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
+                            <!-- <i class="material-icons">visibility</i> -->
+                            <span>Buy trailers</span>
+                        </a>
+                        <a href="{% url 'create-sale-ads' %}" class="btn btn-inline">
+                            <!-- <i class="material-icons">visibility</i> -->
+                            <span>Sell Trailers</span>
                         </a>
                     </div>
                 </div>
