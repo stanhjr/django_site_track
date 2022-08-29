@@ -10,12 +10,12 @@ from django.utils import timezone
 from django.conf import settings
 
 from email_sender.config import config
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_site_track.settings")
 app = Celery(
     "email_sender",
     broker="redis://localhost:6379/5",
 )
-
 
 app.config_from_object(config)
 
@@ -35,9 +35,8 @@ def generate_key():
 
 @app.task
 def send_registration_link_to_email(code: str, email_to):
-
-    password = "xsxvxmubsrrzwyaa"
-    sender_email = "stahjrpower2@yahoo.com"
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
 
     receiver_email = email_to
     text = f"""\
@@ -58,7 +57,7 @@ def send_registration_link_to_email(code: str, email_to):
     try:
 
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.mail.yahoo.com", 465, context=context) as server:
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(
                 sender_email, receiver_email, message.as_string()
@@ -71,9 +70,8 @@ def send_registration_link_to_email(code: str, email_to):
 
 @app.task
 def send_reset_password_link_to_email(code: str, email_to):
-
-    password = "xsxvxmubsrrzwyaa"
-    sender_email = "stahjrpower@yahoo.com"
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
 
     receiver_email = email_to
     text = f"""\
@@ -99,7 +97,7 @@ def send_reset_password_link_to_email(code: str, email_to):
     try:
 
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.mail.yahoo.com", 465, context=context) as server:
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(
                 sender_email, receiver_email, message.as_string()
@@ -173,15 +171,13 @@ def send__make_offer_mail(email_from, email_to, price, phone_number, first_name,
         print("Something went wrong….", ex)
 
 
-
 @app.task
 def send_auction_win():
     from site_track.models import SaleAds
-    obj = SaleAds.objects.filter(sale_end_time__gte=timezone.now()).all()
-    print(obj)
-
-
-
+    objects = SaleAds.objects.filter(sale_end_time__gte=timezone.now(), send_email_to_winner=False).all()
+    for sale in objects:
+        # TODO send email if ok send_email_to_winner=True
+        print(sale)
 
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks beat --loglevel=INFO -Q contact_us,celery
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks flower --address=127.0.0.6 --port=5566 --basic_auth=stan:1

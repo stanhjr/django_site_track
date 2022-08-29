@@ -10,7 +10,7 @@ from django.views.generic import FormView, ListView, TemplateView
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
-    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack, FaqHeader
 from email_sender.tasks import send_mail_contact_us
 
 
@@ -33,6 +33,29 @@ class ContactView(LoginRequiredMixin, FormView):
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderContact.objects.last()
         context['title'] = 'contacts'
+        return context
+
+
+class FaqView(LoginRequiredMixin, TemplateView):
+    template_name = 'faq.html'
+    success_url = '/'
+
+    # form_class = ContactForm
+
+    def handle_no_permission(self):
+        return redirect('login')
+
+    # def form_valid(self, form):
+    #     send_mail_contact_us.delay(email_from=form.data.get("email"),
+    #                                subject=form.data.get("subject"),
+    #                                text=form.data.get("text"))
+    #     return super().form_valid(form=form)
+
+    def get_context_data(self, **kwargs):
+        context = super(FaqView, self).get_context_data(**kwargs)
+        context['footer'] = SettingsFooter.objects.last()
+        context['header'] = FaqHeader.objects.last()
+        context['title'] = 'faq'
         return context
 
 

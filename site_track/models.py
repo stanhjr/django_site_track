@@ -185,6 +185,7 @@ class SaleAds(models.Model):
     sale_end_time = models.DateTimeField(default=django.utils.timezone.now)
     user_bet = models.ForeignKey(MyUser, on_delete=models.SET_NULL, related_name='auction_bet', null=True)
     user_watch = models.ManyToManyField(MyUser,  related_name='auction_watch', null=True)
+    send_email_to_winner = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} by {self.user}"
@@ -275,8 +276,8 @@ class SettingsFooter(models.Model):
     linkedin_url = models.URLField(null=True, default="https://www.linkedin.com/")
     whatsapp_phone = models.CharField(null=True, max_length=60, default="")
     youtube_url = models.URLField(null=True, default="https://www.youtube.com/")
-    email_1 = models.EmailField(null=True, default="info@example.com")
-    email_2 = models.EmailField(null=True, default="carrer@example.com")
+    email_1 = models.EmailField(null=True, default="info@bymyfleet.com")
+    email_2 = models.EmailField(null=True, default="info@bymyfleet.com")
     phone_number_1 = models.CharField(null=True, max_length=120, default="+91 987-654-3210")
     phone_number_2 = models.CharField(null=True, max_length=120, default="+91 987-654-5466")
     address_top = models.CharField(null=True, max_length=120, default="1Hd- 50, 010 Avenue")
@@ -289,7 +290,7 @@ class SettingsFooter(models.Model):
 class SettingsHeaderHome(models.Model):
     header_title = models.CharField(null=True, max_length=120, default="Used Equipment or Sale")
     header_text = models.CharField(null=True, max_length=500,
-                                   default="Browse through thousands of affordable alternatives to new equipment. View our detailed inspection reports and buy with confidence")
+                                   default="An Online Auction for your used Trucks and Trailers")
     contact_email = models.EmailField(null=True, default="info@example.com")
     contact_number = models.CharField(null=True, max_length=120, default="+91 987-654-3210")
 
@@ -320,6 +321,11 @@ class SettingsHeaderInventoryGrid(models.Model, IsNotSingleHeaderMixin):
 class SettingsHeaderContact(models.Model, IsNotSingleHeaderMixin):
     inventory_title = models.TextField(default="contact us")
     inventory_link_name = models.TextField(default="Contact")
+
+
+class FaqHeader(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="faq")
+    inventory_link_name = models.TextField(default="Faq")
 
 
 class SettingsHeaderInventoryCatalog(models.Model, IsNotSingleHeaderMixin):

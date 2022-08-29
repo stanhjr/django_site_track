@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
 from site_track.models import FakeReviewIndexHome, SettingsHeaderInventoryGrid, SettingsAuthBase, \
     SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle, SettingsFooter, SettingsIndexHome, \
-    SettingsHeaderAboutUs, SettingsHeaderPrivacy, SettingsHeaderContact, CategoriesTrack, MakeTrack, ModelTrack
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy, SettingsHeaderContact, CategoriesTrack, MakeTrack, ModelTrack, \
+    FaqHeader
 
 
 class Command(BaseCommand):
@@ -20,7 +21,6 @@ class Command(BaseCommand):
                                                review_author="tahmina bonny",
                                                review_author_red_text="seller review<",
                                                image="settings_images/02.jpg")
-
 
         if not SettingsHeaderInventoryGrid.objects.last():
             SettingsHeaderInventoryGrid.objects.create()
@@ -48,6 +48,9 @@ class Command(BaseCommand):
 
         if not SettingsHeaderContact.objects.last():
             SettingsHeaderContact.objects.create()
+
+        if not FaqHeader.objects.last():
+            FaqHeader.objects.create()
 
         if not CategoriesTrack.objects.last():
             CategoriesTrack.objects.create(name="Track", image="category_images/jeep.png")
