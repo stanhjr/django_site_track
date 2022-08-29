@@ -42,6 +42,9 @@ class MyUser(AbstractUser):
     whatsapp = models.CharField(max_length=60, null=True)
     pinterest = models.CharField(max_length=60, null=True)
 
+    def get_contact_data(self):
+        return f"email: {self.email}\nphone_number: {self.phone_number}\nfull_name: {self.full_name}"
+
     def add_subscription(self, days_number: int):
         if not self.subscribe_until_date:
             self.subscription = timezone.now() + timezone.timedelta(days=days_number)

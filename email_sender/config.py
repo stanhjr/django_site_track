@@ -19,6 +19,9 @@ config = {
         'email_sender.tasks.send_registration_link_to_email': {
             'queue': 'scheduled_emails'
         },
+        'email_sender.tasks.send_win_auction_mail': {
+                    'queue': 'scheduled_emails'
+                },
 
     },
     'accept_content': ['json', 'application/x-python-serialize'],
