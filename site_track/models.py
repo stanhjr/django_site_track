@@ -18,6 +18,12 @@ class MyUser(AbstractUser):
     money_spent = models.PositiveIntegerField(default=0)
     full_name = models.CharField(max_length=120, null=True)
     company = models.CharField(max_length=120, null=True)
+    position_in_company = models.CharField(max_length=120, null=True)
+    address_of_company = models.CharField(max_length=120, null=True)
+    number_of_trucks_in_fleet = models.IntegerField(null=True)
+    telephone_number_direct = models.CharField(max_length=30, null=True)
+
+
     subscription = models.BooleanField(default=False)
     subscribe_until_date = models.DateField(null=True)
     created_at = models.DateField(auto_now=True)

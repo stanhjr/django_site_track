@@ -78,9 +78,47 @@ class UserSignUpForm(forms.ModelForm):
         }
     ))
 
+    company = forms.CharField(label="email", widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'enter company name'
+        }
+    ))
+    position_in_company = forms.CharField(label="email", widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'enter position in company'
+        }
+    ))
+    address_of_company = forms.CharField(label="email", widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'enter address in company'
+        }
+    ))
+    number_of_trucks_in_fleet = forms.CharField(label="email", widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'enter number of trucks in fleet'
+        }
+    ))
+    telephone_number_direct = forms.CharField(label="email", widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'enter telephone number direct'
+        }
+    ))
+    phone_number = forms.CharField(label="email", widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'enter phone number'
+        }
+    ))
+
     class Meta:
         model = MyUser
-        fields = ("full_name", "email")
+        fields = ("full_name", "email", "company", "position_in_company",
+                  "address_of_company", "number_of_trucks_in_fleet", "telephone_number_direct", "phone_number")
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
