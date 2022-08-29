@@ -10,6 +10,15 @@ config = {
         'email_sender.tasks.send_mail_contact_us': {
             'queue': 'scheduled_emails'
         },
+        'email_sender.tasks.send_reset_password_link_to_email': {
+            'queue': 'scheduled_emails'
+        },
+        'email_sender.tasks.send__make_offer_mail': {
+            'queue': 'scheduled_emails'
+        },
+        'email_sender.tasks.send_registration_link_to_email': {
+            'queue': 'scheduled_emails'
+        },
 
     },
     'accept_content': ['json', 'application/x-python-serialize'],
