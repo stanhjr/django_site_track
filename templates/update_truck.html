@@ -1,0 +1,555 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+    <!--=====================================
+              BREADCRUMB PART START
+    =======================================-->
+    <section class="mc-breadcrumb">
+        <div class="container">
+            <div class="mc-breadcrumb-group">
+                <h2 class="mc-breadcrumb-title">update your truck</h2>
+                <ul class="mc-breadcrumb-list">
+                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">home</a></li>
+                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">dashboard</a></li>
+                    <li class="mc-breadcrumb-item">update truck</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+              BREADCRUMB PART END
+    =======================================-->
+
+
+    <!--=====================================
+                CREATE ADS PART START
+    =======================================-->
+    <section class="section-gap-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-xl-4">
+                    <div class="common-card">
+                        <div class="common-card-header">
+                            <h5 class="common-card-header-title">ad complete navs</h5>
+                        </div>
+                        <ul class="create-nav-list">
+                            <li class="active"><i class="material-icons">drive_eta</i><span>Truck information</span></li>
+                            <li><i class="material-icons">fact_check</i><span>tire percentage</span></li>
+                            <li><i class="material-icons">fact_check</i><span>auction settings</span></li>
+                            <li><i class="material-icons">perm_media</i><span>add photos & video</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-xl-8">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="create-ads-form">
+                            <!-- Vehicle Information -->
+                            <div class="common-card active">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">Truck information</h4>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Model <span>*</span></label>
+                                            {{ form.truck_model }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Make<span>*</span></label>
+                                            {{ form.truck_make }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                         <div class="form-group">
+                                            <label class="form-label">Type of 5 trailer <span>*</span></label>
+                                            {{ form.type_of_5_trailer }}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Heading<span>*</span></label>
+                                             {{ form.title }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Should include<span>*</span></label>
+                                            {{ form.should_include }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Spring ride <span>*</span></label>
+                                            {{ form.spring_ride }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Vehicle condition <span>*</span></label>
+                                            {{ form.vehicle_condition }}
+                                        </div>
+                                    </div>
+{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">#}
+{#                                        <div class="form-group">#}
+{#                                            <label class="form-label">Tire size <span>*</span></label>#}
+{#                                            {{ form.tire_size }}#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Length<span>*</span></label>
+                                            {{ form.length }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">width <span>*</span></label>
+                                            {{ form.width }}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">year <span>*</span></label>
+                                            {{ form.vehicle_year }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Air ride <span>*</span></label>
+                                            {{ form.air_ride }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">price amount <span>*</span></label>
+                                            {{ form.vehicle_price_amount }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Number of Aluminum wheels <span>*</span></label>
+                                            {{ form.number_of_aluminum_wheels }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Capacity of trailer <span>*</span></label>
+                                             {{ form.capacity_of_trailer}}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+
+                                        <div class="form-group">
+                                            <label class="form-label">Virgin tires or recapped <span>*</span></label>
+                                             {{ form.virgin_tires_or_recapped }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label">Any know Problems with vehicle<span>*</span></label>
+                                            {{ form.any_know_problems_with_vehicle }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label">description <span>*</span></label>
+                                            {{ form.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Tire percentage -->
+
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">Tire percentage</h4>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Front right <span>*</span></label>
+                                             {{ form.tire_percent_front_right }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Front left <span>*</span></label>
+                                             {{ form.tire_percent_front_left }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Rear right <span>*</span></label>
+                                             {{ form.tire_percent_rear_right }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Rear left <span>*</span></label>
+                                             {{ form.tire_percent_rear_left }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Rear drive tires <span>*</span></label>
+                                             {{ form.tire_percent_rear_drive_tires }}
+                                        </div>
+                                    </div>
+
+                            </div>
+
+                              <!-- Auction settings -->
+
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">Auction settings</h4>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Auction end date <span>*</span></label>
+                                             {{ form.sale_end_time }}
+                                        </div>
+
+                                    </div>
+
+                            </div>
+
+                            <!-- Vehicle Media -->
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">vehicle media</h4>
+                                </div>
+                                <div class="common-card-body">
+                                    <div class="create-media">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Preview Image <span>*</span></label>
+                                                    <div class="file-form">
+                                                        {{ form.preview_image }}
+                                                        <label for="preview" class="file-icon material-icons">file_present</label>
+                                                        <button type="button" class="file-cancel material-icons">cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">gallery images file <span>*</span></label>
+                                                    <div class="file-form" id="file-form-gallery">
+                                                        <input class="file-input" type="file" name="gallery-image" multiple>
+                                                        <label for="gallery" class="file-icon material-icons">file_present</label>
+                                                        <button type="button" class="file-cancel material-icons">cancel</button>
+                                                    </div>
+
+                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="checkAgree">
+                                                <label class="form-check-label" for="checkAgree">I agree to the <a href="#">terms of use</a> and <a href="#">privacy policy</a>.</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                                            <button type="submit" class="form-btn mb-2">publish</button>
+{#                                            <small>You will receive an invoice and a confirmation will be sent to your email</small>#}
+                                        </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Vehicle Address -->
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">vendor address</h4>
+                                </div>
+                                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">country <span>*</span></label>
+                                            {{ form.country }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">city <span>*</span></label>
+                                            {{ form.city }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">state <span>*</span></label>
+                                            {{ form.state }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">post code <span>*</span></label>
+                                            {{ form.post_code }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">ward no <span>*</span></label>
+                                            {{ form.ward_no }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">road no</label>
+                                            {{ form.road_no }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">shop no</label>
+                                            {{ form.shop_no }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">phone <span>*</span></label>
+                                            {{ form.phone_number }}
+{#                                            <input type="text" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">email <span>*</span></label>
+                                             {{ form.email }}
+{#                                            <input type="email" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">website <span>*</span></label>
+                                             {{ form.web_site }}
+{#                                            <input type="url" class="form-control">#}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label">Others</label>
+                                             {{ form.others }}
+{#                                            <textarea class="form-control"></textarea>#}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Vehicle Faqs -->
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">vehicle faqs</h4>
+                                </div>
+                                <div class="create-edit-faqs">
+                                    <ul class="accordion-list">
+                                        <li class="accordion-item">
+                                            <div class="accordion-que">
+                                                <h5>#1 Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h5>
+                                                <button type="button" class="material-icons">zoom_out_map</button>
+                                            </div>
+                                            <div class="accordion-ans">
+                                                <div class="form-group"><input type="text" class="form-control" placeholder="add a new question"></div>
+                                                <div class="form-group"><textarea class="form-control" placeholder="add a new answer"></textarea></div>
+                                                <div class="d-flex justify-content-end gap-3">
+                                                    <button type="submit" class="btn btn-danger">delete faq</button>
+                                                    <button type="submit" class="btn btn-inline">update faq</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="accordion-item">
+                                            <div class="accordion-que">
+                                                <h5>#2 Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h5>
+                                                <button type="button" class="material-icons">zoom_out_map</button>
+                                            </div>
+                                            <div class="accordion-ans">
+                                                <div class="form-group"><input type="text" class="form-control" placeholder="add a new question"></div>
+                                                <div class="form-group"><textarea class="form-control" placeholder="add a new answer"></textarea></div>
+                                                <div class="d-flex justify-content-end gap-3">
+                                                    <button type="submit" class="btn btn-danger">delete faq</button>
+                                                    <button type="submit" class="btn btn-inline">update faq</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="accordion-item">
+                                            <div class="accordion-que">
+                                                <h5>#3 Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h5>
+                                                <button type="button" class="material-icons">zoom_out_map</button>
+                                            </div>
+                                            <div class="accordion-ans">
+                                                <div class="form-group"><input type="text" class="form-control" placeholder="add a new question"></div>
+                                                <div class="form-group"><textarea class="form-control" placeholder="add a new answer"></textarea></div>
+                                                <div class="d-flex justify-content-end gap-3">
+                                                    <button type="submit" class="btn btn-danger">delete faq</button>
+                                                    <button type="submit" class="btn btn-inline">update faq</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="create-new-faqs">
+                                    <div class="form-group">
+                                        <label class="form-label">add a new question <span>*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">add a new answer <span>*</span></label>
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                    <button type="submit" class="form-btn">add faqs</button>
+                                </div>
+                            </div>
+
+                            <!-- Vehicle price -->
+                            <div class="common-card">
+                                <div class="common-card-header">
+                                    <h4 class="common-card-header-title">pricing plan & publish</h4>
+                                </div>
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-2 row-cols-xl-3">
+                                    <div class="col">
+                                        <div class="create-price-card">
+                                            <i class="material-icons">check_circle</i>
+                                            <h5>starter plan</h5>
+                                            <h6>$35/-</h6>
+                                            <a href="pricing-plan.html">view details</a>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="create-price-card">
+                                            <i class="material-icons">check_circle</i>
+                                            <h5>business plan</h5>
+                                            <h6>$49/-</h6>
+                                            <a href="pricing-plan.html">view details</a>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="create-price-card">
+                                            <i class="material-icons">check_circle</i>
+                                            <h5>premium plan</h5>
+                                            <h6>$68/-</h6>
+                                            <a href="pricing-plan.html">view details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-billing">
+                                    <h5>billing information</h5>
+                                    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="checkAddress">
+                                                <label class="form-check-label" for="checkAddress">Your vendor or contact address in the same place?</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">first name <span>*</span></label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">last name <span>*</span></label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">email address <span>*</span></label>
+                                                <input type="email" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">phone number <span>*</span></label>
+                                                <input type="tel" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">country <span>*</span></label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">city <span>*</span></label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">zip <span>*</span></label>
+                                                <input type="tel" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="form-label">state <span>*</span></label>
+                                                <select class="form-select">
+                                                    <option selected>---</option>
+                                                    <option value="1">jalkuri</option>
+                                                    <option value="2">delpara</option>
+                                                    <option value="3">fatullah</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-6">
+                                            <div class="create-pay-card">
+                                                <i class="material-icons">check_circle</i>
+                                                <img src="images/cards.png" alt="cards">
+                                                <small>Pay with card</small>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-6">
+                                            <div class="create-pay-card">
+                                                <i class="material-icons">check_circle</i>
+                                                <img src="images/paypal.png" alt="paypal">
+                                                <small>Pay with paypal</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="checkAgree">
+                                                <label class="form-check-label" for="checkAgree">I agree to the <a href="#">terms of use</a> and <a href="#">privacy policy</a>.</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                                            <button type="submit" class="form-btn mb-2">pay & publish</button>
+                                            <small>You will receive an invoice and a confirmation will be sent to your email</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                CRAETE ADS PART END
+    =======================================-->
+
+{% endblock %}

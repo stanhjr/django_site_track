@@ -10,7 +10,7 @@ from django.views.generic import FormView, ListView, TemplateView
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
-    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack, FaqHeader
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack, FaqHeader, TruckModel, TruckMake
 from email_sender.tasks import send_mail_contact_us
 
 
@@ -99,6 +99,7 @@ class InventoryGridView(LoginRequiredMixin, ListView):
         order_by = self.request.GET.get("order_by")
         search_title = self.request.GET.get("header-search")
         category = self.model.objects.filter(name__icontains=self.kwargs.get("category")).first()
+
         if category:
             sale_ads = category.sale_ads
         else:
@@ -115,9 +116,13 @@ class InventoryGridView(LoginRequiredMixin, ListView):
             price_max = None
         if search_title:
             sale_ads = sale_ads.filter(title__exact=search_title)
-        if model_list:
+        if model_list and category.name == 'Truck':
+            sale_ads = sale_ads.filter(truck_model__id__in=model_list)
+        if model_list and category.name == 'Trailer':
             sale_ads = sale_ads.filter(vehicle_model__id__in=model_list)
-        if make_list:
+        if make_list and category.name == 'Truck':
+            sale_ads = sale_ads.filter(truck_make__id__in=make_list)
+        if make_list and category.name == 'Trailer':
             sale_ads = sale_ads.filter(vehicle_make__id__in=make_list)
         if price_max:
             sale_ads = sale_ads.filter(vehicle_price_amount__lte=price_max)
@@ -132,12 +137,18 @@ class InventoryGridView(LoginRequiredMixin, ListView):
         return sale_ads.all()
 
     def get_context_data(self, *args, object_list=None, **kwargs):
+        category = self.model.objects.filter(name__icontains=self.kwargs.get("category")).first()
         context = super(InventoryGridView, self).get_context_data(**kwargs)
         context['header'] = SettingsHeaderInventoryGrid.objects.last()
         context['footer'] = SettingsFooter.objects.last()
         context['categories'] = CategoriesTrack.objects.all()
-        context['models'] = MakeTrack.objects.all()
-        context['makes'] = MakeTrack.objects.all()
+        if category.name == 'Truck':
+            context['models'] = TruckModel.objects.all()
+            context['makes'] = TruckMake.objects.all()
+        else:
+            context['models'] = ModelTrack.objects.all()
+            context['makes'] = MakeTrack.objects.all()
+
         context['title'] = 'inventory-grid'
         return context
 

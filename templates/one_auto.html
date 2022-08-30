@@ -20,10 +20,18 @@
                         <span>{{ obj.get_photo_in_gallery_count }}</span>
                     </div>
                 {% if obj.user == user or user.is_superuser %}
+
                     <div class="posted-widget">
+                    {% if obj.vehicle_category.name == 'Truck' %}
+                        <form action="{% url 'update-truck' obj.id %}">
+                            <input class="material-icons edit" title="edit" type="submit" value="edit">
+                        </form>
+                    {% else %}
                         <form action="{% url 'user-posted-update' obj.id %}">
                             <input class="material-icons edit" title="edit" type="submit" value="edit">
                         </form>
+
+                    {% endif %}
                         <form action="{% url 'user-posted-delete' obj.id %}" method="post">
                             {% csrf_token %}
                             <input class="material-icons delete" title="Delete" type="submit" value="delete">
@@ -56,8 +64,14 @@
 {#                        </div>#}
                     </div>
                     <div class="product-grid-meta">
+
                         <div class="product-vehicle-make">
-                            <h4><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                            {% if obj.vehicle_category.name == 'Truck' %}
+                                <h4><a href="{% url 'truck-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                            {% else %}
+                                <h4><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                            {% endif %}
+
                             {{ obj.vehicle_make }}
                         </div>
                         <ul>
@@ -71,12 +85,14 @@
                         <li><i class="material-icons">local_gas_station</i><span>{{ obj.vehicle_fuel }}</span></li>
                     </ul>
                     <div class="product-grid-btn">
-                        <a href="{% url 'posted-detail' obj.id %}"><i
+                        {% if obj.vehicle_category.name == 'Truck' %}
+                            <a href="{% url 'truck-detail' obj.id %}"><i
                                 class="material-icons">visibility</i><span>details</span></a>
-{#                        <a href="{{ obj.video_url }}" class="venobox" data-autoplay="true" data-vbtype="video">#}
-{#                            <i class="material-icons">videocam</i>#}
-{#                            <span>video</span>#}
-{#                        </a>#}
+                        {% else %}
+                            <a href="{% url 'posted-detail' obj.id %}"><i
+                                class="material-icons">visibility</i><span>details</span></a>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>

@@ -408,7 +408,7 @@
                                 <li><a href="{% url 'home' %}" id="dashboard">dashboard</a></li>
                                 <li><a href="{% url 'account-profile' user.id %}" id="profile">profile</a></li>
                                 <li><a href="{% url 'create-sale-ads' %}" id="create-ads">sale trailer</a></li>
-                                <li><a href="{% url 'create-sale-ads' %}" id="create-ads">sale truck</a></li>
+                                <li><a href="{% url 'create-truck' %}" id="create-truck">sale truck</a></li>
                                 <li><a href="{% url 'user-posted-sale-ads' %}" id="posted-ads">sales</a></li>
                                 <li><a href="{% url 'watch-list' %}" id="watch-list">watch</a></li>
                                 <li><a href="{% url 'faq' %}" id="watch-list">faq</a></li>
@@ -476,6 +476,8 @@
      document.getElementById("profile").classList.add("active")
 {% elif watch_list %}
      document.getElementById("watch-list").classList.add("active")
+ {% elif active_create_truck %}
+     document.getElementById("create-truck").classList.add("active")
 {% else %}
     document.getElementById("dashboard").classList.add("active")
 {% endif %}

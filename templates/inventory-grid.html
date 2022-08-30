@@ -22,10 +22,12 @@
                             </button>
                         </div>
                     </div>
+
                     <div class="product-widget">
                         <h6 class="product-widget-title">Filter by Model</h6>
                             <input class="product-widget-search" type="text" placeholder="Search..." id="check-model-filter">
                             <ul class="product-widget-list product-widget-scroll">
+
                                 {% for model in models %}
                                 <li id="cat{{ model.id }}">
                                     <div class="product-widget-content">
@@ -35,6 +37,7 @@
                                     <span class="product-widget-number">({{ model.get_count }})</span>
                                 </li>
                                 {% endfor %}
+
                             </ul>
                             <button class="product-widget-btn" id="clear-model-filter" type="button">
                                 <i class="material-icons">delete</i>

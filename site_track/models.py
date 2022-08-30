@@ -153,16 +153,59 @@ class MakeTrack(models.Model, ChoicesMixin):
         return self.sale_ads.count()
 
 
-class ShouldInclude(models.Model, CounterStrMixin, ChoicesMixin):
+class ShouldInclude(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
 
+    def __str__(self):
+        return self.name
 
-class TypeOfTrailer(models.Model, CounterStrMixin, ChoicesMixin):
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class TypeOfTrailer(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
 
+    def __str__(self):
+        return self.name
 
-class SpringRide(models.Model, CounterStrMixin, ChoicesMixin):
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class SpringRide(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class TruckModel(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class TruckMake(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
 
 
 class SaleAds(models.Model):
@@ -213,6 +256,8 @@ class SaleAds(models.Model):
     should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
     type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
     spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    truck_make = models.ForeignKey(TruckMake, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    truck_model = models.ForeignKey(TruckModel, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
     length = models.PositiveIntegerField(default=1000, null=True)
     width = models.PositiveIntegerField(default=1000, null=True)
     air_ride = models.CharField(max_length=120, null=True)
@@ -258,7 +303,7 @@ class SaleAds(models.Model):
         time = datetime.datetime.now()
         if self.sale_end_time > timezone.now():
             hours = (time.day - self.sale_end_time.day) * 24 + time.hour - self.sale_end_time.hour
-            return str(hours) + " hours left"
+            return str(hours) + " hours"
 
     @property
     def is_used(self):

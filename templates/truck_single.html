@@ -1,0 +1,311 @@
+{% extends 'base_inventory.html' %}
+{% load static %}
+{% load embed_video_tags %}
+{% block content %}
+
+    <!--=====================================
+              MODAL OFFER PART START
+    =======================================-->
+    <div class="modal fade" id="modalOffer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Make an offer & price</h5>
+                    <button type="button" class="material-icons" data-bs-dismiss="modal">close</button>
+                </div>
+
+                <div class="modal-product-single-form">
+                    {% if user.get_subscrible or user.is_superuser %}
+                    <form class="container" method="post">
+                        {% csrf_token %}
+                        <input type='hidden' name='vendor_email' value='{{ saleads.user.email }}'>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="form-label">Enter your name</label>
+                                    {{ send_vendor_mail_form.first_name }}
+{#                                    <input type="text" class="form-control">#}
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="form-label">Enter your email </label>
+                                    {{ send_vendor_mail_form.email }}
+{#                                    <input type="email" class="form-control">#}
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="form-label">Enter your number</label>
+                                    {{ send_vendor_mail_form.phone_number }}
+{#                                    <input type="tel" class="form-control">#}
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    <label class="form-label">Enter your offer price</label>
+                                    {{ send_vendor_mail_form.enter_your_offer_price }}
+{#                                    <input type="number" class="form-control">#}
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="form-group">
+                                    <label class="form-label">Describe your message</label>
+                                    {{ send_vendor_mail_form.describe_your_message }}
+{#                                    <textarea class="form-control"></textarea>#}
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <button class="form-btn" type="submit">send to vendor</button>
+                            </div>
+                        </div>
+                    </form>
+                    {% else %}
+                    {% include 'buy_subscrible.html' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=====================================
+              MODAL OFFER PART END
+    =======================================-->
+
+
+    <!--=====================================
+            MODAL CONTACTS PART START
+    =======================================-->
+    <div class="modal fade" id="modalContacts">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vendor contacts</h5>
+                    <button type="button" class="material-icons" data-bs-dismiss="modal">close</button>
+                </div>
+                {% if user.get_subscription or user.is_superuser %}
+                    <div class="contacts-content">
+                        <div class="contacts-row">
+                            <p>Country:</p>
+                            <p>{{ saleads.user.country }}</p>
+                        </div>
+                        <div class="contacts-row">
+                            <p>State:</p>
+                            <p>{{ saleads.user.state }}</p>
+                        </div>
+                        <div class="contacts-row">
+                            <p>Email:</p>
+                            <a href="mailto:{{ saleads.user.email }}">{{ saleads.user.email }}</a>
+                        </div>
+                        <div class="contacts-row">
+                            <p>Phone:</p>
+                            <a href="tel:{{ saleads.user.phone_number }}">{{ saleads.user.phone_number }}</a>
+                        </div>
+                        <div class="contacts-row">
+                            <p>First name:</p>
+                            <p>{{ saleads.user.first_name }}</p>
+                        </div>
+                        <div class="contacts-row">
+                            <p>Last name:</p>
+                            <p>{{ saleads.user.last_name }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    {% include 'buy_subscrible.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--=====================================
+              MODAL CONTACTS PART END
+    =======================================-->
+
+
+    <!--=====================================
+                INVENTORY SINGLE START
+    =======================================-->
+    <section class="section-gap-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7">
+                    <div class="product-single-meta-group">
+                        <span class="product-single-meta-price">${{ saleads.vehicle_price_amount }}</span>
+                        <h2 class="product-single-meta-title">{{ saleads.title }}</h2>
+                        <ul class="product-single-meta-list">
+                            <li><i class="material-icons">account_circle</i><a href="{% url 'account-profile' saleads.user.id %}">by {{ saleads.user.full_name }}</a></li>
+                            <li><i class="material-icons">watch_later</i><span>{{ saleads.get_date_ago }}</span></li>
+{#                            <li><i class="material-icons">stars</i><button type="button" data-bs-toggle="modal" data-bs-target="#modalReview">(24) reviews</button></li>#}
+                            <li><i class="material-icons">fmd_good</i><span>{{ saleads.user.country }}, {{ saleads.user.state }}, {{ saleads.user.city }}</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+{#                <div class="col-xl-12">#}
+{#                    <div class="product-single-action">#}
+{##}
+{#                         <button type="button" class="product-single-btn product-single-buy" data-bs-toggle="modal" data-bs-target="#modalContacts" title="Buy at now">#}
+{#                            <span>Buy at now</span>#}
+{#                        </button>#}
+{#                        <button type="button" class="product-single-btn product-single-offer" data-bs-toggle="modal" data-bs-target="#modalOffer" title="Make an offer">#}
+{#                            <span>Make an offer</span>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                </div>#}
+
+            {% if  image_gallery%}
+                <div class="col-xl-8">
+                    <div class="product-single-slider slider-arrow slider-dots">
+                        {% for image in image_gallery %}
+                            <div><img src="{{ image.get_image_url }}" alt="product"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+                <div class="col-xl-4">
+                    <div class="auction">
+                        <div class="common-card">
+                        <div class="common-card-header">
+                            <h4 class="common-card-header-title">Auction information</h4>
+                        </div>
+                        {% if saleads.sales or saleads.time_auction_left %}
+                            <span class="auction-sales">AUCTION ENDED</span>
+                        {% else %}
+
+                        <form class="auction-form" method="post" action="{% url 'auction-bet'  saleads.pk %}">
+                            {% csrf_token %}
+                            <div class="auction-row">
+                                <div class="auction-group">
+                                    <label>$</label>
+                                    {{ auction_bet_form.last_price }}
+                                </div>
+                                <button type="submit" class="auction-button form-btn">Make proposal</button>
+                            </div>
+                            {% if messages %}
+                                    <ul class="messages messages-auction-bet">
+                                        {% for message in messages %}
+                                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                                        {% endfor %}
+                                    </ul>
+                            {% endif %}
+                        </form>
+                        {% endif %}
+                    </div>
+                        {% if saleads.last_price > 0 %}
+                        <div class="common-card">
+
+                        <p>last bet   {{ saleads.last_price }} $</p>
+                    </div>
+                        {% endif %}
+
+                        <div class="common-card">
+                        <div class="common-card-header">
+                            <h4 class="common-card-header-title">Fix price</h4>
+                        </div>
+                            {% if saleads.sales or saleads.time_auction_lef %}
+
+                        {% else %}
+                        <form content="auction-form" class="" method="post" action="{% url 'auction-buy-now' saleads.pk %}">
+                            <div class="auction-row">
+                                <div class="auction-group">
+                                     <span class="fix-price-text">{{ saleads.vehicle_price_amount }} <span>$</span></span>
+                                </div>
+                                    {% csrf_token %}
+                                    <button type="submit" class="buy-now-button auction-button form-btn">Buy now</button>
+
+                            </div>
+                        </form>
+                            {% endif %}
+                    </div>
+                        <div class="common-card">
+                            <p class="mb15">Time left  {{ saleads.get_last_hours }}</p>
+                            <form content="auction-form" class="" method="post" action="{% url 'add-watch' saleads.pk %}">
+                                {% csrf_token %}
+                            {% if is_user_watch %}
+                            <button type="submit" class="form-btn">Remove from watch</button>
+                            {% else %}
+                                <button type="submit" class="form-btn">Add to watch</button>
+                            {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="product-single-scrollspy-btns">
+
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="common-card" id="overview">
+                        <div class="common-card-header">
+                            <h4 class="common-card-header-title">vehicle overview</h4>
+                        </div>
+                        <div class="common-card-body">
+                            <p>{{ saleads.description }}<span class="d-block mt-4">.</span></p>
+                        </div>
+                    </div>
+
+
+                    <div class="common-card" id="features">
+                        <div class="common-card-header">
+                            <h4 class="common-card-header-title">vehicle features</h4>
+                        </div>
+                        <div class="product-single-feature-group">
+                            <ul class="product-single-feature-list">
+                                <li><span>model:</span><span>{{ saleads.truck_model  }}</span></li>
+                                <li><span>make:</span><span>{{ saleads.truck_make }}</span></li>
+                                <li><span>condition:</span><span>{{ saleads.vehicle_condition }}</span></li>
+                                <li><span>should include:</span><span>{{ saleads.should_include }}</span></li>
+                                <li><span>type of 5 trailer:</span><span>{{ saleads.type_of_5_trailer }}</span></li>
+                                 <li><span>capacity of trailer:</span><span>{{ saleads.capacity_of_trailer }}</span></li>
+                                <li><span>length:</span><span>{{ saleads.length }}</span></li>
+                                <li><span>width:</span><span>{{ saleads.width }}</span></li>
+                                <li><span>air ride :</span><span>{{ saleads.air_ride }}</span></li>
+                                <li><span>Number of Aluminum wheels:</span><span>{{ saleads.number_of_aluminum_wheels }}</span></li>
+                                <li><span>virgin tires or recapped:</span><span>{{ saleads.virgin_tires_or_recapped }}</span></li>
+                                <li><span>Tire percentage</span><span></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="common-card" id="overview">
+                        <div class="common-card-header">
+                            <h4 class="common-card-header-title">Any know Problems with vehicle</h4>
+                        </div>
+                        <div class="common-card-body">
+                            <p>{{ saleads.any_know_problems_with_vehicle }}<span class="d-block mt-4">.</span></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xl-4">
+                    <div class="common-card">
+                        <div class="common-card-header">
+                            <h4 class="common-card-header-title">vendor information</h4>
+                        </div>
+                        <div class="common-card-body">
+                            <div class="product-single-vendor">
+                                <a class="vendor-grid-cover" href="{{ saleads.user.get_photo_url }}"><img src="{% static 'images/bg/cover.jpg' %}" alt="cover"></a>
+                                <a class="vendor-grid-avatar" href="{{ saleads.user.get_photo_url }}"><img src="{{ saleads.user.get_photo_url }}" alt="avatar"></a>
+                                <ul class="vendor-grid-meta">
+                                    <li class="profile"><i class="material-icons">account_circle</i><a href="{% url 'account-profile' user.id %}">{{ saleads.user.full_name }}</a></li>
+                                    <li class="location"><i class="material-icons">map</i><span>{{ saleads.user.state }}, {{ saleads.user.city }}</span></li>
+{#                                    <li class="rating"><i class="material-icons">star</i><span><b>4.9</b>/28 Ratings</span></li>#}
+                                    <li class="store"><i class="material-icons">store</i><span>{{ saleads.user.account_type }}</span></li>
+                                </ul>
+                                <div class="vendor-grid-action">
+{#                                    <a href="{% url 'account-profile' saleads.user.id %}">visit profile</a>#}
+{#                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessage">send message</button>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================
+                INVENTORY SINGLE END
+    =======================================-->
+{% endblock %}

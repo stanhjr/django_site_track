@@ -1,5 +1,6 @@
 from django import forms
-from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser, ModelTrack
+from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser, ModelTrack, ShouldInclude, TruckModel, \
+    TruckMake, TypeOfTrailer, SpringRide
 
 
 class DatePickerInput(forms.DateInput):
@@ -40,8 +41,22 @@ VEHICLE_CONDITION_CHOICES = (
     ("Used", "Used"),
 )
 
+category_truck = CategoriesTrack.objects.filter(name='Truck').first()
+category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
+print('=================')
+print(category_truck)
+print('=================')
 
-class VehicleInformationForm(forms.ModelForm):
+
+class BaseForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BaseForm, self).__init__(*args, **kwargs)
+        for bound_field in self:
+            if hasattr(bound_field, "field") and bound_field.field.required:
+                bound_field.field.widget.attrs["required"] = "required"
+
+
+class VehicleInformationForm(BaseForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
@@ -51,8 +66,8 @@ class VehicleInformationForm(forms.ModelForm):
         self.request = kwargs.pop('request', None)
         super(VehicleInformationForm, self).__init__(*args, **kwargs)
         for field in self.fields:
-            if field == 'vehicle_mileage':
-                self.fields[field].initial = ''
+            self.fields[field].required = False
+
             if field == 'email':
                 self.fields[field].initial = self.request.user.email
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'email'})
@@ -66,6 +81,7 @@ class VehicleInformationForm(forms.ModelForm):
             elif field == "vehicle_category":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
+                self.fields[field].initial = category_trailer
             elif field == "vehicle_condition":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
@@ -94,7 +110,124 @@ class VehicleInformationForm(forms.ModelForm):
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
 
 
-class VehicleInformationUpdateForm(forms.ModelForm):
+class TruckCreateForm(BaseForm):
+    class Meta:
+        model = SaleAds
+        fields = '__all__'
+        exclude = ('sale_created', 'user', 'user_bet', 'user_watch', 'sales', 'last_price')
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(TruckCreateForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].required = False
+            if field == 'vehicle_mileage':
+                self.fields[field].initial = ''
+            if field == 'email':
+                self.fields[field].initial = self.request.user.email
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'email'})
+            elif field == 'phone_number':
+                self.fields[field].initial = self.request.user.phone_number
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+
+            elif field == 'preview_image':
+                self.fields[field].widget = forms.FileInput(attrs={'class': 'file-input', 'id': 'preview'})
+
+            elif field == "vehicle_condition":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=VEHICLE_CONDITION_CHOICES)
+
+            elif field == "should_include":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=ShouldInclude.get_choices())
+            elif field == "truck_model":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TruckModel.get_choices())
+            elif field == "truck_make":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TruckMake.get_choices())
+            elif field == 'type_of_5_trailer':
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TypeOfTrailer.get_choices())
+            elif field == 'spring_ride':
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=SpringRide.get_choices())
+
+            elif field in ["vehicle_year", "sale_end_time"]:
+                self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
+            elif field in ["description", "any_know_problems_with_vehicle"]:
+                self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
+
+            elif field in ["tire_percent_front_right", "tire_percent_front_left", "tire_percent_rear_left",
+                           "tire_percent_rear_right", "form.tire_percent_rear_drive_tires"]:
+                self.fields[field].widget = forms.NumberInput(attrs={'class': 'form-control',
+                                                                     'type': 'number', 'min': '1', 'max': '100'})
+            elif field == "vehicle_category":
+                self.fields[field].initial = category_truck
+
+            else:
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+
+
+class TruckUpdateForm(BaseForm):
+    class Meta:
+        model = SaleAds
+        fields = '__all__'
+        exclude = ('sale_created', 'user', 'user_bet', 'user_watch', 'sales', 'last_price')
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(TruckUpdateForm, self).__init__(*args, **kwargs)
+        initial_data = self.initial
+        for field in self.fields:
+            self.fields[field].initial = initial_data.get(field)
+            if field == 'vehicle_mileage':
+                self.fields[field].initial = ''
+            if field == 'email':
+                self.fields[field].initial = self.request.user.email
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'email'})
+            elif field == 'phone_number':
+                self.fields[field].initial = self.request.user.phone_number
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+
+            elif field == 'preview_image':
+                self.fields[field].widget = forms.FileInput(attrs={'class': 'file-input', 'id': 'preview'})
+
+            elif field == "vehicle_condition":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=VEHICLE_CONDITION_CHOICES)
+
+            elif field == "should_include":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=ShouldInclude.get_choices())
+            elif field == "truck_model":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TruckModel.get_choices())
+            elif field == "truck_make":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TruckMake.get_choices())
+            elif field == 'type_of_5_trailer':
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TypeOfTrailer.get_choices())
+            elif field == 'spring_ride':
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=SpringRide.get_choices())
+
+            elif field in ["vehicle_year", "sale_end_time"]:
+                self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
+            elif field in ["description", "any_know_problems_with_vehicle"]:
+                self.fields[field].widget = forms.Textarea(attrs={'class': 'form-control'})
+
+            elif field in ["tire_percent_front_right", "tire_percent_front_left", "tire_percent_rear_left",
+                           "tire_percent_rear_right", "form.tire_percent_rear_drive_tires"]:
+                self.fields[field].widget = forms.NumberInput(attrs={'class': 'form-control',
+                                                                     'type': 'number', 'min': '1', 'max': '100'})
+
+            else:
+                self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
+
+
+class VehicleInformationUpdateForm(BaseForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
