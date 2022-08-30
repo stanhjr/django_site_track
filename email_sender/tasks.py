@@ -219,12 +219,15 @@ def send_auction_win():
     from site_track.models import SaleAds
     objects = SaleAds.objects.filter(sale_end_time__gte=timezone.now(), send_email_to_winner=False).all()
     for sale in objects:
-        send_win_auction_mail.delay(pk=sale.pk,
-                                    email_to=sale.user_bet.email,
-                                    contact_data_owner=sale.user.get_contact_data(),
-                                    price=sale.last_price)
-        sale.send_email_to_winner = True
-        sale.save()
+        try:
+            send_win_auction_mail.delay(pk=sale.pk,
+                                        email_to=sale.user_bet.email,
+                                        contact_data_owner=sale.user.get_contact_data(),
+                                        price=sale.last_price)
+            sale.send_email_to_winner = True
+            sale.save()
+        except Exception as e:
+            print(e)
 
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks beat --loglevel=INFO -Q contact_us,celery
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks flower --address=127.0.0.6 --port=5566 --basic_auth=stan:1

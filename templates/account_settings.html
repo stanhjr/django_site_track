@@ -49,10 +49,7 @@
                                 <i class="material-icons">https</i>
                                 <span>change password</span>
                             </button>
-{#                            <button type="button" data-bs-toggle="pill" data-bs-target="#notify" class="nav-link">#}
-{#                                <i class="material-icons">notifications_active</i>#}
-{#                                <span>notifications</span>#}
-{#                            </button>#}
+
                         </div>
                     </div>
                 </div>
@@ -78,16 +75,7 @@
                                                 </div>
                                             </div>
                                         </div>
-{#                                        <div class="col">#}
-{#                                            <div class="form-group">#}
-{#                                                <label class="form-label">covar Image <span>*</span></label>#}
-{#                                                <div class="file-form">#}
-{#                                                    <input class="file-input" type="file" id="covar">#}
-{#                                                    <label for="covar" class="file-icon material-icons">file_present</label>#}
-{#                                                    <button type="button" class="file-cancel material-icons">cancel</button>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
+
                                     </div>
                                 </div>
                             </div>
@@ -98,15 +86,15 @@
                                 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">last name <span>*</span></label>
-                                            {{ form.last_name}}
+                                            <label class="form-label">full name <span>*</span></label>
+                                            {{ form.full_name }}
                                         </div>
                                     </div>
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">first name <span>*</span></label>
-                                            {{ form.account_name }}
+                                            <label class="form-label">position in company<span>*</span></label>
+                                            {{ form.position_in_company }}
                                         </div>
                                     </div>
                                     <div class="col">
@@ -115,50 +103,46 @@
                                             {{ form.company }}
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class="form-label">account type <span>*</span></label>
-                                            {{ form.account_type }}
-                                        </div>
-                                    </div>
+{#                                    <div class="col">#}
+{#                                        <div class="form-group">#}
+{#                                            <label class="form-label">account type <span>*</span></label>#}
+{#                                            {{ form.account_type }}#}
+{#                                        </div>#}
+{#                                    </div>#}
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">phone number<span>*</span></label>
                                             {{ form.phone_number }}
-{#                                            <input type="tel" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">email address <span>*</span></label>
                                             {{ form.email }}
-{#                                            <input type="email" class="form-control">#}
+                                        </div>
+                                    </div>
+{#                                    <div class="col">#}
+{#                                        <div class="form-group">#}
+{#                                            <label class="form-label">city <span>*</span></label>#}
+{#                                            {{ form.city }}#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">address of company <span>*</span></label>
+                                            {{ form.address_of_company }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">country <span>*</span></label>
-                                            {{ form.country }}
+                                            <label class="form-label">number of trucks in fleet<span>*</span></label>
+                                            {{ form.number_of_trucks_in_fleet }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">city <span>*</span></label>
-                                            {{ form.city }}
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class="form-label">state <span>*</span></label>
-                                            {{ form.state }}
-{#                                            <input type="text" class="form-control">#}
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class="form-label">zip <span>*</span></label>
-                                            {{ form.zip }}
-{#                                            <input type="text" class="form-control">#}
+                                            <label class="form-label">telephone number direct<span>*</span></label>
+                                            {{ form.telephone_number_direct }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

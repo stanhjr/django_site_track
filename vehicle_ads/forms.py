@@ -43,9 +43,7 @@ VEHICLE_CONDITION_CHOICES = (
 
 category_truck = CategoriesTrack.objects.filter(name='Truck').first()
 category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
-print('=================')
-print(category_truck)
-print('=================')
+
 
 
 class BaseForm(forms.ModelForm):

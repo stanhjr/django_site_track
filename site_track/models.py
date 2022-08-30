@@ -16,53 +16,55 @@ class MyUser(AbstractUser):
     )
 
     money_spent = models.PositiveIntegerField(default=0)
-    full_name = models.CharField(max_length=120, null=True)
-    company = models.CharField(max_length=120, null=True)
-    position_in_company = models.CharField(max_length=120, null=True)
-    address_of_company = models.CharField(max_length=120, null=True)
+    full_name = models.CharField(max_length=120, null=True, blank=True)
+    company = models.CharField(max_length=120, null=True, blank=True)
+    position_in_company = models.CharField(max_length=120, null=True, blank=True)
+    address_of_company = models.CharField(max_length=120, null=True, blank=True)
     number_of_trucks_in_fleet = models.IntegerField(null=True)
     telephone_number_direct = models.CharField(max_length=30, null=True)
 
-    subscription = models.BooleanField(default=False)
-    subscribe_until_date = models.DateField(null=True)
-    created_at = models.DateField(auto_now=True)
+    subscription_one_time = models.BooleanField(default=False)
+    subscribe_until_date = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
     is_confirm = models.BooleanField(default=False)
-    reset_password_code = models.CharField(max_length=120, null=True)
-    code = models.CharField(max_length=120, null=True)
-    account_name = models.CharField(max_length=60, null=True)
+    reset_password_code = models.CharField(max_length=120, null=True, blank=True)
+    code = models.CharField(max_length=120, null=True, blank=True)
+    account_name = models.CharField(max_length=60, null=True, blank=True)
     account_type = models.CharField(max_length=120, null=True, choices=ACCOUNT_TYPE_CHOICES, default="individual")
     phone_number = models.CharField(max_length=30, null=True)
-    web_site = models.CharField(max_length=120, null=True)
+    web_site = models.CharField(max_length=120, null=True, blank=True)
     country = models.CharField(max_length=120, null=True)
     city = models.CharField(max_length=60, null=True)
     state = models.CharField(max_length=60, null=True)
     zip = models.CharField(max_length=60, null=True)
-    about_vendor = models.TextField(null=True)
+    about_vendor = models.TextField(null=True, blank=True)
     profile_image = models.ImageField(null=True, upload_to="images/", blank=True)
 
-    facebook = models.CharField(max_length=60, null=True)
-    instagram = models.CharField(max_length=60, null=True)
-    twitter = models.CharField(max_length=60, null=True)
-    youtube = models.CharField(max_length=60, null=True)
-    whatsapp = models.CharField(max_length=60, null=True)
-    pinterest = models.CharField(max_length=60, null=True)
+    facebook = models.CharField(max_length=60, null=True, blank=True)
+    instagram = models.CharField(max_length=60, null=True, blank=True)
+    twitter = models.CharField(max_length=60, null=True, blank=True)
+    youtube = models.CharField(max_length=60, null=True, blank=True)
+    whatsapp = models.CharField(max_length=60, null=True, blank=True)
+    pinterest = models.CharField(max_length=60, null=True, blank=True)
 
     def get_contact_data(self):
         return f"email: {self.email}\nphone_number: {self.phone_number}\nfull_name: {self.full_name}"
 
     def add_subscription(self, days_number: int):
         if not self.subscribe_until_date:
-            self.subscription = timezone.now() + timezone.timedelta(days=days_number)
+            self.subscribe_until_date = timezone.now() + timezone.timedelta(days=days_number)
         elif self.subscribe_until_date <= timezone.now():
-            self.subscription = timezone.now() + timezone.timedelta(days=days_number)
+            self.subscribe_until_date = timezone.now() + timezone.timedelta(days=days_number)
         else:
-            self.subscription += timezone.timedelta(days=days_number)
+            self.subscribe_until_date += timezone.timedelta(days=days_number)
 
     @property
     def get_subscription(self):
+        if self.subscribe_until_date:
+            return True
         if not self.subscribe_until_date:
             return False
-        if self.subscribe_until_date < datetime.date.today():
+        if self.subscribe_until_date < timezone.now():
             return False
         return True
 
@@ -213,14 +215,14 @@ class SaleAds(models.Model):
         ordering = ('-created_at',)
 
     title = models.CharField(max_length=120, null=True)
-    check_engine_warning_lights = models.TextField(max_length=5000, null=True)
-    type_of_5_wheel = models.CharField(max_length=500, null=True)
-    jake_brake = models.CharField(max_length=500, null=True)
-    wheel_base = models.CharField(max_length=500, null=True)
-    number_of_aluminum_wheels = models.CharField(max_length=500, null=True)
-    tire_size = models.CharField(max_length=120, null=True)
-    any_know_problems_with_vehicle = models.TextField(max_length=5000, null=True)
-    sleeper_size = models.CharField(max_length=120, null=True)
+    check_engine_warning_lights = models.TextField(max_length=5000, null=True, blank=True)
+    type_of_5_wheel = models.CharField(max_length=500, null=True, blank=True)
+    jake_brake = models.CharField(max_length=500, null=True, blank=True)
+    wheel_base = models.CharField(max_length=500, null=True, blank=True)
+    number_of_aluminum_wheels = models.CharField(max_length=500, null=True, blank=True)
+    tire_size = models.CharField(max_length=120, null=True, blank=True)
+    any_know_problems_with_vehicle = models.TextField(max_length=5000, null=True, blank=True)
+    sleeper_size = models.CharField(max_length=120, null=True, blank=True)
 
     tire_percent_front_right = models.PositiveIntegerField(default=50,
                                                            validators=[MinValueValidator(1), MaxValueValidator(100)])
@@ -234,42 +236,42 @@ class SaleAds(models.Model):
                                                                 validators=[MinValueValidator(1),
                                                                             MaxValueValidator(100)])
 
-    vehicle_year = models.DateField(null=True)
-    vehicle_fuel = models.CharField(max_length=60, null=True)
+    vehicle_year = models.DateField(null=True, blank=True)
+    vehicle_fuel = models.CharField(max_length=60, null=True, blank=True)
 
     vehicle_price_amount = models.PositiveIntegerField(default=1000, null=True)
 
-    vehicle_condition = models.CharField(max_length=60, null=True)
-    description = models.TextField(max_length=5000, null=True)
-    preview_image = models.ImageField(upload_to="images/", null=True)
+    vehicle_condition = models.CharField(max_length=60, null=True, blank=True)
+    description = models.TextField(max_length=5000, null=True, blank=True)
+    preview_image = models.ImageField(upload_to="images/", null=True, blank=True)
 
-    vehicle_mileage = models.PositiveIntegerField(default=1000, null=True)
-    phone_number = models.CharField(max_length=30, null=True)
-    email = models.EmailField(max_length=120, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    vehicle_mileage = models.PositiveIntegerField(default=1000, null=True, blank=True)
+    phone_number = models.CharField(max_length=30, null=True, blank=True)
+    email = models.EmailField(max_length=120, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='sale_ads')
-    vehicle_make = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
+    vehicle_make = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
 
     # Truck part
-    should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    truck_make = models.ForeignKey(TruckMake, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    truck_model = models.ForeignKey(TruckModel, on_delete=models.SET_NULL, related_name='sale_ads', null=True)
-    length = models.PositiveIntegerField(default=1000, null=True)
-    width = models.PositiveIntegerField(default=1000, null=True)
-    air_ride = models.CharField(max_length=120, null=True)
-    capacity_of_trailer = models.CharField(max_length=120, null=True)
-    virgin_tires_or_recapped = models.CharField(max_length=120, null=True)
+    should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    truck_make = models.ForeignKey(TruckMake, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    truck_model = models.ForeignKey(TruckModel, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    length = models.PositiveIntegerField(default=1000, null=True, blank=True)
+    width = models.PositiveIntegerField(default=1000, null=True, blank=True)
+    air_ride = models.CharField(max_length=120, null=True, blank=True)
+    capacity_of_trailer = models.CharField(max_length=120, null=True, blank=True)
+    virgin_tires_or_recapped = models.CharField(max_length=120, null=True, blank=True)
 
     # Auction part
     sales = models.BooleanField(default=False)
     last_price = models.PositiveIntegerField(default=0, null=True)
     sale_end_time = models.DateTimeField(default=django.utils.timezone.now)
-    user_bet = models.ForeignKey(MyUser, on_delete=models.SET_NULL, related_name='auction_bet', null=True)
-    user_watch = models.ManyToManyField(MyUser, related_name='auction_watch', null=True)
+    user_bet = models.ForeignKey(MyUser, on_delete=models.SET_NULL, related_name='auction_bet', null=True, blank=True)
+    user_watch = models.ManyToManyField(MyUser, related_name='auction_watch', null=True, blank=True)
     send_email_to_winner = models.BooleanField(default=False)
 
     def __str__(self):

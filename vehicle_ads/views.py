@@ -7,18 +7,18 @@ from django.views.generic.edit import FormMixin
 
 from auction.forms import AuctionBetForm
 from email_sender.tasks import send__make_offer_mail
-from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventoryGrid, \
-    SettingsHeaderInventorySingle, CategoriesTrack
+from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventorySingle, CategoriesTrack
+
 from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm, SendEmailVendorForm, \
     TruckCreateForm, TruckUpdateForm
 
 
 class SubscribeMixin:
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.subscription:
+        if not self.request.user.get_subscription:
             safe_string = reverse('home') + "#price-buy-banner"
             return redirect(safe_string)
-        return self.get(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):

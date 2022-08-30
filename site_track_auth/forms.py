@@ -78,37 +78,37 @@ class UserSignUpForm(forms.ModelForm):
         }
     ))
 
-    company = forms.CharField(label="email", widget=forms.EmailInput(
+    company = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'enter company name'
         }
     ))
-    position_in_company = forms.CharField(label="email", widget=forms.EmailInput(
+    position_in_company = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'enter position in company'
         }
     ))
-    address_of_company = forms.CharField(label="email", widget=forms.EmailInput(
+    address_of_company = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'enter address in company'
         }
     ))
-    number_of_trucks_in_fleet = forms.CharField(label="email", widget=forms.EmailInput(
+    number_of_trucks_in_fleet = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'enter number of trucks in fleet'
         }
     ))
-    telephone_number_direct = forms.CharField(label="email", widget=forms.EmailInput(
+    telephone_number_direct = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'enter telephone number direct'
         }
     ))
-    phone_number = forms.CharField(label="email", widget=forms.EmailInput(
+    phone_number = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'enter phone number'

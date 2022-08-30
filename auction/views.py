@@ -17,8 +17,13 @@ class AuctionUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
     def form_valid(self, form):
         safe_string = reverse_lazy('posted-detail', kwargs={'pk': form.instance.pk})
         obj = form.save(commit=False)
+        if obj.sale_end_time > self.request.user.subscribe_until_date:
+            messages.success(self.request, 'your subscription ends before this auction expires, please renew your subscription')
+            return redirect(safe_string)
+
         if obj.last_price <= self.get_object().last_price:
             messages.success(self.request, 'bet must be greater than the previous one')
+
             return redirect(safe_string)
 
         obj.user_bet = self.request.user
@@ -32,13 +37,20 @@ class AuctionBuyNowView(LoginRequiredMixin, SubscribeMixin, View):
     http_method_names = ['post', ]
 
     def post(self, request, *args, **kwargs):
+        safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
+
         sale_ads = SaleAds.objects.filter(pk=kwargs.get("pk")).first()
+        if sale_ads.sale_end_time > self.request.user.subscribe_until_date:
+            messages.success(self.request, 'your subscription ends before this auction expires, please renew your subscription')
+            return redirect(safe_string)
+
         if sale_ads:
             sale_ads.sales = True
             sale_ads.user_bet = request.user
+
             # TODO send notification
             sale_ads.save()
-        safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
+
         return redirect(safe_string)
 
 

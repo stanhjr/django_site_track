@@ -7,9 +7,9 @@ class AccountDetailsForm(forms.ModelForm):
     class Meta:
         model = MyUser
 
-        fields = ('profile_image', 'account_name', 'account_type',
-                  'phone_number', 'email', 'city',
-                  'zip', 'about_vendor', 'state', 'country', 'company', 'last_name')
+        fields = ('profile_image', 'full_name', 'position_in_company',
+                  'phone_number', 'email',  'address_of_company', 'number_of_trucks_in_fleet',
+                  'zip', 'about_vendor', 'state', 'country', 'company', 'last_name', 'telephone_number_direct')
 
     def __init__(self, *args, **kwargs):
         self.ACCOUNT_TYPE_CHOICES = (
