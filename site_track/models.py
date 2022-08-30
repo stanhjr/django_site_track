@@ -33,10 +33,10 @@ class MyUser(AbstractUser):
     account_type = models.CharField(max_length=120, null=True, choices=ACCOUNT_TYPE_CHOICES, default="individual")
     phone_number = models.CharField(max_length=30, null=True)
     web_site = models.CharField(max_length=120, null=True, blank=True)
-    country = models.CharField(max_length=120, null=True)
-    city = models.CharField(max_length=60, null=True)
-    state = models.CharField(max_length=60, null=True)
-    zip = models.CharField(max_length=60, null=True)
+    country = models.CharField(max_length=120, null=True, blank=True)
+    city = models.CharField(max_length=60, null=True, blank=True)
+    state = models.CharField(max_length=60, null=True, blank=True)
+    zip = models.CharField(max_length=60, null=True, blank=True)
     about_vendor = models.TextField(null=True, blank=True)
     profile_image = models.ImageField(null=True, upload_to="images/", blank=True)
 
@@ -60,7 +60,7 @@ class MyUser(AbstractUser):
 
     @property
     def get_subscription(self):
-        if self.subscribe_until_date:
+        if self.subscription_one_time:
             return True
         if not self.subscribe_until_date:
             return False

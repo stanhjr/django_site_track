@@ -171,15 +171,19 @@ def send__make_offer_mail(email_from, email_to, price, phone_number, first_name,
 
 
 @app.task
-def send_win_auction_mail(pk: str, email_to, contact_data_owner: str, price: int):
+def send_win_auction_mail(pk: str, email_to, contact_data_owner: str, price: int, category_name: str):
     password = settings.EMAIL_HOST_PASSWORD
     sender_email = settings.EMAIL_HOST_USER
+    if category_name.lower() == 'truck':
+        prefix = 'truck-detail'
+    else:
+        prefix = 'posted-detail'
 
     receiver_email = email_to
     text = f"""\
     Congratulations,
     you won this auction!
-    {settings.CELERY_SEND_MAIL_HOST}auth/vehicle/posted-detail/{pk}
+    {settings.CELERY_SEND_MAIL_HOST}vehicle/{prefix}/{pk}
     owner contact details:
     {contact_data_owner}
     price: {price}
@@ -193,12 +197,7 @@ def send_win_auction_mail(pk: str, email_to, contact_data_owner: str, price: int
 
     # Turn these into plain/html MIMEText objects
     part1 = MIMEText(text, "plain")
-    # part2 = MIMEText(html, "html")
-
-    # Add HTML/plain-text parts to MIMEMultipart message
-    # The email client will try to render the last part first
     message.attach(part1)
-    # message.attach(part2)
 
     try:
 
@@ -217,17 +216,100 @@ def send_win_auction_mail(pk: str, email_to, contact_data_owner: str, price: int
 @app.task
 def send_auction_win():
     from site_track.models import SaleAds
-    objects = SaleAds.objects.filter(sale_end_time__gte=timezone.now(), send_email_to_winner=False).all()
+    objects = SaleAds.objects.filter(sale_end_time__gte=timezone.now(), send_email_to_winner=False, sales=False).all()
     for sale in objects:
         try:
             send_win_auction_mail.delay(pk=sale.pk,
                                         email_to=sale.user_bet.email,
                                         contact_data_owner=sale.user.get_contact_data(),
-                                        price=sale.last_price)
+                                        price=sale.last_price,
+                                        category_name=sale.vehicle_category.name)
+            user = sale.user_bet
+            user.subscription_one_time = False
+            user.save()
             sale.send_email_to_winner = True
             sale.save()
         except Exception as e:
             print(e)
 
+
+@app.task
+def send_buy_now_owner(pk: str, email_to, contact_data_customer: str, category_name: str):
+    if category_name.lower() == 'truck':
+        prefix = 'truck-detail'
+    else:
+        prefix = 'posted-detail'
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
+
+    receiver_email = email_to
+    text = f"""\
+    Congratulations,
+    bought your equipment!
+    {settings.CELERY_SEND_MAIL_HOST}vehicle/{prefix}/{pk}
+    сustomer contact details:
+    {contact_data_customer}
+
+    """
+
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = email_to
+
+    part1 = MIMEText(text, "plain")
+    message.attach(part1)
+
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(
+                sender_email, receiver_email, message.as_string()
+            )
+
+        print("Email sent successfully!")
+    except Exception as ex:
+        print("Something went wrong….", ex)
+
+
+@app.task
+def send_buy_now_customer(pk: str, email_to, contact_data_owner: str, category_name: str):
+    if category_name.lower() == 'truck':
+        prefix = 'truck-detail'
+    else:
+        prefix = 'posted-detail'
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
+
+    receiver_email = email_to
+    text = f"""\
+    Congratulations,
+    on your purchase!
+    {settings.CELERY_SEND_MAIL_HOST}vehicle/{prefix}/{pk}
+    owner contact details:
+    {contact_data_owner}
+
+    """
+
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = email_to
+
+    part1 = MIMEText(text, "plain")
+    message.attach(part1)
+
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(
+                sender_email, receiver_email, message.as_string()
+            )
+
+        print("Email sent successfully!")
+    except Exception as ex:
+        print("Something went wrong….", ex)
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks beat --loglevel=INFO -Q contact_us,celery
 # /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks flower --address=127.0.0.6 --port=5566 --basic_auth=stan:1

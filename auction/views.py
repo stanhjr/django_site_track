@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic import UpdateView, ListView
 
 from auction.forms import AuctionBetForm
+from email_sender.tasks import send_buy_now_owner, send_buy_now_customer
 from site_track.models import SaleAds, SettingsFooter
 from vehicle_ads.views import SubscribeMixin
 
@@ -18,7 +19,8 @@ class AuctionUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
         safe_string = reverse_lazy('posted-detail', kwargs={'pk': form.instance.pk})
         obj = form.save(commit=False)
         if obj.sale_end_time > self.request.user.subscribe_until_date:
-            messages.success(self.request, 'your subscription ends before this auction expires, please renew your subscription')
+            messages.success(self.request,
+                             'your subscription ends before this auction expires, please renew your subscription')
             return redirect(safe_string)
 
         if obj.last_price <= self.get_object().last_price:
@@ -37,18 +39,36 @@ class AuctionBuyNowView(LoginRequiredMixin, SubscribeMixin, View):
     http_method_names = ['post', ]
 
     def post(self, request, *args, **kwargs):
-        safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
 
         sale_ads = SaleAds.objects.filter(pk=kwargs.get("pk")).first()
-        if sale_ads.sale_end_time > self.request.user.subscribe_until_date:
-            messages.success(self.request, 'your subscription ends before this auction expires, please renew your subscription')
+        if sale_ads.vehicle_category.name.lower() == 'truck':
+            safe_string = reverse_lazy('truck-detail', kwargs={'pk': kwargs.get("pk")})
+        else:
+            safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
+        if self.request.user.subscribe_until_date:
+            if sale_ads.sale_end_time > self.request.user.subscribe_until_date and not self.request.user.subscription_one_time:
+                messages.success(self.request,
+                                 'your subscription ends before this auction expires, please renew your subscription')
+                return redirect(safe_string)
+        elif not self.request.user.subscribe_until_date and not self.request.user.subscription_one_time:
+            messages.success(self.request,
+                             'your subscription ends before this auction expires, please renew your subscription')
             return redirect(safe_string)
 
         if sale_ads:
             sale_ads.sales = True
             sale_ads.user_bet = request.user
-
-            # TODO send notification
+            send_buy_now_owner.delay(pk=sale_ads.pk,
+                                     email_to=sale_ads.user.email,
+                                     contact_data_customer=sale_ads.user_bet.get_contact_data(),
+                                     category_name=sale_ads.vehicle_category.name)
+            send_buy_now_customer.delay(pk=sale_ads.pk,
+                                        email_to=sale_ads.user_bet.email,
+                                        contact_data_owner=sale_ads.user.get_contact_data(),
+                                        category_name=sale_ads.vehicle_category.name)
+            customer = sale_ads.user_bet
+            customer.subscription_one_time = False
+            customer.save()
             sale_ads.save()
 
         return redirect(safe_string)
@@ -90,6 +110,3 @@ class WatchListView(LoginRequiredMixin, ListView):
 
     def handle_no_permission(self):
         return redirect('login')
-
-
-

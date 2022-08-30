@@ -20,8 +20,14 @@ config = {
             'queue': 'scheduled_emails'
         },
         'email_sender.tasks.send_win_auction_mail': {
-                    'queue': 'scheduled_emails'
-                },
+            'queue': 'scheduled_emails'
+        },
+        'email_sender.tasks.send_buy_now_owner': {
+            'queue': 'scheduled_emails'
+        },
+        'email_sender.tasks.send_buy_now_customer': {
+            'queue': 'scheduled_emails'
+        },
 
     },
     'accept_content': ['json', 'application/x-python-serialize'],
