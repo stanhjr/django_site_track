@@ -13,7 +13,15 @@ from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateFo
     TruckCreateForm, TruckUpdateForm
 
 
-class VehicleInformationView(LoginRequiredMixin, CreateView):
+class SubscribeMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.subscription:
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
+        return self.get(request, *args, **kwargs)
+
+
+class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'create-ads.html'
@@ -48,7 +56,7 @@ class VehicleInformationView(LoginRequiredMixin, CreateView):
         return super().form_valid(form=form)
 
 
-class TruckCreateView(LoginRequiredMixin, CreateView):
+class TruckCreateView(LoginRequiredMixin, SubscribeMixin, CreateView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'create_truck.html'
@@ -115,7 +123,7 @@ class UserPostedAdsDeleteView(LoginRequiredMixin, DeleteView):
         return redirect('home')
 
 
-class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
+class UserPostedAdsUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
     model = SaleAds
     success_url = reverse_lazy('user-posted-sale-ads')
     template_name = 'update-ads.html'
@@ -149,7 +157,7 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, UpdateView):
         return habit_object.__dict__
 
 
-class UpdateTruckView(LoginRequiredMixin, UpdateView):
+class UpdateTruckView(LoginRequiredMixin, SubscribeMixin, UpdateView):
     model = SaleAds
     success_url = reverse_lazy('user-posted-sale-ads')
     template_name = 'update_truck.html'
@@ -239,4 +247,3 @@ class TruckDetailView(LoginRequiredMixin, DetailView):
         context['header'] = SettingsHeaderInventorySingle.objects.last()
         context['title'] = 'inventory single'
         return context
-

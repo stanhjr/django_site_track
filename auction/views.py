@@ -7,9 +7,10 @@ from django.views.generic import UpdateView, ListView
 
 from auction.forms import AuctionBetForm
 from site_track.models import SaleAds, SettingsFooter
+from vehicle_ads.views import SubscribeMixin
 
 
-class AuctionUpdateView(LoginRequiredMixin, UpdateView):
+class AuctionUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
     model = SaleAds
     form_class = AuctionBetForm
 
@@ -27,7 +28,7 @@ class AuctionUpdateView(LoginRequiredMixin, UpdateView):
         return redirect(safe_string)
 
 
-class AuctionBuyNowView(LoginRequiredMixin, View):
+class AuctionBuyNowView(LoginRequiredMixin, SubscribeMixin, View):
     http_method_names = ['post', ]
 
     def post(self, request, *args, **kwargs):
