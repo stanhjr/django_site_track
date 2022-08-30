@@ -3582,7 +3582,7 @@ textarea::placeholder {
 }
 
 .price-item {
-  font-size: 17px;
+  font-size: 10px;
   margin: 10px 0px;
   text-transform: capitalize;
 }
@@ -7357,7 +7357,32 @@ textarea::placeholder {
   padding: 220px 0px 165px;
   background: rgba(10, 9, 48, 0.65);
 }
+.gallery-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px -10px -10px -10px;
+}
+.gallery-item {
+    width: 20%;
+    padding: 10px;
 
+}
+.gallery-inner{
+   position: relative;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.gallery-inner:after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
 .banner-content {
   max-width: 680px;
   color: #f1f2f3;
@@ -8422,6 +8447,13 @@ textarea::placeholder {
 }
 
 @media (max-width: 575px) {
+  .gallery-wrapper {
+    margin: 10px -5px -5px -5px;
+  }
+  .gallery-item {
+    width: 33.33%;
+    padding: 5px;
+  }
   .product-single-meta-price {
     font-size: 26px;
   }
