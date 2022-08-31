@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
@@ -44,7 +45,14 @@ class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):
         return redirect('create-sale-ads')
 
     def form_valid(self, form):
+
         obj = form.save(commit=False)
+        if self.request.user.subscribe_until_date:
+            if obj.sale_end_time > self.request.user.subscribe_until_date:
+                messages.success(self.request,
+                                 f'your subscription ends before the end of the auction, your subscription will expire {self.request.user.subscribe_until_date}')
+                return redirect('create-sale-ads')
+
         obj.user = self.request.user
         obj.vehicle_category = CategoriesTrack.objects.filter(name='Trailer').first()
         obj.save()
@@ -53,6 +61,9 @@ class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):
             image_obj = ImageInGallery.objects.create(image=image, gallery=obj)
             obj.image_in_gallery.add(image_obj, bulk=False)
         obj.save()
+        user = self.request.user
+        user.subscription_one_time = False
+        user.save()
         return super().form_valid(form=form)
 
 
@@ -80,6 +91,11 @@ class TruckCreateView(LoginRequiredMixin, SubscribeMixin, CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
+        if self.request.user.subscribe_until_date:
+            if obj.sale_end_time > self.request.user.subscribe_until_date:
+                messages.success(self.request,
+                                 f'your subscription ends before the end of the auction, your subscription will expire {self.request.user.subscribe_until_date}')
+                return redirect('create-truck')
         obj.vehicle_category = CategoriesTrack.objects.filter(name='Truck').first()
         obj.user = self.request.user
         obj.save()
@@ -88,6 +104,10 @@ class TruckCreateView(LoginRequiredMixin, SubscribeMixin, CreateView):
             image_obj = ImageInGallery.objects.create(image=image, gallery=obj)
             obj.image_in_gallery.add(image_obj, bulk=False)
         obj.save()
+        user = self.request.user
+        user.subscription_one_time = False
+        user.save()
+
         return super().form_valid(form=form)
 
 

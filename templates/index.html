@@ -13,9 +13,10 @@
                             <h2>{{ body.part_start_title }}</h2>
                             <p>{{ body.part_start_text }}</p>
                         </div>
-                        <a href="{% url 'catalog' %}" class="btn btn-inline">
+
+                        <a href="{% url 'inventory-grid' 'truck' %}" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
-                            <span>browse all</span>
+                            <span>browse truck</span>
                         </a>
                     </div>
                 </div>
@@ -53,9 +54,9 @@
                             <h2>{{ body.part_features_title }}</h2>
                             <p>{{ body.part_features_text }}</p>
                         </div>
-                        <a href="{% url 'catalog' %}" class="btn btn-inline">
+                        <a href="{% url 'inventory-grid' 'trailer' %}" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
-                            <span>browse all</span>
+                            <span>browse trailer</span>
                         </a>
                     </div>
                 </div>
@@ -269,9 +270,9 @@
                             <h2>{{ body.recent_part_title }}</h2>
                             <p>{{ body.recent_part_text }}</p>
                         </div>
-                        <a href="{% url 'catalog' %}" class="btn btn-inline">
+                        <a href="{% url 'inventory-grid' 'truck' %}" class="btn btn-inline">
                             <i class="material-icons">travel_explore</i>
-                            <span>browse all</span>
+                            <span>browse truck</span>
                         </a>
                     </div>
                 </div>

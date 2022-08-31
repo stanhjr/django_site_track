@@ -7,6 +7,13 @@
     <!--=====================================
               BREADCRUMB PART START
     =======================================-->
+    {% if messages %}
+        <ul class="messages messages-auction-bet">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <section class="mc-breadcrumb">
         <div class="container">
             <div class="mc-breadcrumb-group">
