@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack, SettingsHeaderHome,\
-    SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle,\
-    SettingsIndexHome, FakeReviewIndexHome, MakeTrack, ModelTrack
+from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack, SettingsHeaderHome, \
+    SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle, \
+    SettingsIndexHome, FakeReviewIndexHome, MakeTrack, ModelTrack, TruckMake, TruckModel, TypeOfTrailer, ShouldInclude
 
 
 class UserSearch(admin.ModelAdmin):
@@ -13,12 +13,15 @@ class SaleAdsSearch(admin.ModelAdmin):
     ordering = ['created_at']
     search_fields = ('title', 'user__email')
 
-
+admin.site.register(TruckMake)
+admin.site.register(TruckModel)
+admin.site.register(TypeOfTrailer)
+admin.site.register(ShouldInclude)
 admin.site.register(MyUser, UserSearch)
 admin.site.register(SaleAds, SaleAdsSearch)
 admin.site.register(ImageInGallery)
 admin.site.register(SettingsFooter)
-admin.site.register(CategoriesTrack)
+# admin.site.register(CategoriesTrack)
 admin.site.register(SettingsHeaderHome)
 admin.site.register(SettingsHeaderInventoryGrid)
 admin.site.register(SettingsHeaderContact)

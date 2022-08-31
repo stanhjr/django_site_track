@@ -117,6 +117,9 @@ class ChoicesMixin:
 class ModelTrack(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
 
+    class Meta:
+        verbose_name_plural = "trailers model"
+
     def __str__(self):
         return self.name
 
@@ -146,6 +149,9 @@ class CategoriesTrack(models.Model, ChoicesMixin):
 
 class MakeTrack(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
+
+    class Meta:
+        verbose_name_plural = "trailers make"
 
     def __str__(self):
         return self.name
