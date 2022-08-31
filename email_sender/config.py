@@ -1,7 +1,7 @@
 config = {
     'imports': ('email_sender.tasks',),
     'database_engine_options': {'echo': False},
-    'worker_concurrency': 2,
+    'worker_concurrency': 1,
     'task_acks_late': True,
     'task_annotations': {
         'email_sender.tasks.send_auction_win': {
