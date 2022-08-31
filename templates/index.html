@@ -67,7 +67,12 @@
                     <div class="product-feature-card">
                         <div class="product-feature-image">
                             <img src="{{ obj.get_photo_url }}" alt="product">
+                        {% if obj.vehicle_category.name == 'Truck' %}
+                            <a href="{% url 'truck-detail' obj.id %}" class="product-feature-btn badge-hover">
+                        {% else %}
+
                             <a href="{% url 'posted-detail' obj.id %}" class="product-feature-btn badge-hover">
+                                {% endif %}
                                 <i class="material-icons">add</i>
                                 <span class="badge arrow-right">more details</span>
                             </a>

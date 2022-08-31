@@ -29,10 +29,7 @@
     <section class="section-gap-75">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 col-xl-8">
-{#                    <div class="profile-cover-image">#}
-{#                        <img src="{% static 'images/bg/cover.jpg' %}" alt="cover">#}
-{#                    </div>#}
+                <div class="col-lg-7 col-xl-7">
                     <div class="common-card">
                         <div class="common-card-header">
                             <h4 class="common-card-header-title">about this vendor</h4>
@@ -45,31 +42,23 @@
                     </div>
 
                 </div>
-                <div class="col-lg-5 col-xl-4">
-{#                    <div class="common-card">#}
-{#                        <div class="common-card-header">#}
-{#                            <h4 class="common-card-header-title">Membership status</h4>#}
-{#                        </div>#}
-{#                        <div class="common-card-body">#}
-{#                            <ul class="profile-specify-list">#}
-{#                                <li><span>Joined:</span><span>{{ account.created_at }}</span></li>#}
-{#                                <li><span>type:</span><span>{{ account.account_type }}</span></li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
+                <div class="col-lg-5 col-xl-5">
                     <div class="common-card">
                         <div class="common-card-header">
                             <h4 class="common-card-header-title">contact address</h4>
                         </div>
                         <div class="common-card-body">
                             <ul class="profile-specify-list">
-                                <li><span>first name:</span><span>{{ account.account_name }}</span></li>
-                                <li><span>last name:</span><span>{{ account.last_name }}</span></li>
+                                <li><span>full name:</span><span>{{ account.full_name }}</span></li>
                                 <li><span>company:</span><span>{{ account.company }}</span></li>
-                                <li><span>country:</span><span>{{ account.country }}</span></li>
-                                <li><span>state:</span><span>{{ account.state }}</span></li>
+                                <li><span>position in company:</span><span>{{ account.position_in_company }}</span></li>
+                                <li><span>number of trucks in fleet:</span><span>{{ account.number_of_trucks_in_fleet }}</span></li>
+
+
                                 {% if is_my_account or user.get_subscription or user.is_superuser %}
-                                <li><span>city:</span><span>{{ account.city }}</span></li>
+
+                                    <li><span>telephone number direct:</span><span>{{ account.telephone_number_direct }}</span></li>
+                                <li><span>address of company:</span><span>{{ account.address_of_company }}</span></li>
                                 <li><span>phone number:</span><span>{{ account.phone_number }}</span></li>
                                 <li><span>email:</span><span>{{ account.email }}</span></li>
                                 {% endif %}

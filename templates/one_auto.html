@@ -68,14 +68,16 @@
                         <div class="product-vehicle-make">
                             {% if obj.vehicle_category.name == 'Truck' %}
                                 <h4><a href="{% url 'truck-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                               {{ obj.truck_make }}
                             {% else %}
                                 <h4><a href="{% url 'posted-detail' obj.id %}">{{ obj.vehicle_model }}</a></h4>
+                               {{ obj.vehicle_make }}
                             {% endif %}
 
-                            {{ obj.vehicle_make }}
+
                         </div>
                         <ul>
-                            <li>{{ obj.user.country }}, {{ obj.user.city }}</li>
+                            <li>{{ obj.company }}, {{ obj.user.address_of_company }}</li>
                             <li>{{ obj.get_date_ago }}</li>
                         </ul>
                     </div>
