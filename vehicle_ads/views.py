@@ -268,4 +268,5 @@ class TruckDetailView(DetailView):
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderInventorySingle.objects.last()
         context['title'] = 'inventory single'
+        context['grid_name'] = self.get_object().title
         return context
