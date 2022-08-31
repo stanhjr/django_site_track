@@ -97,9 +97,9 @@
             </form>
         </div>
          {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}" class="header-user">
+        <a href="{% url 'account-profile' user.id %}" class="header-user">
             <img src="{{ user.get_photo_url }}" alt="user">
-            <span>logout</span>
+            <span>my account</span>
         </a>
         {% else %}
             <a href="{% url 'sign-up' %}" class="header-user">
@@ -228,6 +228,7 @@
                     </li>
                 </ul>
             </div>
+            {% if user.is_authenticated %}
             <div class="sidebar-group">
                 <h5 class="sidebar-title">user menu</h5>
                 <ul class="nav-list">
@@ -282,6 +283,7 @@
                     </li>
                 </ul>
             </div>
+            {% endif %}
         </nav>
     </div>
 </aside>
@@ -376,13 +378,12 @@
                                 <div class="user-banner-profile-meta">
                                     <div class="user-banner-profile-name">
                                         <h3><a href="{% url 'account-profile' user.id %}">{{ user.full_name }}</a></h3>
-{#                                        <span>Jasper Truck Sales</span>#}
                                     </div>
                                     <ul class="user-banner-profile-contact-list">
                                         <li><i class="material-icons">phone_in_talk</i><span>{{ user.phone_number }}</span></li>
-                                        <li><i class="material-icons">feed</i><span>{{ user.full_name }}</span></li>
+                                        <li><i class="material-icons">feed</i><span>{{ user.company }}</span></li>
                                         <li><i class="material-icons">public</i><span>{{ user.email }}</span></li>
-                                        <li><i class="material-icons">map</i><span>{{ user.city }} {{ user.state }}</span></li>
+                                        <li><i class="material-icons">map</i><span>{{ user.address_of_company }}</span></li>
                                     </ul>
                                 </div>
                             </div>

@@ -149,16 +149,16 @@
                             <span class="nav-arrow"></span>
                         </a>
                         <ul class="drop-list">
+{#                            <li class="drop-item">#}
+{#                                <a href="{% url 'catalog'%}" class="drop-link">#}
+{#                                    <i class="material-icons">remove</i>#}
+{#                                    <span>catalog</span>#}
+{#                                </a>#}
+{#                            </li>#}
                             <li class="drop-item">
-                                <a href="{% url 'catalog'%}" class="drop-link">
+                                <a href="{% url 'inventory-grid' 'truck'%}" class="drop-link">
                                     <i class="material-icons">remove</i>
-                                    <span>catalog</span>
-                                </a>
-                            </li>
-                            <li class="drop-item">
-                                <a href="{% url 'inventory-grid' 'track'%}" class="drop-link">
-                                    <i class="material-icons">remove</i>
-                                    <span>inventory grid track</span>
+                                    <span>inventory grid truck</span>
                                 </a>
                             </li>
                             <li class="drop-item">
@@ -227,6 +227,7 @@
                     </li>
                 </ul>
             </div>
+            {% if user.is_authenticated %}
             <div class="sidebar-group">
                 <h5 class="sidebar-title">user menu</h5>
                 <ul class="nav-list">
@@ -275,6 +276,7 @@
                     </li>
                 </ul>
             </div>
+            {% endif %}
         </nav>
     </div>
 </aside>

@@ -14,7 +14,7 @@ from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrac
 from email_sender.tasks import send_mail_contact_us
 
 
-class ContactView(LoginRequiredMixin, FormView):
+class ContactView(FormView):
     template_name = 'contact.html'
     success_url = '/'
     form_class = ContactForm
