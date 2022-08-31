@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import UpdateView, ListView
 
@@ -11,13 +11,17 @@ from site_track.models import SaleAds, SettingsFooter
 from vehicle_ads.views import SubscribeMixin
 
 
-class AuctionUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
+class AuctionUpdateView(SubscribeMixin, UpdateView):
     model = SaleAds
     form_class = AuctionBetForm
 
     def form_valid(self, form):
+        if not self.request.user.is_authenticated:
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
         safe_string = reverse_lazy('posted-detail', kwargs={'pk': form.instance.pk})
         obj = form.save(commit=False)
+
         if obj.sale_end_time > self.request.user.subscribe_until_date:
             messages.success(self.request,
                              'your subscription ends before this auction expires, please renew your subscription')
@@ -35,16 +39,20 @@ class AuctionUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
         return redirect(safe_string)
 
 
-class AuctionBuyNowView(LoginRequiredMixin, SubscribeMixin, View):
+class AuctionBuyNowView(SubscribeMixin, View):
     http_method_names = ['post', ]
 
     def post(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
 
         sale_ads = SaleAds.objects.filter(pk=kwargs.get("pk")).first()
         if sale_ads.vehicle_category.name.lower() == 'truck':
             safe_string = reverse_lazy('truck-detail', kwargs={'pk': kwargs.get("pk")})
         else:
             safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
+
         if self.request.user.subscribe_until_date:
             if sale_ads.sale_end_time > self.request.user.subscribe_until_date and not self.request.user.subscription_one_time:
                 messages.success(self.request,
@@ -74,11 +82,15 @@ class AuctionBuyNowView(LoginRequiredMixin, SubscribeMixin, View):
         return redirect(safe_string)
 
 
-class AuctionWatchView(LoginRequiredMixin, View):
+class AuctionWatchView(View):
     http_method_names = ['post', ]
 
     def post(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
         sale_ads = SaleAds.objects.filter(pk=kwargs.get("pk")).first()
+
         if sale_ads.vehicle_category.name.lower() == 'truck':
             safe_string = reverse_lazy('truck-detail', kwargs={'pk': kwargs.get("pk")})
         else:

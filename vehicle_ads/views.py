@@ -16,6 +16,9 @@ from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateFo
 
 class SubscribeMixin:
     def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
         if not self.request.user.get_subscription:
             safe_string = reverse('home') + "#price-buy-banner"
             return redirect(safe_string)
@@ -211,30 +214,30 @@ class UpdateTruckView(LoginRequiredMixin, SubscribeMixin, UpdateView):
         return habit_object.__dict__
 
 
-class InventorySingleDetailView(FormMixin, DetailView):
+class InventorySingleDetailView( DetailView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'inventory-single.html'
-    form_class = SendEmailVendorForm
+    # form_class = SendEmailVendorForm
 
     def get_success_url(self):
         return reverse_lazy('catalog')
 
     def get_context_data(self, **kwargs):
-        context = super(InventorySingleDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['is_user_watch'] = self.object.is_user_watch(self.request.user)
         context['auction_bet_form'] = AuctionBetForm()
         context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderInventorySingle.objects.last()
-        context['send_vendor_mail_form'] = self.get_form()
+        # context['send_vendor_mail_form'] = self.get_form()
         context['title'] = 'inventory single'
         return context
 
-    def get_form_kwargs(self):
-        kw = super(InventorySingleDetailView, self).get_form_kwargs()
-        kw['request'] = self.request
-        return kw
+    # def get_form_kwargs(self):
+    #     kw = super(InventorySingleDetailView, self).get_form_kwargs()
+    #     kw['request'] = self.request
+    #     return kw
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
