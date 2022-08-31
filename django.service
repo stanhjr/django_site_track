@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=root
 Group=www-data
-WorkingDirectory=/root/django_site_track
-ExecStart=/root/django_site_track/venv/bin/gunicorn --workers 5 --bind unix:/run/gunicorn.sock django_site_track.wsgi:application
+WorkingDirectory=/home/django_site_track
+ExecStart=/home/django_site_track/venv/bin/gunicorn --workers 5 --bind unix:/run/gunicorn.sock django_site_track.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
