@@ -44,8 +44,6 @@ def send_registration_link_to_email(code: str, email_to):
     This is your registration link:
     {settings.CELERY_SEND_MAIL_HOST}auth/account-activate/?code={code}"""
 
-    # http://92.38.241.95/auth/account-activate/?code=365b2f4a3ec0117c4cf7f54fd826a84b0d84d872
-
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
     message["From"] = sender_email
@@ -311,5 +309,4 @@ def send_buy_now_customer(pk: str, email_to, contact_data_owner: str, category_n
         print("Email sent successfully!")
     except Exception as ex:
         print("Something went wrong….", ex)
-# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks beat --loglevel=INFO -Q contact_us,celery
-# /home/stan/freelance/django_site_track/venv/bin/celery --app=email_sender.tasks flower --address=127.0.0.6 --port=5566 --basic_auth=stan:1
+
