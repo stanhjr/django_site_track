@@ -41,9 +41,10 @@ VEHICLE_CONDITION_CHOICES = (
     ("Used", "Used"),
 )
 
-category_truck = CategoriesTrack.objects.filter(name='Truck').first()
-category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
-
+# category_truck = CategoriesTrack.objects.filter(name='Truck').first()
+# category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
+category_truck = 2
+category_trailer = 4
 
 
 class BaseForm(forms.ModelForm):
