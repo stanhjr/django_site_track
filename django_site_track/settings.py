@@ -60,7 +60,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = (os.path.join('static'), )
-STATIC_ROOT = '/home/static/'
+STATIC_ROOT = '/home/django_sitestatic/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -149,4 +149,5 @@ EMAIL_HOST_PASSWORD = "Andrew-1994"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
-CELERY_SEND_MAIL_HOST = 'http://92.38.241.95/'
+CELERY_SEND_MAIL_HOST = 'http://185.25.116.232/'
+

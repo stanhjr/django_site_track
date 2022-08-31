@@ -41,10 +41,8 @@ VEHICLE_CONDITION_CHOICES = (
     ("Used", "Used"),
 )
 
-# category_truck = CategoriesTrack.objects.filter(name='Truck').first()
-# category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
-category_truck = 2
-category_trailer = 4
+category_truck = CategoriesTrack.objects.filter(name='Truck').first()
+category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
 
 
 class BaseForm(forms.ModelForm):
@@ -53,6 +51,7 @@ class BaseForm(forms.ModelForm):
         for bound_field in self:
             if hasattr(bound_field, "field") and bound_field.field.required:
                 bound_field.field.widget.attrs["required"] = "required"
+
 
 class VehicleInformationForm(BaseForm):
     class Meta:
@@ -106,7 +105,6 @@ class VehicleInformationForm(BaseForm):
 
             else:
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
-
 
 
 class TruckCreateForm(BaseForm):
