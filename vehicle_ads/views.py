@@ -211,7 +211,7 @@ class UpdateTruckView(LoginRequiredMixin, SubscribeMixin, UpdateView):
         return habit_object.__dict__
 
 
-class InventorySingleDetailView(LoginRequiredMixin, FormMixin, DetailView):
+class InventorySingleDetailView(FormMixin, DetailView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'inventory-single.html'
@@ -250,7 +250,7 @@ class InventorySingleDetailView(LoginRequiredMixin, FormMixin, DetailView):
             return self.form_invalid(form)
 
 
-class TruckDetailView(LoginRequiredMixin, DetailView):
+class TruckDetailView(DetailView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'truck_single.html'

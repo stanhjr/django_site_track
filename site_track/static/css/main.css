@@ -1803,7 +1803,9 @@ textarea::placeholder {
   white-space: nowrap;
   text-transform: capitalize;
 }
-
+.mail-link {
+  color: #ffffff;
+}
 .product-grid-btn {
   display: -ms-grid;
   display: grid;

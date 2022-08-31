@@ -89,7 +89,7 @@ class IndexView(ListView):
         return context
 
 
-class InventoryGridView(LoginRequiredMixin, ListView):
+class InventoryGridView(ListView):
     login_url = reverse_lazy('login')
     model = CategoriesTrack
     template_name = 'inventory-grid.html'
