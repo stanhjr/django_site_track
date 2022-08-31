@@ -133,7 +133,8 @@ class UserSignUpForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         if MyUser.objects.filter(email=cleaned_data.get('email')).exists():
-            self.fields.add_error('email', 'This mail is already registered')
+            raise forms.ValidationError('This mail is already registered')
+
         return cleaned_data
 
     def save(self, commit=True):
@@ -162,8 +163,7 @@ class ResetPasswordForm(forms.Form):
         cleaned_data = super().clean()
         if MyUser.objects.filter(email=cleaned_data.get('email')).first():
             return cleaned_data
-        #     self.fields.add_error('email', 'This mail is already registered')
-        # return cleaned_data
+
 
 
 class RestorePasswordForm(forms.Form):
