@@ -136,7 +136,7 @@
                             <li><i class="material-icons">account_circle</i><a href="{% url 'account-profile' saleads.user.id %}">by {{ saleads.user.full_name }}</a></li>
                             <li><i class="material-icons">watch_later</i><span>{{ saleads.get_date_ago }}</span></li>
 {#                            <li><i class="material-icons">stars</i><button type="button" data-bs-toggle="modal" data-bs-target="#modalReview">(24) reviews</button></li>#}
-                            <li><i class="material-icons">fmd_good</i><span>{{ saleads.user.country }}, {{ saleads.user.state }}, {{ saleads.user.city }}</span></li>
+                            <li><i class="material-icons">fmd_good</i><span>{{ saleads.user.company }}, {{ saleads.user.address_of_company }}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                         </div>
                         <div class="common-card-body">
                             <div class="product-single-vendor">
-                                <a class="vendor-grid-cover" href="{{ saleads.user.get_photo_url }}"><img src="{% static 'images/bg/cover.jpg' %}" alt="cover"></a>
+{#                                <a class="vendor-grid-cover" href="{{ saleads.user.get_photo_url }}"><img src="{% static 'images/bg/cover.jpg' %}" alt="cover"></a>#}
                                 <a class="vendor-grid-avatar" href="{{ saleads.user.get_photo_url }}"><img src="{{ saleads.user.get_photo_url }}" alt="avatar"></a>
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a href="{% url 'account-profile' user.id %}">{{ saleads.user.full_name }}</a></li>

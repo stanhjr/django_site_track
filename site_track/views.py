@@ -143,9 +143,11 @@ class InventoryGridView(ListView):
         context['footer'] = SettingsFooter.objects.last()
         context['categories'] = CategoriesTrack.objects.all()
         if category.name == 'Truck':
+            context['grid_name'] = 'trucks'
             context['models'] = TruckModel.objects.all()
             context['makes'] = TruckMake.objects.all()
         else:
+            context['grid_name'] = 'trailers'
             context['models'] = ModelTrack.objects.all()
             context['makes'] = MakeTrack.objects.all()
 

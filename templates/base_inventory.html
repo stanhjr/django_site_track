@@ -151,12 +151,6 @@
                             <span class="nav-arrow"></span>
                         </a>
                         <ul class="drop-list">
-{#                            <li class="drop-item">#}
-{#                                <a href="{% url 'catalog'%}" class="drop-link">#}
-{#                                    <i class="material-icons">remove</i>#}
-{#                                    <span>catalog</span>#}
-{#                                </a>#}
-{#                            </li>#}
                             <li class="drop-item">
                                 <a href="{% url 'inventory-grid' 'track'%}" class="drop-link">
                                     <i class="material-icons">remove</i>
@@ -355,13 +349,14 @@
                 <h2>{{ header.inventory_title }}</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+{#                    {% if  %}#}
                     {% if header.is_not_single_header %}
-                        <li class="breadcrumb-item active" aria-current="page">{{ header.inventory_link_name }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ grid_name }}</li>
                     {% else %}
                         <li class="breadcrumb-item"><a
                                 href="{% url 'inventory-grid' category=saleads.vehicle_category.name %}">{{ header.inventory_link_name }}</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ header.inventory_single_page }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ grid_name }}</li>
                     {% endif %}
 
                 </ol>

@@ -4,14 +4,12 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
-from django.views.generic.edit import FormMixin
 
 from auction.forms import AuctionBetForm
 from email_sender.tasks import send__make_offer_mail
 from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventorySingle, CategoriesTrack
 
-from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm, SendEmailVendorForm, \
-    TruckCreateForm, TruckUpdateForm
+from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm, TruckCreateForm, TruckUpdateForm
 
 
 class SubscribeMixin:
@@ -232,6 +230,7 @@ class InventorySingleDetailView( DetailView):
         context['header'] = SettingsHeaderInventorySingle.objects.last()
         # context['send_vendor_mail_form'] = self.get_form()
         context['title'] = 'inventory single'
+        context['grid_name'] = self.get_object().title
         return context
 
     # def get_form_kwargs(self):

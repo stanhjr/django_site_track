@@ -310,7 +310,7 @@ class SaleAds(models.Model):
     def get_last_hours(self):
         time = datetime.datetime.now()
         if self.sale_end_time > timezone.now():
-            hours = (time.day - self.sale_end_time.day) * 24 + time.hour - self.sale_end_time.hour
+            hours = (self.sale_end_time.day - time.day) * 24 + self.sale_end_time.hour - time.hour
             return str(hours) + " hours"
 
     @property
