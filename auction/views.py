@@ -78,8 +78,11 @@ class AuctionWatchView(LoginRequiredMixin, View):
     http_method_names = ['post', ]
 
     def post(self, request, *args, **kwargs):
-        safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
         sale_ads = SaleAds.objects.filter(pk=kwargs.get("pk")).first()
+        if sale_ads.vehicle_category.name.lower() == 'truck':
+            safe_string = reverse_lazy('truck-detail', kwargs={'pk': kwargs.get("pk")})
+        else:
+            safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
         if not sale_ads:
             return redirect(safe_string)
         if sale_ads.user_watch.filter(id=request.user.pk):
