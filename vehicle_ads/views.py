@@ -46,7 +46,6 @@ class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):
         return redirect('create-sale-ads')
 
     def form_valid(self, form):
-
         obj = form.save(commit=False)
         if self.request.user.subscribe_until_date:
             if obj.sale_end_time > self.request.user.subscribe_until_date:
