@@ -149,5 +149,6 @@ EMAIL_HOST_PASSWORD = "Andrew-1994"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
-CELERY_SEND_MAIL_HOST = 'http://185.25.116.232/'
+CELERY_SEND_MAIL_HOST = 'https://buymyfleet.net/'
+
 
