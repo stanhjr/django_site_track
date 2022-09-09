@@ -149,6 +149,9 @@ SESSION_COOKIE_AGE_ADMIN = 60 * 60 * 48
 
 ADMIN_REORDER = (
     {'app': 'site_track', 'models': (
+         'site_track.MyUser',
+    ), 'label': 'Users'},
+    {'app': 'site_track', 'models': (
          'site_track.SaleAds',
     ), 'label': 'SaleAds'},
     {'app': 'site_track', 'models': (
