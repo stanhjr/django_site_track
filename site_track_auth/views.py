@@ -17,6 +17,11 @@ class SignUp(CreateView):
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('follow-email')
 
+    def get_form_kwargs(self):
+        kw = super(SignUp, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
+
     def get_context_data(self, **kwargs):
         context = super(SignUp, self).get_context_data(**kwargs)
         context['social_link'] = SettingsFooter.objects.last()
@@ -29,6 +34,11 @@ class Login(LoginView):
     success_url = 'account/settings'
     form_class = LoginForm
     template_name = 'auth/login.html'
+
+    def get_form_kwargs(self):
+        kw = super(Login, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
 
     def form_valid(self, form):
         auth.login(self.request, form.get_user())
@@ -77,6 +87,11 @@ class ResetPassword(FormView):
     template_name = 'auth/reset_password.html'
     form_class = ResetPasswordForm
     success_url = '/'
+
+    def get_form_kwargs(self):
+        kw = super(ResetPassword, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
 
     def form_valid(self, form):
         user = MyUser.objects.filter(email=form.data.get('email'), is_confirm=True).first()

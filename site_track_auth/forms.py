@@ -1,12 +1,17 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 
 from site_track.models import MyUser
 from email_sender.tasks import generate_key, send_registration_link_to_email
 
 
 class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(LoginForm, self).__init__(*args, **kwargs)
+
     username = forms.CharField(label="email",
                                widget=forms.EmailInput(
                                    attrs={
@@ -31,8 +36,10 @@ class LoginForm(AuthenticationForm):
             self.user = authenticate(username=username, password=password)
 
             if self.user is None:
+                messages.warning(self.request, 'username or password fields does not match')
                 raise forms.ValidationError(message='username or password fields does not match')
             if self.user.is_confirm is False:
+                messages.warning(self.request, 'Please follow the instructions we just emailed for you!')
                 raise forms.ValidationError(message='Please follow the instructions we just emailed for you!')
 
         return cleaned_data
@@ -43,6 +50,10 @@ class UserSignUpForm(forms.ModelForm):
     A form that creates a user, with no privileges, from the given username and
     password.
     """
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(UserSignUpForm, self).__init__(*args, **kwargs)
 
     error_messages = {
         'password_mismatch': "The two password fields didn't match.",
@@ -132,6 +143,7 @@ class UserSignUpForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
+            messages.warning(self.request, 'password_mismatch')
             raise forms.ValidationError(
                 self.error_messages['password_mismatch'],
                 code='password_mismatch',
@@ -141,6 +153,8 @@ class UserSignUpForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         if MyUser.objects.filter(email=cleaned_data.get('email')).exists():
+            print("dfdfdfdfdf")
+            messages.warning(self.request, 'This mail is already registered')
             raise forms.ValidationError('This mail is already registered')
 
         return cleaned_data

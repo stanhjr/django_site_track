@@ -5,13 +5,17 @@
         <form class="auth-form" method="post">
             <div class="auth-form-content">
                 <h3 class="auth-form-title">Register a new account.</h3>
-                {% if messages %}
-                    <ul class="messages messages-auction-bet">
-                        {% for message in messages %}
-                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <div class="error-toast-inner">
+                    <span class="system-massage" style="color: yellow">{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
                 {% csrf_token %}
                 <div class="form-group">{{ form.first_name }}</div>
                 <div class="form-group">{{ form.last_name }}</div>

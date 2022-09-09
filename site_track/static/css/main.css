@@ -107,6 +107,10 @@ button:focus {
   }
 }
 
+span.system-massage {
+    color: yellow;
+}
+
 @media (max-width: 991px) {
   .content-reverse {
     -webkit-box-orient: vertical;
