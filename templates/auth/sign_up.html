@@ -13,7 +13,8 @@
                     </ul>
                 {% endif %}
                 {% csrf_token %}
-                <div class="form-group">{{ form.full_name }}</div>
+                <div class="form-group">{{ form.first_name }}</div>
+                <div class="form-group">{{ form.last_name }}</div>
                 <div class="form-group">{{ form.email }}</div>
                 <div class="form-group">{{ form.company }}</div>
                 <div class="form-group">{{ form.position_in_company }}</div>

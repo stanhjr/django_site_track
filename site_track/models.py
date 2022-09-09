@@ -16,7 +16,6 @@ class MyUser(AbstractUser):
     )
 
     money_spent = models.PositiveIntegerField(default=0)
-    full_name = models.CharField(max_length=120, null=True, blank=True)
     company = models.CharField(max_length=120, null=True, blank=True)
     position_in_company = models.CharField(max_length=120, null=True, blank=True)
     address_of_company = models.CharField(max_length=120, null=True, blank=True)
@@ -46,6 +45,14 @@ class MyUser(AbstractUser):
     youtube = models.CharField(max_length=60, null=True, blank=True)
     whatsapp = models.CharField(max_length=60, null=True, blank=True)
     pinterest = models.CharField(max_length=60, null=True, blank=True)
+
+    @property
+    def full_name(self):
+        """
+        Return the first_name plus the last_name, with a space in between.
+        """
+        full_name = "%s %s" % (self.first_name, self.last_name)
+        return full_name.strip()
 
     def get_contact_data(self):
         return f"email: {self.email}\nphone_number: {self.phone_number}\nfull_name: {self.full_name}"
@@ -368,8 +375,8 @@ class SettingsFooter(models.Model):
     linkedin_url = models.URLField(null=True, default="https://www.linkedin.com/")
     whatsapp_phone = models.CharField(null=True, max_length=60, default="")
     youtube_url = models.URLField(null=True, default="https://www.youtube.com/")
-    email_1 = models.EmailField(null=True, default="info@bymyfleet.com")
-    email_2 = models.EmailField(null=True, default="info@bymyfleet.com")
+    email_1 = models.EmailField(null=True, default="info@bymyfleet.net")
+    email_2 = models.EmailField(null=True, default="info@bymyfleet.net")
     phone_number_1 = models.CharField(null=True, max_length=120, default="(260) 888-2323")
     phone_number_2 = models.CharField(null=True, max_length=120, default="(260) 888-2323")
     address_top = models.CharField(null=True, max_length=120, default="1Hd- 50, 010 Avenue")
@@ -443,16 +450,16 @@ class SettingsHeaderPrivacy(models.Model, IsNotSingleHeaderMixin):
 
 
 class SettingsIndexHome(models.Model):
-    part_start_title = models.TextField(default="find top categories")
+    part_start_title = models.TextField(default="find categories")
     part_start_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicing")
     part_features_title = models.TextField(default="our featured listing")
     part_features_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
-    brand_part_title = models.TextField(default="browse by top brands")
+    brand_part_title = models.TextField(default="browse by make")
     brand_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
     price_part_title = models.TextField(default="our ads pricing plans")
     price_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
-    recent_part_title = models.TextField(default="recent add vehiclesn")
-    recent_part_text = models.TextField(default="Lorem ipsum dolor sit amet consectetur adipisicin")
+    recent_part_title = models.TextField(default="recently added")
+    recent_part_text = models.TextField(default="not displayed")
 
 
 class FakeReviewIndexHome(models.Model):

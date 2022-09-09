@@ -95,7 +95,9 @@ button {
 button:focus {
   outline: none;
 }
-
+.banner-content .btn-inline {
+  margin: 6px 2px;
+}
 @media (min-width: 1300px) {
   .container {
     max-width: 1230px;
@@ -6768,7 +6770,11 @@ textarea::placeholder {
     margin-left: 50px;
   }
 }
-
+@media (max-width: 768px) {
+  .banner-content .btn-inline {
+      width: calc(50% - 7px);
+  }
+}
 .review-item {
   padding: 25px 30px;
   border-radius: 6px;

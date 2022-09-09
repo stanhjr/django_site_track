@@ -217,7 +217,7 @@ class Migration(migrations.Migration):
             name='SettingsIndexHome',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('part_start_title', models.TextField(default='find top categories')),
+                ('part_start_title', models.TextField(default='find categories')),
                 ('part_start_text', models.TextField(default='Lorem ipsum dolor sit amet consectetur adipisicing')),
                 ('part_features_title', models.TextField(default='our featured listing')),
                 ('part_features_text', models.TextField(default='Lorem ipsum dolor sit amet consectetur adipisicin')),
@@ -225,8 +225,8 @@ class Migration(migrations.Migration):
                 ('brand_part_text', models.TextField(default='Lorem ipsum dolor sit amet consectetur adipisicin')),
                 ('price_part_title', models.TextField(default='our ads pricing plans')),
                 ('price_part_text', models.TextField(default='Lorem ipsum dolor sit amet consectetur adipisicin')),
-                ('recent_part_title', models.TextField(default='recent add vehiclesn')),
-                ('recent_part_text', models.TextField(default='Lorem ipsum dolor sit amet consectetur adipisicin')),
+                ('recent_part_title', models.TextField(default='recently added')),
+                ('recent_part_text', models.TextField(default='not displayed')),
             ],
         ),
         migrations.CreateModel(

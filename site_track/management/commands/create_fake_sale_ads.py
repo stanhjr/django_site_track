@@ -20,7 +20,7 @@ random_category = CategoriesTrack.objects.all()
 random_model = ModelTrack.objects.all()
 random_make = MakeTrack.objects.all()
 
-VEHICLE_FUEL_CHOICES = ("Diesel", "Petrol", "Electric", "Electric", "Hybrid")
+VEHICLE_FUEL_CHOICES = ("Diesel", "LPG")
 
 
 VEHICLE_CONDITION_CHOICES = ("New", "Used")

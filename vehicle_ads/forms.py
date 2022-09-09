@@ -26,9 +26,7 @@ VEHICLE_WHEEL_CHOICES = (
 
 VEHICLE_FUEL_CHOICES = (
     ("Diesel", "Diesel"),
-    ("Petrol", "Petrol"),
-    ("Electric", "Electric"),
-    ("Hybrid", "Hybrid"),
+    ("LPG", "LPG"),
 )
 
 VEHICLE_PRICE_TYPE_CHOICES = (

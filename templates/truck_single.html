@@ -180,7 +180,7 @@
                                     <label>$</label>
                                     {{ auction_bet_form.last_price }}
                                 </div>
-                                <button type="submit" class="auction-button form-btn">Make proposal</button>
+                                <button type="submit" class="auction-button form-btn">Make bid</button>
                             </div>
                             {% if messages %}
                                     <ul class="messages messages-auction-bet">
@@ -200,9 +200,9 @@
                         {% endif %}
 
                         <div class="common-card">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">Fix price</h4>
-                        </div>
+{#                        <div class="common-card-header">#}
+{#                            <h4 class="common-card-header-title">Fix price</h4>#}
+{#                        </div>#}
                             {% if saleads.sales or saleads.time_auction_lef %}
 
                         {% else %}

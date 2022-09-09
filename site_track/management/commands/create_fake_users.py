@@ -40,7 +40,7 @@ class Command(BaseCommand):
                         last_name=faker.name(),
                         company=faker.name(),
                         phone_number=faker.phone_number(),
-                        full_name=faker.name(),
+                        first_name=faker.name(),
                         country="USA",
                         state=faker.text()[1:10],
                         zip=str(faker.random_int(1000, 5000)),

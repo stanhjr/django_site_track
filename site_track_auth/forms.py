@@ -62,15 +62,23 @@ class UserSignUpForm(forms.ModelForm):
                                     }
                                 ))
 
-    full_name = forms.CharField(label="full_name",
+    first_name = forms.CharField(label="first_name",
+                                 max_length=50,
+                                 widget=forms.TextInput(
+                                     attrs={
+                                         'class': 'form-control',
+                                         'placeholder': 'enter first name'
+                                     }
+                                 ))
+
+    last_name = forms.CharField(label="last_name",
                                 max_length=50,
                                 widget=forms.TextInput(
                                     attrs={
                                         'class': 'form-control',
-                                        'placeholder': 'enter full name'
+                                        'placeholder': 'enter last name'
                                     }
                                 ))
-
     email = forms.CharField(label="email", widget=forms.EmailInput(
         attrs={
             'class': 'form-control',
@@ -117,7 +125,7 @@ class UserSignUpForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ("full_name", "email", "company", "position_in_company",
+        fields = ("first_name", "last_name", "email", "company", "position_in_company",
                   "address_of_company", "number_of_trucks_in_fleet", "telephone_number_direct", "phone_number")
 
     def clean_password2(self):
@@ -141,7 +149,6 @@ class UserSignUpForm(forms.ModelForm):
         user = super(UserSignUpForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.username = self.cleaned_data["email"]
-        user.full_name = self.cleaned_data["full_name"]
         code = generate_key()
         user.code = code
         if commit:
@@ -163,7 +170,6 @@ class ResetPasswordForm(forms.Form):
         cleaned_data = super().clean()
         if MyUser.objects.filter(email=cleaned_data.get('email')).first():
             return cleaned_data
-
 
 
 class RestorePasswordForm(forms.Form):

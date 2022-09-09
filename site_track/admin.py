@@ -6,7 +6,7 @@ from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesT
 
 class UserSearch(admin.ModelAdmin):
     ordering = ['created_at']
-    search_fields = ('email', 'username', 'full_name')
+    search_fields = ('email', 'username', 'first_name', 'last_name')
 
 
 class SaleAdsSearch(admin.ModelAdmin):
