@@ -67,13 +67,21 @@ class MyUser(AbstractUser):
 
     @property
     def get_subscription(self):
-        if self.subscription_one_time:
-            return True
-        if not self.subscribe_until_date:
-            return False
-        if self.subscribe_until_date < timezone.now():
-            return False
+        """
+        WARNING!! NOT CODE DELETE!
+
+        the first six months the site works without subscriptions
+        commented code is left for the future!!!!!
+        :return:
+        """
         return True
+        # if self.subscription_one_time:
+        #     return True
+        # if not self.subscribe_until_date:
+        #     return False
+        # if self.subscribe_until_date < timezone.now():
+        #     return False
+        # return True
 
     @property
     def get_photo_url(self):

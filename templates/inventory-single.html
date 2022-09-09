@@ -203,7 +203,7 @@
 {#                        <div class="common-card-header">#}
 {#                            <h4 class="common-card-header-title">Fix price</h4>#}
 {#                        </div>#}
-                            {% if saleads.sales or saleads.time_auction_lef %}
+                            {% if saleads.sales or saleads.time_auction_left %}
 
                         {% else %}
                         <form content="auction-form" class="" method="post" action="{% url 'auction-buy-now' saleads.pk %}">

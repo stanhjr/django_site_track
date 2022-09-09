@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'embed_video',
-    # 'django_cleanup',
+    'django_cleanup',
+    'admin_reorder',
     'site_track_auth',
     'account',
     'site_track',
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 STATICFILES_DIRS = [
@@ -151,4 +153,48 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
 CELERY_SEND_MAIL_HOST = 'https://buymyfleet.net/'
 
+ADMIN_REORDER = (
+    {'app': 'site_track', 'models': (
+         'site_track.SaleAds',
+    ), 'label': 'SaleAds'},
+    {'app': 'site_track', 'models': (
+        'site_track.ModelTrack',
+        'site_track.MakeTrack',
+        'site_track.TruckModel',
+        'site_track.TruckMake',
+        'site_track.ShouldInclude',
+        'site_track.TypeOfTrailer',
+        'site_track.SpringRide',
+        'site_track.SpringRide',
+    ), 'label': 'Marketplace Settings'},
 
+
+    {'app': 'site_track', 'models': (
+        'site_track.MuUser',
+    ), 'label': 'Users'},
+    {'app': 'site_track', 'models': (
+        'site_track.SettingsFooter',
+        'site_track.SettingsHeaderHome',
+        'site_track.SettingsAuthBase',
+        'site_track.SettingsHeaderInventoryGrid',
+        'site_track.SettingsHeaderContact',
+        'site_track.SettingsHeaderInventoryCatalog',
+        'site_track.SettingsHeaderInventorySingle',
+        'site_track.SettingsHeaderAboutUs',
+        'site_track.SettingsHeaderPrivacy',
+        'site_track.SettingsIndexHome',
+    ), 'label': 'Global Pages Settings'},
+
+    {'app': 'order', 'models': (
+        'order.BillingInfo',
+        'shop.Category',
+        'cart.Cart',
+        'cart.CartsProducts',
+        'shop.DiscountCode',
+        'order.Invoice',
+        'shipping.ShippingInfo',
+        'order.OrdersProducts',
+        'order.OrdersAccessories',
+    ), 'label': 'Website'},
+    'sites',
+)
