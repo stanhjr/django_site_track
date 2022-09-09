@@ -9,8 +9,10 @@ from email_sender.tasks import generate_key, send_registration_link_to_email
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
         super(LoginForm, self).__init__(*args, **kwargs)
+        self.request = kwargs.pop('request', None)
+        print(self.request)
+
 
     username = forms.CharField(label="email",
                                widget=forms.EmailInput(

@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 
 from site_track.views import ContactView, IndexView, InventoryGridView, InventoryCatalogView, AboutUs, Privacy, FaqView
+from stripe_sub.views import GetSessionIdAPIView
 
 urlpatterns = [
     path('contact/', ContactView.as_view(), name='contact'),
@@ -10,5 +11,8 @@ urlpatterns = [
     path('faq/', FaqView.as_view(), name='faq'),
     path('about_us/', AboutUs.as_view(), name='about-us'),
     path('privacy/', Privacy.as_view(), name='privacy'),
+    path("stripe/", include("djstripe.urls", namespace="djstripe")),
+    path("get_session_id/", GetSessionIdAPIView.as_view(), name="get_session_id"),
+
 
 ]

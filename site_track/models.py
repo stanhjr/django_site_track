@@ -6,6 +6,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
 
+from djstripe.models import Customer
+
 from site_track.defoul_text_in_site import ABOUT_COMPANY_TEXT, ABOUT_COMPANY_TITLE
 
 
@@ -75,13 +77,13 @@ class MyUser(AbstractUser):
         :return:
         """
         return True
-        # if self.subscription_one_time:
+
+        # customer = Customer.objects.filter(subscriber=self).first()
+        # if not customer:
+        #     return False
+        # if customer.active_subscriptions:
         #     return True
-        # if not self.subscribe_until_date:
-        #     return False
-        # if self.subscribe_until_date < timezone.now():
-        #     return False
-        # return True
+        # return False
 
     @property
     def get_photo_url(self):

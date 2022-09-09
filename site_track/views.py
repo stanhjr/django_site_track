@@ -65,6 +65,7 @@ class IndexView(ListView):
     paginate_by = 24
 
     def dispatch(self, request, *args, **kwargs):
+
         if self.request.GET.get('header-search'):
             safe_string = urllib.parse.quote_plus(self.request.GET.get('header-search'))
             safe_string = reverse('catalog') + "?header-search=" + safe_string

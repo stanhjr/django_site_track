@@ -3641,6 +3641,7 @@ textarea::placeholder {
 }
 
 .price-action {
+  cursor: pointer;
   width: 100%;
   font-weight: 700;
   padding: 12px 0px;

@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'djstripe',
     'embed_video',
     'django_cleanup',
     'admin_reorder',
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'site_track',
     'vehicle_ads',
     'auction',
+    'stripe_sub',
 ]
 
 MIDDLEWARE = [
@@ -144,15 +147,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_AGE = 60 * 60 * 7
 SESSION_COOKIE_AGE_ADMIN = 60 * 60 * 48
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.zoho.com"
-EMAIL_HOST_USER = "site_track@zohomail.com"
-EMAIL_HOST_PASSWORD = "Andrew-1994"
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
-CELERY_SEND_MAIL_HOST = 'https://buymyfleet.net/'
-
 ADMIN_REORDER = (
     {'app': 'site_track', 'models': (
          'site_track.SaleAds',
@@ -198,3 +192,24 @@ ADMIN_REORDER = (
     ), 'label': 'Website'},
     'sites',
 )
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.zoho.com"
+EMAIL_HOST_USER = "site_track@zohomail.com"
+EMAIL_HOST_PASSWORD = "Andrew-1994"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
+CELERY_SEND_MAIL_HOST = 'https://buymyfleet.net/'
+
+
+STRIPE_PRICE_ID_12_MONTHS = 'price_1Lg4T6K6rkKpcwrpjgWa7nCX'
+
+STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", 'STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY')
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", 'sk_test_51Lg4MyK6rkKpcwrpBVyS7DCMIIiJxhxDwpCH5ufEg3MPS8QnZtcp3amLtQR5n5lQ1JKO4OVciqPL1K7kJguJZNUS005MqWi0jt')
+STRIPE_LIVE_MODE = False
+DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
