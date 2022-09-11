@@ -198,14 +198,10 @@
                         <p>last bet   {{ saleads.last_price }} $</p>
                     </div>
                         {% endif %}
-
-                        <div class="common-card">
-{#                        <div class="common-card-header">#}
-{#                            <h4 class="common-card-header-title">Fix price</h4>#}
-{#                        </div>#}
-                            {% if saleads.sales or saleads.time_auction_left %}
+                    {% if saleads.sales or saleads.time_auction_left %}
 
                         {% else %}
+                         <div class="common-card">
                         <form content="auction-form" class="" method="post" action="{% url 'auction-buy-now' saleads.pk %}">
                             <div class="auction-row">
                                 <div class="auction-group">

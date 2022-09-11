@@ -3,7 +3,13 @@
         <div class="col">
             <div class="product-grid-card">
                 <div class="product-grid-image">
-                    <img src="{{ obj.get_photo_url }}" alt="product">
+                {% if obj.vehicle_category.name == 'Truck' %}
+                   <a href="{% url 'truck-detail' obj.id %}"><img src="{{ obj.get_photo_url }}" alt="product"></a>
+                {% else %}
+                    <a href="{% url 'posted-detail' obj.id %}"><img src="{{ obj.get_photo_url }}" alt="product"></a>
+                {% endif %}
+
+
 
 
                     <div class="product-grid-badge">
@@ -12,7 +18,6 @@
                         {% else %}
                             <span class="badge new">new</span>
                         {% endif %}
-                        {#                                <span class="badge featured">featured</span>#}
                     </div>
 
                     <div class="product-grid-hints">
@@ -45,10 +50,7 @@
                             <a href="#">by {{ obj.user.full_name }}</a>
 
                         </div>
-                        {#                                <div class="product-grid-rating">#}
-                        {#                                    <i class="material-icons">star</i>#}
-                        {#                                    <a href="review.html">28 review</a>#}
-                        {#                                </div>#}
+
                     </div>
                 </div>
                 <div class="product-grid-content">
@@ -58,10 +60,6 @@
                             <small>{{ obj.vehicle_price_type }}</small>
                         </div>
 
-{#                        <div class="product-grid-action">#}
-{#                            <button type="button" title="Compare" class="compare material-icons">compare</button>#}
-{#                            <button type="button" title="Favorite" class="favorite material-icons">favorite</button>#}
-{#                        </div>#}
                     </div>
                     <div class="product-grid-meta">
 

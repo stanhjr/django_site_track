@@ -216,3 +216,9 @@ STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", 'sk_test_51Lg4
 STRIPE_LIVE_MODE = False
 DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

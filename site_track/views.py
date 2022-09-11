@@ -36,20 +36,9 @@ class ContactView(FormView):
         return context
 
 
-class FaqView(LoginRequiredMixin, TemplateView):
+class FaqView(TemplateView):
     template_name = 'faq.html'
     success_url = '/'
-
-    # form_class = ContactForm
-
-    def handle_no_permission(self):
-        return redirect('login')
-
-    # def form_valid(self, form):
-    #     send_mail_contact_us.delay(email_from=form.data.get("email"),
-    #                                subject=form.data.get("subject"),
-    #                                text=form.data.get("text"))
-    #     return super().form_valid(form=form)
 
     def get_context_data(self, **kwargs):
         context = super(FaqView, self).get_context_data(**kwargs)
