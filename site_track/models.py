@@ -273,16 +273,23 @@ class SaleAds(models.Model):
     email = models.EmailField(max_length=120, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='sale_ads')
-    vehicle_make = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
-    vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
-    vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    vehicle_make = models.ForeignKey(MakeTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                     blank=True)
+    vehicle_model = models.ForeignKey(ModelTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                      blank=True)
+    vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                         blank=True)
 
     # Truck part
-    should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
-    type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
-    spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                       blank=True)
+    type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                          blank=True)
+    spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                    blank=True)
     truck_make = models.ForeignKey(TruckMake, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
-    truck_model = models.ForeignKey(TruckModel, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
+    truck_model = models.ForeignKey(TruckModel, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                    blank=True)
     length = models.PositiveIntegerField(default=1000, null=True, blank=True)
     width = models.PositiveIntegerField(default=1000, null=True, blank=True)
     air_ride = models.CharField(max_length=120, null=True, blank=True)
@@ -457,6 +464,11 @@ class SettingsHeaderAboutUs(models.Model, IsNotSingleHeaderMixin):
 class SettingsHeaderPrivacy(models.Model, IsNotSingleHeaderMixin):
     inventory_title = models.TextField(default="Privacy Policy")
     inventory_link_name = models.TextField(default="Privacy")
+
+
+class SettingsHeaderTerms(models.Model, IsNotSingleHeaderMixin):
+    inventory_title = models.TextField(default="Terms conditions")
+    inventory_link_name = models.TextField(default="Terms")
 
 
 class SettingsIndexHome(models.Model):

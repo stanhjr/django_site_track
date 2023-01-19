@@ -179,6 +179,7 @@ ADMIN_REORDER = (
         'site_track.SettingsHeaderInventorySingle',
         'site_track.SettingsHeaderAboutUs',
         'site_track.SettingsHeaderPrivacy',
+        'site_track.SettingsHeaderTerms',
         'site_track.SettingsIndexHome',
     ), 'label': 'Global Pages Settings'},
 

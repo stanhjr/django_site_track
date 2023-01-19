@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from site_track.models import FakeReviewIndexHome, SettingsHeaderInventoryGrid, SettingsAuthBase, \
     SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle, SettingsFooter, SettingsIndexHome, \
     SettingsHeaderAboutUs, SettingsHeaderPrivacy, SettingsHeaderContact, CategoriesTrack, MakeTrack, ModelTrack, \
-    FaqHeader, TruckMake, TruckModel, SpringRide, TypeOfTrailer, ShouldInclude
+    FaqHeader, TruckMake, TruckModel, SpringRide, TypeOfTrailer, ShouldInclude, SettingsHeaderTerms
 
 
 class Command(BaseCommand):
@@ -45,6 +45,9 @@ class Command(BaseCommand):
 
         if not SettingsHeaderPrivacy.objects.last():
             SettingsHeaderPrivacy.objects.create()
+
+        if not SettingsHeaderTerms.objects.last():
+            SettingsHeaderTerms.objects.create()
 
         if not SettingsHeaderContact.objects.last():
             SettingsHeaderContact.objects.create()

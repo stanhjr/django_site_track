@@ -11,7 +11,7 @@ from core.models import Faq
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
-    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack, FaqHeader, TruckModel, TruckMake
+    SettingsHeaderAboutUs, SettingsHeaderPrivacy, ModelTrack, FaqHeader, TruckModel, TruckMake, SettingsHeaderTerms
 from email_sender.tasks import send_mail_contact_us
 
 
@@ -222,4 +222,15 @@ class Privacy(TemplateView):
         context['header'] = SettingsHeaderPrivacy.objects.last()
         context['footer'] = SettingsFooter.objects.last()
         context['title'] = 'privacy'
+        return context
+
+
+class Terms(TemplateView):
+    template_name = 'terms.html'
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super(Terms, self).get_context_data(**kwargs)
+        context['header'] = SettingsHeaderTerms.objects.last()
+        context['footer'] = SettingsFooter.objects.last()
+        context['title'] = 'terms'
         return context
