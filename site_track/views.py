@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, ListView, TemplateView
 
+from core.models import Faq
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
@@ -44,6 +45,7 @@ class FaqView(TemplateView):
         context = super(FaqView, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = FaqHeader.objects.last()
+        context['faqs'] = Faq.objects.all()
         context['title'] = 'faq'
         return context
 

@@ -13,6 +13,7 @@ class SaleAdsSearch(admin.ModelAdmin):
     ordering = ['created_at']
     search_fields = ('title', 'user__email')
 
+
 admin.site.register(TruckMake)
 admin.site.register(TruckModel)
 admin.site.register(TypeOfTrailer)
@@ -21,7 +22,7 @@ admin.site.register(MyUser, UserSearch)
 admin.site.register(SaleAds, SaleAdsSearch)
 admin.site.register(ImageInGallery)
 admin.site.register(SettingsFooter)
-# admin.site.register(CategoriesTrack)
+admin.site.register(CategoriesTrack)
 admin.site.register(SettingsHeaderHome)
 admin.site.register(SettingsHeaderInventoryGrid)
 admin.site.register(SettingsHeaderContact)

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'vehicle_ads',
     'auction',
     'stripe_sub',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +156,7 @@ ADMIN_REORDER = (
          'site_track.SaleAds',
     ), 'label': 'SaleAds'},
     {'app': 'site_track', 'models': (
+        'site_track.CategoriesTrack',
         'site_track.ModelTrack',
         'site_track.MakeTrack',
         'site_track.TruckModel',
@@ -164,8 +166,6 @@ ADMIN_REORDER = (
         'site_track.SpringRide',
         'site_track.SpringRide',
     ), 'label': 'Marketplace Settings'},
-
-
     {'app': 'site_track', 'models': (
         'site_track.MuUser',
     ), 'label': 'Users'},
@@ -193,6 +193,9 @@ ADMIN_REORDER = (
         'order.OrdersProducts',
         'order.OrdersAccessories',
     ), 'label': 'Website'},
+    {'app': 'core', 'models': (
+        'core.Faq',
+    ), 'label': 'Faq'},
     'sites',
 )
 

@@ -211,7 +211,7 @@ class UpdateTruckView(LoginRequiredMixin, SubscribeMixin, UpdateView):
         return habit_object.__dict__
 
 
-class InventorySingleDetailView( DetailView):
+class InventorySingleDetailView(DetailView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'inventory-single.html'

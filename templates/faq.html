@@ -12,55 +12,21 @@
                     <div class="faq-category">
                         <h3 class="faq-category-title">FAQ</h3>
                         <ul class="accordion-list">
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#1 Who is this site for</h5>
-                                    <i class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>
-This site was designed to help fleets attract more buyers for their used trucks and trailers. Trucking companies move freight, and they are good at it. Truck dealers buy and sell truck and they are good at it. Selling trucks takes so much time away from owners and from fleet managers. There are many phone calls asking the same questions. This site with free up fleet managers and owners time to do what they do best which is moving freight.
-</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#2 Selling your trucks and trailers</h5>
-                                    <i class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>This site can only market your trucks to hundreds of buyers. This site will many times meet your expectations or exceed them for the price paid for your equipment.
+                            {% for faq in faqs %}
+                                <li class="accordion-item">
+                                    <div class="accordion-que">
+                                        <h5>#{{ faq.number }} {{ faq.title }}</h5>
+                                        <i class="material-icons">expand_more</i>
+                                    </div>
+                                    <div class="accordion-ans">
+                                        <p>{{ faq.text }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
 
-To get as much for your truck as possible the truck must be clean when taking photos, the photos must be good (see examples of photos) the trucks should be deidentified or edited with a photo editor. the trucks should be accurately described in the truck description. If the trucks are not described accurately the buyer may ask for an adjustment in price.
-
-There is a buy it now option in truck description. There should always be a buy it now price. The reasons for this is that there is no absolute auctions on this site to get bids on your equipment the buyer wants to know if he will be even close to the price wanted for the equipment. If you receive no bids, it will generally mean the truck is priced too high. If the buy it now price is to low the equipment will see very quickly. If you send us an email we can offer suggestions.
-</p>
-                                </div>
-                            </li>
                             <li class="accordion-item">
                                 <div class="accordion-que">
-                                    <h5>#3 About Auctions</h5>
-                                    <i class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>In layman’s terms auctions are very good for auctions. The big auctions charge fees to the buyers and to the sellers. These fees range from 6% to 10% which is one reason that this site was brought to reality. We earn no fees for the selling of the trucks and the monthly fee is very inexpensive</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#4 Absolute auctions</h5>
-                                    <i class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>Your equipment is guaranteed to sell in an absolute auction! The price which you get for your equipment of course is not guaranteed but the auction company will still get their percentage from the seller and from the buyer. If your equipment sells for a very low price the Auction company will simply say sorry, we had a bad auction, but they still get their percentage!! We will present all offers for your equipment and will work with the buyer with your interest in mind.
-
-Buy my fleet is a new company, truly designed to help fleets sell their equipment for a very low cost. We have 35 years’ experience in buying and selling of trucks and trailer. With your help this site will be a success and will be able to help fleets for many years to come.
-</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#5 Photo examples</h5>
+                                    <h5>#  Photo examples</h5>
                                     <i class="material-icons">expand_more</i>
                                 </div>
                                 <div class="accordion-ans">
@@ -83,11 +49,6 @@ Buy my fleet is a new company, truly designed to help fleets sell their equipmen
                                          <div class="gallery-item">
                                              <div class="gallery-inner">
                                                 <img src="{% static 'images/faq/faq4.png' %}" alt="">
-                                            </div>
-                                        </div>
-                                         <div class="gallery-item">
-                                             <div class="gallery-inner">
-                                                <img src="{% static 'images/faq/faq5.png' %}" alt="">
                                             </div>
                                         </div>
                                     </div>
