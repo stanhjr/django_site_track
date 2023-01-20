@@ -220,7 +220,6 @@ class InventorySingleDetailView(DetailView):
     login_url = reverse_lazy('login')
     model = SaleAds
     template_name = 'inventory-single.html'
-    # form_class = SendEmailVendorForm
 
     def get_success_url(self):
         return reverse_lazy('catalog')

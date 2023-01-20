@@ -8,6 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, ListView, TemplateView
 
 from core.models import Faq
+from django_site_track.settings import STRIPE_LIVE_MODE, STRIPE_LIVE_PUBLIC_KEY, STRIPE_TEST_PUBLIC_KEY
 from site_track.forms import ContactForm
 from site_track.models import SaleAds, SettingsFooter, CategoriesTrack, MakeTrack, SettingsIndexHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderInventoryCatalog, SettingsHeaderContact, FakeReviewIndexHome, \
@@ -78,6 +79,10 @@ class IndexView(ListView):
         context['make_track'] = MakeTrack.objects.annotate(num_children=Count('sale_ads')).order_by('-num_children')[:5]
         context['fake_review'] = FakeReviewIndexHome.objects.all()
         context['title'] = 'home'
+        if STRIPE_LIVE_MODE:
+            context['stripe_public_key'] = STRIPE_LIVE_PUBLIC_KEY
+        else:
+            context['stripe_public_key'] = STRIPE_TEST_PUBLIC_KEY
         return context
 
 

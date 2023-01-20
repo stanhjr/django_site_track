@@ -5,7 +5,7 @@ from djstripe.models import Customer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from django_site_track.settings import STRIPE_TEST_SECRET_KEY, STRIPE_PLAN
+from django_site_track.settings import STRIPE_TEST_SECRET_KEY, STRIPE_PLAN, STRIPE_LIVE_SECRET_KEY, STRIPE_LIVE_MODE
 
 PLAN = {
     "sub-1-truck": "some_id_product",
@@ -20,8 +20,10 @@ class GetSessionIdAPIView(APIView):
         plan = PLAN.get(request.GET.get("plan"))
         if not plan:
             return Response(status=404)
-
-        stripe.api_key = STRIPE_TEST_SECRET_KEY
+        if STRIPE_LIVE_MODE:
+            stripe.api_key = STRIPE_LIVE_SECRET_KEY
+        else:
+            stripe.api_key = STRIPE_TEST_SECRET_KEY
         try:
             session = stripe.checkout.Session.create(
                 customer=customer.id,
@@ -39,6 +41,6 @@ class GetSessionIdAPIView(APIView):
                 "session_id": session.id
             }
         except stripe.error.InvalidRequestError:
-            return Response(status=404)
+            return Response(status=403)
 
         return Response(data, status=200)

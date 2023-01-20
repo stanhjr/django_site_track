@@ -1,4 +1,5 @@
-var stripe = Stripe('pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4');
+const StripePublicKey = document.getElementById("stripe-public-key")
+const stripe = Stripe(StripePublicKey.innerText);
 
 let sub1Btn = document.getElementById('sub-12-month')
 
