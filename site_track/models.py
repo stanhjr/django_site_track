@@ -147,7 +147,7 @@ class ModelTrack(models.Model, ChoicesMixin):
 
 class CategoriesTrack(models.Model, ChoicesMixin):
     image = models.ImageField(upload_to="category_images/", null=True)
-    name = models.SlugField(unique=True, db_index=True)
+    name = models.SlugField(null=True, db_index=True)
 
     def __str__(self):
         return self.name
@@ -178,7 +178,7 @@ class MakeTrack(models.Model, ChoicesMixin):
         return self.sale_ads.count()
 
 
-class ShouldInclude(models.Model, ChoicesMixin):
+class TypeOfTruck(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
 
     def __str__(self):
@@ -244,19 +244,82 @@ class TruckMake(models.Model, ChoicesMixin):
         return self.sale_ads.count()
 
 
+class Engine(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class Horsepower(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class Transmission(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class TypeOf5Wheel(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class TireSize(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class SleeperSize(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
 class SaleAds(models.Model):
     class Meta:
         ordering = ('-created_at',)
 
     title = models.CharField(max_length=120, null=True)
     check_engine_warning_lights = models.TextField(max_length=5000, null=True, blank=True)
-    type_of_5_wheel = models.CharField(max_length=500, null=True, blank=True)
-    jake_brake = models.CharField(max_length=500, null=True, blank=True)
     wheel_base = models.CharField(max_length=500, null=True, blank=True)
     number_of_aluminum_wheels = models.CharField(max_length=500, null=True, blank=True)
-    tire_size = models.CharField(max_length=120, null=True, blank=True)
+
     any_know_problems_with_vehicle = models.TextField(max_length=5000, null=True, blank=True)
-    sleeper_size = models.CharField(max_length=120, null=True, blank=True)
 
     tire_percent_front_right = models.PositiveIntegerField(default=50,
                                                            validators=[MinValueValidator(1), MaxValueValidator(100)])
@@ -290,8 +353,26 @@ class SaleAds(models.Model):
                                       blank=True)
     vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                          blank=True)
-    should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
-                                       blank=True)
+    type_of_truck = models.ForeignKey(TypeOfTruck, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                      blank=True)
+    sleeper_size = models.ForeignKey(SleeperSize, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                     blank=True)
+    engine = models.ForeignKey(Engine, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                               blank=True)
+    horse_power = models.ForeignKey(Horsepower, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                    blank=True)
+    transmission = models.ForeignKey(Transmission, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                     blank=True)
+    type_of_5_wheel = models.ForeignKey(TypeOf5Wheel, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                        blank=True)
+    tire_size = models.ForeignKey(TireSize, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                        blank=True)
+    jake_brake = models.CharField(max_length=500, null=True, blank=True)
+    number_of_beds = models.CharField(max_length=500, null=True, blank=True)
+    size_of_body = models.CharField(max_length=500, null=True, blank=True)
+    fuel_tank_size = models.CharField(max_length=500, null=True, blank=True)
+    interior_trim_level = models.CharField(max_length=500, null=True, blank=True)
+    body_damage = models.CharField(max_length=500, null=True, blank=True)
 
     # Trailer part
 

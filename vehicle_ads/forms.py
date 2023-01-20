@@ -1,6 +1,7 @@
 from django import forms
-from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser, ModelTrack, ShouldInclude, TruckModel, \
-    TruckMake, TypeOfTrailer, SizeOfTrailer, Suspension
+from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser, ModelTrack, TypeOfTruck, TruckModel, \
+    TruckMake, TypeOfTrailer, SizeOfTrailer, Suspension, SleeperSize, Transmission, Horsepower, Engine, TypeOf5Wheel, \
+    TireSize
 
 
 class DatePickerInput(forms.DateInput):
@@ -37,6 +38,10 @@ VEHICLE_PRICE_TYPE_CHOICES = (
 VEHICLE_CONDITION_CHOICES = (
     ("New", "New"),
     ("Used", "Used"),
+)
+JAKE_BRAKE_CHOICES = (
+    ("Yes", "Yes"),
+    ("No", "No"),
 )
 
 category_truck = CategoriesTrack.objects.filter(name='Truck').first()
@@ -90,6 +95,31 @@ class TruckCreateForm(BaseForm):
             elif field == "vehicle_fuel":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_FUEL_CHOICES)
+            elif field == "jake_brake":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                        choices=JAKE_BRAKE_CHOICES)
+
+            elif field == "type_of_truck":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TypeOfTruck.get_choices())
+            elif field == "sleeper_size":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=SleeperSize.get_choices())
+            elif field == "engine":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Engine.get_choices())
+            elif field == "horse_power":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Horsepower.get_choices())
+            elif field == "transmission":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Transmission.get_choices())
+            elif field == "tire_size":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TireSize.get_choices())
+            elif field == "type_of_5_wheel":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TypeOf5Wheel.get_choices())
 
             elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
@@ -132,9 +162,6 @@ class TrailerCreateForm(BaseForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
 
-            elif field == "should_include":
-                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
-                                                         choices=ShouldInclude.get_choices())
             elif field == "truck_model":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=TruckModel.get_choices())
@@ -150,6 +177,9 @@ class TrailerCreateForm(BaseForm):
             elif field == 'suspension':
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=Suspension.get_choices())
+            elif field == "tire_size":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TireSize.get_choices())
 
             elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
@@ -195,9 +225,6 @@ class TrailerUpdateForm(BaseForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
 
-            elif field == "should_include":
-                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
-                                                         choices=ShouldInclude.get_choices())
             elif field == "truck_model":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=TruckModel.get_choices())
@@ -213,6 +240,9 @@ class TrailerUpdateForm(BaseForm):
             elif field == 'suspension':
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=Suspension.get_choices())
+            elif field == "tire_size":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TireSize.get_choices())
 
             elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
@@ -256,6 +286,29 @@ class TruckUpdateForm(BaseForm):
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
 
+            elif field == "type_of_truck":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TypeOfTruck.get_choices())
+
+            elif field == "sleeper_size":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=SleeperSize.get_choices())
+            elif field == "engine":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Engine.get_choices())
+            elif field == "horse_power":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Horsepower.get_choices())
+            elif field == "transmission":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Transmission.get_choices())
+            elif field == "type_of_5_wheel":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TypeOf5Wheel.get_choices())
+            elif field == "jake_brake":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=JAKE_BRAKE_CHOICES)
+
             elif field == "vehicle_condition":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=VEHICLE_CONDITION_CHOICES)
@@ -265,6 +318,9 @@ class TruckUpdateForm(BaseForm):
             elif field == "vehicle_make":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=MakeTrack.get_choices())
+            elif field == "tire_size":
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=TireSize.get_choices())
 
             elif field == "vehicle_fuel":
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},

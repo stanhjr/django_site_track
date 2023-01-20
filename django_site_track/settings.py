@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'django_site_track.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'site_track',
+        'NAME': 'site_track_new',
         'USER': 'postgres',
         'PASSWORD': 'example',
         'HOST': 'localhost',

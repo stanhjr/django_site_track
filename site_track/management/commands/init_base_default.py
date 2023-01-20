@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from site_track.models import FakeReviewIndexHome, SettingsHeaderInventoryGrid, SettingsAuthBase, \
     SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle, SettingsFooter, SettingsIndexHome, \
     SettingsHeaderAboutUs, SettingsHeaderPrivacy, SettingsHeaderContact, CategoriesTrack, MakeTrack, ModelTrack, \
-    FaqHeader, TruckMake, TruckModel, SpringRide, TypeOfTrailer, ShouldInclude, SettingsHeaderTerms
+    FaqHeader, TruckMake, TruckModel, TypeOfTrailer, SettingsHeaderTerms
 
 
 class Command(BaseCommand):
@@ -69,27 +69,10 @@ class Command(BaseCommand):
             TruckModel.objects.create(name="Truck Model  2")
             TruckModel.objects.create(name="Truck Model  3")
 
-        if not SpringRide.objects.last():
-            SpringRide.objects.create(name="Spring Ride 1")
-            SpringRide.objects.create(name="Spring Ride 2")
-            SpringRide.objects.create(name="Spring Ride 3")
-            SpringRide.objects.create(name="Spring Ride 4")
-            SpringRide.objects.create(name="Spring Ride 5")
-
         if not TypeOfTrailer.objects.last():
             TypeOfTrailer.objects.create(name="Type Of  1")
             TypeOfTrailer.objects.create(name="Type Of  2")
             TypeOfTrailer.objects.create(name="Type Of  3")
-
-        if not ShouldInclude.objects.last():
-            ShouldInclude.objects.create(name="Should 1")
-            ShouldInclude.objects.create(name="Should 2")
-            ShouldInclude.objects.create(name="Should 3")
-            ShouldInclude.objects.create(name="Should 4")
-            ShouldInclude.objects.create(name="Should 5")
-            ShouldInclude.objects.create(name="Should 6")
-
-
 
         if not MakeTrack.objects.last():
             MakeTrack.objects.create(name="Ford")

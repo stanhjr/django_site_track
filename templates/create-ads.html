@@ -17,11 +17,11 @@
     <section class="mc-breadcrumb">
         <div class="container">
             <div class="mc-breadcrumb-group">
-                <h2 class="mc-breadcrumb-title">sale your trailer</h2>
+                <h2 class="mc-breadcrumb-title">sale your truck</h2>
                 <ul class="mc-breadcrumb-list">
                     <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">home</a></li>
                     <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">dashboard</a></li>
-                    <li class="mc-breadcrumb-item">sale your trailer</li>
+                    <li class="mc-breadcrumb-item">sale your truck</li>
                 </ul>
             </div>
         </div>
@@ -62,25 +62,6 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Model <span>*</span></label>
-                                            {{ form.vehicle_model }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Make <span>*</span></label>
-                                            {{ form.vehicle_make }}
-                                        </div>
-                                    </div>
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">#}
-{#                                         <div class="form-group">#}
-{#                                            <label class="form-label">Category <span>*</span></label>#}
-{#                                            {{ form.vehicle_category }}#}
-{#                                        </div>#}
-{##}
-{#                                    </div>#}
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label class="form-label">Heading<span>*</span></label>
@@ -88,10 +69,91 @@
                                         </div>
                                     </div>
 
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">year <span>*</span></label>
+                                            {{ form.vehicle_year }}
+                                        </div>
+                                    </div>
+
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Type of 5 wheel <span>*</span></label>
+                                            <label class="form-label">Model <span>*</span></label>
+                                            {{ form.vehicle_model }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Make <span>*</span></label>
+                                            {{ form.vehicle_make }}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Type of Truck <span>*</span></label>
+                                            {{ form.type_of_truck }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Engine<span>*</span></label>
+                                            {{ form.engine }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Horsepower<span>*</span></label>
+                                            {{ form.horse_power }}
+                                        </div>
+                                    </div>
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Transmission<span>*</span></label>
+                                            {{ form.transmission }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Sleeper size<span>*</span></label>
+                                            {{ form.sleeper_size }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Number of beds<span>*</span></label>
+                                            {{ form.number_of_beds }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Size of body <span>*</span></label>
+                                            {{ form.size_of_body }}
+                                        </div>
+                                    </div>
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Number of Aluminum wheels<span>*</span></label>
+                                            {{ form.number_of_aluminum_wheels }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Type of 5th wheel<span>*</span></label>
                                             {{ form.type_of_5_wheel }}
+                                        </div>
+                                    </div>
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Wheelbase <span>*</span></label>
+                                             {{ form.wheel_base }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Fuel Tank Size <span>*</span></label>
+                                             {{ form.fuel_tank_size }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
@@ -102,8 +164,14 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Vehicle condition <span>*</span></label>
-                                            {{ form.vehicle_condition }}
+                                            <label class="form-label">Interior Trim Level <span>*</span></label>
+                                            {{ form.interior_trim_level }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Check Engine warning lights <span>*</span></label>
+                                            {{ form.check_engine_warning_lights }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
@@ -112,12 +180,7 @@
                                             {{ form.tire_size }}
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Sleeper size<span>*</span></label>
-                                            {{ form.sleeper_size }}
-                                        </div>
-                                    </div>
+
 
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
@@ -126,12 +189,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">year <span>*</span></label>
-                                            {{ form.vehicle_year }}
-                                        </div>
-                                    </div>
+
 
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
@@ -141,30 +199,11 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">price amount <span>*</span></label>
+                                            <label class="form-label"><strong>Buy it now price</strong><span>*</span></label>
                                             {{ form.vehicle_price_amount }}
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Number of Aluminum wheels <span>*</span></label>
-                                            {{ form.number_of_aluminum_wheels }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Wheelbase <span>*</span></label>
-                                             {{ form.wheel_base }}
-                                        </div>
 
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-
-                                        <div class="form-group">
-                                            <label class="form-label">Check Engine warning lights <span>*</span></label>
-                                             {{ form.check_engine_warning_lights }}
-                                        </div>
-                                    </div>
                                     <div class="col-12">
                                         <div class="form-group mb-0">
                                             <label class="form-label">Any know Problems with vehicle<span>*</span></label>
@@ -204,6 +243,7 @@
                                              {{ form.tire_percent_rear_right }}
                                         </div>
 
+
                                         <div class="form-group">
                                             <label class="form-label">Rear left <span>*</span></label>
                                              {{ form.tire_percent_rear_left }}
@@ -212,6 +252,10 @@
                                         <div class="form-group">
                                             <label class="form-label">Rear drive tires <span>*</span></label>
                                              {{ form.tire_percent_rear_drive_tires }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Body damage <span>*</span></label>
+                                             {{ form.body_damage }}
                                         </div>
                                     </div>
 
@@ -289,7 +333,6 @@
                                         <div class="form-group">
                                             <label class="form-label">country <span>*</span></label>
                                             {{ form.country }}
-{#                                            <input type="text" class="form-control">#}
                                         </div>
                                     </div>
                                     <div class="col">
