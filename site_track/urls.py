@@ -14,5 +14,4 @@ urlpatterns = [
     path('terms/', Terms.as_view(), name='terms'),
     path("stripe/", include("djstripe.urls", namespace="djstripe")),
     path("get_session_id/", GetSessionIdAPIView.as_view(), name="get_session_id"),
-
 ]
