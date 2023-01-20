@@ -231,11 +231,9 @@ class InventorySingleDetailView(DetailView):
         context['image_gallery'] = ImageInGallery.objects.filter(gallery=self.object).all()
         context['footer'] = SettingsFooter.objects.last()
         context['header'] = SettingsHeaderInventorySingle.objects.last()
-        # context['send_vendor_mail_form'] = self.get_form()
         context['title'] = 'inventory single'
         context['grid_name'] = self.get_object().title
         return context
-
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()

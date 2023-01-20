@@ -130,23 +130,10 @@
                         <ul class="product-single-meta-list">
                             <li><i class="material-icons">account_circle</i><a href="{% url 'account-profile' saleads.user.id %}">by {{ saleads.user.full_name }}</a></li>
                             <li><i class="material-icons">watch_later</i><span>{{ saleads.get_date_ago }}</span></li>
-{#                            <li><i class="material-icons">stars</i><button type="button" data-bs-toggle="modal" data-bs-target="#modalReview">(24) reviews</button></li>#}
                             <li><i class="material-icons">fmd_good</i><span>{{ saleads.user.company }}, {{ saleads.user.address_of_company }}</span></li>
                         </ul>
                     </div>
                 </div>
-
-{#                <div class="col-xl-12">#}
-{#                    <div class="product-single-action">#}
-{##}
-{#                         <button type="button" class="product-single-btn product-single-buy" data-bs-toggle="modal" data-bs-target="#modalContacts" title="Buy at now">#}
-{#                            <span>Buy at now</span>#}
-{#                        </button>#}
-{#                        <button type="button" class="product-single-btn product-single-offer" data-bs-toggle="modal" data-bs-target="#modalOffer" title="Make an offer">#}
-{#                            <span>Make an offer</span>#}
-{#                        </button>#}
-{#                    </div>#}
-{#                </div>#}
 
             {% if  image_gallery%}
                 <div class="col-xl-8">
@@ -244,18 +231,26 @@
                         </div>
                         <div class="product-single-feature-group">
                             <ul class="product-single-feature-list">
+                                <li><span>model:</span><span>{{ saleads.vehicle_year }}</span></li>
                                 <li><span>model:</span><span>{{ saleads.vehicle_model }}</span></li>
                                 <li><span>make:</span><span>{{ saleads.vehicle_make }}</span></li>
+                                <li><span>type of truck:</span><span>{{ saleads.type_of_truck }}</span></li>
+                                <li><span>engine:</span><span>{{ saleads.engine }}</span></li>
+                                <li><span>horsepower:</span><span>{{ saleads.horse_power }}</span></li>
+                                <li><span>transmission:</span><span>{{ saleads.transmission }}</span></li>
+                                <li><span>sleeper size:</span><span>{{ saleads.sleeper_size }}</span></li>
+                                <li><span>number of beds:</span><span>{{ saleads.number_of_beds }}</span></li>
+                                <li><span>Size of body:</span><span>{{ saleads.size_of_body }}</span></li>
+                                <li><span>Number of Aluminum wheels:</span><span>{{ saleads.number_of_aluminum_wheels }}</span></li>
+                                <li><span>Type of 5th wheel:</span><span>{{ saleads.type_of_5_wheel }}</span></li>
+                                <li><span>Wheelbase:</span><span>{{ saleads.wheel_base }}</span></li>
+                                <li><span>Fuel Tank Size:</span><span>{{ saleads.fuel_tank_size }}</span></li>
+                                <li><span>Jake brake:</span><span>{{ saleads.jake_brake }}</span></li>
+                                <li><span>Interior Trim Level:</span><span>{{ saleads.interior_trim_level }}</span></li>
+                                <li><span>Check Engine warning lights:</span><span>{{ saleads.check_engine_warning_lights }}</span></li>
+                                <li><span>Tire size:</span><span>{{ saleads.tire_size }}</span></li>
                                 <li><span>condition:</span><span>{{ saleads.vehicle_condition }}</span></li>
                                 <li><span>mileage:</span><span>{{ saleads.vehicle_mileage }} kmpl</span></li>
-                                <li><span>Check Engine warning lights:</span><span>{{ saleads.check_engine_warning_lights }}</span></li>
-                                <li><span>Wheelbase:</span><span>{{ saleads.wheel_base }}</span></li>
-                                <li><span>Type of 5 wheel:</span><span>{{ saleads.type_of_5_wheel }}</span></li>
-                                <li><span>Jake brake:</span><span>{{ saleads.jake_brake }}</span></li>
-                                <li><span>Number of Aluminum wheels:</span><span>{{ saleads.number_of_aluminum_wheels }}</span></li>
-                                <li><span>fuel type:</span><span>{{ saleads.vehicle_fuel }}</span></li>
-                                <li><span>Tire size:</span><span>{{ saleads.tire_size }}</span></li>
-                                <li><span>Sleeper size:</span><span>{{ saleads.sleeper_size }}</span></li>
                                 <li><span>Tire percentage</span><span></span></li>
                                 <li><span>Front left:</span><span>{{ saleads.tire_percent_front_left }}</span></li>
                                 <li><span>Front right:</span><span>{{ saleads.tire_percent_front_right }}</span></li>
