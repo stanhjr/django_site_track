@@ -9,7 +9,7 @@ from auction.forms import AuctionBetForm
 from email_sender.tasks import send__make_offer_mail
 from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventorySingle, CategoriesTrack
 
-from vehicle_ads.forms import VehicleInformationForm, VehicleInformationUpdateForm, TruckCreateForm, TruckUpdateForm
+from vehicle_ads.forms import TruckCreateForm, TruckUpdateForm, TrailerUpdateForm, TrailerCreateForm
 
 
 class SubscribeMixin:
@@ -28,7 +28,7 @@ class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):
     model = SaleAds
     template_name = 'create-ads.html'
     success_url = reverse_lazy('create-sale-ads')
-    form_class = VehicleInformationForm
+    form_class = TruckCreateForm
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(VehicleInformationView, self).get_context_data(**kwargs)
@@ -72,13 +72,13 @@ class TruckCreateView(LoginRequiredMixin, SubscribeMixin, CreateView):
     model = SaleAds
     template_name = 'create_truck.html'
     success_url = reverse_lazy('create-truck')
-    form_class = TruckCreateForm
+    form_class = TrailerCreateForm
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TruckCreateView, self).get_context_data(**kwargs)
         context['footer'] = SettingsFooter.objects.last()
         context['active_create_truck'] = True
-        context['title'] = 'create truck'
+        context['title'] = 'create trailer'
         return context
 
     def get_form_kwargs(self):
@@ -147,7 +147,7 @@ class UserPostedAdsUpdateView(LoginRequiredMixin, SubscribeMixin, UpdateView):
     model = SaleAds
     success_url = reverse_lazy('user-posted-sale-ads')
     template_name = 'update-ads.html'
-    form_class = VehicleInformationUpdateForm
+    form_class = TruckUpdateForm
 
     def dispatch(self, *args, **kwargs):
         obj = self.get_object()
@@ -181,7 +181,7 @@ class UpdateTruckView(LoginRequiredMixin, SubscribeMixin, UpdateView):
     model = SaleAds
     success_url = reverse_lazy('user-posted-sale-ads')
     template_name = 'update_truck.html'
-    form_class = TruckUpdateForm
+    form_class = TrailerUpdateForm
 
     def dispatch(self, *args, **kwargs):
         obj = self.get_object()

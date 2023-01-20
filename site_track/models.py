@@ -200,7 +200,18 @@ class TypeOfTrailer(models.Model, ChoicesMixin):
         return self.sale_ads.count()
 
 
-class SpringRide(models.Model, ChoicesMixin):
+class SizeOfTrailer(models.Model, ChoicesMixin):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def get_count(self):
+        return self.sale_ads.count()
+
+
+class Suspension(models.Model, ChoicesMixin):
     name = models.CharField(max_length=120)
 
     def __str__(self):
@@ -279,21 +290,31 @@ class SaleAds(models.Model):
                                       blank=True)
     vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                          blank=True)
-
-    # Trailer part
     should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                        blank=True)
+
+    # Trailer part
+
     type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                           blank=True)
-    spring_ride = models.ForeignKey(SpringRide, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
-                                    blank=True)
+    size_of_trailer = models.ForeignKey(SizeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                        blank=True)
+
+    suspension = models.ForeignKey(Suspension, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
+                                   blank=True)
     truck_make = models.ForeignKey(TruckMake, on_delete=models.SET_NULL, related_name='sale_ads', null=True, blank=True)
     truck_model = models.ForeignKey(TruckModel, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                     blank=True)
     length = models.PositiveIntegerField(default=1000, null=True, blank=True)
     width = models.PositiveIntegerField(default=1000, null=True, blank=True)
+    height = models.PositiveIntegerField(default=1000, null=True, blank=True)
     air_ride = models.CharField(max_length=120, null=True, blank=True)
     capacity_of_trailer = models.CharField(max_length=120, null=True, blank=True)
+    hours_if_applicable = models.CharField(max_length=120, null=True, blank=True)
+
+    roof_type = models.CharField(max_length=120, null=True, blank=True)
+    trailer_lining = models.CharField(max_length=120, null=True, blank=True)
+
     virgin_tires_or_recapped = models.CharField(max_length=120, null=True, blank=True)
 
     # Auction part

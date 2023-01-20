@@ -17,11 +17,11 @@
     <section class="mc-breadcrumb">
         <div class="container">
             <div class="mc-breadcrumb-group">
-                <h2 class="mc-breadcrumb-title">sale your truck</h2>
+                <h2 class="mc-breadcrumb-title">sale your trailer</h2>
                 <ul class="mc-breadcrumb-list">
                     <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">home</a></li>
                     <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{% url 'home' %}">dashboard</a></li>
-                    <li class="mc-breadcrumb-item">sale your truck</li>
+                    <li class="mc-breadcrumb-item">sale your trailer</li>
                 </ul>
             </div>
         </div>
@@ -43,7 +43,7 @@
                             <h5 class="common-card-header-title">ad complete navs</h5>
                         </div>
                         <ul class="create-nav-list">
-                            <li class="active"><i class="material-icons">drive_eta</i><span>Truck information</span></li>
+                            <li class="active"><i class="material-icons">drive_eta</i><span>Trailer information</span></li>
                             <li><i class="material-icons">fact_check</i><span>tire percentage</span></li>
                             <li><i class="material-icons">fact_check</i><span>auction settings</span></li>
                             <li><i class="material-icons">perm_media</i><span>add photos & video</span></li>
@@ -58,9 +58,21 @@
                             <!-- Vehicle Information -->
                             <div class="common-card active">
                                 <div class="common-card-header">
-                                    <h4 class="common-card-header-title">Truck information</h4>
+                                    <h4 class="common-card-header-title">Trailer information</h4>
                                 </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Heading<span>*</span></label>
+                                             {{ form.title }}
+                                        </div>
+                                    </div>
                                 <div class="row">
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">year <span>*</span></label>
+                                            {{ form.vehicle_year }}
+                                        </div>
+                                    </div>
 
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
@@ -76,28 +88,44 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                          <div class="form-group">
-                                            <label class="form-label">Type of 5 trailer <span>*</span></label>
+                                            <label class="form-label">Type of trailer <span>*</span></label>
                                             {{ form.type_of_5_trailer }}
                                         </div>
-
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Heading<span>*</span></label>
-                                             {{ form.title }}
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                         <div class="form-group">
+                                            <label class="form-label">Size of trailer <span>*</span></label>
+                                            {{ form.size_of_trailer }}
                                         </div>
                                     </div>
-
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Should include<span>*</span></label>
-                                            {{ form.should_include }}
+                                            <label class="form-label">Capacity<span>*</span></label>
+                                             {{ form.capacity_of_trailer }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Spring ride <span>*</span></label>
-                                            {{ form.spring_ride }}
+                                            <label class="form-label">Roof Type<span>*</span></label>
+                                             {{ form.roof_type }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Trailer Lining<span>*</span></label>
+                                             {{ form.trailer_lining }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Suspension <span>*</span></label>
+                                            {{ form.suspension }}
+                                        </div>
+                                    </div>
+                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Tire size <span>*</span></label>
+                                            {{ form.tire_size }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
@@ -117,20 +145,19 @@
                                         <div class="form-group">
                                             <label class="form-label">width <span>*</span></label>
                                             {{ form.width }}
-
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">year <span>*</span></label>
-                                            {{ form.vehicle_year }}
+                                            <label class="form-label">width <span>*</span></label>
+                                            {{ form.height }}
                                         </div>
                                     </div>
 
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                         <div class="form-group">
-                                            <label class="form-label">Air ride <span>*</span></label>
-                                            {{ form.air_ride }}
+                                            <label class="form-label">Number of hours if applicable<span>*</span></label>
+                                            {{ form.hours_if_applicable }}
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
@@ -139,26 +166,7 @@
                                             {{ form.vehicle_price_amount }}
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Number of Aluminum wheels <span>*</span></label>
-                                            {{ form.number_of_aluminum_wheels }}
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Capacity of trailer <span>*</span></label>
-                                             {{ form.capacity_of_trailer}}
-                                        </div>
 
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
-
-                                        <div class="form-group">
-                                            <label class="form-label">Virgin tires or recapped <span>*</span></label>
-                                             {{ form.virgin_tires_or_recapped }}
-                                        </div>
-                                    </div>
                                     <div class="col-12">
                                         <div class="form-group mb-0">
                                             <label class="form-label">Any know Problems with vehicle<span>*</span></label>
@@ -261,7 +269,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-                                            <button type="submit" class="form-btn mb-2">publish</button>
+                                            <button type="submit" class="form-btn mb-2">add</button>
 {#                                            <small>You will receive an invoice and a confirmation will be sent to your email</small>#}
                                         </div>
 

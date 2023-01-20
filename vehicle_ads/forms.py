@@ -1,6 +1,6 @@
 from django import forms
 from site_track.models import SaleAds, CategoriesTrack, MakeTrack, MyUser, ModelTrack, ShouldInclude, TruckModel, \
-    TruckMake, TypeOfTrailer, SpringRide
+    TruckMake, TypeOfTrailer, SizeOfTrailer, Suspension
 
 
 class DatePickerInput(forms.DateInput):
@@ -51,7 +51,7 @@ class BaseForm(forms.ModelForm):
                 bound_field.field.widget.attrs["required"] = "required"
 
 
-class VehicleInformationForm(BaseForm):
+class TruckCreateForm(BaseForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
@@ -59,7 +59,7 @@ class VehicleInformationForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(VehicleInformationForm, self).__init__(*args, **kwargs)
+        super(TruckCreateForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].required = False
 
@@ -105,7 +105,7 @@ class VehicleInformationForm(BaseForm):
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
 
 
-class TruckCreateForm(BaseForm):
+class TrailerCreateForm(BaseForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
@@ -113,7 +113,7 @@ class TruckCreateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(TruckCreateForm, self).__init__(*args, **kwargs)
+        super(TrailerCreateForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].required = False
             if field == 'vehicle_mileage':
@@ -144,9 +144,12 @@ class TruckCreateForm(BaseForm):
             elif field == 'type_of_5_trailer':
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=TypeOfTrailer.get_choices())
-            elif field == 'spring_ride':
+            elif field == 'size_of_trailer':
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
-                                                         choices=SpringRide.get_choices())
+                                                         choices=SizeOfTrailer.get_choices())
+            elif field == 'suspension':
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Suspension.get_choices())
 
             elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
@@ -164,7 +167,7 @@ class TruckCreateForm(BaseForm):
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
 
 
-class TruckUpdateForm(BaseForm):
+class TrailerUpdateForm(BaseForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
@@ -172,7 +175,7 @@ class TruckUpdateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(TruckUpdateForm, self).__init__(*args, **kwargs)
+        super(TrailerUpdateForm, self).__init__(*args, **kwargs)
         initial_data = self.initial
         for field in self.fields:
             self.fields[field].initial = initial_data.get(field)
@@ -204,9 +207,12 @@ class TruckUpdateForm(BaseForm):
             elif field == 'type_of_5_trailer':
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=TypeOfTrailer.get_choices())
-            elif field == 'spring_ride':
+            elif field == 'size_of_trailer':
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
-                                                         choices=SpringRide.get_choices())
+                                                         choices=SizeOfTrailer.get_choices())
+            elif field == 'suspension':
+                self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
+                                                         choices=Suspension.get_choices())
 
             elif field in ["vehicle_year", "sale_end_time"]:
                 self.fields[field].widget = DatePickerInput(attrs={'class': 'form-control'})
@@ -222,7 +228,7 @@ class TruckUpdateForm(BaseForm):
                 self.fields[field].widget = forms.TextInput(attrs={'class': 'form-control'})
 
 
-class VehicleInformationUpdateForm(BaseForm):
+class TruckUpdateForm(BaseForm):
     class Meta:
         model = SaleAds
         fields = '__all__'
@@ -230,7 +236,7 @@ class VehicleInformationUpdateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(VehicleInformationUpdateForm, self).__init__(*args, **kwargs)
+        super(TruckUpdateForm, self).__init__(*args, **kwargs)
         initial_data = self.initial
         for field in self.fields:
             self.fields[field].initial = initial_data.get(field)
