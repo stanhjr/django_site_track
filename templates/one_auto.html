@@ -9,9 +9,6 @@
                     <a href="{% url 'posted-detail' obj.id %}"><img src="{{ obj.get_photo_url }}" alt="product"></a>
                 {% endif %}
 
-
-
-
                     <div class="product-grid-badge">
                         {% if obj.is_used %}
                             <span class="badge used">used</span>

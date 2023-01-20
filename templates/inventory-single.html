@@ -231,26 +231,21 @@
                         </div>
                         <div class="product-single-feature-group">
                             <ul class="product-single-feature-list">
-                                <li><span>model:</span><span>{{ saleads.vehicle_year }}</span></li>
-                                <li><span>model:</span><span>{{ saleads.vehicle_model }}</span></li>
-                                <li><span>make:</span><span>{{ saleads.vehicle_make }}</span></li>
-                                <li><span>type of truck:</span><span>{{ saleads.type_of_truck }}</span></li>
-                                <li><span>engine:</span><span>{{ saleads.engine }}</span></li>
-                                <li><span>horsepower:</span><span>{{ saleads.horse_power }}</span></li>
-                                <li><span>transmission:</span><span>{{ saleads.transmission }}</span></li>
-                                <li><span>sleeper size:</span><span>{{ saleads.sleeper_size }}</span></li>
-                                <li><span>number of beds:</span><span>{{ saleads.number_of_beds }}</span></li>
-                                <li><span>Size of body:</span><span>{{ saleads.size_of_body }}</span></li>
-                                <li><span>Number of Aluminum wheels:</span><span>{{ saleads.number_of_aluminum_wheels }}</span></li>
-                                <li><span>Type of 5th wheel:</span><span>{{ saleads.type_of_5_wheel }}</span></li>
-                                <li><span>Wheelbase:</span><span>{{ saleads.wheel_base }}</span></li>
-                                <li><span>Fuel Tank Size:</span><span>{{ saleads.fuel_tank_size }}</span></li>
-                                <li><span>Jake brake:</span><span>{{ saleads.jake_brake }}</span></li>
-                                <li><span>Interior Trim Level:</span><span>{{ saleads.interior_trim_level }}</span></li>
-                                <li><span>Check Engine warning lights:</span><span>{{ saleads.check_engine_warning_lights }}</span></li>
-                                <li><span>Tire size:</span><span>{{ saleads.tire_size }}</span></li>
+                                <li><span>year:</span><span>{{ saleads.vehicle_year }}</span></li>
+                                <li><span>model:</span><span>{{ saleads.truck_model  }}</span></li>
+                                <li><span>make:</span><span>{{ saleads.truck_make }}</span></li>
+                                <li><span>type of trailer:</span><span>{{ saleads.type_of_trailer }}</span></li>
+                                <li><span>size of trailer:</span><span>{{ saleads.size_of_trailer }}</span></li>
+                                <li><span>capacity:</span><span>{{ saleads.capacity_of_trailer }}</span></li>
+                                <li><span>roof type:</span><span>{{ saleads.roof_type }}</span></li>
+                                <li><span>trailer lining:</span><span>{{ saleads.trailer_lining }}</span></li>
+                                <li><span>suspension:</span><span>{{ saleads.suspension }}</span></li>
+                                <li><span>tire size:</span><span>{{ saleads.tire_size }}</span></li>
+                                <li><span>trailer length:</span><span>{{ saleads.length }}</span></li>
+                                <li><span>trailer width:</span><span>{{ saleads.width }}</span></li>
+                                <li><span>trailer height:</span><span>{{ saleads.height }}</span></li>
+                                <li><span>number of hours if applicable :</span><span>{{ saleads.hours_if_applicable}}</span></li>
                                 <li><span>condition:</span><span>{{ saleads.vehicle_condition }}</span></li>
-                                <li><span>mileage:</span><span>{{ saleads.vehicle_mileage }} kmpl</span></li>
                                 <li><span>Tire percentage</span><span></span></li>
                                 <li><span>Front left:</span><span>{{ saleads.tire_percent_front_left }}</span></li>
                                 <li><span>Front right:</span><span>{{ saleads.tire_percent_front_right }}</span></li>
@@ -258,9 +253,8 @@
                                 <li><span>Rear right:</span><span>{{ saleads.tire_percent_front_right }}</span></li>
                                 <li><span>Rear drive tires:</span><span>{{ saleads.tire_percent_rear_drive_tires }}</span></li>
                             </ul>
-
-
                         </div>
+
                     </div>
                      <div class="common-card" id="overview">
                         <div class="common-card-header">
@@ -279,17 +273,13 @@
                         </div>
                         <div class="common-card-body">
                             <div class="product-single-vendor">
-{#                                <a class="vendor-grid-cover" href="{{ saleads.user.get_photo_url }}"><img src="{% static 'images/bg/cover.jpg' %}" alt="cover"></a>#}
                                 <a class="vendor-grid-avatar" href="{{ saleads.user.get_photo_url }}"><img src="{{ saleads.user.get_photo_url }}" alt="avatar"></a>
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a href="{% url 'account-profile' user.id %}">{{ saleads.user.full_name }}</a></li>
                                     <li class="location"><i class="material-icons">map</i><span>{{ saleads.user.state }}, {{ saleads.user.city }}</span></li>
-{#                                    <li class="rating"><i class="material-icons">star</i><span><b>4.9</b>/28 Ratings</span></li>#}
                                     <li class="store"><i class="material-icons">store</i><span>{{ saleads.user.account_type }}</span></li>
                                 </ul>
                                 <div class="vendor-grid-action">
-{#                                    <a href="{% url 'account-profile' saleads.user.id %}">visit profile</a>#}
-{#                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessage">send message</button>#}
                                 </div>
                             </div>
                         </div>

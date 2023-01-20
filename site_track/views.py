@@ -113,13 +113,13 @@ class InventoryGridView(ListView):
             price_max = None
         if search_title:
             sale_ads = sale_ads.filter(title__exact=search_title)
-        if model_list and category.name == 'Truck':
-            sale_ads = sale_ads.filter(truck_model__id__in=model_list)
         if model_list and category.name == 'Trailer':
+            sale_ads = sale_ads.filter(truck_model__id__in=model_list)
+        if model_list and category.name == 'Truck':
             sale_ads = sale_ads.filter(vehicle_model__id__in=model_list)
-        if make_list and category.name == 'Truck':
-            sale_ads = sale_ads.filter(truck_make__id__in=make_list)
         if make_list and category.name == 'Trailer':
+            sale_ads = sale_ads.filter(truck_make__id__in=make_list)
+        if make_list and category.name == 'Truck':
             sale_ads = sale_ads.filter(vehicle_make__id__in=make_list)
         if price_max:
             sale_ads = sale_ads.filter(vehicle_price_amount__lte=price_max)
@@ -141,12 +141,12 @@ class InventoryGridView(ListView):
         context['categories'] = CategoriesTrack.objects.all()
         if category.name == 'Truck':
             context['grid_name'] = 'trucks'
-            context['models'] = TruckModel.objects.all()
-            context['makes'] = TruckMake.objects.all()
-        else:
-            context['grid_name'] = 'trailers'
             context['models'] = ModelTrack.objects.all()
             context['makes'] = MakeTrack.objects.all()
+        else:
+            context['grid_name'] = 'trailers'
+            context['models'] = TruckModel.objects.all()
+            context['makes'] = TruckMake.objects.all()
 
         context['title'] = 'inventory-grid'
         return context
