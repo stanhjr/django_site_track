@@ -43,9 +43,13 @@ JAKE_BRAKE_CHOICES = (
     ("Yes", "Yes"),
     ("No", "No"),
 )
-
-category_truck = CategoriesTrack.objects.filter(name='Truck').first()
-category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
+category_truck = None
+category_trailer = None
+try:
+    category_truck = CategoriesTrack.objects.filter(name='Truck').first()
+    category_trailer = CategoriesTrack.objects.filter(name='Trailer').first()
+except:
+   pass
 
 
 class BaseForm(forms.ModelForm):
@@ -78,7 +82,7 @@ class TruckCreateForm(BaseForm):
             elif field == 'preview_image':
                 self.fields[field].widget = forms.FileInput(attrs={'class': 'file-input', 'id': 'preview'})
 
-            elif field == "vehicle_category":
+            elif field == "vehicle_category" and category_trailer:
                 self.fields[field].widget = forms.Select(attrs={'class': 'form-select'},
                                                          choices=CategoriesTrack.get_choices())
                 self.fields[field].initial = category_trailer
@@ -190,7 +194,7 @@ class TrailerCreateForm(BaseForm):
                            "tire_percent_rear_right", "form.tire_percent_rear_drive_tires"]:
                 self.fields[field].widget = forms.NumberInput(attrs={'class': 'form-control',
                                                                      'type': 'number', 'min': '1', 'max': '100'})
-            elif field == "vehicle_category":
+            elif field == "vehicle_category" and category_truck:
                 self.fields[field].initial = category_truck
 
             else:
