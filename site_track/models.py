@@ -280,7 +280,7 @@ class SaleAds(models.Model):
     vehicle_category = models.ForeignKey(CategoriesTrack, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                          blank=True)
 
-    # Truck part
+    # Trailer part
     should_include = models.ForeignKey(ShouldInclude, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
                                        blank=True)
     type_of_5_trailer = models.ForeignKey(TypeOfTrailer, on_delete=models.SET_NULL, related_name='sale_ads', null=True,
