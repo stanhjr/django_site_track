@@ -24,35 +24,30 @@
                                 <div class="form-group">
                                     <label class="form-label">Enter your name</label>
                                     {{ send_vendor_mail_form.first_name }}
-{#                                    <input type="text" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your email </label>
                                     {{ send_vendor_mail_form.email }}
-{#                                    <input type="email" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your number</label>
                                     {{ send_vendor_mail_form.phone_number }}
-{#                                    <input type="tel" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter your offer price</label>
                                     {{ send_vendor_mail_form.enter_your_offer_price }}
-{#                                    <input type="number" class="form-control">#}
                                 </div>
                             </div>
                             <div class="col-xl-12">
                                 <div class="form-group">
                                     <label class="form-label">Describe your message</label>
                                     {{ send_vendor_mail_form.describe_your_message }}
-{#                                    <textarea class="form-control"></textarea>#}
 
                                 </div>
                             </div>
@@ -141,17 +136,6 @@
                     </div>
                 </div>
 
-{#                <div class="col-xl-12">#}
-{#                    <div class="product-single-action">#}
-{##}
-{#                         <button type="button" class="product-single-btn product-single-buy" data-bs-toggle="modal" data-bs-target="#modalContacts" title="Buy at now">#}
-{#                            <span>Buy at now</span>#}
-{#                        </button>#}
-{#                        <button type="button" class="product-single-btn product-single-offer" data-bs-toggle="modal" data-bs-target="#modalOffer" title="Make an offer">#}
-{#                            <span>Make an offer</span>#}
-{#                        </button>#}
-{#                    </div>#}
-{#                </div>#}
 
             {% if  image_gallery%}
                 <div class="col-xl-8">
@@ -249,17 +233,21 @@
                         </div>
                         <div class="product-single-feature-group">
                             <ul class="product-single-feature-list">
+                                <li><span>year:</span><span>{{ saleads.vehicle_year }}</span></li>
                                 <li><span>model:</span><span>{{ saleads.truck_model  }}</span></li>
                                 <li><span>make:</span><span>{{ saleads.truck_make }}</span></li>
+                                <li><span>type of trailer:</span><span>{{ saleads.type_of_trailer }}</span></li>
+                                <li><span>size of trailer:</span><span>{{ saleads.size_of_trailer }}</span></li>
+                                <li><span>capacity:</span><span>{{ saleads.capacity_of_trailer }}</span></li>
+                                <li><span>roof type:</span><span>{{ saleads.roof_type }}</span></li>
+                                <li><span>trailer lining:</span><span>{{ saleads.trailer_lining }}</span></li>
+                                <li><span>suspension:</span><span>{{ saleads.suspension }}</span></li>
+                                <li><span>tire size:</span><span>{{ saleads.tire_size }}</span></li>
+                                <li><span>trailer length:</span><span>{{ saleads.length }}</span></li>
+                                <li><span>trailer width:</span><span>{{ saleads.width }}</span></li>
+                                <li><span>trailer height:</span><span>{{ saleads.height }}</span></li>
+                                <li><span>number of hours if applicable :</span><span>{{ saleads.hours_if_applicable}}</span></li>
                                 <li><span>condition:</span><span>{{ saleads.vehicle_condition }}</span></li>
-                                <li><span>should include:</span><span>{{ saleads.should_include }}</span></li>
-                                <li><span>type of trailer:</span><span>{{ saleads.type_of_5_trailer }}</span></li>
-                                 <li><span>capacity of trailer:</span><span>{{ saleads.capacity_of_trailer }}</span></li>
-                                <li><span>length:</span><span>{{ saleads.length }}</span></li>
-                                <li><span>width:</span><span>{{ saleads.width }}</span></li>
-                                <li><span>air ride :</span><span>{{ saleads.air_ride }}</span></li>
-                                <li><span>Number of Aluminum wheels:</span><span>{{ saleads.number_of_aluminum_wheels }}</span></li>
-                                <li><span>virgin tires or recapped:</span><span>{{ saleads.virgin_tires_or_recapped }}</span></li>
                                 <li><span>Tire percentage</span><span></span></li>
                                 <li><span>Front left:</span><span>{{ saleads.tire_percent_front_left }}</span></li>
                                 <li><span>Front right:</span><span>{{ saleads.tire_percent_front_right }}</span></li>
