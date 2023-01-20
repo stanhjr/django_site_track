@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+print(dotenv_path)
+load_dotenv(dotenv_path)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b3col@q^@xo!&l8foy=&60y9ly50l%s)6s$t^$6bff*4(fep)a'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -65,7 +71,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = (os.path.join('static'), )
 STATIC_ROOT = '/home/static/'
 
 MEDIA_URL = '/media/'
@@ -150,21 +155,29 @@ SESSION_COOKIE_AGE_ADMIN = 60 * 60 * 48
 
 ADMIN_REORDER = (
     {'app': 'site_track', 'models': (
-         'site_track.MyUser',
+        'site_track.MyUser',
     ), 'label': 'Users'},
     {'app': 'site_track', 'models': (
-         'site_track.SaleAds',
+        'site_track.SaleAds',
     ), 'label': 'SaleAds'},
     {'app': 'site_track', 'models': (
         'site_track.CategoriesTrack',
         'site_track.ModelTrack',
         'site_track.MakeTrack',
         'site_track.TruckModel',
+        'site_track.TypeOfTruck',
         'site_track.TruckMake',
         'site_track.ShouldInclude',
         'site_track.TypeOfTrailer',
         'site_track.SpringRide',
-        'site_track.SpringRide',
+        'site_track.SizeOfTrailer',
+        'site_track.Engine',
+        'site_track.Horsepower',
+        'site_track.Transmission',
+        'site_track.TypeOf5Wheel',
+        'site_track.TireSize',
+        'site_track.SleeperSize',
+
     ), 'label': 'Marketplace Settings'},
     {'app': 'site_track', 'models': (
         'site_track.MuUser',
@@ -196,10 +209,10 @@ ADMIN_REORDER = (
     ), 'label': 'Website'},
     {'app': 'core', 'models': (
         'core.Faq',
-    ), 'label': 'Faq'},
+        'core.DateSubscribe',
+    ), 'label': 'Faq and Date subscribe'},
     'sites',
 )
-
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.zoho.com"
@@ -210,17 +223,15 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "stahjrpower@yahoo.com"
 CELERY_SEND_MAIL_HOST = 'https://buymyfleet.net/'
 
+STRIPE_PLAN = 'price_1Lg6qzK6rkKpcwrpXvfuaKRA'
 
-STRIPE_PRICE_ID_12_MONTHS = 'price_1Lg4T6K6rkKpcwrpjgWa7nCX'
-
-STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
-STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", 'STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY')
-STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", 'sk_test_51Lg4MyK6rkKpcwrpBVyS7DCMIIiJxhxDwpCH5ufEg3MPS8QnZtcp3amLtQR5n5lQ1JKO4OVciqPL1K7kJguJZNUS005MqWi0jt')
+STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY")
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
 STRIPE_LIVE_MODE = False
-DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
+DJSTRIPE_WEBHOOK_SECRET = os.environ.get("DJSTRIPE_WEBHOOK_SECRET")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
-
 
 try:
     from .local_settings import *

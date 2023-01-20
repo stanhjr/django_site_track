@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import MyUser, SaleAds, ImageInGallery, SettingsFooter, CategoriesTrack, SettingsHeaderHome, \
     SettingsHeaderInventoryGrid, SettingsHeaderContact, SettingsHeaderInventoryCatalog, SettingsHeaderInventorySingle, \
-    SettingsIndexHome, FakeReviewIndexHome, MakeTrack, ModelTrack, TruckMake, TruckModel, TypeOfTrailer, TypeOfTruck
+    SettingsIndexHome, FakeReviewIndexHome, MakeTrack, ModelTrack, TruckMake, TruckModel, TypeOfTrailer, TypeOfTruck, \
+    SizeOfTrailer, Suspension, Engine, Horsepower, Transmission, TypeOf5Wheel, TireSize, SleeperSize
 
 
 class UserSearch(admin.ModelAdmin):
@@ -33,3 +34,11 @@ admin.site.register(FakeReviewIndexHome)
 admin.site.register(MakeTrack)
 admin.site.register(ModelTrack)
 
+admin.site.register(SizeOfTrailer)
+admin.site.register(Suspension)
+admin.site.register(Engine)
+admin.site.register(Horsepower)
+admin.site.register(Transmission)
+admin.site.register(TypeOf5Wheel)
+admin.site.register(TireSize)
+admin.site.register(SleeperSize)

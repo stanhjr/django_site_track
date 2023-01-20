@@ -5,21 +5,18 @@ from djstripe.models import Customer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from django_site_track.settings import STRIPE_TEST_SECRET_KEY
-
+from django_site_track.settings import STRIPE_TEST_SECRET_KEY, STRIPE_PLAN
 
 PLAN = {
     "sub-1-truck": "some_id_product",
-    "sub-12-month": "price_1Lg6qzK6rkKpcwrpXvfuaKRA",
+    "sub-12-month": STRIPE_PLAN,
     "sub-36-month": "some_id_product",
-
 }
 
 
 class GetSessionIdAPIView(APIView):
     def get(self, request):
-
-        customer = Customer.objects.get(subscriber=request.user)
+        customer, _ = Customer.get_or_create(subscriber=request.user)
         plan = PLAN.get(request.GET.get("plan"))
         if not plan:
             return Response(status=404)

@@ -59,13 +59,6 @@ class MyUser(AbstractUser):
     def get_contact_data(self):
         return f"email: {self.email}\nphone_number: {self.phone_number}\nfull_name: {self.full_name}"
 
-    def add_subscription(self, days_number: int):
-        if not self.subscribe_until_date:
-            self.subscribe_until_date = timezone.now() + timezone.timedelta(days=days_number)
-        elif self.subscribe_until_date <= timezone.now():
-            self.subscribe_until_date = timezone.now() + timezone.timedelta(days=days_number)
-        else:
-            self.subscribe_until_date += timezone.timedelta(days=days_number)
 
     @property
     def get_subscription(self):

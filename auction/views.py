@@ -5,7 +5,10 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import UpdateView, ListView
 
+from djstripe.models import Customer
+
 from auction.forms import AuctionBetForm
+from django_site_track.settings import STRIPE_PLAN
 from email_sender.tasks import send_buy_now_owner, send_buy_now_customer
 from site_track.models import SaleAds, SettingsFooter
 from vehicle_ads.views import SubscribeMixin
@@ -21,8 +24,8 @@ class AuctionUpdateView(SubscribeMixin, UpdateView):
             return redirect(safe_string)
         safe_string = reverse_lazy('posted-detail', kwargs={'pk': form.instance.pk})
         obj = form.save(commit=False)
-
-        if obj.sale_end_time > self.request.user.subscribe_until_date:
+        customer_stripe, _ = Customer.get_or_create(subscriber=self.request.user)
+        if not customer_stripe.is_subscribed_to(STRIPE_PLAN):
             messages.success(self.request,
                              'your subscription ends before this auction expires, please renew your subscription')
             return redirect(safe_string)
@@ -52,13 +55,8 @@ class AuctionBuyNowView(SubscribeMixin, View):
             safe_string = reverse_lazy('truck-detail', kwargs={'pk': kwargs.get("pk")})
         else:
             safe_string = reverse_lazy('posted-detail', kwargs={'pk': kwargs.get("pk")})
-
-        if self.request.user.subscribe_until_date:
-            if sale_ads.sale_end_time > self.request.user.subscribe_until_date and not self.request.user.subscription_one_time:
-                messages.success(self.request,
-                                 'your subscription ends before this auction expires, please renew your subscription')
-                return redirect(safe_string)
-        elif not self.request.user.subscribe_until_date and not self.request.user.subscription_one_time:
+        customer_stripe, _ = Customer.get_or_create(subscriber=self.request.user)
+        if not customer_stripe.is_subscribed_to(STRIPE_PLAN):
             messages.success(self.request,
                              'your subscription ends before this auction expires, please renew your subscription')
             return redirect(safe_string)

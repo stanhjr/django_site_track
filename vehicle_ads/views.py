@@ -4,8 +4,11 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
+from djstripe.models import Customer
 
 from auction.forms import AuctionBetForm
+from core.utils import is_need_subscribe
+from django_site_track.settings import STRIPE_PLAN
 from email_sender.tasks import send__make_offer_mail
 from site_track.models import SaleAds, ImageInGallery, SettingsFooter, SettingsHeaderInventorySingle, CategoriesTrack
 
@@ -47,11 +50,12 @@ class VehicleInformationView(LoginRequiredMixin, SubscribeMixin, CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        if self.request.user.subscribe_until_date:
-            if obj.sale_end_time > self.request.user.subscribe_until_date:
-                messages.success(self.request,
-                                 f'your subscription ends before the end of the auction, your subscription will expire {self.request.user.subscribe_until_date}')
-                return redirect('create-sale-ads')
+        customer_stripe, _ = Customer.get_or_create(subscriber=self.request.user)
+        if is_need_subscribe() and not customer_stripe.is_subscribed_to(STRIPE_PLAN):
+            messages.success(self.request,
+                             f'your subscription ends before the end of the auction, your subscription will expire')
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
 
         obj.user = self.request.user
         obj.vehicle_category = CategoriesTrack.objects.filter(name='Trailer').first()
@@ -91,11 +95,12 @@ class TruckCreateView(LoginRequiredMixin, SubscribeMixin, CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        if self.request.user.subscribe_until_date:
-            if obj.sale_end_time > self.request.user.subscribe_until_date:
-                messages.success(self.request,
-                                 f'your subscription ends before the end of the auction, your subscription will expire {self.request.user.subscribe_until_date}')
-                return redirect('create-truck')
+        customer_stripe, _ = Customer.get_or_create(subscriber=self.request.user)
+        if is_need_subscribe() and not customer_stripe.is_subscribed_to(STRIPE_PLAN):
+            messages.success(self.request,
+                             f'your subscription ends before the end of the auction, your subscription will expire')
+            safe_string = reverse('home') + "#price-buy-banner"
+            return redirect(safe_string)
         obj.vehicle_category = CategoriesTrack.objects.filter(name='Truck').first()
         obj.user = self.request.user
         obj.save()
@@ -232,10 +237,6 @@ class InventorySingleDetailView(DetailView):
         context['grid_name'] = self.get_object().title
         return context
 
-    # def get_form_kwargs(self):
-    #     kw = super(InventorySingleDetailView, self).get_form_kwargs()
-    #     kw['request'] = self.request
-    #     return kw
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()

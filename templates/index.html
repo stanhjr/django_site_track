@@ -13,11 +13,6 @@
                             <h2>{{ body.part_start_title }}</h2>
                             <p>{{ body.part_start_text }}</p>
                         </div>
-
-{#                        <a href="{% url 'inventory-grid' 'truck' %}" class="btn btn-inline">#}
-{#                            <i class="material-icons">travel_explore</i>#}
-{#                            <span>browse truck</span>#}
-{#                        </a>#}
                     </div>
                 </div>
             </div>
@@ -145,81 +140,83 @@
     <!--=====================================
                   PRICE PART START
     =======================================-->
-{#    <section class="section-gap-120" id="price-buy-banner">#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="col-xl-12">#}
-{#                    <div class="section-head">#}
-{#                        <div class="section-text">#}
-{#                            <h2>{{ body.price_part_title }}</h2>#}
-{#                            <p>{{ body.price_part_text }}</p>#}
-{#                        </div>#}
-{##}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="row price-slider slider-arrow">#}
-{#                <div class="col">#}
-{#                    <div class="price-card">#}
-{#                        <i class="price-icon material-icons">task_alt</i>#}
-{#                        <h3 class="price-title">ONE PLAN</h3>#}
-{#                        <p class="price-subtitle">1 TRUCK $500</p>#}
-{#                         <ul class="price-list">#}
-{#                            <li class="price-item"><span>No buyers Fees for buying trucks</span></li>#}
-{#                            <li class="price-item"><span>No Seller Fees for selling trucks</span></li>#}
-{#                            <li class="price-item"><span>No absolutes</span></li>#}
-{#                            <li class="price-item"><span>Buy it now feature</span></li>#}
-{#                            <li class="price-item"><span>Seller of truck receives payment directly from buyer</span></li>#}
-{#                            <li class="price-item"><span>Unlimited number of listings per year</span></li>#}
-{#                            <li class="price-item"><span>Low monthly subscription fee</span></li>#}
-{#                        </ul>#}
-{#                        <h4 class="price-amount">$500</h4>#}
-{#                        <h5 class="price-mode">1 TRUCK $500</h5>#}
-{#                        <div class="price-action" id="sub-1-truck">buy</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col">#}
-{#                    <div class="price-card">#}
-{#                        <i class="price-icon material-icons">task_alt</i>#}
-{#                        <h3 class="price-title">Starter plan</h3>#}
-{#                        <p class="price-subtitle">12 month subscription</p>#}
-{#                         <ul class="price-list">#}
-{#                            <li class="price-item"><span>No buyers Fees for buying trucks</span></li>#}
-{#                            <li class="price-item"><span>No Seller Fees for selling trucks</span></li>#}
-{#                            <li class="price-item"><span>No absolutes</span></li>#}
-{#                            <li class="price-item"><span>Buy it now feature</span></li>#}
-{#                            <li class="price-item"><span>Seller of truck receives payment directly from buyer</span></li>#}
-{#                            <li class="price-item"><span>Unlimited number of listings per year</span></li>#}
-{#                            <li class="price-item"><span>Low monthly subscription fee</span></li>#}
-{#                        </ul>#}
-{#                        <h4 class="price-amount">$150</h4>#}
-{#                        <h5 class="price-mode">12 month</h5>#}
-{#                        <div class="price-action" id="sub-12-month">buy</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col">#}
-{#                    <div class="price-card">#}
-{#                        <i class="price-icon material-icons">task_alt</i>#}
-{#                        <h3 class="price-title">Economical plan</h3>#}
-{#                        <p class="price-subtitle">36 month subscription</p>#}
-{#                         <ul class="price-list">#}
-{#                            <li class="price-item"><span>No buyers Fees for buying trucks</span></li>#}
-{#                            <li class="price-item"><span>No Seller Fees for selling trucks</span></li>#}
-{#                            <li class="price-item"><span>No absolutes</span></li>#}
-{#                            <li class="price-item"><span>Buy it now feature</span></li>#}
-{#                            <li class="price-item"><span>Seller of truck receives payment directly from buyer</span></li>#}
-{#                            <li class="price-item"><span>Unlimited number of listings per year</span></li>#}
-{#                            <li class="price-item"><span>Low monthly subscription fee</span></li>#}
-{#                        </ul>#}
-{#                        <h4 class="price-amount">$125</h4>#}
-{#                        <h5 class="price-mode">36 month</h5>#}
-{#                        <div class="price-action" id="sub-36-month">buy</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#        </div>#}
-{#    </section>#}
+   {% if user.is_authenticated %}
+    <section class="section-gap-120" id="price-buy-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>{{ body.price_part_title }}</h2>
+                            <p>{{ body.price_part_text }}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row price-slider slider-arrow">
+                <div class="col">
+                    <div class="price-card">
+                        <i class="price-icon material-icons">task_alt</i>
+                        <h3 class="price-title">ONE PLAN</h3>
+                        <p class="price-subtitle">1 TRUCK $500</p>
+                         <ul class="price-list">
+                            <li class="price-item"><span>No buyers Fees for buying trucks</span></li>
+                            <li class="price-item"><span>No Seller Fees for selling trucks</span></li>
+                            <li class="price-item"><span>No absolutes</span></li>
+                            <li class="price-item"><span>Buy it now feature</span></li>
+                            <li class="price-item"><span>Seller of truck receives payment directly from buyer</span></li>
+                            <li class="price-item"><span>Unlimited number of listings per year</span></li>
+                            <li class="price-item"><span>Low monthly subscription fee</span></li>
+                        </ul>
+                        <h4 class="price-amount">$500</h4>
+                        <h5 class="price-mode">1 TRUCK $500</h5>
+                        <div class="price-action" id="sub-1-truck">buy</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="price-card">
+                        <i class="price-icon material-icons">task_alt</i>
+                        <h3 class="price-title">Starter plan</h3>
+                        <p class="price-subtitle">12 month subscription</p>
+                         <ul class="price-list">
+                            <li class="price-item"><span>No buyers Fees for buying trucks</span></li>
+                            <li class="price-item"><span>No Seller Fees for selling trucks</span></li>
+                            <li class="price-item"><span>No absolutes</span></li>
+                            <li class="price-item"><span>Buy it now feature</span></li>
+                            <li class="price-item"><span>Seller of truck receives payment directly from buyer</span></li>
+                            <li class="price-item"><span>Unlimited number of listings per year</span></li>
+                            <li class="price-item"><span>Low monthly subscription fee</span></li>
+                        </ul>
+                        <h4 class="price-amount">$150</h4>
+                        <h5 class="price-mode">12 month</h5>
+                        <div class="price-action" id="sub-12-month">buy</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="price-card">
+                        <i class="price-icon material-icons">task_alt</i>
+                        <h3 class="price-title">Economical plan</h3>
+                        <p class="price-subtitle">36 month subscription</p>
+                         <ul class="price-list">
+                            <li class="price-item"><span>No buyers Fees for buying trucks</span></li>
+                            <li class="price-item"><span>No Seller Fees for selling trucks</span></li>
+                            <li class="price-item"><span>No absolutes</span></li>
+                            <li class="price-item"><span>Buy it now feature</span></li>
+                            <li class="price-item"><span>Seller of truck receives payment directly from buyer</span></li>
+                            <li class="price-item"><span>Unlimited number of listings per year</span></li>
+                            <li class="price-item"><span>Low monthly subscription fee</span></li>
+                        </ul>
+                        <h4 class="price-amount">$125</h4>
+                        <h5 class="price-mode">36 month</h5>
+                        <div class="price-action" id="sub-36-month">buy</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    {% endif %}
     <!--=====================================
                   PRICE PART END
     =======================================-->
@@ -240,8 +237,6 @@
                         <div class="review-wrap-content">
                             <div class="review-wrap-meta">
                                 <div class="review-wrap-video">
-{#                                    <a href="#" class="material-icons">play_arrow</a>#}
-{#                                    <i class="material-icons">format_quote</i>#}
                                 </div>
                                 <div class="review-wrap-item">
                                     <h4>{{ review.name_sale }}</h4>

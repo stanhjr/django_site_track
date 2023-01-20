@@ -10,3 +10,10 @@ class Faq(models.Model):
         return self.title
 
 
+class DateSubscribe(models.Model):
+    date = models.DateField(null=True)
+
+    def __str__(self):
+        return f'subscription start date'
+
+
