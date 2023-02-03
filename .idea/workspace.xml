@@ -7,7 +7,11 @@
     <list default="true" id="00744ce3-b3e9-479f-ade7-73c9d63d23a1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mydatabase" beforeDir="false" afterPath="$PROJECT_DIR$/mydatabase" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_inventory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_inventory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account_settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account_settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create-ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create-ads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create_truck.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_truck.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/update-ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/update-ads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/update_truck.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/update_truck.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +85,7 @@
       <updated>1674213017070</updated>
       <workItem from="1674213019132" duration="17071000" />
       <workItem from="1675439441318" duration="695000" />
-      <workItem from="1675444392406" duration="1775000" />
+      <workItem from="1675444392406" duration="2540000" />
     </task>
     <servers />
   </component>
