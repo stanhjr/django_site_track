@@ -10843,3 +10843,6 @@ textarea::placeholder {
         height: 270px;
     }
 }
+.mail-link-black {
+    color: #000000;
+}
