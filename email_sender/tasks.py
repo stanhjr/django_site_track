@@ -25,7 +25,6 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(60.0, send_auction_win.s(), name='add every 60')
-    # sender.add_periodic_task(10.00, send_mail_contact_us.s("dfdf@dfdf.cc", "subject", "text"))
 
 
 def generate_key():
@@ -52,7 +51,6 @@ def send_registration_link_to_email(code: str, email_to):
     message.attach(part1)
 
     try:
-
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
             server.login(sender_email, password)
@@ -82,14 +80,8 @@ def send_reset_password_link_to_email(code: str, email_to):
     message["From"] = sender_email
     message["To"] = email_to
 
-    # Turn these into plain/html MIMEText objects
     part1 = MIMEText(text, "plain")
-    # part2 = MIMEText(html, "html")
-
-    # Add HTML/plain-text parts to MIMEMultipart message
-    # The email client will try to render the last part first
     message.attach(part1)
-    # message.attach(part2)
 
     try:
 

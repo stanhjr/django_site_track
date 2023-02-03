@@ -88,11 +88,6 @@ class ResetPassword(FormView):
     form_class = ResetPasswordForm
     success_url = '/'
 
-    def get_form_kwargs(self):
-        kw = super(ResetPassword, self).get_form_kwargs()
-        kw['request'] = self.request
-        return kw
-
     def form_valid(self, form):
         user = MyUser.objects.filter(email=form.data.get('email'), is_confirm=True).first()
         if user:

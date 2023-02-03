@@ -155,7 +155,6 @@ class UserSignUpForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         if MyUser.objects.filter(email=cleaned_data.get('email')).exists():
-            print("dfdfdfdfdf")
             messages.warning(self.request, 'This mail is already registered')
             raise forms.ValidationError('This mail is already registered')
 
