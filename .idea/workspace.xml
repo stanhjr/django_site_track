@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="00744ce3-b3e9-479f-ade7-73c9d63d23a1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site_track/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/site_track/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inventory-single.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inventory-single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/one_auto.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/one_auto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/truck_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/truck_single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_celery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site_track/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/site_track/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/follow_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/follow_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base_inventory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_inventory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create-ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create-ads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create_truck.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_truck.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/follow_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/follow_email.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -36,6 +51,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -73,6 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674213017070</updated>
       <workItem from="1674213019132" duration="17071000" />
+      <workItem from="1675439441318" duration="695000" />
     </task>
     <servers />
   </component>

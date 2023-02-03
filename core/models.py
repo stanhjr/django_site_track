@@ -2,6 +2,11 @@ from django.db import models
 
 
 class Faq(models.Model):
+    """
+    Hello dear friend, I know that the code looks terrible, there were reasons for that
+
+    if you need help with the project, you can write to me on this email stanhjrpower@gmail.com
+    """
     title = models.CharField(max_length=1000)
     text = models.TextField(max_length=10000)
     number = models.IntegerField(default=1)

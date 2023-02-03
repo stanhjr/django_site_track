@@ -12,6 +12,11 @@ from site_track.defoul_text_in_site import ABOUT_COMPANY_TEXT, ABOUT_COMPANY_TIT
 
 
 class MyUser(AbstractUser):
+    """
+    Hello dear friend, I know that the code looks terrible, there were reasons for that
+
+    if you need help with the project, you can write to me on this email stanhjrpower@gmail.com
+    """
     ACCOUNT_TYPE_CHOICES = (
         ("individual", "individual"),
         ("dealership", "dealership"),
